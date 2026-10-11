@@ -1,0 +1,866 @@
+[
+ {
+  "id": "gua-001",
+  "text": "¿Cuál es la capital de La Guajira?",
+  "options": [
+   "Maicao",
+   "Valledupar",
+   "Uribia",
+   "Riohacha"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Riohacha es la capital del departamento.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-002",
+  "text": "¿En qué año se creó el departamento de La Guajira?",
+  "options": [
+   "1965",
+   "1886",
+   "1991",
+   "1910"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "El departamento se creó el 1 de julio de 1965.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-003",
+  "text": "¿Qué lugar de La Guajira es el extremo más al norte de Sudamérica?",
+  "options": [
+   "Manaure",
+   "Cabo de la Vela",
+   "Palomino",
+   "Punta Gallinas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Punta Gallinas es el punto más septentrional del continente sudamericano.",
+  "source": "https://es.wikipedia.org/wiki/Punta_Gallinas",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-004",
+  "text": "¿En qué municipio está Punta Gallinas?",
+  "options": [
+   "Uribia",
+   "Riohacha",
+   "Maicao",
+   "Dibulla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Punta Gallinas pertenece al municipio de Uribia.",
+  "source": "https://es.wikipedia.org/wiki/Punta_Gallinas",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-005",
+  "text": "En Punta Gallinas está el faro situado más al norte de América del Sur.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Allí se ubica el faro más septentrional de Sudamérica.",
+  "source": "https://es.wikipedia.org/wiki/Punta_Gallinas",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-006",
+  "text": "¿Qué dunas famosas se encuentran en Punta Gallinas?",
+  "options": [
+   "Dunas de Tatacoa",
+   "Dunas de Palúa",
+   "Dunas de Médanos",
+   "Dunas de Taroa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "Las dunas de Taroa llegan hasta el mar en Punta Gallinas. La Tatacoa es un desierto del Huila.",
+  "source": "https://es.wikipedia.org/wiki/Punta_Gallinas",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-007",
+  "text": "¿Con qué nombre llaman los wayuu al Cabo de la Vela?",
+  "options": [
+   "Macuira",
+   "Teyuna",
+   "Jepirra",
+   "Nabusimake"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Para los wayuu el Cabo de la Vela es Jepirra, un lugar sagrado.",
+  "source": "https://es.wikipedia.org/wiki/Cabo_de_la_Vela",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-008",
+  "text": "Según la tradición wayuu, ¿qué sucede en Jepirra (Cabo de la Vela)?",
+  "options": [
+   "Allí se extrae la sal",
+   "Allí se celebra el carnaval",
+   "Allí llegan los espíritus de los muertos",
+   "Allí nació el primer acordeón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "En la cosmovisión wayuu, Jepirra es el lugar al que van las almas de los difuntos.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-010",
+  "text": "El Cabo de la Vela es conocido por tener buen viento para practicar kitesurf.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Sus vientos constantes durante todo el año lo hacen ideal para el kitesurf.",
+  "source": "https://es.wikipedia.org/wiki/Cabo_de_la_Vela",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-011",
+  "text": "¿Qué expedición española llegó al Cabo de la Vela en 1499?",
+  "options": [
+   "La de Rodrigo de Bastidas",
+   "La de Pedro de Heredia",
+   "La de Alonso de Ojeda",
+   "La de Gonzalo Jiménez de Quesada"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "En 1499 la expedición de Alonso de Ojeda, con Juan de la Cosa y Américo Vespucio, llegó al cabo.",
+  "source": "https://es.wikipedia.org/wiki/Cabo_de_la_Vela",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-012",
+  "text": "¿Qué municipio guajiro es llamado la «capital indígena de Colombia»?",
+  "options": [
+   "Villanueva",
+   "Barrancas",
+   "Uribia",
+   "Fonseca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Uribia es conocida como la capital indígena de Colombia.",
+  "source": "https://es.wikipedia.org/wiki/Uribia",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-013",
+  "text": "¿De quién toma su nombre el municipio de Uribia?",
+  "options": [
+   "Rafael Uribe Uribe",
+   "Un cacique wayuu llamado Uri",
+   "Álvaro Uribe Vélez",
+   "Uribe Ángel"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Uribia debe su nombre al caudillo liberal Rafael Uribe Uribe.",
+  "source": "https://es.wikipedia.org/wiki/Uribia",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-014",
+  "text": "Uribia es el municipio más extenso de La Guajira.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Uribia tiene unos 8200 km², más de un tercio del departamento.",
+  "source": "https://es.wikipedia.org/wiki/Uribia",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-015",
+  "text": "¿En qué municipio se celebra el Festival de la Cultura Wayuu?",
+  "options": [
+   "San Juan del Cesar",
+   "Uribia",
+   "Riohacha",
+   "Villanueva"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "El Festival de la Cultura Wayuu se realiza en Uribia, normalmente en mayo.",
+  "source": "https://es.wikipedia.org/wiki/Uribia",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-016",
+  "text": "¿Cómo se llama la lengua del pueblo wayuu?",
+  "options": [
+   "Damana",
+   "Quechua",
+   "Ikun",
+   "Wayuunaiki"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_culturas",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Los wayuu hablan wayuunaiki.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-017",
+  "text": "¿A qué familia lingüística pertenece el wayuunaiki?",
+  "options": [
+   "Chibcha",
+   "Arawak",
+   "Caribe",
+   "Tupí"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "El wayuunaiki es una lengua de la familia arawak.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-018",
+  "text": "La organización social wayuu es matrilineal: el clan se hereda por la línea de la madre.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Los wayuu se organizan en clanes matrilineales.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-019",
+  "text": "¿Cuál es el papel del palabrero (pütchipü'ü) en la cultura wayuu?",
+  "options": [
+   "Dirigir la pesca",
+   "Resolver conflictos entre clanes",
+   "Tocar el acordeón en las fiestas",
+   "Tejer las mochilas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "El palabrero es el portador de la palabra que media en los conflictos entre clanes.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-020",
+  "text": "¿Cómo se llama la danza wayuu en la que la mujer avanza y el hombre retrocede?",
+  "options": [
+   "Garabato",
+   "Mapalé",
+   "Cumbia",
+   "Yonna o chichamaya"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "La yonna o chichamaya se baila en celebraciones relacionadas con la mujer.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-021",
+  "text": "En la tradición wayuu, ¿quién es Maleiwa?",
+  "options": [
+   "Un palabrero famoso",
+   "El mar",
+   "El creador",
+   "La lluvia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_culturas",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "Maleiwa es la figura creadora; Juyá es la lluvia y Pulowi es una figura femenina primigenia.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-023",
+  "text": "Los wayuu son el pueblo indígena más numeroso de Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Según los censos citados en la fuente, los wayuu son el pueblo indígena más numeroso del país.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": "Censo nacional citado en la fuente (2018)"
+ },
+ {
+  "id": "gua-024",
+  "text": "¿Cómo se llaman las pequeñas comunidades wayuu formadas por familias del mismo clan?",
+  "options": [
+   "Corregimientos",
+   "Resguardos urbanos",
+   "Veredas",
+   "Rancherías"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Las rancherías agrupan a parientes cercanos del mismo clan.",
+  "source": "https://es.wikipedia.org/wiki/Wayuu",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-025",
+  "text": "¿Por qué son famosas las salinas de Manaure?",
+  "options": [
+   "Son un desierto de arena roja",
+   "Son las salinas marítimas más importantes del país",
+   "Son una mina de oro",
+   "Tienen agua dulce"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Las salinas de Manaure son las salinas marítimas más importantes de Colombia.",
+  "source": "https://es.wikipedia.org/wiki/Manaure_(La_Guajira)",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-027",
+  "text": "¿Qué se extrae en la mina de El Cerrejón?",
+  "options": [
+   "Carbón",
+   "Esmeraldas",
+   "Sal",
+   "Oro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "El Cerrejón es una de las minas de carbón a cielo abierto más grandes del mundo.",
+  "source": "https://es.wikipedia.org/wiki/Cerrej%C3%B3n",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-029",
+  "text": "Puerto Bolívar, en La Guajira, es el principal puerto de exportación de carbón del país.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Desde Puerto Bolívar se exporta el carbón del Cerrejón.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-030",
+  "text": "¿Quién estableció en 1535 el primer asentamiento que dio origen a Riohacha?",
+  "options": [
+   "Rodrigo de Bastidas",
+   "Nicolás Federmann",
+   "Alonso de Ojeda",
+   "Juan de Castellanos"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "El asentamiento de Nuestra Señora de las Nieves se atribuye a Nicolás Federmann en 1535; luego se trasladó a la desembocadura del río.",
+  "source": "https://es.wikipedia.org/wiki/Riohacha",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-031",
+  "text": "¿Qué riqueza motivó el asentamiento europeo en Riohacha?",
+  "options": [
+   "Las perlas",
+   "El oro",
+   "El café",
+   "El petróleo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "La extracción de perlas fue durante siglos la actividad más importante de Riohacha.",
+  "source": "https://es.wikipedia.org/wiki/Riohacha",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-032",
+  "text": "¿Qué pirata atacó Riohacha en 1596 atraído por sus perlas?",
+  "options": [
+   "Barbanegra",
+   "Henry Morgan",
+   "Jean Lafitte",
+   "Francis Drake"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "Francis Drake atacó la ciudad en 1596.",
+  "source": "https://es.wikipedia.org/wiki/Riohacha",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-033",
+  "text": "¿En el delta de qué río está Riohacha?",
+  "options": [
+   "Río Palomino",
+   "Río Magdalena",
+   "Río Cesar",
+   "Río Ranchería"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Riohacha se encuentra en el delta del río Ranchería.",
+  "source": "https://es.wikipedia.org/wiki/Riohacha",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-034",
+  "text": "¿En qué corregimiento de Riohacha está el Santuario de Fauna y Flora Los Flamencos?",
+  "options": [
+   "Mayapo",
+   "Camarones",
+   "Cuestecitas",
+   "Palomino"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "El santuario está en Camarones, a unos 20 km de Riohacha.",
+  "source": "https://es.wikipedia.org/wiki/Riohacha",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-035",
+  "text": "El Santuario Los Flamencos protege al flamenco del Caribe.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Su especie emblemática es el flamenco del Caribe (Phoenicopterus ruber).",
+  "source": "https://es.wikipedia.org/wiki/Santuario_de_fauna_y_flora_Los_Flamencos",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-036",
+  "text": "¿Qué almirante de la independencia nació en Riohacha?",
+  "options": [
+   "Antonio Nariño",
+   "Francisco de Paula Santander",
+   "José Prudencio Padilla",
+   "Atanasio Girardot"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "José Prudencio Padilla, héroe naval de la independencia, nació en Riohacha.",
+  "source": "https://es.wikipedia.org/wiki/Riohacha",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-037",
+  "text": "¿De qué colores es la bandera de La Guajira?",
+  "options": [
+   "Amarillo y azul",
+   "Verde y blanco",
+   "Rojo y blanco",
+   "Verde y amarillo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Tiene dos franjas horizontales iguales: blanca arriba y verde abajo.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-038",
+  "text": "¿En qué municipio guajiro se celebra el Festival Cuna de Acordeones?",
+  "options": [
+   "Manaure",
+   "Uribia",
+   "Villanueva",
+   "Maicao"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "El Festival Cuna de Acordeones se celebra en Villanueva.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-039",
+  "text": "El Festival Francisco el Hombre se celebra en Riohacha.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "la-guajira",
+  "explanation": "Es un festival de música vallenata de Riohacha.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-040",
+  "text": "Según la leyenda, ¿cómo venció Francisco el Hombre al diablo en un duelo musical?",
+  "options": [
+   "Lo invitó a un sancocho",
+   "Le rompió el acordeón",
+   "Cantó más fuerte toda la noche",
+   "Rezó el Credo al revés y tocó la melodía más hermosa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "La leyenda dice que rezó el Credo al revés y luego tocó una melodía tan hermosa que el diablo huyó.",
+  "source": "https://es.wikipedia.org/wiki/Francisco_el_Hombre",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-041",
+  "text": "¿En qué municipio guajiro nació Emiliano Zuleta Baquero, autor de «La gota fría»?",
+  "options": [
+   "La Jagua del Pilar",
+   "Uribia",
+   "Maicao",
+   "Riohacha"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "Emiliano Zuleta nació en La Jagua del Pilar en 1912. «La gota fría» nació de una piqueria con Lorenzo Morales.",
+  "source": "https://es.wikipedia.org/wiki/Emiliano_Zuleta_Baquero",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-042",
+  "text": "¿Cómo apodaban a Diomedes Díaz, nacido en La Junta, San Juan del Cesar?",
+  "options": [
+   "El Viejo Mile",
+   "El Cacique de La Junta",
+   "El Pibe",
+   "El Rey Negro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "Rafael Orozco le dio el apodo de «El Cacique de La Junta».",
+  "source": "https://es.wikipedia.org/wiki/Diomedes_D%C3%ADaz",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-043",
+  "text": "¿Qué hace única a la Serranía de la Macuira?",
+  "options": [
+   "Es una isla volcánica",
+   "Es la montaña más alta de Colombia",
+   "Tiene nieve todo el año",
+   "Tiene un bosque enano nublado en medio de una zona semidesértica"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "HARD",
+  "region": "la-guajira",
+  "explanation": "La Macuira tiene un bosque nublado a pocos kilómetros del semidesierto.",
+  "source": "https://es.wikipedia.org/wiki/Parque_nacional_natural_Macuira",
+  "referenceDate": null
+ },
+ {
+  "id": "gua-044",
+  "text": "¿Qué carne es protagonista de la gastronomía guajira, por ejemplo en el friche?",
+  "options": [
+   "Conejo",
+   "Cerdo",
+   "Chivo",
+   "Pavo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "la-guajira",
+  "explanation": "El friche se prepara con chivo, muy presente en la cocina guajira.",
+  "source": "https://es.wikipedia.org/wiki/La_Guajira",
+  "referenceDate": null
+ }
+]

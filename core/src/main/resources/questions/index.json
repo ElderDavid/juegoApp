@@ -1,0 +1,106 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "ciencia",
+   "name": "Ciencia y naturaleza"
+  },
+  {
+   "id": "historia",
+   "name": "Historia"
+  },
+  {
+   "id": "geografia",
+   "name": "Geografía"
+  },
+  {
+   "id": "deportes",
+   "name": "Deportes"
+  },
+  {
+   "id": "tecnologia",
+   "name": "Tecnología"
+  },
+  {
+   "id": "cine",
+   "name": "Cine y entretenimiento"
+  },
+  {
+   "id": "musica",
+   "name": "Música"
+  },
+  {
+   "id": "cultura",
+   "name": "Cultura general"
+  },
+  {
+   "id": "curiosidades",
+   "name": "Curiosidades"
+  },
+  {
+   "id": "debate",
+   "name": "Debate y opinión"
+  },
+  {
+   "id": "reg_geografia",
+   "name": "Municipios y geografía"
+  },
+  {
+   "id": "reg_historia",
+   "name": "Historia regional"
+  },
+  {
+   "id": "reg_simbolos",
+   "name": "Símbolos"
+  },
+  {
+   "id": "reg_gastronomia",
+   "name": "Gastronomía"
+  },
+  {
+   "id": "reg_culturas",
+   "name": "Culturas indígenas y locales"
+  },
+  {
+   "id": "reg_tradiciones",
+   "name": "Tradiciones"
+  },
+  {
+   "id": "reg_lugares",
+   "name": "Lugares representativos"
+  },
+  {
+   "id": "reg_personajes",
+   "name": "Personajes y acontecimientos"
+  },
+  {
+   "id": "reg_curiosidades",
+   "name": "Curiosidades regionales"
+  }
+ ],
+ "regions": [
+  {
+   "id": "la-guajira",
+   "name": "La Guajira"
+  },
+  {
+   "id": "magdalena",
+   "name": "Magdalena"
+  },
+  {
+   "id": "cesar",
+   "name": "Cesar"
+  },
+  {
+   "id": "atlantico",
+   "name": "Atlántico"
+  }
+ ],
+ "files": [
+  "general.json",
+  "la-guajira.json",
+  "magdalena.json",
+  "cesar.json",
+  "atlantico.json"
+ ]
+}

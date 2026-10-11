@@ -1,0 +1,866 @@
+[
+ {
+  "id": "mag-001",
+  "text": "¿Cuál es la capital del Magdalena?",
+  "options": [
+   "Ciénaga",
+   "Santa Marta",
+   "Barranquilla",
+   "El Banco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Santa Marta es la capital del departamento.",
+  "source": "https://es.wikipedia.org/wiki/Magdalena_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-002",
+  "text": "¿En qué año fue fundada Santa Marta?",
+  "options": [
+   "1810",
+   "1492",
+   "1550",
+   "1525"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Santa Marta fue fundada el 29 de julio de 1525.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-003",
+  "text": "¿Quién fundó Santa Marta?",
+  "options": [
+   "Pedro de Heredia",
+   "Sebastián de Belalcázar",
+   "Gonzalo Jiménez de Quesada",
+   "Rodrigo de Bastidas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "El español Rodrigo de Bastidas fundó Santa Marta en 1525.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-004",
+  "text": "Santa Marta es la ciudad en pie más antigua de Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Es la ciudad más antigua de Colombia que sigue existiendo.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-005",
+  "text": "¿Con qué apodo se conoce a Santa Marta?",
+  "options": [
+   "La Ciudad Heroica",
+   "La Capital Indígena",
+   "La Perla de América",
+   "La Puerta de Oro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El apodo «La Perla de América» se lo dio el padre Antonio Julián en el siglo XVIII.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-006",
+  "text": "¿Qué personaje histórico murió en la Quinta de San Pedro Alejandrino en 1830?",
+  "options": [
+   "Francisco de Paula Santander",
+   "Simón Bolívar",
+   "Antonio Nariño",
+   "José Prudencio Padilla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Simón Bolívar falleció en la Quinta de San Pedro Alejandrino, en Santa Marta.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-007",
+  "text": "¿Los restos de qué personaje reposan en la Catedral de Santa Marta?",
+  "options": [
+   "Cristóbal Colón",
+   "Rafael Escalona",
+   "Gabriel García Márquez",
+   "Rodrigo de Bastidas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "La catedral guarda los restos de Rodrigo de Bastidas.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-008",
+  "text": "¿Cómo se llama el famoso balneario a unos 5 km al sur del centro de Santa Marta?",
+  "options": [
+   "Pradomar",
+   "Bocagrande",
+   "El Rodadero",
+   "Playa Blanca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "El Rodadero es uno de los principales balnearios del Caribe colombiano.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-009",
+  "text": "¿Qué pueblo de pescadores cerca de Santa Marta es punto de salida hacia el Parque Tayrona?",
+  "options": [
+   "Taganga",
+   "Mompox",
+   "Tolú",
+   "Palomino"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Taganga sirve como puerto de salida hacia el Tayrona.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-011",
+  "text": "¿En qué año el Unión Magdalena se convirtió en el primer equipo de la Costa Caribe campeón del fútbol profesional colombiano?",
+  "options": [
+   "1968",
+   "1958",
+   "1977",
+   "1989"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Unión Magdalena ganó el torneo en 1968.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-012",
+  "text": "¿En qué ciudad nació el futbolista Carlos «el Pibe» Valderrama?",
+  "options": [
+   "Santa Marta",
+   "Barranquilla",
+   "Valledupar",
+   "Cali"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Carlos Valderrama nació en Santa Marta.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-013",
+  "text": "El futbolista Radamel Falcao García nació en Santa Marta.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Falcao nació en Santa Marta.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-014",
+  "text": "¿En qué ciudad nació el cantante Carlos Vives?",
+  "options": [
+   "Riohacha",
+   "Valledupar",
+   "Santa Marta",
+   "Bogotá"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Carlos Vives nació en Santa Marta en 1961.",
+  "source": "https://es.wikipedia.org/wiki/Carlos_Vives",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-015",
+  "text": "¿En qué año lanzó Carlos Vives el álbum «Clásicos de la provincia»?",
+  "options": [
+   "1993",
+   "2001",
+   "1985",
+   "1999"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Clásicos de la provincia se publicó en 1993 e incluyó el éxito «La gota fría».",
+  "source": "https://es.wikipedia.org/wiki/Carlos_Vives",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-016",
+  "text": "¿Qué premio Nobel de Literatura nació en Aracataca?",
+  "options": [
+   "Mario Vargas Llosa",
+   "Pablo Neruda",
+   "Octavio Paz",
+   "Gabriel García Márquez"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Aracataca es la tierra natal de Gabriel García Márquez.",
+  "source": "https://es.wikipedia.org/wiki/Aracataca",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-017",
+  "text": "En Aracataca está la Casa Museo de Gabriel García Márquez.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "La casa donde nació el escritor es hoy casa museo.",
+  "source": "https://es.wikipedia.org/wiki/Aracataca",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-018",
+  "text": "¿Qué famoso fotógrafo y caricaturista nació también en Aracataca?",
+  "options": [
+   "Leo Matiz",
+   "Fernando Botero",
+   "Nereo López",
+   "Alejandro Obregón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Leo Matiz Espinoza nació en Aracataca.",
+  "source": "https://es.wikipedia.org/wiki/Aracataca",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-019",
+  "text": "¿Cuál es el nombre indígena de Ciudad Perdida?",
+  "options": [
+   "Bacatá",
+   "Jepirra",
+   "Chairama",
+   "Teyuna"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Ciudad Perdida también se conoce como Teyuna o Buritaca-200.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-020",
+  "text": "¿Qué pueblo indígena construyó Ciudad Perdida?",
+  "options": [
+   "Los muiscas",
+   "Los tayronas",
+   "Los incas",
+   "Los zenúes"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Fue construida por el pueblo tayrona.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-021",
+  "text": "¿Alrededor de qué siglo se construyó Ciudad Perdida?",
+  "options": [
+   "Siglo I a. C.",
+   "Siglo XVIII",
+   "Siglo VIII",
+   "Siglo XV"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Se construyó alrededor del siglo VIII.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-022",
+  "text": "¿En qué año llegó a Ciudad Perdida la expedición arqueológica de Gilberto Cadavid y Luisa Fernanda Herrera?",
+  "options": [
+   "1950",
+   "1999",
+   "1925",
+   "1976"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "La expedición de 1976 inició su estudio arqueológico.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-023",
+  "text": "¿En la margen de qué río está Ciudad Perdida?",
+  "options": [
+   "Río Cesar",
+   "Río Buritaca",
+   "Río Manzanares",
+   "Río Ranchería"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Está sobre la margen derecha del río Buritaca.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-024",
+  "text": "Para llegar a Ciudad Perdida se hace una caminata de varios días.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El recorrido guiado toma entre 4 y 6 días.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-025",
+  "text": "La playa de Arrecifes, en el Tayrona, es la más recomendada para nadar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Arrecifes no es apta para nadar por la fuerza del oleaje; La Piscina, a su lado, sí.",
+  "source": "https://es.wikipedia.org/wiki/Parque_nacional_natural_Tayrona",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-026",
+  "text": "¿Cómo se llama el sitio arqueológico tayrona dentro del Parque Tayrona?",
+  "options": [
+   "Pueblito (Chairama)",
+   "Tierradentro",
+   "Teyuna",
+   "San Agustín"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Pueblito Chairama son ruinas de los tayronas dentro del parque.",
+  "source": "https://es.wikipedia.org/wiki/Parque_nacional_natural_Tayrona",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-027",
+  "text": "¿Cuál de estas playas está en el Parque Tayrona?",
+  "options": [
+   "Playa Blanca de Barú",
+   "Bocagrande",
+   "Cabo San Juan de Guía",
+   "Pradomar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "El Cabo San Juan de Guía es uno de los sectores más conocidos del parque.",
+  "source": "https://es.wikipedia.org/wiki/Parque_nacional_natural_Tayrona",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-028",
+  "text": "¿Cómo se llama el pico más alto de Colombia, en la Sierra Nevada de Santa Marta?",
+  "options": [
+   "Pico Cristóbal Colón",
+   "Nevado del Huila",
+   "Cerro Pintado",
+   "Nevado del Ruiz"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El pico Cristóbal Colón supera los 5700 m.",
+  "source": "https://es.wikipedia.org/wiki/Sierra_Nevada_de_Santa_Marta",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-029",
+  "text": "La Sierra Nevada de Santa Marta es la montaña costera más alta del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Es el segundo sistema montañoso litoral más alto del mundo, después de los montes San Elías, y el más alto en un litoral tropical.",
+  "source": "https://es.wikipedia.org/wiki/Sierra_Nevada_de_Santa_Marta",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-030",
+  "text": "¿En qué año la UNESCO declaró la Sierra Nevada de Santa Marta reserva de la biosfera?",
+  "options": [
+   "1991",
+   "1965",
+   "2003",
+   "1979"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Fue declarada reserva de la biosfera en 1979.",
+  "source": "https://es.wikipedia.org/wiki/Sierra_Nevada_de_Santa_Marta",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-031",
+  "text": "¿Qué departamentos comparten la Sierra Nevada de Santa Marta?",
+  "options": [
+   "Cesar, Santander y Bolívar",
+   "Solo Magdalena",
+   "Magdalena, La Guajira y Cesar",
+   "Magdalena, Atlántico y Bolívar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "La Sierra abarca Magdalena, La Guajira y Cesar.",
+  "source": "https://es.wikipedia.org/wiki/Sierra_Nevada_de_Santa_Marta",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-032",
+  "text": "¿Cuál de estos pueblos indígenas vive en la Sierra Nevada de Santa Marta?",
+  "options": [
+   "Emberá",
+   "Kogui",
+   "Nasa",
+   "Ticuna"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "En la Sierra viven los kogui, arhuacos, wiwas y kankuamos.",
+  "source": "https://es.wikipedia.org/wiki/Sierra_Nevada_de_Santa_Marta",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-033",
+  "text": "¿Cuántas ciénagas forman el complejo de la Ciénaga Grande de Santa Marta?",
+  "options": [
+   "16",
+   "100",
+   "3",
+   "50"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "Es un complejo lagunar de 16 ciénagas.",
+  "source": "https://es.wikipedia.org/wiki/Magdalena_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-034",
+  "text": "¿Qué fruta es el principal producto de exportación de la Zona Bananera?",
+  "options": [
+   "La naranja",
+   "El mango",
+   "La piña",
+   "El banano"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "El banano es el principal renglón de exportación de la región.",
+  "source": "https://es.wikipedia.org/wiki/Magdalena_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-035",
+  "text": "¿Qué festival se celebra en enero en Ciénaga?",
+  "options": [
+   "Festival Cuna de Acordeones",
+   "Carnaval de Barranquilla",
+   "Festival de la Leyenda Vallenata",
+   "Festival de la Leyenda y Danza del Caimán Cienaguero"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El Festival del Caimán Cienaguero se celebra del 17 al 20 de enero.",
+  "source": "https://es.wikipedia.org/wiki/Ci%C3%A9naga_(Magdalena)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-036",
+  "text": "¿Con qué empresa bananera estadounidense se relaciona la masacre de las bananeras en Ciénaga?",
+  "options": [
+   "Ford",
+   "Standard Oil",
+   "United Fruit Company",
+   "Coca-Cola"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "La masacre de las bananeras se relaciona con la huelga de los trabajadores de la United Fruit Company.",
+  "source": "https://es.wikipedia.org/wiki/Ci%C3%A9naga_(Magdalena)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-037",
+  "text": "¿En la confluencia de qué ríos está El Banco, Magdalena?",
+  "options": [
+   "Cauca y Atrato",
+   "Ranchería y Cesar",
+   "Manzanares y Gaira",
+   "Magdalena y Cesar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El Banco está en la confluencia de los ríos Magdalena y Cesar.",
+  "source": "https://es.wikipedia.org/wiki/El_Banco_(Magdalena)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-038",
+  "text": "¿Qué festival nacional se celebra en El Banco, Magdalena?",
+  "options": [
+   "Festival Nacional de la Cumbia",
+   "Festival del Porro",
+   "Festival de la Sal",
+   "Festival de la Leyenda Vallenata"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El Banco es sede del Festival Nacional de la Cumbia.",
+  "source": "https://es.wikipedia.org/wiki/El_Banco_(Magdalena)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-039",
+  "text": "¿Cuántos municipios tiene el Magdalena?",
+  "options": [
+   "42 municipios",
+   "25 municipios",
+   "29 municipios y 1 distrito",
+   "15 municipios"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "magdalena",
+  "explanation": "El departamento tiene 29 municipios y el distrito de Santa Marta.",
+  "source": "https://es.wikipedia.org/wiki/Magdalena_(Colombia)",
+  "referenceDate": "Datos de la fuente consultada en 2026"
+ },
+ {
+  "id": "mag-040",
+  "text": "El río Manzanares atraviesa Santa Marta.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "magdalena",
+  "explanation": "Nace en la Sierra Nevada y desemboca en la bahía de Santa Marta.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Marta_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "mag-042",
+  "text": "El Magdalena fue uno de los nueve estados originales de los Estados Unidos de Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "magdalena",
+  "explanation": "Fue uno de los nueve estados de los Estados Unidos de Colombia en el siglo XIX.",
+  "source": "https://es.wikipedia.org/wiki/Magdalena_(Colombia)",
+  "referenceDate": null
+ }
+]

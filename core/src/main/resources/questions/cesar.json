@@ -1,0 +1,872 @@
+[
+ {
+  "id": "ces-001",
+  "text": "¿Cuál es la capital del Cesar?",
+  "options": [
+   "Riohacha",
+   "Valledupar",
+   "Aguachica",
+   "Santa Marta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "Valledupar es la capital del departamento.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-002",
+  "text": "¿En qué año se creó el departamento del Cesar?",
+  "options": [
+   "1886",
+   "1991",
+   "1910",
+   "1967"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La ley se sancionó en junio de 1967 y el departamento empezó a funcionar el 21 de diciembre de ese año.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-003",
+  "text": "¿De qué departamento se separó el Cesar?",
+  "options": [
+   "Santander",
+   "Magdalena",
+   "Bolívar",
+   "La Guajira"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Antes de 1967 el territorio pertenecía al departamento del Magdalena.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-004",
+  "text": "¿Cuántos municipios tiene el Cesar?",
+  "options": [
+   "15",
+   "40",
+   "12",
+   "25"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "El Cesar se compone de 25 municipios en cuatro subregiones.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": "Datos de la fuente consultada en 2026"
+ },
+ {
+  "id": "ces-005",
+  "text": "El Cesar limita con Venezuela.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "El Cesar limita con Venezuela al oriente.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-006",
+  "text": "Según la fuente, ¿qué significa «Zesari», palabra chimila de la que viene el nombre del río Cesar?",
+  "options": [
+   "Tierra caliente",
+   "Agua fría",
+   "Aguas calmadas",
+   "Río grande"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "Zesari significa «aguas calmadas» en lengua chimila.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-007",
+  "text": "¿Cómo se llama el gran complejo de ciénagas que se forma con el río Cesar cerca de su desembocadura?",
+  "options": [
+   "Ciénaga Grande de Santa Marta",
+   "Ciénaga de Mallorquín",
+   "Ciénaga de Zapatosa",
+   "Embalse del Guájaro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La Ciénaga de Zapatosa es el complejo interior de ciénagas más grande de Colombia.",
+  "source": "https://es.wikipedia.org/wiki/Ci%C3%A9naga_de_Zapatosa",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-008",
+  "text": "¿En qué año la Ciénaga de Zapatosa fue designada sitio Ramsar?",
+  "options": [
+   "1990",
+   "2020",
+   "2005",
+   "2015"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "Fue designada humedal de importancia internacional (sitio Ramsar) en junio de 2020.",
+  "source": "https://es.wikipedia.org/wiki/Ci%C3%A9naga_de_Zapatosa",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-009",
+  "text": "¿Cuál de estos municipios del Cesar está a orillas de la Ciénaga de Zapatosa?",
+  "options": [
+   "Pueblo Bello",
+   "San Alberto",
+   "Agustín Codazzi",
+   "Chimichagua"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La ciénaga está entre Chimichagua, Tamalameque y El Banco (Magdalena).",
+  "source": "https://es.wikipedia.org/wiki/Ci%C3%A9naga_de_Zapatosa",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-010",
+  "text": "¿Qué serranía recorre el oriente del Cesar, en la frontera con Venezuela?",
+  "options": [
+   "Serranía del Perijá",
+   "Serranía del Baudó",
+   "Serranía de San Lucas",
+   "Serranía de la Macuira"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "La Serranía del Perijá recorre todo el oriente del departamento; su punto más alto es el Cerro Pintado.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-011",
+  "text": "¿Qué pueblo indígena habita la Serranía del Perijá en el Cesar?",
+  "options": [
+   "Nasa",
+   "Yukpa",
+   "Emberá",
+   "Wayuu"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "Los yukpa viven en la Serranía del Perijá; en la Sierra Nevada viven arhuacos, kankuamos, koguis y wiwas.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-012",
+  "text": "¿Qué mineral se explota a cielo abierto en El Paso y La Jagua de Ibirico?",
+  "options": [
+   "Carbón",
+   "Sal",
+   "Oro",
+   "Esmeraldas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "En esos municipios se explota carbón a cielo abierto.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-013",
+  "text": "¿Quién fue el primer gobernador del Cesar y luego presidente de Colombia?",
+  "options": [
+   "Alfonso López Michelsen",
+   "Álvaro Uribe Vélez",
+   "Julio César Turbay",
+   "Misael Pastrana"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Alfonso López Michelsen fue el primer gobernador del Cesar.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-014",
+  "text": "¿En qué año fue fundada Valledupar?",
+  "options": [
+   "1525",
+   "1550",
+   "1967",
+   "1810"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Valledupar fue fundada el 6 de enero de 1550.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-015",
+  "text": "¿Quiénes fundaron Valledupar?",
+  "options": [
+   "Rodrigo de Bastidas y Alonso de Ojeda",
+   "Hernando de Santana y Juan de Castellanos",
+   "Nicolás Federmann y Jorge Robledo",
+   "Pedro de Heredia y Juan de la Cosa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "La fundaron el capitán Hernando de Santana y Juan de Castellanos.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-016",
+  "text": "¿Cuál es el nombre histórico completo de Valledupar?",
+  "options": [
+   "Ciudad de los Santos Reyes del Valle de Upar",
+   "Ciudad de la Santísima Trinidad",
+   "Villa de San Juan del Valle",
+   "Villa de Nuestra Señora de las Nieves"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La fundaron el día de los Santos Reyes, el 6 de enero.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-017",
+  "text": "¿Qué río pasa junto a Valledupar y es su balneario más famoso?",
+  "options": [
+   "Río Magdalena",
+   "Río Guatapurí",
+   "Río Buritaca",
+   "Río Ranchería"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "El Guatapurí es famoso por el balneario Hurtado y la escultura de La Sirena.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-018",
+  "text": "Según la tradición chimila, ¿qué significa Guatapurí?",
+  "options": [
+   "Río de oro",
+   "Aguas calmadas",
+   "Piedra grande",
+   "Agua fría"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "Guatapurí significa «agua fría».",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-019",
+  "text": "En el río Guatapurí hay una escultura de una sirena.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "La escultura de La Sirena recuerda una leyenda local.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-020",
+  "text": "¿En qué año se realizó el primer Festival de la Leyenda Vallenata?",
+  "options": [
+   "1991",
+   "1950",
+   "1968",
+   "2000"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "El festival se creó en 1968.",
+  "source": "https://es.wikipedia.org/wiki/Festival_de_la_Leyenda_Vallenata",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-021",
+  "text": "¿De quién surgió la idea del Festival de la Leyenda Vallenata?",
+  "options": [
+   "Gabriel García Márquez",
+   "Shakira",
+   "Celia Cruz",
+   "Consuelo Araújo Noguera"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La idea fue de la escritora y gestora cultural Consuelo Araújo Noguera, con Rafael Escalona y Alfonso López Michelsen.",
+  "source": "https://es.wikipedia.org/wiki/Festival_de_la_Leyenda_Vallenata",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-022",
+  "text": "¿Quién fue el primer Rey Vallenato, en 1968?",
+  "options": [
+   "Carlos Vives",
+   "Diomedes Díaz",
+   "Jorge Oñate",
+   "Alejandro Durán"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "Alejo Durán ganó el concurso de acordeoneros del primer festival.",
+  "source": "https://es.wikipedia.org/wiki/Alejandro_Dur%C3%A1n",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-023",
+  "text": "¿En qué época del año se celebra el Festival de la Leyenda Vallenata?",
+  "options": [
+   "Finales de abril o principios de mayo",
+   "Diciembre",
+   "Agosto",
+   "Febrero, en carnaval"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Se celebra a finales de abril o principios de mayo.",
+  "source": "https://es.wikipedia.org/wiki/Festival_de_la_Leyenda_Vallenata",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-024",
+  "text": "¿En qué parque de Valledupar se celebra el Festival Vallenato?",
+  "options": [
+   "Parque Metropolitano",
+   "Parque Tayrona",
+   "Parque Simón Bolívar",
+   "Parque de la Leyenda Vallenata Consuelo Araújo Noguera"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "El festival tiene su sede en el Parque de la Leyenda Vallenata.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-025",
+  "text": "¿A quién rinde homenaje el monumento Los Poporos en Valledupar?",
+  "options": [
+   "A los fundadores españoles",
+   "A las etnias indígenas de la Sierra Nevada",
+   "A los acordeoneros",
+   "A los futbolistas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Es una obra de Jorge Maestre en homenaje a las etnias de la Sierra Nevada.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-026",
+  "text": "Según la leyenda vallenata, ¿qué hacía la Virgen del Rosario durante la rebelión indígena de 1576?",
+  "options": [
+   "Apartaba las flechas con su manto",
+   "Hacía llover",
+   "Tocaba el acordeón",
+   "Detenía el río"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La leyenda cuenta que la Virgen apartaba con su manto las flechas.",
+  "source": "https://es.wikipedia.org/wiki/Valledupar",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-027",
+  "text": "¿Cuál de estos NO es un aire tradicional del vallenato?",
+  "options": [
+   "Puya",
+   "Paseo",
+   "Merengue",
+   "Cumbia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "Los aires tradicionales son paseo, merengue, son y puya.",
+  "source": "https://es.wikipedia.org/wiki/Festival_de_la_Leyenda_Vallenata",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-028",
+  "text": "¿Cuál de estos instrumentos NO es uno de los tres tradicionales del vallenato?",
+  "options": [
+   "Guacharaca",
+   "Acordeón",
+   "Caja",
+   "Guitarra eléctrica"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "El vallenato tradicional se toca con acordeón, caja y guacharaca.",
+  "source": "https://es.wikipedia.org/wiki/Vallenato",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-029",
+  "text": "¿En qué año la UNESCO incluyó el vallenato tradicional en su lista de patrimonio inmaterial que requiere salvaguardia urgente?",
+  "options": [
+   "2003",
+   "2020",
+   "2015",
+   "1968"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Fue incluido el 1 de diciembre de 2015.",
+  "source": "https://es.wikipedia.org/wiki/Vallenato",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-030",
+  "text": "El vallenato tradicional fue declarado Patrimonio Cultural Inmaterial de la Nación en 2013.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "La declaratoria nacional fue el 29 de noviembre de 2013.",
+  "source": "https://es.wikipedia.org/wiki/Vallenato",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-031",
+  "text": "¿En qué ciudad nació el compositor Rafael Escalona?",
+  "options": [
+   "Valledupar",
+   "Bogotá",
+   "Barranquilla",
+   "Riohacha"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Rafael Escalona nació en Valledupar en 1926.",
+  "source": "https://es.wikipedia.org/wiki/Rafael_Escalona",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-032",
+  "text": "¿Cuál de estas canciones es de Rafael Escalona?",
+  "options": [
+   "Waka Waka",
+   "Fidelina",
+   "La gota fría",
+   "La casa en el aire"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "La casa en el aire, El testamento y El hambre del Liceo son canciones de Escalona.",
+  "source": "https://es.wikipedia.org/wiki/Rafael_Escalona",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-033",
+  "text": "¿Qué actor protagonizó la serie de televisión «Escalona» en 1991?",
+  "options": [
+   "Diomedes Díaz",
+   "Carlos Vives",
+   "Silvestre Dangond",
+   "Jorge Celedón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "Carlos Vives interpretó a Rafael Escalona.",
+  "source": "https://es.wikipedia.org/wiki/Rafael_Escalona",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-034",
+  "text": "¿En qué municipio del Cesar nació Alejo Durán?",
+  "options": [
+   "El Paso",
+   "Pueblo Bello",
+   "Aguachica",
+   "Valledupar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Alejandro Durán nació en El Paso en 1919.",
+  "source": "https://es.wikipedia.org/wiki/Alejandro_Dur%C3%A1n",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-035",
+  "text": "¿Cuál de estas canciones es de Alejo Durán?",
+  "options": [
+   "La casa en el aire",
+   "El testamento",
+   "Fidelina",
+   "La gota fría"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "Fidelina y Altos del Rosario son composiciones destacadas de Alejo Durán.",
+  "source": "https://es.wikipedia.org/wiki/Alejandro_Dur%C3%A1n",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-036",
+  "text": "En el Festival Vallenato, ¿quiénes pueden participar en el concurso «Rey de Reyes»?",
+  "options": [
+   "Solo cantantes",
+   "Solo los ganadores de ediciones anteriores",
+   "Cualquier aficionado",
+   "Solo niños"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "cesar",
+  "explanation": "En el Rey de Reyes compiten solo quienes ya fueron Reyes Vallenatos.",
+  "source": "https://es.wikipedia.org/wiki/Festival_de_la_Leyenda_Vallenata",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-037",
+  "text": "Diomedes Díaz murió en Valledupar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Diomedes Díaz murió en Valledupar el 22 de diciembre de 2013.",
+  "source": "https://es.wikipedia.org/wiki/Diomedes_D%C3%ADaz",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-038",
+  "text": "¿Qué plato de varias carnes se prepara en todo el Cesar?",
+  "options": [
+   "Bandeja paisa",
+   "Ajiaco",
+   "Sancocho",
+   "Lechona"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "Los sancochos de distintas carnes son típicos en todo el departamento.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-039",
+  "text": "La ganadería es una actividad económica importante en el Cesar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "EASY",
+  "region": "cesar",
+  "explanation": "La ganadería vacuna ocupa un lugar de primer orden en la economía del Cesar.",
+  "source": "https://es.wikipedia.org/wiki/Cesar_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ces-040",
+  "text": "¿Qué concurso del Festival Vallenato está dedicado a una danza tradicional?",
+  "options": [
+   "Concurso del Mapalé",
+   "Concurso de la Marimonda",
+   "Concurso del Garabato",
+   "Concurso de las Piloneras"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "cesar",
+  "explanation": "Las piloneras son parte del festival; en Valledupar hay un monumento a La Pilonera Mayor.",
+  "source": "https://es.wikipedia.org/wiki/Festival_de_la_Leyenda_Vallenata",
+  "referenceDate": null
+ }
+]
