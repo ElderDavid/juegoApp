@@ -1,6 +1,7 @@
 plugins {
     // AGP 9 incluye soporte de Kotlin integrado: no hace falta org.jetbrains.kotlin.android.
-    alias(libs.plugins.android.application)
+    // Sin versión: AGP ya está en el classpath raíz (ver build.gradle.kts).
+    id("com.android.application")
     alias(libs.plugins.kotlin.compose)
 }
 
