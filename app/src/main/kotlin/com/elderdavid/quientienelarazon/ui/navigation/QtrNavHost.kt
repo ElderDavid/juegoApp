@@ -1,16 +1,20 @@
 package com.elderdavid.quientienelarazon.ui.navigation
 
+import android.os.SystemClock
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.elderdavid.quientienelarazon.AppContainer
+import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
+import com.elderdavid.quientienelarazon.ui.local.LocalGameRoute
 import com.elderdavid.quientienelarazon.ui.screens.HomeScreen
 import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
 import com.elderdavid.quientienelarazon.ui.screens.RulesScreen
 import com.elderdavid.quientienelarazon.ui.screens.SettingsScreen
+import kotlin.random.Random
 
 /** Rutas de la app. Las de fases posteriores se añadirán aquí a medida que existan. */
 object Routes {
@@ -18,6 +22,7 @@ object Routes {
     const val MENU = "menu"
     const val RULES = "rules"
     const val SETTINGS = "settings"
+    const val LOCAL_GAME = "local"
 }
 
 @Composable
@@ -35,8 +40,23 @@ fun QtrNavHost(container: AppContainer) {
         }
         composable(Routes.MENU) {
             MainMenuScreen(
+                onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
                 onRules = { navController.navigate(Routes.RULES) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
+            )
+        }
+        composable(Routes.LOCAL_GAME) {
+            val vm: LocalGameViewModel = viewModel(
+                factory = LocalGameViewModel.factory(
+                    loadBank = container::questionBank,
+                    clock = SystemClock::elapsedRealtime,
+                    newSeed = { Random.nextLong() },
+                ),
+            )
+            LocalGameRoute(
+                viewModel = vm,
+                settingsRepository = container.settingsRepository,
+                onExit = { navController.popBackStack() },
             )
         }
         composable(Routes.RULES) {

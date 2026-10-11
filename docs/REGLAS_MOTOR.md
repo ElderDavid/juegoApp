@@ -51,3 +51,13 @@ y recortada a [0, 50]. Responder al instante da 50 y al vencer el tiempo da 0.
 Rechazos con el estado intacto: fase incorrecta, jugador desconocido, fuera de turno, respuesta o
 apuesta repetida, apuesta inválida o fuera de la ronda 3, opción inexistente, tiempo negativo o vencido,
 y jugadores ajenos al desempate. Cada pregunta se puntúa una sola vez, al recibir la última respuesta.
+
+## Modo local (un solo teléfono)
+
+`core/local/LocalMatch` envuelve el motor para la partida por turnos en un solo teléfono:
+
+- Antes de cada turno aparece «Pasa el teléfono a…». La pregunta no se muestra hasta que ese jugador pulsa «estoy listo», y las respuestas de los demás no se ven hasta la revelación.
+- El tiempo de 8 s de cada jugador empieza cuando ve la pregunta. En la ronda de estrategia apuesta antes de verla (sin límite de tiempo, porque aún no conoce la pregunta) y el tiempo empieza al cerrar la apuesta.
+- Una respuesta que llega después del límite se registra como tiempo agotado. El fin del tiempo solo se acepta si el reloj monótono confirma que pasó.
+- Las acciones fuera de su momento (doble toque, responder durante el traspaso) no cambian nada.
+- La revancha mantiene jugadores y modo y evita las preguntas de la partida anterior mientras queden suficientes.
