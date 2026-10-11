@@ -20,7 +20,7 @@ Verificadas contra los catálogos de `firebase/quickstart-android` y `android/no
 | Compose BOM | 2026.09.00 |
 | Coroutines | 1.11.0 |
 | Lifecycle / Navigation / DataStore | 2.11.0 / 2.10.1 / 1.2.0 |
-| compileSdk / targetSdk / minSdk | 36 / 36 / 26 |
+| compileSdk / targetSdk / minSdk | 37 / 36 / 26 (AndroidX actual exige compileSdk 37) |
 
 Google Play exige `targetSdk` 36 para apps nuevas y actualizaciones desde el 31/08/2026.
 

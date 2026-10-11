@@ -7,7 +7,8 @@ plugins {
 
 android {
     namespace = "com.elderdavid.quientienelarazon"
-    compileSdk = 36
+    // Las librerías AndroidX actuales (Compose 1.12, core 1.19, lifecycle 2.11) exigen compilar con API 37.
+    compileSdk = 37
 
     defaultConfig {
         // OJO: el applicationId no se puede cambiar después de publicar en Google Play.
