@@ -22,6 +22,21 @@ object GameRules {
 
     /** Apuestas permitidas en la ronda de estrategia. */
     val ALLOWED_BETS: List<Int> = listOf(50, 100)
+
+    /**
+     * Regla explícita para quien no tiene saldo para la apuesta mínima: juega una «apuesta libre»
+     * que suma esta cantidad si acierta y no resta nada si falla. Así nadie queda en negativo.
+     */
+    const val FREE_BET_REWARD = 50
+
+    /** Las preguntas de votación solo tienen sentido con 3 o más jugadores (con 2 siempre ganan todos). */
+    const val MIN_PLAYERS_FOR_VOTES = 3
+
+    /** Máximo de preguntas de votación (opinión o debate) por partida. */
+    const val MAX_VOTE_QUESTIONS = 1
+
+    /** Preguntas de desempate reservadas al planificar la partida. */
+    const val TIEBREAK_RESERVE = 5
 }
 
 /** Las cuatro rondas de una partida estándar, en orden. */
