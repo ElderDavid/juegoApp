@@ -1,0 +1,13 @@
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.kotlin/
+# Credenciales y firmas: nunca al repositorio
+app/google-services.json
+*.jks
+*.keystore
+keystore.properties
