@@ -40,7 +40,7 @@ class LocalGameViewModelTest {
         val vm = viewModel()
         val s = vm.state.value
         assertFalse(s.loading)
-        assertEquals(listOf("la-guajira", "magdalena", "cesar", "atlantico").sorted(), s.regions.map { it.id }.sorted())
+        assertEquals(listOf("la-guajira", "magdalena", "cesar", "atlantico", "antioquia", "bogota").sorted(), s.regions.map { it.id }.sorted())
     }
 
     @Test

@@ -12,13 +12,14 @@ import org.junit.Test
 class QuestionBankContentTest {
     private val bank = QuestionBankLoader.fromResources()
 
-    @Test fun hasExactly300Questions() = assertEquals(300, bank.questions.size)
+    @Test fun hasExactly380Questions() = assertEquals(380, bank.questions.size)
 
     @Test
     fun distributionIsExact() {
         val byRegion = bank.questions.groupingBy { it.regionId }.eachCount()
         assertEquals(
-            mapOf(null to 140, "la-guajira" to 40, "magdalena" to 40, "cesar" to 40, "atlantico" to 40),
+            mapOf(null to 140, "la-guajira" to 40, "magdalena" to 40, "cesar" to 40, "atlantico" to 40,
+                "antioquia" to 40, "bogota" to 40),
             byRegion,
         )
     }

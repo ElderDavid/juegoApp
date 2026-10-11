@@ -94,6 +94,14 @@
   {
    "id": "atlantico",
    "name": "Atlántico"
+  },
+  {
+   "id": "antioquia",
+   "name": "Antioquia"
+  },
+  {
+   "id": "bogota",
+   "name": "Bogotá D.C."
   }
  ],
  "files": [
@@ -101,6 +109,8 @@
   "la-guajira.json",
   "magdalena.json",
   "cesar.json",
-  "atlantico.json"
+  "atlantico.json",
+  "antioquia.json",
+  "bogota.json"
  ]
 }

@@ -1,0 +1,868 @@
+[
+ {
+  "id": "ant-001",
+  "text": "¿Cuál es la capital de Antioquia?",
+  "options": [
+   "Santa Fe de Antioquia",
+   "Rionegro",
+   "Manizales",
+   "Medellín"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "Medellín es la capital del departamento.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-002",
+  "text": "¿Qué río separa a Antioquia del departamento del Chocó?",
+  "options": [
+   "Río Atrato",
+   "Río Magdalena",
+   "Río Nechí",
+   "Río Porce"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "El Atrato es uno de los ríos más importantes y separa a Antioquia del Chocó.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-003",
+  "text": "¿En qué municipio está el Páramo del Sol, punto más alto de Antioquia?",
+  "options": [
+   "Guatapé",
+   "Anorí",
+   "Jericó",
+   "Urrao"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "El punto más alto del departamento es el Páramo del Sol, en Urrao.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-004",
+  "text": "¿En qué golfo está la costa antioqueña sobre el mar Caribe?",
+  "options": [
+   "Golfo de Urabá",
+   "Golfo de Morrosquillo",
+   "Golfo de Venezuela",
+   "Golfo de Paria"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Antioquia tiene costa sobre el Caribe en el golfo de Urabá.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-005",
+  "text": "Antioquia tiene costa sobre el mar Caribe.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "El departamento tiene litoral caribe en el golfo de Urabá.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-006",
+  "text": "¿En qué año fundó Jorge Robledo la ciudad de Antioquia, hoy Santa Fe de Antioquia?",
+  "options": [
+   "1886",
+   "1541",
+   "1616",
+   "1810"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Fue fundada el 4 de diciembre de 1541 por el mariscal Jorge Robledo.",
+  "source": "https://es.wikipedia.org/wiki/Santa_Fe_de_Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-007",
+  "text": "¿En qué año Medellín fue designada capital de Antioquia?",
+  "options": [
+   "1826",
+   "1675",
+   "1886",
+   "1541"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "En 1826 Medellín fue designada capital, en reemplazo de Santa Fe de Antioquia.",
+  "source": "https://es.wikipedia.org/wiki/Medell%C3%ADn",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-008",
+  "text": "¿Quién proclamó la independencia absoluta de Antioquia el 11 de agosto de 1813?",
+  "options": [
+   "Jorge Robledo",
+   "Epifanio Mejía",
+   "José María Córdova",
+   "Juan del Corral"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "Juan del Corral proclamó la independencia absoluta de Antioquia en 1813.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-009",
+  "text": "¿En qué municipio antioqueño se redactó la Constitución de 1863?",
+  "options": [
+   "Rionegro",
+   "Santa Fe de Antioquia",
+   "Medellín",
+   "Envigado"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "La Constitución de 1863 se escribió en la Casa de la Convención de Rionegro.",
+  "source": "https://es.wikipedia.org/wiki/Rionegro_(Antioquia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-010",
+  "text": "¿Qué prócer liberó la región en el Combate de Chorros Blancos de 1820?",
+  "options": [
+   "Francisco de Paula Santander",
+   "Juan del Corral",
+   "José María Córdova",
+   "Antonio Nariño"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "José María Córdova liberó la región en el Combate de Chorros Blancos.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-011",
+  "text": "¿En qué año se fundó la Universidad de Antioquia?",
+  "options": [
+   "1962",
+   "1903",
+   "1541",
+   "1803"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "La Universidad de Antioquia fue fundada en 1803 como institución pública.",
+  "source": "https://es.wikipedia.org/wiki/Universidad_de_Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-012",
+  "text": "¿Cuáles son los colores de la bandera de Antioquia?",
+  "options": [
+   "Rojo y amarillo",
+   "Verde y amarillo",
+   "Azul y blanco",
+   "Blanco y verde"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_simbolos",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "La bandera tiene una franja blanca arriba y una verde abajo.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-013",
+  "text": "Según la fuente, ¿en los colores de qué institución se basó la bandera de Antioquia?",
+  "options": [
+   "Universidad de Antioquia",
+   "Real Audiencia de Santafé",
+   "Ejército Libertador",
+   "Iglesia de Santa Fe de Antioquia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "Al parecer se estableció sobre la base de los colores de la bandera de la Universidad de Antioquia.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-014",
+  "text": "¿Quién escribió la letra del Himno Antioqueño?",
+  "options": [
+   "Jorge Isaacs",
+   "Rafael Pombo",
+   "Epifanio Mejía",
+   "Tomás Carrasquilla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "La letra del himno es un poema de Epifanio Mejía.",
+  "source": "https://es.wikipedia.org/wiki/Himno_Antioque%C3%B1o",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-015",
+  "text": "¿Cuál es el título original del poema que se convirtió en el Himno Antioqueño?",
+  "options": [
+   "Oh libres",
+   "El canto del antioqueño",
+   "La montaña",
+   "El arriero"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_simbolos",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "El himno se basa en el poema «El canto del antioqueño» de Epifanio Mejía.",
+  "source": "https://es.wikipedia.org/wiki/Himno_Antioque%C3%B1o",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-016",
+  "text": "Gonzalo Vidal, compositor de la música del Himno Antioqueño, era antioqueño.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Gonzalo Vidal era payanés, es decir, nacido en Popayán.",
+  "source": "https://es.wikipedia.org/wiki/Himno_Antioque%C3%B1o",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-017",
+  "text": "¿Cuál de estos ingredientes hace parte de la bandeja paisa?",
+  "options": [
+   "Chicharrón",
+   "Camarones",
+   "Lentejas",
+   "Pescado frito"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "La bandeja paisa lleva fríjoles, arroz, carne molida, chicharrón y huevo frito, entre otros.",
+  "source": "https://es.wikipedia.org/wiki/Bandeja_paisa",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-018",
+  "text": "¿Qué variedad de fríjol rojo se menciona como típica de la bandeja paisa?",
+  "options": [
+   "Caraota negra",
+   "Cargamanto",
+   "Fríjol cabecita negra",
+   "Garbanzo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "La fuente nombra los fríjoles rojos, en especial las variedades lima y cargamanto.",
+  "source": "https://es.wikipedia.org/wiki/Bandeja_paisa",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-019",
+  "text": "¿Cómo es la arepa paisa tradicional, también llamada «tela»?",
+  "options": [
+   "Frita con huevo por dentro",
+   "Dulce y rellena de bocadillo",
+   "De maíz amarillo con queso por dentro",
+   "De maíz blanco, sin sal y sin relleno"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "La arepa paisa es de maíz blanco, se prepara sin sal y se sirve sin relleno.",
+  "source": "https://es.wikipedia.org/wiki/Gastronom%C3%ADa_de_Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-020",
+  "text": "¿Cómo se llama en Antioquia el conjunto de pasabocas como pandequeso, pandeyuca y buñuelo?",
+  "options": [
+   "Corrientazo",
+   "Parva",
+   "Fritanga",
+   "Picada"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Pandequeso, pandeyuca y buñuelo son pasabocas típicos que componen la parva.",
+  "source": "https://es.wikipedia.org/wiki/Gastronom%C3%ADa_de_Antioquia",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-021",
+  "text": "Según la fuente, hay recetas de bandeja paisa en libros de cocina anteriores a 1950.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "La fuente indica que no aparecen referencias en recetarios antes de 1950.",
+  "source": "https://es.wikipedia.org/wiki/Bandeja_paisa",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-022",
+  "text": "¿Cuál es el evento central de la Feria de las Flores de Medellín?",
+  "options": [
+   "El Reinado del Bambuco",
+   "La Batalla de Flores de Barranquilla",
+   "El Desfile de Silleteros",
+   "El Festival Vallenato"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "El Desfile de Silleteros es el evento central de la fiesta.",
+  "source": "https://es.wikipedia.org/wiki/Feria_de_las_Flores",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-023",
+  "text": "¿De qué corregimiento de Medellín vienen los silleteros?",
+  "options": [
+   "Santa Elena",
+   "San Antonio de Prado",
+   "San Cristóbal",
+   "Altavista"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Los silleteros vienen del corregimiento de Santa Elena.",
+  "source": "https://es.wikipedia.org/wiki/Feria_de_las_Flores",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-024",
+  "text": "¿En qué año se realizó la primera Feria de las Flores?",
+  "options": [
+   "1935",
+   "1957",
+   "1995",
+   "1968"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "La primera Feria de las Flores fue en Medellín el 1 de mayo de 1957.",
+  "source": "https://es.wikipedia.org/wiki/Feria_de_las_Flores",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-025",
+  "text": "La Feria de las Flores se celebra en agosto.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "Al principio fue en mayo, pero desde 1968 se celebra en agosto.",
+  "source": "https://es.wikipedia.org/wiki/Feria_de_las_Flores",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-026",
+  "text": "¿Qué animal acompaña tradicionalmente al arriero paisa?",
+  "options": [
+   "El camello",
+   "El búfalo",
+   "La llama",
+   "La mula"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_culturas",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "El arriero paisa se representa acompañado de su mula.",
+  "source": "https://es.wikipedia.org/wiki/Arriero",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-027",
+  "text": "¿Qué es el carriel que usan los arrieros antioqueños?",
+  "options": [
+   "Una ruana de lana",
+   "Una bolsa de cuero",
+   "Un sombrero de paja",
+   "Un tipo de machete"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "El carriel es una bolsa de cuero para llevar dinero, papeles y objetos personales.",
+  "source": "https://es.wikipedia.org/wiki/Carriel",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-028",
+  "text": "¿De qué palma se fabrica el sombrero aguadeño que usa el arriero?",
+  "options": [
+   "Palma de cera",
+   "Palma de moriche",
+   "Palma de coco",
+   "Palma de iraca o toquilla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_culturas",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "El sombrero aguadeño se fabrica de la palma de iraca o palma toquilla.",
+  "source": "https://es.wikipedia.org/wiki/Arriero",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-029",
+  "text": "¿Qué municipio antioqueño es conocido como el «Pueblo de Zócalos»?",
+  "options": [
+   "Urrao",
+   "Rionegro",
+   "Guatapé",
+   "Jericó"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "Guatapé es llamado «Pueblo de Zócalos» por las decoraciones de sus fachadas.",
+  "source": "https://es.wikipedia.org/wiki/Guatap%C3%A9",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-030",
+  "text": "¿De qué roca está compuesta la Piedra del Peñol?",
+  "options": [
+   "Arenisca",
+   "Mármol",
+   "Basalto",
+   "Granito"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "La Piedra del Peñol es un monolito de granito.",
+  "source": "https://es.wikipedia.org/wiki/Piedra_del_Pe%C3%B1ol",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-031",
+  "text": "¿Qué ingeniero diseñó el Puente de Occidente sobre el río Cauca?",
+  "options": [
+   "Pedro Nel Gómez",
+   "José María Villa",
+   "Francisco de Herrera Campuzano",
+   "Juan del Corral"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "HARD",
+  "region": "antioquia",
+  "explanation": "El Puente de Occidente es obra del ingeniero José María Villa.",
+  "source": "https://es.wikipedia.org/wiki/Puente_de_Occidente",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-032",
+  "text": "El Metro de Medellín fue inaugurado en 1995.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "El Metro de Medellín se inauguró el 30 de noviembre de 1995.",
+  "source": "https://es.wikipedia.org/wiki/Metro_de_Medell%C3%ADn",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-033",
+  "text": "¿En qué municipio está el Aeropuerto Internacional José María Córdova, que sirve a Medellín?",
+  "options": [
+   "Bello",
+   "Envigado",
+   "Rionegro",
+   "Itagüí"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Rionegro es sede del Aeropuerto Internacional José María Córdova.",
+  "source": "https://es.wikipedia.org/wiki/Rionegro_(Antioquia)",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-034",
+  "text": "Fernando Botero nació en Bogotá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "Fernando Botero nació en Medellín el 19 de abril de 1932.",
+  "source": "https://es.wikipedia.org/wiki/Fernando_Botero",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-035",
+  "text": "¿Cuál de estas obras escribió el antioqueño Tomás Carrasquilla?",
+  "options": [
+   "La vorágine",
+   "María",
+   "Cien años de soledad",
+   "La marquesa de Yolombó"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Carrasquilla escribió La marquesa de Yolombó, Frutos de mi tierra y Hace tiempos.",
+  "source": "https://es.wikipedia.org/wiki/Tom%C3%A1s_Carrasquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-036",
+  "text": "¿En qué municipio antioqueño nació Santa Laura Montoya, la primera santa colombiana?",
+  "options": [
+   "Jericó",
+   "Urrao",
+   "Guatapé",
+   "Santa Fe de Antioquia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Laura Montoya nació en Jericó y fue canonizada en 2013.",
+  "source": "https://es.wikipedia.org/wiki/Laura_Montoya",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-037",
+  "text": "¿Cuál de estas canciones es del cantante antioqueño Juanes?",
+  "options": [
+   "Waka Waka",
+   "Fidelina",
+   "La gota fría",
+   "La camisa negra"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "La camisa negra fue la canción más exitosa de la carrera de Juanes.",
+  "source": "https://es.wikipedia.org/wiki/Juanes",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-038",
+  "text": "Débora Arango fue la primera pintora colombiana en pintar desnudos femeninos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "La artista medellinense Débora Arango fue la primera pintora colombiana en pintar desnudos femeninos.",
+  "source": "https://es.wikipedia.org/wiki/D%C3%A9bora_Arango",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-039",
+  "text": "¿Con qué apodo se conoce a Medellín por su clima uniforme todo el año?",
+  "options": [
+   "La Sultana del Valle",
+   "Ciudad de la eterna primavera",
+   "La Ciudad Blanca",
+   "La Arenosa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "EASY",
+  "region": "antioquia",
+  "explanation": "El apodo viene de la fama de su clima uniforme durante todo el año.",
+  "source": "https://es.wikipedia.org/wiki/Medell%C3%ADn",
+  "referenceDate": null
+ },
+ {
+  "id": "ant-040",
+  "text": "Según la fuente, ¿de cuáles productos agrícolas es Antioquia el mayor productor del país?",
+  "options": [
+   "Arroz y algodón",
+   "Papa y trigo",
+   "Cacao y palma de aceite",
+   "Café y banano de exportación"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "antioquia",
+  "explanation": "Antioquia es el mayor productor de café y de banano de exportación del país.",
+  "source": "https://es.wikipedia.org/wiki/Antioquia",
+  "referenceDate": "Datos de la fuente consultada en 2026"
+ }
+]

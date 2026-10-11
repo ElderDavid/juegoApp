@@ -1,0 +1,868 @@
+[
+ {
+  "id": "bog-001",
+  "text": "Bogotá es un departamento de Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "Bogotá no es un departamento: está organizada como Distrito Capital y además es la capital de Cundinamarca.",
+  "source": "https://es.wikipedia.org/wiki/Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-002",
+  "text": "¿Qué conquistador español fundó Bogotá?",
+  "options": [
+   "Gonzalo Jiménez de Quesada",
+   "Sebastián de Belalcázar",
+   "Rodrigo de Bastidas",
+   "Pedro de Heredia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "Gonzalo Jiménez de Quesada fundó la ciudad tras subir por el río Magdalena desde Santa Marta.",
+  "source": "https://es.wikipedia.org/wiki/Gonzalo_Jim%C3%A9nez_de_Quesada",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-003",
+  "text": "¿En qué año se hizo la fundación de facto de Bogotá?",
+  "options": [
+   "1810",
+   "1492",
+   "1538",
+   "1600"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Jiménez de Quesada hizo la fundación de facto el 6 de agosto de 1538; la fundación jurídica fue en 1539.",
+  "source": "https://es.wikipedia.org/wiki/Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-004",
+  "text": "¿Qué nombre le dio Jiménez de Quesada a la ciudad en 1538?",
+  "options": [
+   "Santa María de la Antigua",
+   "Villa de Leyva",
+   "Nuestra Señora de la Esperanza",
+   "San Sebastián de la Plata"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "El nombre original fue Nuestra Señora de la Esperanza; en 1539 se adoptó Santafé.",
+  "source": "https://es.wikipedia.org/wiki/Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-005",
+  "text": "En el año 2000 una reforma constitucional quitó «Santa Fe de» del nombre de la ciudad y le devolvió el nombre de Bogotá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "El acto legislativo del 18 de agosto de 2000 restauró el nombre «Bogotá».",
+  "source": "https://es.wikipedia.org/wiki/Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-006",
+  "text": "¿En qué cerro de Bogotá está el santuario del Señor Caído?",
+  "options": [
+   "Guadalupe",
+   "Cerro Nutibara",
+   "Monserrate",
+   "Cerro de la Popa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "En la cima de Monserrate está el santuario del Señor Caído de Monserrate.",
+  "source": "https://es.wikipedia.org/wiki/Monserrate",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-007",
+  "text": "El funicular de Monserrate se inauguró en 1939.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "El funicular empezó a funcionar el 18 de agosto de 1939.",
+  "source": "https://es.wikipedia.org/wiki/Monserrate",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-008",
+  "text": "Junto con Monserrate, ¿cuál es el otro cerro tutelar de Bogotá?",
+  "options": [
+   "Guadalupe",
+   "Cerro Tusa",
+   "Cerro de las Tres Cruces",
+   "Cerro Pintado"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Monserrate y Guadalupe son los dos cerros tutelares de la ciudad.",
+  "source": "https://es.wikipedia.org/wiki/Monserrate",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-009",
+  "text": "¿En qué río desemboca el río Bogotá?",
+  "options": [
+   "Río Meta",
+   "Río Orinoco",
+   "Río Cauca",
+   "Río Magdalena"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "El río Bogotá desemboca en el Magdalena, en Girardot.",
+  "source": "https://es.wikipedia.org/wiki/R%C3%ADo_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-010",
+  "text": "¿Cerca de qué municipio nace el río Bogotá?",
+  "options": [
+   "Soacha",
+   "Zipaquirá",
+   "Villapinzón",
+   "Girardot"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "El río nace en el páramo de Guacheneque, cerca de Villapinzón.",
+  "source": "https://es.wikipedia.org/wiki/R%C3%ADo_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-011",
+  "text": "¿En qué municipio está el Salto del Tequendama?",
+  "options": [
+   "Funza",
+   "Guatavita",
+   "Chía",
+   "Soacha"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "El salto está en la zona rural de Soacha, al suroeste de Bogotá.",
+  "source": "https://es.wikipedia.org/wiki/Salto_del_Tequendama",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-012",
+  "text": "Según un mito muisca, ¿quién creó el Salto del Tequendama con un golpe de su bastón?",
+  "options": [
+   "Bochica",
+   "Bachué",
+   "Chiminigagua",
+   "Huitaca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Según el mito, Bochica abrió el salto para desaguar la sabana inundada.",
+  "source": "https://es.wikipedia.org/wiki/Salto_del_Tequendama",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-013",
+  "text": "¿Cómo se llamaba el gobernante muisca que tenía su sede en Bacatá?",
+  "options": [
+   "Inca",
+   "Zipa",
+   "Cacique de Calarcá",
+   "Zaque"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "El Zipa gobernaba el Zipazgo; el Zaque gobernaba desde Hunza (Tunja).",
+  "source": "https://es.wikipedia.org/wiki/Muisca",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-014",
+  "text": "¿A qué familia de lenguas pertenece la lengua muisca?",
+  "options": [
+   "Arawak",
+   "Caribe",
+   "Quechua",
+   "Chibcha"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Los muiscas hablaban el muysc cubun, de la familia chibcha.",
+  "source": "https://es.wikipedia.org/wiki/Muisca",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-015",
+  "text": "¿Qué deporte actual tiene como antecesor un juego ceremonial muisca en el que se lanzaba un disco de oro?",
+  "options": [
+   "Tejo",
+   "Rana",
+   "Bolo criollo",
+   "Billar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_culturas",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "El juego muisca evolucionó hasta el tejo, considerado deporte nacional.",
+  "source": "https://es.wikipedia.org/wiki/Muisca",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-016",
+  "text": "¿En qué laguna se coronaba al Zipa, tradición que dio origen al mito de El Dorado?",
+  "options": [
+   "Laguna de Tota",
+   "Laguna de Iguaque",
+   "Laguna de la Cocha",
+   "Laguna de Guatavita"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_culturas",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "La coronación del Zipa en Guatavita, junto con la abundancia de oro, alimentó el mito de El Dorado.",
+  "source": "https://es.wikipedia.org/wiki/Muisca",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-017",
+  "text": "¿Qué institución tiene a su cargo el Museo del Oro de Bogotá?",
+  "options": [
+   "Alcaldía de Bogotá",
+   "Iglesia católica",
+   "Universidad Nacional",
+   "Banco de la República"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "El Museo del Oro lo administra el Banco de la República.",
+  "source": "https://es.wikipedia.org/wiki/Museo_del_Oro",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-018",
+  "text": "¿Qué pieza compró el Banco de la República en 1939 y dio inicio a la colección del Museo del Oro?",
+  "options": [
+   "Poporo Quimbaya",
+   "Piedra del Sol",
+   "Balsa Muisca",
+   "Máscara de Tutankamón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "La colección empezó con la compra del Poporo Quimbaya en diciembre de 1939.",
+  "source": "https://es.wikipedia.org/wiki/Museo_del_Oro",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-019",
+  "text": "¿En qué municipio fue hallada la Balsa Muisca del Museo del Oro?",
+  "options": [
+   "Sogamoso",
+   "Pasca",
+   "Tunja",
+   "Guatavita"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_culturas",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "La Balsa Muisca se halló en Pasca y representa la ceremonia de ofrenda en la laguna de Guatavita.",
+  "source": "https://es.wikipedia.org/wiki/Museo_del_Oro",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-020",
+  "text": "¿Qué arquitecto danés diseñó el Capitolio Nacional?",
+  "options": [
+   "Domingo de Petrés",
+   "Gastón Lelarge",
+   "Thomas Reed",
+   "Rogelio Salmona"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "Thomas Reed diseñó el Capitolio a pedido de Tomás Cipriano de Mosquera.",
+  "source": "https://es.wikipedia.org/wiki/Capitolio_Nacional_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-021",
+  "text": "¿Qué escultor hizo la estatua de Bolívar de la Plaza de Bolívar?",
+  "options": [
+   "Auguste Rodin",
+   "Rodrigo Arenas Betancourt",
+   "Fernando Botero",
+   "Pietro Tenerani"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "La estatua fue obra del escultor Pietro Tenerani y la donó José Ignacio París.",
+  "source": "https://es.wikipedia.org/wiki/Plaza_de_Bol%C3%ADvar",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-022",
+  "text": "¿Quién diseñó la Catedral Primada de Bogotá?",
+  "options": [
+   "Domingo de Petrés",
+   "Thomas Reed",
+   "Pietro Cantini",
+   "Gastón Lelarge"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "El fraile capuchino Domingo de Petrés diseñó la catedral, construida entre 1807 y 1823.",
+  "source": "https://es.wikipedia.org/wiki/Catedral_primada_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-023",
+  "text": "La tumba de Gonzalo Jiménez de Quesada está en la Catedral Primada de Bogotá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Su tumba está en la capilla de Santa Isabel de Hungría de la catedral.",
+  "source": "https://es.wikipedia.org/wiki/Catedral_primada_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-024",
+  "text": "¿Cuáles son los colores de la bandera de Bogotá?",
+  "options": [
+   "Amarillo y rojo",
+   "Rojo y verde",
+   "Verde y blanco",
+   "Azul y blanco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "La bandera es amarilla arriba y roja abajo.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-025",
+  "text": "¿Qué lema aparece bajo el escudo en la bandera de Bogotá?",
+  "options": [
+   "Dios y patria",
+   "Unidos venceremos",
+   "Muy noble y muy leal",
+   "Libertad y orden"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "En el centro de la bandera va el escudo bajo el lema «Muy noble y muy leal».",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-026",
+  "text": "¿Qué frutas sostiene el águila del escudo de Bogotá?",
+  "options": [
+   "Manzanas",
+   "Granadas",
+   "Naranjas",
+   "Uvas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_simbolos",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "El águila negra sostiene una granada en cada garra.",
+  "source": "https://es.wikipedia.org/wiki/Escudo_de_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-027",
+  "text": "¿Quién compuso la música del himno de Bogotá?",
+  "options": [
+   "Oreste Síndici",
+   "Pedro Medina Avendaño",
+   "Lucho Bermúdez",
+   "Roberto Pineda Duque"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_simbolos",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "La letra es de Pedro Medina Avendaño y la música de Roberto Pineda Duque.",
+  "source": "https://es.wikipedia.org/wiki/Himno_de_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-028",
+  "text": "El nogal es el árbol emblemático de Bogotá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "El nogal fue declarado árbol emblemático de la ciudad en 2002.",
+  "source": "https://es.wikipedia.org/wiki/Jard%C3%ADn_Bot%C3%A1nico_Jos%C3%A9_Celestino_Mutis",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-029",
+  "text": "¿Qué sopa es típica de la región de Bogotá?",
+  "options": [
+   "Pusandao",
+   "Ajiaco",
+   "Cazuela de mariscos",
+   "Sancocho de bocachico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "El ajiaco es una sopa típica de la región de Bogotá.",
+  "source": "https://es.wikipedia.org/wiki/Ajiaco",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-030",
+  "text": "¿Con qué se acompaña tradicionalmente el chocolate santafereño?",
+  "options": [
+   "Con queso y almojábanas o pan de queso",
+   "Con bocadillo de guayaba y arroz",
+   "Con patacones",
+   "Con arepa de huevo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "Se sirve con queso, que se echa en la taza, y almojábanas o pan de queso.",
+  "source": "https://es.wikipedia.org/wiki/Chocolate_santafere%C3%B1o",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-031",
+  "text": "La changua es un postre que se come después del almuerzo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "La changua es un caldo de leche y huevo que tradicionalmente se toma al desayuno.",
+  "source": "https://es.wikipedia.org/wiki/Changua",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-032",
+  "text": "¿Qué días funciona la Ciclovía de Bogotá?",
+  "options": [
+   "Domingos y festivos",
+   "Todos los lunes",
+   "Viernes por la noche",
+   "Solo en Semana Santa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "Las vías se cierran a los carros los domingos y festivos para recreación y deporte.",
+  "source": "https://es.wikipedia.org/wiki/Ciclov%C3%ADa",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-033",
+  "text": "¿En qué año fue la primera edición de Rock al Parque?",
+  "options": [
+   "1980",
+   "2005",
+   "1970",
+   "1995"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "La primera edición fue del 26 al 29 de mayo de 1995.",
+  "source": "https://es.wikipedia.org/wiki/Rock_al_Parque",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-034",
+  "text": "Rock al Parque ha sido gratuito desde su primera edición.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "bogota",
+  "explanation": "En 1995 se cobró entrada en la Plaza de Toros; se volvió totalmente gratuito en 1996.",
+  "source": "https://es.wikipedia.org/wiki/Rock_al_Parque",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-035",
+  "text": "¿Quiénes fundaron el Festival Iberoamericano de Teatro de Bogotá?",
+  "options": [
+   "Fanny Mikey y Ramiro Osorio",
+   "Shakira y Juanes",
+   "Gabriel García Márquez y Fernando Botero",
+   "Carlos Vives y Totó la Momposina"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Fanny Mikey y Ramiro Osorio lo crearon en 1988 por los 450 años de Bogotá.",
+  "source": "https://es.wikipedia.org/wiki/Festival_Iberoamericano_de_Teatro_de_Bogot%C3%A1",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-036",
+  "text": "¿En el sistema de transporte de qué ciudad se inspiró TransMilenio?",
+  "options": [
+   "Ciudad de México",
+   "Santiago de Chile",
+   "Madrid",
+   "Curitiba"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "TransMilenio se basa en la Red Integrada de Transporte de Curitiba, Brasil.",
+  "source": "https://es.wikipedia.org/wiki/Transmilenio",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-037",
+  "text": "¿A qué hace honor el nombre del aeropuerto El Dorado?",
+  "options": [
+   "A un futbolista famoso",
+   "A la leyenda de El Dorado",
+   "A una mina de oro del aeropuerto",
+   "Al color de los aviones"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "El nombre se eligió en 1959 en memoria de la leyenda de El Dorado.",
+  "source": "https://es.wikipedia.org/wiki/Aeropuerto_Internacional_El_Dorado",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-038",
+  "text": "¿Qué localidad de Bogotá abarca el centro histórico de la ciudad?",
+  "options": [
+   "Suba",
+   "La Candelaria",
+   "Kennedy",
+   "Usaquén"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "La Candelaria abarca el centro histórico de Bogotá.",
+  "source": "https://es.wikipedia.org/wiki/La_Candelaria",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-039",
+  "text": "¿Qué prócer nació en la casona donde hoy está la Casa de Nariño, residencia del presidente?",
+  "options": [
+   "Simón Bolívar",
+   "Francisco de Paula Santander",
+   "Antonio Nariño",
+   "Camilo Torres"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "bogota",
+  "explanation": "Antonio Nariño nació allí en 1765, y por eso el palacio lleva su nombre.",
+  "source": "https://es.wikipedia.org/wiki/Casa_de_Nari%C3%B1o",
+  "referenceDate": null
+ },
+ {
+  "id": "bog-040",
+  "text": "¿Qué apodo ganó Bogotá por sus museos, teatros y bibliotecas?",
+  "options": [
+   "Atenas de Suramérica",
+   "La Sultana del Valle",
+   "La Ciudad Bonita",
+   "Ciudad de la Eterna Primavera"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "EASY",
+  "region": "bogota",
+  "explanation": "Su gran red cultural le dio el apodo de «Atenas de Suramérica».",
+  "source": "https://es.wikipedia.org/wiki/Bogot%C3%A1",
+  "referenceDate": null
+ }
+]
