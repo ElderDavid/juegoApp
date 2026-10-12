@@ -26,6 +26,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -308,7 +309,7 @@ private fun ReconnectBanner(state: OnlineUiState) {
 
 @Composable
 private fun rememberSeconds(clock: PhaseClock, now: () -> Long): Int {
-    var seconds by remember(clock) { mutableStateOf(clock.secondsShown(now())) }
+    var seconds by remember(clock) { mutableIntStateOf(clock.secondsShown(now())) }
     LaunchedEffect(clock) {
         while (true) {
             withFrameMillis { }
