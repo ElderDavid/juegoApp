@@ -11,7 +11,8 @@ val ArcadeOutline = Color(0xFF3B3175)
 
 val ArcadeCyan = Color(0xFF00E5FF)
 val ArcadeMagenta = Color(0xFFFF2E97)
-val ArcadeViolet = Color(0xFF9D5CFF)
+// Aclarado para que el texto violeta sobre los paneles cumpla el contraste 4,5:1 (WCAG AA).
+val ArcadeViolet = Color(0xFFAA72FF)
 val ArcadeOrange = Color(0xFFFF9F1C)
 
 val ArcadeText = Color(0xFFF4F1FF)
