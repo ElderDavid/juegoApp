@@ -24,7 +24,7 @@ fun AdBanner(ads: AdsController, modifier: Modifier = Modifier) {
     BoxWithConstraints(modifier.fillMaxWidth()) {
         val widthDp = maxWidth.value.toInt()
         val context = LocalContext.current
-        val size = remember(widthDp) { AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, widthDp) }
+        val size = remember(widthDp) { AdSize.getLargeAnchoredAdaptiveBannerAdSize(context, widthDp) }
         key(widthDp) {
             AndroidView(
                 modifier = Modifier.fillMaxWidth().height(size.height.dp),

@@ -52,7 +52,7 @@ fun SettingsScreen(viewModel: SettingsViewModel, adsConsent: AdsConsent?, onBack
                 onCheckedChange = viewModel::setReducedMotion,
             )
         }
-        if (privacyRequired && adsConsent != null && activity != null) {
+        if (privacyRequired && activity != null) {
             ArcadeCard {
                 Text("Privacidad de anuncios", style = MaterialTheme.typography.titleMedium)
                 Text("Revisa o cambia tu consentimiento para los anuncios.", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
