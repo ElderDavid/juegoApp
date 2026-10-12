@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.elderdavid.quientienelarazon.core.game.Bet
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.game.PlayerId
@@ -108,7 +109,7 @@ fun LocalGameScreen(
 
     ArcadeScreen(title = null) {
         when (stage) {
-            is LocalStage.Roulette -> RouletteView(stage, bank, rouletteCategories, reducedMotion, actions)
+            is LocalStage.Roulette -> RouletteView(stage, match.state.config.length, bank, rouletteCategories, reducedMotion, actions)
             is LocalStage.Handoff -> HandoffView(stage, names.getValue(stage.playerId), colorIndex.getValue(stage.playerId), match.state, actions)
             is LocalStage.Betting -> BettingView(stage, names.getValue(stage.playerId), match.state, bank, actions)
             is LocalStage.Answering -> AnsweringView(stage, names.getValue(stage.playerId), match.state, bank, actions)
@@ -125,6 +126,7 @@ fun LocalGameScreen(
 @Composable
 private fun RouletteView(
     stage: LocalStage.Roulette,
+    length: GameLength,
     bank: QuestionBank,
     categories: List<Category>,
     reducedMotion: Boolean,
@@ -153,8 +155,8 @@ private fun RouletteView(
         actions.rouletteDone()
     }
 
-    RoundHeader(stage.round, stage.questionNumber)
-    if (stage.questionNumber % GameRules.QUESTIONS_PER_ROUND == 1) {
+    RoundHeader(stage.round, stage.questionNumber, length.questions)
+    if (length.isFirstOfRound(stage.questionNumber - 1)) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Ronda ${stage.round.number}: ${stage.round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
             Text(roundRule(stage.round), color = ArcadeTextMuted)
@@ -180,9 +182,9 @@ internal fun roundRule(round: RoundType): String = when (round) {
 }
 
 @Composable
-internal fun RoundHeader(round: RoundType, questionNumber: Int) {
+internal fun RoundHeader(round: RoundType, questionNumber: Int, totalQuestions: Int) {
     Text(
-        "RONDA ${round.number} · ${round.title.uppercase()}   ·   PREGUNTA $questionNumber/${GameRules.TOTAL_QUESTIONS}",
+        "RONDA ${round.number} · ${round.title.uppercase()}   ·   PREGUNTA $questionNumber/$totalQuestions",
         style = MaterialTheme.typography.labelMedium,
         color = ArcadeCyan,
         modifier = Modifier.fillMaxWidth(),
@@ -203,7 +205,7 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
             modifier = Modifier.fillMaxWidth(),
         )
     } else {
-        RoundHeader(state.round, state.questionIndex + 1)
+        RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
     }
     Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text("Pasa el teléfono a", style = MaterialTheme.typography.titleMedium, color = ArcadeTextMuted)
@@ -218,7 +220,7 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
 
 @Composable
 private fun BettingView(stage: LocalStage.Betting, name: String, state: GameState, bank: QuestionBank, actions: LocalGameActions) {
-    RoundHeader(state.round, state.questionIndex + 1)
+    RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
     NeonTitle("$name, apuesta", color = ArcadeOrange)
     ArcadeCard(accent = ArcadeOrange) {
         Text("Categoría: ${bank.category(state.currentPlanned!!.categoryId).name}", style = MaterialTheme.typography.titleMedium)
@@ -257,7 +259,7 @@ private fun AnsweringView(stage: LocalStage.Answering, name: String, state: Game
     val fraction by animateFloatAsState(targetValue = (remaining / limit).coerceIn(0f, 1f), label = "timer")
     val seconds = ((remaining + 999) / 1000).toInt()
 
-    if (!stage.tiebreak) RoundHeader(state.round, state.questionIndex + 1)
+    if (!stage.tiebreak) RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
         Text(name, style = MaterialTheme.typography.titleLarge, color = ArcadeCyan)
         Text("$seconds s", style = MaterialTheme.typography.headlineMedium, color = if (seconds <= 3) ArcadeError else ArcadeText)
@@ -355,7 +357,7 @@ private fun RevealView(
     ArcadeCard(accent = ArcadeMagenta) {
         result.outcomes.forEach { o -> OutcomeRow(o, question, names.getValue(o.playerId), colorIndex.getValue(o.playerId), state.scores.getValue(o.playerId)) }
     }
-    val lastOfGame = result.index == GameRules.TOTAL_QUESTIONS - 1
+    val lastOfGame = result.index == state.config.length.questions - 1
     ArcadeButton(text = if (lastOfGame) "Ver resultados" else "Continuar", onClick = actions.next)
 }
 
@@ -488,7 +490,7 @@ private fun PodiumView(
         Text("Aciertos", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
         state.players.forEach { p ->
             val right = state.results.count { r -> r.outcomes.any { it.playerId == p.id && it.won == true } }
-            Text("${p.name}: $right de ${GameRules.TOTAL_QUESTIONS}", color = ArcadeTextMuted)
+            Text("${p.name}: $right de ${state.config.length.questions}", color = ArcadeTextMuted)
         }
     }
     ArcadeButton(text = "Revancha", onClick = actions.rematch, color = ArcadeMagenta)

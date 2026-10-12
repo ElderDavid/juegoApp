@@ -42,6 +42,7 @@ fun OnlineRoute(
         bank = viewModel.questionBank(),
         actions = OnlineActions(
             setMode = viewModel::setMode,
+            setLength = viewModel::setLength,
             setCode = viewModel::setCode,
             createPrivate = viewModel::createPrivate,
             joinByCode = viewModel::joinByCode,

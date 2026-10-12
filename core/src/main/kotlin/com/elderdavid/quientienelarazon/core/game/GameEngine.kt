@@ -36,7 +36,7 @@ class GameEngine(private val bank: QuestionBank) {
         }
         require(players.map { it.id }.toSet().size == players.size) { "IDs de jugador repetidos" }
         require(players.all { it.name.isNotBlank() }) { "Todos los jugadores necesitan nombre" }
-        val plan = GamePlanner.plan(bank, config.mode, players.size, seed, avoidQuestionIds)
+        val plan = GamePlanner.plan(bank, config.mode, players.size, seed, avoidQuestionIds, config.length)
         return GameState(config = config, players = players, plan = plan, scores = players.associate { it.id to 0 })
     }
 
@@ -99,9 +99,10 @@ class GameEngine(private val bank: QuestionBank) {
     fun advance(state: GameState): EngineResult = when (state.phase) {
         Phase.REVEAL -> {
             val nextIndex = state.questionIndex + 1
+            val length = state.config.length
             when {
-                nextIndex >= GameRules.TOTAL_QUESTIONS -> ok(finishOrTiebreak(state))
-                nextIndex % GameRules.QUESTIONS_PER_ROUND == 0 -> ok(state.copy(phase = Phase.ROUND_SUMMARY))
+                nextIndex >= length.questions -> ok(finishOrTiebreak(state))
+                length.isLastOfRound(state.questionIndex) -> ok(state.copy(phase = Phase.ROUND_SUMMARY))
                 else -> ok(state.copy(phase = Phase.ROULETTE, questionIndex = nextIndex, bets = emptyMap(), answers = emptyMap()))
             }
         }

@@ -1,6 +1,7 @@
 package com.elderdavid.quientienelarazon.online
 
 import com.elderdavid.quientienelarazon.account.AccountRepository
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.exceptions.HttpRequestException
 import io.github.jan.supabase.exceptions.RestException
@@ -33,14 +34,18 @@ class SupabaseOnlineRepository(
         return decode(raw.value)
     }
 
-    override suspend fun createRoom(publicRoom: Boolean, mode: String) = view("create_room") {
+    override suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength) = view("create_room") {
         put("p_visibility", if (publicRoom) "public" else "private")
         put("p_mode", mode)
+        put("p_questions", length.questions)
     }
 
     override suspend fun joinByCode(code: String) = view("join_room_by_code") { put("p_code", code) }
 
-    override suspend fun findPublic(mode: String) = view("find_public_room") { put("p_mode", mode) }
+    override suspend fun findPublic(mode: String, length: GameLength) = view("find_public_room") {
+        put("p_mode", mode)
+        put("p_questions", length.questions)
+    }
 
     override suspend fun state(roomId: String) = view("room_state") { put("p_room", roomId) }
 

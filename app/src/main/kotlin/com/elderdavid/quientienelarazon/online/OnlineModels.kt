@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.online
 
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -40,12 +41,14 @@ data class RoomInfo(
     @SerialName("host_id") val hostId: String,
     @SerialName("question_index") val questionIndex: Int = 0,
     @SerialName("tiebreak_index") val tiebreakIndex: Int = 0,
+    @SerialName("question_count") val questionCount: Int = GameLength.DEFAULT.questions,
     @SerialName("phase_total_ms") val phaseTotalMs: Long? = null,
     @SerialName("phase_remaining_ms") val phaseRemainingMs: Long? = null,
     @SerialName("autostart_remaining_ms") val autostartRemainingMs: Long? = null,
     val winners: List<String> = emptyList(),
     @SerialName("cancel_reason") val cancelReason: String? = null,
 ) {
+    val length: GameLength get() = GameLength.fromQuestions(questionCount) ?: GameLength.DEFAULT
     val isPublic: Boolean get() = visibility == "public"
     val inLobby: Boolean get() = status == "waiting" || status == "ready"
     val isOver: Boolean get() = status == "finished" || status == "cancelled"
@@ -156,9 +159,10 @@ interface OnlineRepository {
 
     /** Sala en la que el jugador sigue dentro (para reconectar al volver). null si no hay. */
     suspend fun currentRoom(): OnlineResult<RoomView?>
-    suspend fun createRoom(publicRoom: Boolean, mode: String): OnlineResult<RoomView>
+    suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength): OnlineResult<RoomView>
     suspend fun joinByCode(code: String): OnlineResult<RoomView>
-    suspend fun findPublic(mode: String): OnlineResult<RoomView>
+    /** Busca una sala pública de la misma modalidad y duración; si no hay, crea una. */
+    suspend fun findPublic(mode: String, length: GameLength): OnlineResult<RoomView>
     suspend fun state(roomId: String): OnlineResult<RoomView>
     suspend fun start(roomId: String): OnlineResult<RoomView>
     suspend fun leave(roomId: String): OnlineResult<Unit>

@@ -41,6 +41,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.core.online.PhaseClock
@@ -58,6 +59,7 @@ import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
 import com.elderdavid.quientienelarazon.ui.components.NeonTitle
 import com.elderdavid.quientienelarazon.ui.components.PlayerAvatar
+import com.elderdavid.quientienelarazon.ui.local.GameLengthCard
 import com.elderdavid.quientienelarazon.ui.local.OptionButton
 import com.elderdavid.quientienelarazon.ui.local.RoundHeader
 import com.elderdavid.quientienelarazon.ui.local.SourceLink
@@ -79,6 +81,7 @@ import com.elderdavid.quientienelarazon.ui.theme.PlayerColors
 /** Acciones de la pantalla online. */
 class OnlineActions(
     val setMode: (String) -> Unit,
+    val setLength: (GameLength) -> Unit,
     val setCode: (String) -> Unit,
     val createPrivate: () -> Unit,
     val joinByCode: () -> Unit,
@@ -170,6 +173,7 @@ private fun OnlineMenuScreen(state: OnlineUiState, actions: OnlineActions) {
                 }
             }
         }
+        GameLengthCard(state.length, actions.setLength)
 
         ArcadeCard(accent = ArcadeMagenta) {
             Text("Con amigos", style = MaterialTheme.typography.titleMedium, color = ArcadeMagenta)
@@ -199,7 +203,7 @@ private fun OnlineMenuScreen(state: OnlineUiState, actions: OnlineActions) {
 
         ArcadeCard(accent = ArcadeCyan) {
             Text("Partida pública", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
-            Text("Te unimos con otros jugadores que eligieron las mismas preguntas.", color = ArcadeTextMuted)
+            Text("Te unimos con otros jugadores que eligieron las mismas preguntas y la misma duración.", color = ArcadeTextMuted)
             ArcadeButton(
                 text = if (busy == OnlineBusy.SEARCHING) "Buscando…" else "Buscar partida",
                 onClick = actions.findPublic,
@@ -219,7 +223,7 @@ private fun LobbyScreen(state: OnlineUiState, view: RoomView, actions: OnlineAct
     ArcadeScreen(title = if (view.room.isPublic) "Buscando rivales" else "Sala privada") {
         ReconnectBanner(state)
         ErrorCard(state, actions)
-        Text("Preguntas: ${state.modeName}", color = ArcadeTextMuted, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+        Text("Preguntas: ${state.modeName} · ${view.room.questionCount} preguntas", color = ArcadeTextMuted, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
         if (!view.room.isPublic) {
             ArcadeCard(accent = ArcadeOrange) {
                 Text("Código", style = MaterialTheme.typography.labelMedium, color = ArcadeTextMuted, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
@@ -403,8 +407,8 @@ private fun WaitingFor(view: RoomView, done: (RoomPlayer) -> Boolean) {
 private fun RouletteView(view: RoomView, categoryName: (String) -> String) {
     val current = view.current ?: return
     val round = roundOf(view) ?: return
-    RoundHeader(round, current.index + 1)
-    if (current.index % GameRules.QUESTIONS_PER_ROUND == 0) {
+    RoundHeader(round, current.index + 1, view.room.questionCount)
+    if (view.room.length.isFirstOfRound(current.index)) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Ronda ${round.number}: ${round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
             Text(roundRule(round), color = ArcadeTextMuted)
@@ -426,7 +430,7 @@ private fun RouletteView(view: RoomView, categoryName: (String) -> String) {
 private fun BettingView(state: OnlineUiState, view: RoomView, categoryName: (String) -> String, actions: OnlineActions) {
     val current = view.current ?: return
     val round = roundOf(view) ?: return
-    RoundHeader(round, current.index + 1)
+    RoundHeader(round, current.index + 1, view.room.questionCount)
     PhaseTimer(state, actions, "Apuesta")
     val me = view.myPlayer
     ArcadeCard(accent = ArcadeOrange) {
@@ -477,7 +481,7 @@ private fun QuestionView(state: OnlineUiState, view: RoomView, categoryName: (St
         NeonTitle("¡Desempate!", color = ArcadeMagenta)
         Text("Gana quien acierte más rápido. No cambia las estadísticas.", color = ArcadeTextMuted, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
     } else {
-        roundOf(view)?.let { RoundHeader(it, current.index + 1) }
+        roundOf(view)?.let { RoundHeader(it, current.index + 1, view.room.questionCount) }
     }
     PhaseTimer(state, actions, if (participating) "Tu respuesta" else "Mirando")
     current.myBet?.takeIf { !tiebreak }?.let { Text(if (it == 0) "APUESTA LIBRE" else "APUESTA: $it", color = ArcadeOrange, style = MaterialTheme.typography.labelMedium) }
@@ -520,7 +524,7 @@ private fun RevealView(state: OnlineUiState, view: RoomView, categoryName: (Stri
     LaunchedEffect(current.isTiebreak, current.index) {
         actions.feedback(if (mine?.won == true) FeedbackEvent.CORRECT else FeedbackEvent.WRONG)
     }
-    if (current.isTiebreak) NeonTitle("Desempate", color = ArcadeMagenta) else roundOf(view)?.let { RoundHeader(it, current.index + 1) }
+    if (current.isTiebreak) NeonTitle("Desempate", color = ArcadeMagenta) else roundOf(view)?.let { RoundHeader(it, current.index + 1, view.room.questionCount) }
     ArcadeCard(accent = ArcadeViolet) {
         Text(categoryName(current.categoryId).uppercase(), style = MaterialTheme.typography.labelMedium, color = ArcadeViolet)
         Text(question.text, style = MaterialTheme.typography.titleLarge, color = ArcadeText)

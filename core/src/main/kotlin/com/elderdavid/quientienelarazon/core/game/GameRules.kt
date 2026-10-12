@@ -9,8 +9,6 @@ object GameRules {
     const val MAX_PLAYERS = 4
 
     const val ROUNDS = 4
-    const val QUESTIONS_PER_ROUND = 3
-    const val TOTAL_QUESTIONS = ROUNDS * QUESTIONS_PER_ROUND
 
     const val QUESTION_TIME_MILLIS = 8_000L
 
@@ -39,18 +37,45 @@ object GameRules {
     const val TIEBREAK_RESERVE = 5
 }
 
-/** Las cuatro rondas de una partida estándar, en orden. */
+/**
+ * Duración de la partida elegida antes de jugar. Siempre son las cuatro rondas; cambia cuántas
+ * preguntas tiene cada una. En la de 10, conocimiento y final llevan una más que las del medio.
+ */
+enum class GameLength(val questions: Int, val perRound: List<Int>) {
+    SHORT(8, listOf(2, 2, 2, 2)),
+    MEDIUM(10, listOf(3, 2, 2, 3)),
+    STANDARD(12, listOf(3, 3, 3, 3)),
+    ;
+
+    init {
+        check(perRound.size == GameRules.ROUNDS && perRound.sum() == questions)
+    }
+
+    /** Índice de la primera pregunta de cada ronda, más el total al final. */
+    private val starts: List<Int> = perRound.runningFold(0) { acc, n -> acc + n }
+
+    fun roundFor(index: Int): RoundType {
+        require(index in 0 until questions) { "Índice de pregunta fuera de rango: $index" }
+        return RoundType.entries[starts.indexOfLast { it <= index }]
+    }
+
+    /** true si [index] es la primera pregunta de su ronda (ahí se anuncia la ronda). */
+    fun isFirstOfRound(index: Int): Boolean = index in starts.dropLast(1)
+
+    /** true si [index] cierra su ronda (después viene el marcador o el final). */
+    fun isLastOfRound(index: Int): Boolean = index + 1 in starts.drop(1)
+
+    companion object {
+        val DEFAULT = STANDARD
+
+        fun fromQuestions(questions: Int): GameLength? = entries.firstOrNull { it.questions == questions }
+    }
+}
+
+/** Las cuatro rondas de una partida, en orden. */
 enum class RoundType(val number: Int, val title: String) {
     KNOWLEDGE(1, "Conocimiento"),
     SPEED(2, "Velocidad"),
     STRATEGY(3, "Estrategia"),
     FINAL(4, "Final"),
-    ;
-
-    companion object {
-        fun forQuestionIndex(index: Int): RoundType {
-            require(index in 0 until GameRules.TOTAL_QUESTIONS) { "Índice de pregunta fuera de rango: $index" }
-            return entries[index / GameRules.QUESTIONS_PER_ROUND]
-        }
-    }
 }

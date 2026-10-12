@@ -7,6 +7,7 @@ data class GameConfig(
     /** true en el modo local: un solo teléfono, los jugadores responden por turnos. */
     val sequentialTurns: Boolean = true,
     val questionTimeMillis: Long = GameRules.QUESTION_TIME_MILLIS,
+    val length: GameLength = GameLength.DEFAULT,
 )
 
 enum class Phase {
@@ -73,7 +74,7 @@ data class GameState(
     val phase: Phase = Phase.ROULETTE,
     val bets: Map<PlayerId, Bet> = emptyMap(),
     val answers: Map<PlayerId, Answer> = emptyMap(),
-    /** Historial de las 12 preguntas principales: fuente para las estadísticas. */
+    /** Historial de las preguntas principales (sin desempate): fuente para las estadísticas. */
     val results: List<QuestionResult> = emptyList(),
     /** Jugadores empatados en el primer puesto, durante el desempate. */
     val tiebreakPlayers: List<PlayerId> = emptyList(),
@@ -83,7 +84,7 @@ data class GameState(
     val winners: List<PlayerId> = emptyList(),
 ) {
     val currentPlanned: PlannedQuestion? get() = plan.questions.getOrNull(questionIndex)
-    val round: RoundType get() = RoundType.forQuestionIndex(questionIndex.coerceAtMost(GameRules.TOTAL_QUESTIONS - 1))
+    val round: RoundType get() = config.length.roundFor(questionIndex.coerceAtMost(config.length.questions - 1))
     val lastResult: QuestionResult? get() = results.lastOrNull()
 
     /** Jugadores que participan en la pregunta actual, en orden de turno. */

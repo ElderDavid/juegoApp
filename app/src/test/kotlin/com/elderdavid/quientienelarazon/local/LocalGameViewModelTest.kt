@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.local
 
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalStage
@@ -54,6 +55,19 @@ class LocalGameViewModelTest {
         assertNull(vm.state.value.match)
         vm.setName(1, "Luis")
         assertTrue(vm.state.value.canStart)
+    }
+
+    @Test
+    fun chosenLengthIsUsedForTheMatch() = runTest(dispatcher) {
+        val vm = viewModel()
+        assertEquals(GameLength.STANDARD, vm.state.value.length)
+        vm.setName(0, "Ana")
+        vm.setName(1, "Luis")
+        vm.setLength(GameLength.SHORT)
+        vm.start()
+        val match = vm.state.value.match!!
+        assertEquals(GameLength.SHORT, match.state.config.length)
+        assertEquals(8, match.state.plan.questions.size)
     }
 
     @Test

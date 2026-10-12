@@ -18,9 +18,20 @@ class GamePlannerTest {
         val plan = GamePlanner.plan(bank, ContentMode.General, 3, seed = 1)
         assertEquals(12, plan.questions.size)
         assertEquals(12, plan.questions.map { it.questionId }.toSet().size)
-        plan.questions.forEachIndexed { i, p -> assertEquals(RoundType.forQuestionIndex(i), p.round) }
+        plan.questions.forEachIndexed { i, p -> assertEquals(GameLength.STANDARD.roundFor(i), p.round) }
         assertTrue(plan.tiebreakQueue.none { id -> plan.questions.any { it.questionId == id } })
         assertEquals(GameRules.TIEBREAK_RESERVE, plan.tiebreakQueue.size)
+    }
+
+    @Test
+    fun shorterGamesPlanTheirLengthWithRoundsInOrder() {
+        for (length in listOf(GameLength.SHORT, GameLength.MEDIUM)) {
+            val plan = GamePlanner.plan(bank, ContentMode.General, 3, seed = 7, length = length)
+            assertEquals(length.questions, plan.questions.size)
+            assertEquals(length.questions, plan.questions.map { it.questionId }.toSet().size)
+            plan.questions.forEachIndexed { i, p -> assertEquals(length.roundFor(i), p.round) }
+            assertEquals(GameRules.TIEBREAK_RESERVE, plan.tiebreakQueue.size)
+        }
     }
 
     @Test

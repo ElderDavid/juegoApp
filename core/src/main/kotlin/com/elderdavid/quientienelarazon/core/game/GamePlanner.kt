@@ -39,7 +39,7 @@ object CategoryRoulette {
 }
 
 /**
- * Planifica las 12 preguntas al inicio con una semilla. En online, la semilla y el plan los genera
+ * Planifica las preguntas de la partida al inicio con una semilla. En online, la semilla y el plan los genera
  * el servidor, así todos los teléfonos reciben el mismo orden.
  */
 object GamePlanner {
@@ -50,12 +50,13 @@ object GamePlanner {
         playerCount: Int,
         seed: Long,
         avoidQuestionIds: Set<String> = emptySet(),
+        length: GameLength = GameLength.DEFAULT,
     ): GamePlan {
         val random = Random(seed)
         val fullPool = bank.pool(mode)
         // Revancha: se evitan las preguntas recientes si quedan suficientes; si no, se permiten.
         val preferred = fullPool.filterNot { it.id in avoidQuestionIds }
-        val pool = if (preferred.size >= GameRules.TOTAL_QUESTIONS + GameRules.TIEBREAK_RESERVE) preferred else fullPool
+        val pool = if (preferred.size >= length.questions + GameRules.TIEBREAK_RESERVE) preferred else fullPool
         val votesAllowed = if (playerCount >= GameRules.MIN_PLAYERS_FOR_VOTES) GameRules.MAX_VOTE_QUESTIONS else 0
 
         val used = mutableSetOf<String>()
@@ -63,8 +64,8 @@ object GamePlanner {
         var votesUsed = 0
         val planned = mutableListOf<PlannedQuestion>()
 
-        for (index in 0 until GameRules.TOTAL_QUESTIONS) {
-            val round = RoundType.forQuestionIndex(index)
+        for (index in 0 until length.questions) {
+            val round = length.roundFor(index)
             val candidates = eligibilityTiers(round).asSequence()
                 .map { tier ->
                     pool.filter { q ->
