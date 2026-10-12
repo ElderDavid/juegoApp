@@ -193,7 +193,7 @@ private fun CosmeticRow(c: Cosmetic, level: Int, state: EconomyUiState, viewMode
             c.price != null -> ArcadeOutlinedButton(
                 text = "Comprar",
                 onClick = { viewModel.buyCosmetic(c) },
-                enabled = !state.busy && (state.snapshot?.coins ?: 0) >= c.price,
+                enabled = !state.busy && (state.snapshot?.coins ?: 0) >= (c.price ?: 0),
                 color = ArcadeOrange,
                 modifier = modifier,
             )

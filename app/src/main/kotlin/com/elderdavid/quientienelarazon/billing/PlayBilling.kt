@@ -91,7 +91,7 @@ class PlayBillingRepository(
     override suspend fun refresh() {
         if (!connect()) return
         loadDetails()
-        val purchases = suspendCancellableCoroutine { cont ->
+        val purchases = suspendCancellableCoroutine<List<Purchase>?> { cont ->
             client.queryPurchasesAsync(
                 QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(),
             ) { result, list ->
@@ -118,7 +118,7 @@ class PlayBillingRepository(
                 },
             )
             .build()
-        val list = suspendCancellableCoroutine { cont ->
+        val list = suspendCancellableCoroutine<List<ProductDetails>> { cont ->
             client.queryProductDetailsAsync(params) { result, queried ->
                 cont.resume(if (result.responseCode == BillingClient.BillingResponseCode.OK) queried.productDetailsList else emptyList())
             }
