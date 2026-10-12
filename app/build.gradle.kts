@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     // AGP 9 incluye soporte de Kotlin integrado: no hace falta org.jetbrains.kotlin.android.
     // Sin versión: AGP ya está en el classpath raíz (ver build.gradle.kts).
@@ -9,7 +11,7 @@ plugins {
 // Configuración de Supabase y Google. Son valores públicos de cliente (no secretos), pero se leen
 // de local.properties para no fijar un proyecto concreto en el repositorio. Si faltan, la app
 // funciona igual en modo local y las cuentas aparecen como «no configuradas».
-val localConfig = java.util.Properties().apply {
+val localConfig = Properties().apply {
     rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
 }
 fun clientConfig(key: String): String =
