@@ -29,6 +29,14 @@ object AdMobTestIds {
 val admobRelease = listOf("admob.appId", "admob.interstitialId", "admob.bannerId").map(::clientConfig)
 val admobReleaseConfigured = admobRelease.all { it.isNotEmpty() }
 
+// Firma de la release. keystore.properties y el .jks NUNCA se suben (están en .gitignore).
+// Sin ese archivo, la release se compila sin firmar (sirve para comprobar R8 en CI, no para Play).
+val keystoreProps = Properties().apply {
+    rootProject.file("keystore.properties").takeIf { it.exists() }?.inputStream()?.use { load(it) }
+}
+val releaseSigningConfigured = listOf("storeFile", "storePassword", "keyAlias", "keyPassword")
+    .all { !keystoreProps.getProperty(it).isNullOrBlank() }
+
 android {
     namespace = "com.elderdavid.quientienelarazon"
     // Las librerías AndroidX actuales (Compose 1.12, core 1.19, lifecycle 2.11) exigen compilar con API 37.
@@ -41,12 +49,23 @@ android {
         // Google Play exige targetSdk 36 para apps nuevas desde el 31/08/2026.
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "SUPABASE_URL", "\"${clientConfig("supabase.url")}\"")
         buildConfigField("String", "SUPABASE_PUBLISHABLE_KEY", "\"${clientConfig("supabase.publishableKey")}\"")
         buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"${clientConfig("google.webClientId")}\"")
+    }
+
+    signingConfigs {
+        if (releaseSigningConfigured) {
+            create("release") {
+                storeFile = rootProject.file(keystoreProps.getProperty("storeFile"))
+                storePassword = keystoreProps.getProperty("storePassword")
+                keyAlias = keystoreProps.getProperty("keyAlias")
+                keyPassword = keystoreProps.getProperty("keyPassword")
+            }
+        }
     }
 
     buildTypes {
@@ -57,6 +76,7 @@ android {
             buildConfigField("String", "ADMOB_BANNER_ID", "\"${AdMobTestIds.BANNER}\"")
         }
         release {
+            if (releaseSigningConfigured) signingConfig = signingConfigs.getByName("release")
             // El SDK exige un APPLICATION_ID en el manifiesto aunque no se muestren anuncios.
             manifestPlaceholders["admobAppId"] = if (admobReleaseConfigured) admobRelease[0] else AdMobTestIds.APP
             buildConfigField("boolean", "ADS_ENABLED", admobReleaseConfigured.toString())

@@ -91,6 +91,21 @@ class SupabaseAccountRepository(private val client: SupabaseClient, scope: Corou
     override suspend fun signOut() {
         runSafely { client.auth.signOut() }
     }
+
+    override suspend fun deleteAccount(): DeleteAccountResult = try {
+        client.postgrest.rpc("delete_my_account")
+        // El usuario ya no existe en el servidor: basta con olvidar la sesión en el teléfono.
+        client.auth.clearSession()
+        DeleteAccountResult.Deleted
+    } catch (e: CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        if (e.message?.contains("in_active_room") == true) {
+            DeleteAccountResult.InActiveRoom
+        } else {
+            DeleteAccountResult.Failed(e::class.simpleName ?: "error")
+        }
+    }
 }
 
 class SupabaseProfileRepository(private val client: SupabaseClient) : ProfileRepository {

@@ -51,8 +51,8 @@ jobs:
           PY
 
       # Compila la release (sin firmar) para comprobar que R8 no rompe nada al reducir el código.
-      - name: Compilación release con R8
-        run: ./gradlew :app:assembleRelease --console=plain
+      - name: Compilación release con R8 (APK y AAB sin firmar)
+        run: ./gradlew :app:assembleRelease :app:bundleRelease --console=plain
 
       - name: Resultados de pruebas y lint
         if: always()

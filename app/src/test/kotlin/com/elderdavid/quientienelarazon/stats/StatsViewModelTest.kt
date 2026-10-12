@@ -2,6 +2,7 @@ package com.elderdavid.quientienelarazon.stats
 
 import com.elderdavid.quientienelarazon.account.AccountRepository
 import com.elderdavid.quientienelarazon.account.AccountState
+import com.elderdavid.quientienelarazon.account.DeleteAccountResult
 import com.elderdavid.quientienelarazon.account.GoogleToken
 import com.elderdavid.quientienelarazon.account.LinkResult
 import com.elderdavid.quientienelarazon.account.Profile
@@ -40,6 +41,7 @@ private class FakeAccounts(private val online: Boolean = true) : AccountReposito
     override suspend fun linkGoogle(token: GoogleToken) = LinkResult.Linked
     override suspend fun switchToGoogle(token: GoogleToken) = LinkResult.Linked
     override suspend fun signOut() = Unit
+    override suspend fun deleteAccount() = DeleteAccountResult.Failed("no usado")
 }
 
 private class FakeProfiles(var stats: PlayerStats = PlayerStats(gamesPlayed = 3, wins = 2, losses = 1, xp = 150)) : ProfileRepository {

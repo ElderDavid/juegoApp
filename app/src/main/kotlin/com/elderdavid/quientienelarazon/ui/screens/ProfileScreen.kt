@@ -75,6 +75,21 @@ fun ProfileScreen(viewModel: ProfileViewModel, googleWebClientId: String, onBack
         )
     }
 
+    if (state.confirmDelete) {
+        AlertDialog(
+            onDismissRequest = viewModel::dismissDelete,
+            title = { Text("¿Borrar tu cuenta?") },
+            text = {
+                Text(
+                    "Se borran para siempre tu perfil, tu nivel, tus estadísticas online y tu puesto en la clasificación. " +
+                        "No se puede deshacer. El historial de partidas locales de este teléfono no cambia.",
+                )
+            },
+            confirmButton = { TextButton(onClick = viewModel::deleteAccount) { Text("Borrar", color = ArcadeError) } },
+            dismissButton = { TextButton(onClick = viewModel::dismissDelete) { Text("Cancelar", color = ArcadeCyan) } },
+        )
+    }
+
     ArcadeScreen(title = "Perfil", onBack = onBack) {
         state.message?.let { Text(it, color = ArcadeOrange, style = MaterialTheme.typography.bodyLarge) }
         when (val account = state.account) {
@@ -104,6 +119,16 @@ fun ProfileScreen(viewModel: ProfileViewModel, googleWebClientId: String, onBack
                 if (state.profile != null) {
                     EditCard(state, viewModel)
                     state.stats?.let { StatsCard(it) }
+                    ArcadeCard(accent = ArcadeOutline) {
+                        Text("Borrar cuenta", style = MaterialTheme.typography.titleMedium)
+                        Text("Borra tu perfil y todo tu progreso online del servidor.", color = ArcadeTextMuted)
+                        ArcadeOutlinedButton(
+                            text = if (state.deleting) "Borrando…" else "Borrar mi cuenta",
+                            onClick = viewModel::askDelete,
+                            enabled = !state.deleting,
+                            color = ArcadeError,
+                        )
+                    }
                 }
             }
         }

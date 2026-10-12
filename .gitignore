@@ -11,3 +11,7 @@ app/google-services.json
 *.jks
 *.keystore
 keystore.properties
+
+# Paquetes generados
+*.aab
+*.apk

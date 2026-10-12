@@ -46,6 +46,14 @@ sealed interface LinkResult {
     data class Failed(val message: String) : LinkResult
 }
 
+sealed interface DeleteAccountResult {
+    data object Deleted : DeleteAccountResult
+
+    /** Está en una sala online sin terminar: hay que salir primero. */
+    data object InActiveRoom : DeleteAccountResult
+    data class Failed(val message: String) : DeleteAccountResult
+}
+
 data class Profile(val userId: String, val displayName: String, val avatarId: Int)
 
 sealed interface ProfileSaveResult {
@@ -67,6 +75,9 @@ interface AccountRepository {
     suspend fun switchToGoogle(token: GoogleToken): LinkResult
 
     suspend fun signOut()
+
+    /** Borra la cuenta y todo su progreso online en el servidor, y cierra la sesión. No se puede deshacer. */
+    suspend fun deleteAccount(): DeleteAccountResult
 }
 
 interface ProfileRepository {

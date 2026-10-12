@@ -16,12 +16,17 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
-private class FakeAccounts(var linkOutcome: LinkResult = LinkResult.Linked) : AccountRepository {
+private class FakeAccounts(
+    var linkOutcome: LinkResult = LinkResult.Linked,
+    var deleteOutcome: DeleteAccountResult = DeleteAccountResult.Deleted,
+) : AccountRepository {
     override val state = MutableStateFlow<AccountState>(AccountState.SignedOut)
     var switched = false
+    var deletes = 0
+    private var nextGuest = "guest-1"
 
     override suspend fun ensureSignedIn(): Result<Unit> {
-        if (state.value == AccountState.SignedOut) state.value = AccountState.Guest("guest-1")
+        if (state.value == AccountState.SignedOut) state.value = AccountState.Guest(nextGuest)
         return Result.success(Unit)
     }
 
@@ -39,10 +44,24 @@ private class FakeAccounts(var linkOutcome: LinkResult = LinkResult.Linked) : Ac
     override suspend fun signOut() {
         state.value = AccountState.SignedOut
     }
+
+    override suspend fun deleteAccount(): DeleteAccountResult {
+        deletes++
+        if (deleteOutcome == DeleteAccountResult.Deleted) {
+            // El servidor borra al usuario: la siguiente sesión es un invitado nuevo.
+            nextGuest = "guest-2"
+            state.value = AccountState.SignedOut
+        }
+        return deleteOutcome
+    }
 }
 
 private class FakeProfiles : ProfileRepository {
-    val profiles = mutableMapOf("guest-1" to Profile("guest-1", "Jugador ABCDE", 0), "other-7" to Profile("other-7", "Elder", 4))
+    val profiles = mutableMapOf(
+        "guest-1" to Profile("guest-1", "Jugador ABCDE", 0),
+        "guest-2" to Profile("guest-2", "Jugador FGHIJ", 0),
+        "other-7" to Profile("other-7", "Elder", 4),
+    )
     var saves = 0
 
     override suspend fun load(userId: String) = Result.success(profiles.getValue(userId) to PlayerStats(xp = 150))
@@ -122,6 +141,38 @@ class ProfileViewModelTest {
         vm.onGoogleCredential(GoogleCredentialResult.Cancelled)
         assertEquals(AccountState.Guest("guest-1"), vm.state.value.account)
         assertEquals(null, vm.state.value.message)
+    }
+
+    @Test
+    fun deletingAsksFirstThenStartsAsNewGuest() = runTest {
+        val accounts = FakeAccounts()
+        val vm = ProfileViewModel(accounts, FakeProfiles(), googleConfigured = true)
+        vm.askDelete()
+        assertTrue(vm.state.value.confirmDelete)
+        vm.dismissDelete()
+        assertFalse(vm.state.value.confirmDelete)
+        assertEquals(0, accounts.deletes)
+
+        vm.askDelete()
+        vm.deleteAccount()
+        assertEquals(1, accounts.deletes)
+        val s = vm.state.value
+        assertFalse(s.confirmDelete)
+        assertFalse(s.deleting)
+        assertEquals(AccountState.Guest("guest-2"), s.account)
+        assertEquals("Jugador FGHIJ", s.profile!!.displayName)
+        assertTrue(s.message!!.contains("borraron"))
+    }
+
+    @Test
+    fun deletingDuringAnOnlineGameKeepsTheAccount() = runTest {
+        val accounts = FakeAccounts(deleteOutcome = DeleteAccountResult.InActiveRoom)
+        val vm = ProfileViewModel(accounts, FakeProfiles(), googleConfigured = true)
+        vm.askDelete()
+        vm.deleteAccount()
+        assertEquals(AccountState.Guest("guest-1"), vm.state.value.account)
+        assertEquals("Jugador ABCDE", vm.state.value.profile!!.displayName)
+        assertTrue(vm.state.value.message!!.contains("Sal de la partida"))
     }
 
     @Test

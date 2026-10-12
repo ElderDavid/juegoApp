@@ -29,6 +29,9 @@ data class ProfileUiState(
     val googleAvailable: Boolean = false,
     /** La cuenta de Google ya es de otro jugador: la pantalla pregunta qué hacer. */
     val conflict: Boolean = false,
+    /** La pantalla pide confirmar el borrado de la cuenta. */
+    val confirmDelete: Boolean = false,
+    val deleting: Boolean = false,
     val message: String? = null,
 ) {
     val nameIssue: ProfileNameIssue? get() = if (nameDraft.isEmpty()) null else ProfileName.validate(nameDraft)
@@ -143,6 +146,33 @@ class ProfileViewModel(
             repo.signOut()
             // Sin sesión se vuelve a entrar como invitado nuevo, para que el juego online siga disponible.
             repo.ensureSignedIn()
+        }
+    }
+
+    fun askDelete() = _state.update { it.copy(confirmDelete = true) }
+
+    fun dismissDelete() = _state.update { it.copy(confirmDelete = false) }
+
+    fun deleteAccount() {
+        val repo = accounts ?: return
+        if (_state.value.deleting) return
+        _state.update { it.copy(confirmDelete = false, deleting = true, message = null) }
+        viewModelScope.launch {
+            val result = repo.deleteAccount()
+            _state.update {
+                when (result) {
+                    DeleteAccountResult.Deleted -> it.copy(
+                        deleting = false,
+                        profile = null,
+                        stats = null,
+                        message = "Tu cuenta y tu progreso online se borraron.",
+                    )
+                    DeleteAccountResult.InActiveRoom -> it.copy(deleting = false, message = "Sal de la partida online antes de borrar la cuenta.")
+                    is DeleteAccountResult.Failed -> it.copy(deleting = false, message = "No se pudo borrar la cuenta. Revisa tu conexión.")
+                }
+            }
+            // Igual que al cerrar sesión: se entra como invitado nuevo para que el juego online siga disponible.
+            if (result == DeleteAccountResult.Deleted) repo.ensureSignedIn()
         }
     }
 

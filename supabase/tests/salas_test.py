@@ -498,6 +498,27 @@ def test_leaderboard(admin):
         check(True, "sin sesión no se puede consultar")
 
 
+def test_delete_account(admin):
+    print("\n— Borrar cuenta —")
+    cur = admin.cursor()
+    dana = Player(admin, "Dana")
+    view = dana.call("create_room", "private", "general")
+    room = view["room"]["id"]
+    expect_error("in_active_room", lambda: dana.call("delete_my_account"), "no se borra con una sala activa")
+    dana.call("leave_room", room)
+    dana.call("delete_my_account")
+    for table, column in (("auth.users", "id"), ("public.profiles", "id"), ("public.player_stats", "user_id")):
+        cur.execute(f"select count(*) from {table} where {column} = %s", (dana.id,))
+        check(cur.fetchone()[0] == 0, f"borrado de {table}")
+    anon = connect(DB)
+    anon.cursor().execute("set role anon")
+    try:
+        anon.cursor().execute("select public.delete_my_account()")
+        check(False, "sin sesión no se puede borrar nada")
+    except psycopg2.Error:
+        check(True, "sin sesión no se puede borrar nada")
+
+
 def main():
     admin = setup()
     cur = admin.cursor()
@@ -513,6 +534,7 @@ def main():
     test_lobby_and_matchmaking(admin)
     test_rate_limit(admin)
     test_leaderboard(admin)
+    test_delete_account(admin)
     print(f"\n{passed} comprobaciones correctas, {len(failures)} fallos")
     sys.exit(1 if failures else 0)
 
