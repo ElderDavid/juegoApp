@@ -333,7 +333,7 @@ private fun RevealView(
     LaunchedEffect(result.index) {
         actions.feedback(if (result.outcomes.any { it.won == true }) FeedbackEvent.CORRECT else FeedbackEvent.WRONG)
     }
-    RoundHeader(result.round, result.index + 1)
+    RoundHeader(result.round, result.index + 1, state.config.length.questions)
     QuestionCard(question, bank)
     question.options.forEachIndexed { index, option ->
         val winning = index in result.winningOptions
