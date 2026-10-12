@@ -1,0 +1,2957 @@
+[
+ {
+  "id": "gen-cie-001",
+  "text": "¿Qué planeta es conocido como el planeta rojo?",
+  "options": [
+   "Júpiter",
+   "Mercurio",
+   "Venus",
+   "Marte"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El óxido de hierro de su superficie le da a Marte su color rojizo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-002",
+  "text": "¿Qué gas absorben las plantas del aire para hacer la fotosíntesis?",
+  "options": [
+   "Oxígeno",
+   "Helio",
+   "Dióxido de carbono",
+   "Nitrógeno"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Las plantas toman dióxido de carbono y, con luz y agua, producen glucosa y liberan oxígeno.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-003",
+  "text": "¿Cuál es el órgano más grande del cuerpo humano?",
+  "options": [
+   "El cerebro",
+   "El hígado",
+   "Los pulmones",
+   "La piel"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "La piel es el órgano más extenso del cuerpo humano.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-004",
+  "text": "¿Cuál es el símbolo químico del oro?",
+  "options": [
+   "Ag",
+   "Go",
+   "Or",
+   "Au"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Au viene del latín aurum. Ag es la plata.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-005",
+  "text": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+  "options": [
+   "206",
+   "180",
+   "312",
+   "250"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Un adulto tiene 206 huesos; al nacer hay más porque varios se fusionan con el crecimiento.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-006",
+  "text": "¿Qué científica fue la primera persona en ganar dos premios Nobel?",
+  "options": [
+   "Lise Meitner",
+   "Rosalind Franklin",
+   "Marie Curie",
+   "Ada Lovelace"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "ciencia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Marie Curie ganó el Nobel de Física en 1903 y el de Química en 1911.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-007",
+  "text": "¿Cuál es la velocidad aproximada de la luz en el vacío?",
+  "options": [
+   "3 000 km por segundo",
+   "300 000 km por segundo",
+   "30 000 km por segundo",
+   "3 millones de km por segundo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La luz viaja a unos 299 792 km/s en el vacío.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-008",
+  "text": "¿Qué parte de la célula contiene el material genético en las células animales?",
+  "options": [
+   "El núcleo",
+   "La membrana",
+   "El citoplasma",
+   "La pared celular"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "En las células eucariotas el ADN está principalmente en el núcleo. Las células animales no tienen pared celular.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-009",
+  "text": "¿Cuál es el planeta más grande del sistema solar?",
+  "options": [
+   "Neptuno",
+   "Júpiter",
+   "Saturno",
+   "Urano"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Júpiter tiene más masa que todos los demás planetas juntos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-010",
+  "text": "El agua pura hierve a 100 °C a nivel del mar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "A una atmósfera de presión el agua pura hierve a 100 °C. A mayor altitud hierve a menor temperatura.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-011",
+  "text": "Los murciélagos son aves.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Los murciélagos son mamíferos: tienen pelo y alimentan a sus crías con leche.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-012",
+  "text": "El Sol es una estrella.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El Sol es una estrella de tipo enana amarilla.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-013",
+  "text": "Las arañas son insectos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Las arañas son arácnidos: tienen ocho patas, mientras que los insectos tienen seis.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-014",
+  "text": "El diamante y el grafito están formados por el mismo elemento químico.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Ambos son carbono puro con distinta organización de sus átomos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-015",
+  "text": "El sonido viaja más rápido que la luz.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La luz es muchísimo más rápida: por eso vemos el relámpago antes de oír el trueno.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cie-016",
+  "text": "La Luna tiene su propia luz.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La Luna refleja la luz del Sol; no la produce.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-001",
+  "text": "¿En qué año llegó Cristóbal Colón a América?",
+  "options": [
+   "1453",
+   "1500",
+   "1519",
+   "1492"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Colón llegó a una isla del Caribe el 12 de octubre de 1492.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-002",
+  "text": "¿Qué fecha se celebra el Día de la Independencia de Colombia?",
+  "options": [
+   "12 de octubre",
+   "11 de noviembre",
+   "20 de julio",
+   "7 de agosto"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El 20 de julio de 1810 ocurrió el Grito de Independencia en Santafé. El 7 de agosto se recuerda la Batalla de Boyacá.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-003",
+  "text": "¿En qué batalla de 1819 se selló la independencia de la Nueva Granada?",
+  "options": [
+   "Batalla de Carabobo",
+   "Batalla de Boyacá",
+   "Batalla de Ayacucho",
+   "Batalla de Pichincha"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La Batalla de Boyacá fue el 7 de agosto de 1819.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-004",
+  "text": "¿Qué civilización construyó Machu Picchu?",
+  "options": [
+   "Los aztecas",
+   "Los mayas",
+   "Los muiscas",
+   "Los incas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Machu Picchu, en Perú, fue construida por los incas en el siglo XV.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-005",
+  "text": "¿En qué año terminó la Segunda Guerra Mundial?",
+  "options": [
+   "1918",
+   "1950",
+   "1939",
+   "1945"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La guerra terminó en 1945, con la rendición de Alemania en mayo y de Japón en septiembre.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-006",
+  "text": "¿En qué año cayó el Muro de Berlín?",
+  "options": [
+   "1975",
+   "1989",
+   "1991",
+   "1961"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El Muro de Berlín cayó el 9 de noviembre de 1989.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-007",
+  "text": "¿Qué constitución política rige actualmente en Colombia?",
+  "options": [
+   "La de 1886",
+   "La de 1821",
+   "La de 1863",
+   "La de 1991"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La Constitución vigente fue promulgada en 1991 y reemplazó a la de 1886.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-008",
+  "text": "¿Quién fue el primer ser humano en pisar la Luna?",
+  "options": [
+   "Buzz Aldrin",
+   "Michael Collins",
+   "Neil Armstrong",
+   "Yuri Gagarin"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Neil Armstrong pisó la Luna el 20 de julio de 1969 en la misión Apolo 11. Gagarin fue el primero en viajar al espacio.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-009",
+  "text": "Simón Bolívar es conocido como el Libertador.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Bolívar lideró la independencia de varios países sudamericanos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-010",
+  "text": "Las pirámides de Giza están en México.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Las pirámides de Giza están en Egipto.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-011",
+  "text": "La Revolución francesa comenzó en 1789.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La toma de la Bastilla fue el 14 de julio de 1789.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-012",
+  "text": "Antes de llamarse Colombia, el país se llamó Nueva Granada.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Entre otros nombres, el territorio fue el Virreinato y luego la República de la Nueva Granada.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-013",
+  "text": "La Primera Guerra Mundial empezó en 1914.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La Primera Guerra Mundial duró de 1914 a 1918.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-his-014",
+  "text": "El Imperio romano de Occidente cayó en el siglo XV.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Se suele fechar su caída en el año 476, en el siglo V.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-001",
+  "text": "¿Cuál es la capital de Colombia?",
+  "options": [
+   "Medellín",
+   "Bogotá",
+   "Barranquilla",
+   "Cali"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Bogotá es la capital y el Distrito Capital del país.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-002",
+  "text": "¿Cuál es el océano más grande del planeta?",
+  "options": [
+   "Índico",
+   "Atlántico",
+   "Ártico",
+   "Pacífico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El Pacífico es el océano más grande y profundo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-003",
+  "text": "¿Con qué dos océanos tiene costa Colombia?",
+  "options": [
+   "Índico y Pacífico",
+   "Solo el Pacífico",
+   "Pacífico y Atlántico (mar Caribe)",
+   "Ártico y Atlántico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Colombia es el único país de Sudamérica con costas en el Pacífico y en el Caribe, que es parte del Atlántico.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-004",
+  "text": "¿Cuál es el río más importante de Colombia por su longitud y navegabilidad?",
+  "options": [
+   "Río Atrato",
+   "Río Magdalena",
+   "Río Cauca",
+   "Río Meta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "El Magdalena recorre gran parte del país de sur a norte y desemboca en el Caribe.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-005",
+  "text": "¿Cuál es la capital de Australia?",
+  "options": [
+   "Melbourne",
+   "Perth",
+   "Sídney",
+   "Canberra"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Canberra es la capital, aunque Sídney es la ciudad más poblada.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-006",
+  "text": "¿Cuál es el país más grande del mundo por superficie?",
+  "options": [
+   "China",
+   "Canadá",
+   "Rusia",
+   "Estados Unidos"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Rusia ocupa más de 17 millones de km².",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-007",
+  "text": "¿Cuál es la montaña más alta del mundo sobre el nivel del mar?",
+  "options": [
+   "Kilimanjaro",
+   "Everest",
+   "K2",
+   "Aconcagua"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El Everest, en el Himalaya, supera los 8800 m.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-008",
+  "text": "¿Cuál es la montaña más alta de América?",
+  "options": [
+   "Denali",
+   "Chimborazo",
+   "Huascarán",
+   "Aconcagua"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El Aconcagua, en Argentina, mide cerca de 6960 m.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-009",
+  "text": "¿En qué continente está Egipto?",
+  "options": [
+   "África",
+   "Asia",
+   "Oceanía",
+   "Europa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Egipto está en el noreste de África, aunque la península del Sinaí está en Asia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-010",
+  "text": "¿Qué país tiene forma de bota en el mapa?",
+  "options": [
+   "Italia",
+   "Portugal",
+   "Grecia",
+   "Chile"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La península itálica recuerda la forma de una bota.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-011",
+  "text": "Colombia limita con Brasil.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Colombia limita con Venezuela, Brasil, Perú, Ecuador y Panamá.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-012",
+  "text": "El desierto del Sahara está en Sudamérica.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El Sahara está en el norte de África.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-013",
+  "text": "Medellín es la capital de Antioquia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Medellín es la capital del departamento de Antioquia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-014",
+  "text": "Colombia tiene costa en el mar Mediterráneo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Colombia tiene costas en el mar Caribe y en el océano Pacífico.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-geo-015",
+  "text": "El río Amazonas pasa por Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El Amazonas atraviesa el sur de Colombia, en el departamento de Amazonas, donde está Leticia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-001",
+  "text": "¿Cuántos jugadores tiene un equipo de fútbol en la cancha?",
+  "options": [
+   "9",
+   "10",
+   "11",
+   "12"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Cada equipo juega con 11 jugadores, incluido el arquero.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-002",
+  "text": "¿En qué deporte se usa una raqueta y una pelota amarilla sobre una red?",
+  "options": [
+   "Golf",
+   "Béisbol",
+   "Tenis",
+   "Voleibol"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "En el tenis se golpea la pelota con raquetas por encima de una red.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-003",
+  "text": "¿Qué país ganó la Copa Mundial de Fútbol de 2022?",
+  "options": [
+   "Croacia",
+   "Francia",
+   "Argentina",
+   "Brasil"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Argentina venció a Francia en la final de Catar 2022.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-004",
+  "text": "¿Cada cuántos años se celebran los Juegos Olímpicos de verano?",
+  "options": [
+   "Cada 2 años",
+   "Cada año",
+   "Cada 4 años",
+   "Cada 5 años"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Los Juegos Olímpicos de verano se celebran cada cuatro años.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-005",
+  "text": "¿Qué ciclista colombiano ganó el Tour de Francia en 2019?",
+  "options": [
+   "Lucho Herrera",
+   "Nairo Quintana",
+   "Rigoberto Urán",
+   "Egan Bernal"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Egan Bernal fue el primer latinoamericano en ganar el Tour de Francia, en 2019.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-006",
+  "text": "¿Cuántos puntos vale una canasta lanzada desde fuera de la línea de tres en baloncesto?",
+  "options": [
+   "1",
+   "3",
+   "4",
+   "2"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Los lanzamientos desde fuera de la línea de tres puntos valen tres.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-007",
+  "text": "¿Qué deportista colombiana ganó medalla de oro olímpica en salto triple en Río 2016?",
+  "options": [
+   "Yuri Alvear",
+   "María Isabel Urrutia",
+   "Caterine Ibargüen",
+   "Mariana Pajón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Caterine Ibargüen ganó el oro en salto triple en Río de Janeiro 2016.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-008",
+  "text": "¿En qué país se jugó el primer Mundial de fútbol, en 1930?",
+  "options": [
+   "Italia",
+   "Uruguay",
+   "Brasil",
+   "Argentina"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Uruguay organizó y ganó el primer Mundial en 1930.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-009",
+  "text": "En el fútbol, el arquero puede tomar el balón con las manos dentro de su área.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El arquero puede usar las manos dentro de su propia área.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-010",
+  "text": "Un partido de fútbol profesional dura 60 minutos de tiempo reglamentario.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Dura 90 minutos, en dos tiempos de 45, más el tiempo añadido.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-011",
+  "text": "Mariana Pajón es campeona olímpica de BMX.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Mariana Pajón ganó el oro en BMX en Londres 2012 y en Río 2016.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-012",
+  "text": "En el ajedrez, la pieza que se mueve en forma de L es el alfil.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La que se mueve en L es el caballo. El alfil se mueve en diagonal.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-013",
+  "text": "El Mundial de fútbol de 2026 se juega en Estados Unidos, México y Canadá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Es el primer Mundial organizado por tres países y con 48 selecciones.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-dep-014",
+  "text": "Una maratón mide exactamente 42,195 km.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La distancia oficial de la maratón es de 42,195 km.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-001",
+  "text": "¿Qué significa la sigla «www» en las direcciones web?",
+  "options": [
+   "World Wide Web",
+   "Web World Wide",
+   "World Web Wide",
+   "Wide World Web"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "WWW significa World Wide Web, la red de páginas enlazadas de internet.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-002",
+  "text": "¿Qué empresa desarrolla el sistema operativo Android?",
+  "options": [
+   "Microsoft",
+   "Google",
+   "Apple",
+   "Samsung"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "tecnologia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Android es desarrollado por Google; muchos fabricantes lo usan en sus teléfonos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-003",
+  "text": "¿Cuántos bits tiene un byte?",
+  "options": [
+   "8",
+   "10",
+   "16",
+   "4"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Un byte equivale a 8 bits.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-004",
+  "text": "¿Qué componente se considera el «cerebro» de un computador?",
+  "options": [
+   "La pantalla",
+   "El teclado",
+   "El procesador (CPU)",
+   "El disco duro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "tecnologia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La unidad central de procesamiento ejecuta las instrucciones de los programas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-005",
+  "text": "¿Quién es considerada la primera programadora de la historia?",
+  "options": [
+   "Hedy Lamarr",
+   "Grace Hopper",
+   "Ada Lovelace",
+   "Marie Curie"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "tecnologia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Ada Lovelace escribió en el siglo XIX un algoritmo para la máquina analítica de Charles Babbage.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-006",
+  "text": "¿En qué sistema de numeración trabajan internamente los computadores?",
+  "options": [
+   "Romano",
+   "Decimal",
+   "Hexadecimal",
+   "Binario"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "tecnologia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Los computadores representan la información con ceros y unos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-007",
+  "text": "¿Qué significa «USB» en el contexto de la informática?",
+  "options": [
+   "Universal Serial Bus",
+   "Unidad de Sistema Básico",
+   "Unión Serial Básica",
+   "Universal System Board"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "USB es Universal Serial Bus, un estándar de conexión.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-008",
+  "text": "El Wi-Fi permite conectarse a una red sin cables.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Wi-Fi es una tecnología de red inalámbrica.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-009",
+  "text": "Un gigabyte es más pequeño que un megabyte.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "tecnologia",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Un gigabyte equivale a unos mil megabytes.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-010",
+  "text": "El primer iPhone se presentó en 2007.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Apple presentó el primer iPhone en enero de 2007.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-011",
+  "text": "HTML es un lenguaje para estructurar páginas web.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "HTML es el lenguaje de marcado de las páginas web.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-012",
+  "text": "El código QR fue inventado en Japón.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Lo creó la empresa japonesa Denso Wave en 1994.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-tec-013",
+  "text": "Bluetooth debe su nombre a un rey vikingo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El nombre viene del rey danés Harald «Diente Azul», que unificó tribus, como la tecnología une dispositivos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-001",
+  "text": "¿Cómo se llama la película de Disney ambientada en Colombia con la familia Madrigal?",
+  "options": [
+   "Luca",
+   "Coco",
+   "Moana",
+   "Encanto"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Encanto (2021) cuenta la historia de la familia Madrigal en un pueblo colombiano.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-002",
+  "text": "¿Qué personaje dice «Hasta el infinito y más allá»?",
+  "options": [
+   "Buzz Lightyear",
+   "Mike Wazowski",
+   "Woody",
+   "Shrek"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Es la frase de Buzz Lightyear en Toy Story.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-003",
+  "text": "¿En qué país se celebra el Día de Muertos que inspiró la película Coco?",
+  "options": [
+   "Colombia",
+   "Perú",
+   "México",
+   "España"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cine",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Coco se inspira en la tradición mexicana del Día de Muertos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-004",
+  "text": "¿Cómo se llama el mago protagonista de la saga escrita por J. K. Rowling?",
+  "options": [
+   "Harry Potter",
+   "Merlín",
+   "Gandalf",
+   "Frodo Bolsón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Harry Potter es el protagonista de la saga de siete libros.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-005",
+  "text": "¿Qué película colombiana de Ciro Guerra fue nominada al Óscar a mejor película extranjera?",
+  "options": [
+   "Pájaros de verano",
+   "La vendedora de rosas",
+   "El abrazo de la serpiente",
+   "Rodrigo D"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cine",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El abrazo de la serpiente fue nominada en 2016; fue la primera película colombiana nominada en esa categoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-006",
+  "text": "¿Qué estudio creó la película Toy Story (1995)?",
+  "options": [
+   "Studio Ghibli",
+   "Pixar",
+   "DreamWorks",
+   "Illumination"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cine",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Toy Story, de Pixar, fue el primer largometraje animado completamente por computador.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-007",
+  "text": "¿Qué superhéroe es conocido como «el hombre araña»?",
+  "options": [
+   "Iron Man",
+   "Superman",
+   "Spider-Man",
+   "Batman"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cine",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Spider-Man es Peter Parker en los cómics de Marvel.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-008",
+  "text": "Shrek es un ogro verde.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Shrek es el ogro protagonista de la saga de DreamWorks.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-009",
+  "text": "En «El Rey León», Simba es una cebra.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Simba es un león.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-010",
+  "text": "Los premios Óscar los entrega la Academia de Artes y Ciencias Cinematográficas de Estados Unidos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La Academia entrega los Óscar cada año desde 1929.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-011",
+  "text": "La canción «We Don't Talk About Bruno» es de la película Encanto.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Es una de las canciones de Encanto, compuestas por Lin-Manuel Miranda.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-012",
+  "text": "Charles Chaplin fue famoso en la época del cine mudo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Chaplin y su personaje Charlot fueron íconos del cine mudo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cin-013",
+  "text": "La saga «Star Wars» fue creada por Steven Spielberg.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cine",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Star Wars fue creada por George Lucas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-001",
+  "text": "¿Qué instrumento tiene teclas blancas y negras?",
+  "options": [
+   "Guitarra",
+   "Trompeta",
+   "Violín",
+   "Piano"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El piano tiene teclas blancas y negras.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-002",
+  "text": "¿Cuántas cuerdas tiene normalmente una guitarra española?",
+  "options": [
+   "12",
+   "4",
+   "6",
+   "5"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "La guitarra clásica o española tiene seis cuerdas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-003",
+  "text": "¿Qué compositor alemán siguió componiendo aunque quedó sordo?",
+  "options": [
+   "Frédéric Chopin",
+   "Wolfgang Amadeus Mozart",
+   "Ludwig van Beethoven",
+   "Johann Sebastian Bach"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Beethoven compuso su Novena Sinfonía cuando ya estaba casi completamente sordo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-004",
+  "text": "¿De qué región de Colombia es típica la cumbia?",
+  "options": [
+   "Andina del sur",
+   "Amazonía",
+   "Caribe",
+   "Orinoquía"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La cumbia nació en la región Caribe colombiana.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-005",
+  "text": "¿Cuántas notas musicales básicas hay en la escala (do, re, mi…)?",
+  "options": [
+   "7",
+   "12",
+   "5",
+   "8"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Son siete: do, re, mi, fa, sol, la y si.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-006",
+  "text": "¿De qué país es originario el tango?",
+  "options": [
+   "Cuba",
+   "México",
+   "España",
+   "Argentina y Uruguay"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El tango nació en la región del Río de la Plata, entre Argentina y Uruguay.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-007",
+  "text": "¿Qué instrumento de percusión es típico del joropo llanero junto al arpa y el cuatro?",
+  "options": [
+   "La gaita",
+   "Las maracas",
+   "La batería",
+   "El acordeón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "El joropo se interpreta con arpa, cuatro y maracas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-008",
+  "text": "El violín es un instrumento de cuerda.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El violín produce sonido con cuerdas frotadas con un arco.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-009",
+  "text": "La salsa es un instrumento musical.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "La salsa es un género musical y un baile.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-010",
+  "text": "Joe Arroyo fue un cantante de salsa colombiano.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Joe Arroyo es una de las grandes voces de la salsa colombiana.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-011",
+  "text": "La trompeta es un instrumento de viento.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La trompeta es un instrumento de viento metal.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-012",
+  "text": "Mozart compuso su primera obra cuando tenía más de 30 años.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "musica",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Mozart compuso desde niño, alrededor de los cinco años.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-mus-013",
+  "text": "La champeta es un género musical que nació en el Caribe colombiano.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La champeta se desarrolló en Cartagena y otras zonas del Caribe colombiano.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-001",
+  "text": "¿Quién escribió «Cien años de soledad»?",
+  "options": [
+   "Mario Vargas Llosa",
+   "Jorge Isaacs",
+   "Julio Cortázar",
+   "Gabriel García Márquez"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Gabriel García Márquez publicó Cien años de soledad en 1967.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-002",
+  "text": "¿Cuál es la flor nacional de Colombia?",
+  "options": [
+   "El clavel",
+   "La orquídea",
+   "La rosa",
+   "El girasol"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "La orquídea Cattleya trianae es la flor nacional.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-003",
+  "text": "¿Cuál es el ave nacional de Colombia?",
+  "options": [
+   "El águila calva",
+   "El colibrí",
+   "La guacamaya",
+   "El cóndor de los Andes"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El cóndor andino es el ave nacional y aparece en el escudo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-004",
+  "text": "¿Qué pintor y escultor colombiano es famoso por sus figuras voluminosas?",
+  "options": [
+   "Alejandro Obregón",
+   "Omar Rayo",
+   "Fernando Botero",
+   "Débora Arango"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Fernando Botero es conocido mundialmente por su estilo de figuras voluminosas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-005",
+  "text": "¿En qué año recibió García Márquez el Premio Nobel de Literatura?",
+  "options": [
+   "1975",
+   "1990",
+   "1967",
+   "1982"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Recibió el Nobel en 1982.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-006",
+  "text": "¿Qué idioma tiene más hablantes nativos en el mundo?",
+  "options": [
+   "Inglés",
+   "Hindi",
+   "Chino mandarín",
+   "Español"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "El chino mandarín tiene más hablantes nativos; el español es segundo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-007",
+  "text": "¿Quién escribió la novela «María», clásico de la literatura colombiana?",
+  "options": [
+   "Tomás Carrasquilla",
+   "Rafael Pombo",
+   "Jorge Isaacs",
+   "José Asunción Silva"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Jorge Isaacs publicó María en 1867.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-008",
+  "text": "¿Qué autor colombiano escribió «Rin Rin Renacuajo»?",
+  "options": [
+   "Jorge Isaacs",
+   "José Eustasio Rivera",
+   "Rafael Pombo",
+   "León de Greiff"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Rafael Pombo es autor de fábulas infantiles como Rin Rin Renacuajo y La pobre viejecita.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-009",
+  "text": "¿Quién pintó la Mona Lisa?",
+  "options": [
+   "Pablo Picasso",
+   "Leonardo da Vinci",
+   "Miguel Ángel",
+   "Rafael"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Leonardo da Vinci la pintó a comienzos del siglo XVI; está en el Museo del Louvre.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-010",
+  "text": "El sombrero vueltiao es un símbolo cultural de Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "El sombrero vueltiao, de caña flecha, fue declarado símbolo cultural de la nación.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-011",
+  "text": "La bandera de Colombia tiene los colores amarillo, azul y rojo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Amarillo arriba (la mitad), azul y rojo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-012",
+  "text": "«Don Quijote de la Mancha» fue escrito por Miguel de Cervantes.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Cervantes publicó la primera parte en 1605.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-013",
+  "text": "La moneda oficial de Colombia es el peso colombiano.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La moneda es el peso colombiano (COP).",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-014",
+  "text": "La Feria de las Flores se celebra en Cali.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "La Feria de las Flores es de Medellín. En Cali se celebra la Feria de Cali.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cul-015",
+  "text": "El Museo del Oro está en Bogotá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El Museo del Oro del Banco de la República está en Bogotá.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-001",
+  "text": "¿Cuántas patas tiene un pulpo?",
+  "options": [
+   "12",
+   "6",
+   "10",
+   "8"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Los pulpos tienen ocho brazos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-002",
+  "text": "¿Cuántos días tiene un año bisiesto?",
+  "options": [
+   "365",
+   "366",
+   "364",
+   "360"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Un año bisiesto añade el 29 de febrero.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-003",
+  "text": "¿Qué animal es el más grande del planeta?",
+  "options": [
+   "El elefante africano",
+   "La ballena azul",
+   "La jirafa",
+   "El tiburón ballena"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "La ballena azul puede superar los 25 metros de largo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-004",
+  "text": "¿Cuántos corazones tiene un pulpo?",
+  "options": [
+   "1",
+   "8",
+   "3",
+   "2"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "El pulpo tiene tres corazones: dos bombean sangre a las branquias y uno al resto del cuerpo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-005",
+  "text": "¿Qué fruta colombiana es conocida en inglés como «passion fruit»?",
+  "options": [
+   "Maracuyá",
+   "Guanábana",
+   "Lulo",
+   "Pitahaya"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El maracuyá es la fruta de la pasión.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-006",
+  "text": "¿Qué animal es capaz de dormir de pie?",
+  "options": [
+   "El conejo",
+   "El perro",
+   "El caballo",
+   "El gato"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "curiosidades",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Los caballos pueden dormir de pie gracias a un mecanismo que bloquea sus patas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-007",
+  "text": "Los pingüinos pueden volar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Los pingüinos son aves que no vuelan, pero nadan muy bien.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-008",
+  "text": "Las abejas producen miel.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Las abejas fabrican miel a partir del néctar de las flores.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-009",
+  "text": "Colombia es uno de los países con más especies de aves del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Colombia está entre los países con mayor número de especies de aves registradas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-010",
+  "text": "El tomate es originario de Europa.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "El tomate es originario de América y llegó a Europa después de 1492.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-011",
+  "text": "Una semana tiene 168 horas.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "7 días × 24 horas = 168 horas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-012",
+  "text": "La Gran Muralla China se ve a simple vista desde la Luna.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "Es un mito: la muralla es larga pero muy estrecha para verse desde la Luna.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-cur-013",
+  "text": "El chigüiro es el roedor más grande del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El chigüiro o capibara, presente en los Llanos, es el roedor más grande.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-001",
+  "text": "¿Qué apareció primero: el huevo o la gallina?",
+  "options": [
+   "El huevo",
+   "Aparecieron a la vez",
+   "La gallina"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "rule",
+   "index": 0,
+   "rule": "Para este juego cuenta la explicación de la biología evolutiva: muchos animales ponían huevos mucho antes de que existieran las gallinas."
+  },
+  "category": "debate",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Es un debate clásico. Con la regla anunciada gana «el huevo», pero si se pregunta por el primer «huevo de gallina» la discusión sigue abierta.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-002",
+  "text": "¿El tomate es una fruta o una verdura?",
+  "options": [
+   "Una verdura",
+   "Ninguna de las dos",
+   "Una fruta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "rule",
+   "index": 2,
+   "rule": "Para este juego cuenta la definición botánica."
+  },
+  "category": "debate",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "Botánicamente es un fruto porque contiene semillas; en la cocina se usa como verdura. Ambas visiones son válidas según el contexto.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-003",
+  "text": "¿Plutón es un planeta?",
+  "options": [
+   "Es una estrella",
+   "Sí, es el noveno planeta",
+   "No, es un planeta enano"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "rule",
+   "index": 2,
+   "rule": "Para este juego cuenta la clasificación de la Unión Astronómica Internacional de 2006."
+  },
+  "category": "debate",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "En 2006 la Unión Astronómica Internacional reclasificó a Plutón como planeta enano. Algunos científicos todavía debaten esa definición.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-004",
+  "text": "¿Cuántos colores tiene el arcoíris?",
+  "options": [
+   "6",
+   "Infinitos",
+   "7"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "rule",
+   "index": 2,
+   "rule": "Para este juego cuenta la división tradicional en siete colores que propuso Isaac Newton."
+  },
+  "category": "debate",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "explanation": "El arcoíris es un espectro continuo. La división en siete colores es una convención.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-005",
+  "text": "¿El ajedrez es un deporte?",
+  "options": [
+   "Solo en torneos",
+   "No",
+   "Sí"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "rule",
+   "index": 2,
+   "rule": "Para este juego cuenta el criterio del Comité Olímpico Internacional, que reconoce a la federación internacional de ajedrez."
+  },
+  "category": "debate",
+  "difficulty": "HARD",
+  "region": null,
+  "explanation": "El Comité Olímpico Internacional reconoce el ajedrez como deporte, aunque mucha gente lo considera un juego de mesa. Es una discusión de definiciones.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-006",
+  "text": "¿El cereal con leche puede considerarse una sopa?",
+  "options": [
+   "Sí, es una sopa",
+   "No, es un desayuno",
+   "Depende de quién lo coma"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "No hay respuesta científica: gana lo que piense la mayoría del grupo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-007",
+  "text": "¿Un perro caliente es un sándwich?",
+  "options": [
+   "Sí",
+   "No",
+   "Es su propia categoría"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "DEBATE",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Es una discusión de definiciones sin respuesta oficial: decide la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-008",
+  "text": "¿Qué género musical es mejor para una fiesta?",
+  "options": [
+   "Salsa",
+   "Vallenato",
+   "Reguetón",
+   "Champeta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Es cuestión de gustos: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-009",
+  "text": "¿Playa o montaña para unas vacaciones?",
+  "options": [
+   "Playa",
+   "Montaña",
+   "Ciudad"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "No hay respuesta correcta: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-010",
+  "text": "¿Perros o gatos?",
+  "options": [
+   "Perros",
+   "Gatos",
+   "Ninguno: peces"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Pura opinión: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-011",
+  "text": "¿Qué superpoder elegirías?",
+  "options": [
+   "Volar",
+   "Ser invisible",
+   "Teletransportarte",
+   "Leer mentes"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "No hay respuesta correcta: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-012",
+  "text": "¿La piña va en la pizza?",
+  "options": [
+   "Sí, claro",
+   "Jamás",
+   "Solo a veces"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Es una cuestión de gustos: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-013",
+  "text": "¿Cuál es el mejor desayuno?",
+  "options": [
+   "Arepa con huevo",
+   "Calentado",
+   "Caldo",
+   "Pan con chocolate"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "Opinión pura: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "gen-deb-014",
+  "text": "¿Dulce o salado?",
+  "options": [
+   "Dulce",
+   "Salado",
+   "Las dos cosas juntas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OPINION",
+  "evaluation": {
+   "type": "vote"
+  },
+  "category": "debate",
+  "difficulty": "EASY",
+  "region": null,
+  "explanation": "No hay respuesta correcta: gana la mayoría.",
+  "source": null,
+  "referenceDate": null
+ }
+]

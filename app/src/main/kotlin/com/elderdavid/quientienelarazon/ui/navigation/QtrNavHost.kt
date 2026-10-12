@@ -1,0 +1,125 @@
+package com.elderdavid.quientienelarazon.ui.navigation
+
+import android.os.SystemClock
+import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.elderdavid.quientienelarazon.AppContainer
+import com.elderdavid.quientienelarazon.account.ProfileViewModel
+import com.elderdavid.quientienelarazon.local.LocalGameViewModel
+import com.elderdavid.quientienelarazon.online.OnlineGameViewModel
+import com.elderdavid.quientienelarazon.settings.SettingsViewModel
+import com.elderdavid.quientienelarazon.stats.StatsViewModel
+import com.elderdavid.quientienelarazon.ui.local.LocalGameRoute
+import com.elderdavid.quientienelarazon.ui.online.OnlineRoute
+import com.elderdavid.quientienelarazon.ui.screens.HomeScreen
+import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
+import com.elderdavid.quientienelarazon.ui.screens.ProfileScreen
+import com.elderdavid.quientienelarazon.ui.screens.RulesScreen
+import com.elderdavid.quientienelarazon.ui.screens.SettingsScreen
+import com.elderdavid.quientienelarazon.ui.screens.StatsScreen
+import kotlin.random.Random
+
+/** Rutas de la app. Las de fases posteriores se añadirán aquí a medida que existan. */
+object Routes {
+    const val HOME = "home"
+    const val MENU = "menu"
+    const val RULES = "rules"
+    const val SETTINGS = "settings"
+    const val LOCAL_GAME = "local"
+    const val PROFILE = "profile"
+    const val ONLINE = "online"
+    const val STATS = "stats"
+}
+
+@Composable
+fun QtrNavHost(container: AppContainer) {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Routes.HOME) {
+        composable(Routes.HOME) {
+            HomeScreen(
+                onStart = {
+                    navController.navigate(Routes.MENU) {
+                        popUpTo(Routes.HOME) { inclusive = true }
+                    }
+                },
+            )
+        }
+        composable(Routes.MENU) {
+            MainMenuScreen(
+                onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
+                onOnline = { navController.navigate(Routes.ONLINE) },
+                onProfile = { navController.navigate(Routes.PROFILE) },
+                onStats = { navController.navigate(Routes.STATS) },
+                onRules = { navController.navigate(Routes.RULES) },
+                onSettings = { navController.navigate(Routes.SETTINGS) },
+            )
+        }
+        composable(Routes.LOCAL_GAME) {
+            val vm: LocalGameViewModel = viewModel(
+                factory = LocalGameViewModel.factory(
+                    loadBank = container::questionBank,
+                    clock = SystemClock::elapsedRealtime,
+                    newSeed = { Random.nextLong() },
+                    recordFinished = container.localHistoryRepository::record,
+                ),
+            )
+            LocalGameRoute(
+                viewModel = vm,
+                settingsRepository = container.settingsRepository,
+                ads = container.ads,
+                onExit = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.ONLINE) {
+            val vm: OnlineGameViewModel = viewModel(
+                factory = OnlineGameViewModel.factory(
+                    repository = container.onlineRepository,
+                    loadBank = container::questionBank,
+                    clock = SystemClock::elapsedRealtime,
+                ),
+            )
+            OnlineRoute(
+                viewModel = vm,
+                settingsRepository = container.settingsRepository,
+                ads = container.ads,
+                onExit = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.PROFILE) {
+            val vm: ProfileViewModel = viewModel(
+                factory = ProfileViewModel.factory(
+                    accounts = container.accountRepository,
+                    profiles = container.profileRepository,
+                    googleConfigured = container.supabaseSettings.googleConfigured,
+                ),
+            )
+            ProfileScreen(
+                viewModel = vm,
+                googleWebClientId = container.supabaseSettings.googleWebClientId,
+                onBack = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.STATS) {
+            val vm: StatsViewModel = viewModel(
+                factory = StatsViewModel.factory(
+                    accounts = container.accountRepository,
+                    profiles = container.profileRepository,
+                    leaderboard = container.leaderboardRepository,
+                    localHistory = container.localHistoryRepository,
+                    loadBank = container::questionBank,
+                ),
+            )
+            StatsScreen(viewModel = vm, ads = container.ads, onBack = { navController.popBackStack() })
+        }
+        composable(Routes.RULES) {
+            RulesScreen(ads = container.ads, onBack = { navController.popBackStack() })
+        }
+        composable(Routes.SETTINGS) {
+            val vm: SettingsViewModel = viewModel(factory = SettingsViewModel.factory(container.settingsRepository))
+            SettingsScreen(viewModel = vm, adsConsent = container.adsConsent, onBack = { navController.popBackStack() })
+        }
+    }
+}

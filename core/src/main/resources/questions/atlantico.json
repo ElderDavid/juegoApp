@@ -1,0 +1,872 @@
+[
+ {
+  "id": "atl-001",
+  "text": "¿Cuál es la capital del Atlántico?",
+  "options": [
+   "Soledad",
+   "Barranquilla",
+   "Cartagena",
+   "Santa Marta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "Barranquilla es la capital del departamento.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-002",
+  "text": "¿En qué año se volvió a crear definitivamente el departamento del Atlántico?",
+  "options": [
+   "1967",
+   "1910",
+   "1905",
+   "1886"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "Se creó en 1905 y se restableció definitivamente con la ley 21 del 14 de julio de 1910.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-003",
+  "text": "Por su superficie, ¿qué lugar ocupa el Atlántico entre los departamentos de Colombia?",
+  "options": [
+   "Es el más grande",
+   "Es uno de los tres más pequeños",
+   "Está en la mitad de la lista",
+   "Es el quinto más grande"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Con unos 3000 km² es el tercero menos extenso del país.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-004",
+  "text": "¿Cuántos municipios tiene el Atlántico?",
+  "options": [
+   "40 municipios",
+   "15 municipios",
+   "22 municipios y 1 distrito",
+   "29 municipios y 1 distrito"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El Atlántico tiene 22 municipios y el distrito de Barranquilla.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": "Datos de la fuente consultada en 2026"
+ },
+ {
+  "id": "atl-005",
+  "text": "¿Qué río marca el límite oriental del Atlántico?",
+  "options": [
+   "Río Cauca",
+   "Río Cesar",
+   "Río Magdalena",
+   "Río Sinú"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "El río Magdalena limita al Atlántico por el oriente en unos 105 km.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-006",
+  "text": "¿Qué explorador español bautizó la desembocadura del Magdalena como Bocas de Ceniza?",
+  "options": [
+   "Cristóbal Colón",
+   "Pedro de Heredia",
+   "Rodrigo de Bastidas",
+   "Alonso de Ojeda"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Rodrigo de Bastidas descubrió las bocas del río Magdalena y las bautizó Bocas de Ceniza.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-007",
+  "text": "¿Qué comunica el Canal del Dique?",
+  "options": [
+   "El río Magdalena con la bahía de Cartagena",
+   "La Ciénaga Grande con el mar",
+   "Barranquilla con Santa Marta",
+   "El Caribe con el Pacífico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "El Canal del Dique comunica el río Magdalena con la bahía de Cartagena.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-008",
+  "text": "¿Cuál es el único lago del Atlántico, ideal para deportes náuticos?",
+  "options": [
+   "Embalse del Guájaro",
+   "Ciénaga de Zapatosa",
+   "Laguna de la Cocha",
+   "Lago de Tota"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El embalse del Guájaro es el único lago del departamento.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-009",
+  "text": "¿Cómo es la bandera del Atlántico?",
+  "options": [
+   "Roja y negra",
+   "Verde y blanca",
+   "Franjas blanca, roja y blanca",
+   "Amarilla, azul y roja"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Tiene tres franjas: blancas arriba y abajo y roja en el centro. Se adoptó en 1989.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-010",
+  "text": "¿En qué año la UNESCO proclamó el Carnaval de Barranquilla Obra Maestra del Patrimonio Oral e Inmaterial de la Humanidad?",
+  "options": [
+   "2003",
+   "2015",
+   "1968",
+   "1991"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "La proclamación de la UNESCO fue en 2003.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-011",
+  "text": "¿En qué año el Congreso declaró el Carnaval de Barranquilla Patrimonio Cultural de la Nación?",
+  "options": [
+   "1989",
+   "1903",
+   "2003",
+   "2001"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "La declaratoria nacional fue el 26 de noviembre de 2001.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-012",
+  "text": "¿Qué simboliza el entierro de Joselito Carnaval?",
+  "options": [
+   "El final del carnaval",
+   "La llegada de la Semana Santa",
+   "La coronación de la reina",
+   "El inicio del carnaval"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "El entierro de Joselito marca el cierre de las fiestas.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-013",
+  "text": "¿En qué año comenzó la Batalla de Flores del Carnaval de Barranquilla?",
+  "options": [
+   "1903",
+   "1810",
+   "1950",
+   "2001"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "La primera Batalla de Flores fue en 1903.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-014",
+  "text": "¿Qué característica tiene el desfile de la Guacherna?",
+  "options": [
+   "Es solo para niños",
+   "Es una regata en el río",
+   "Es un desfile nocturno",
+   "Se hace en Semana Santa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "La Guacherna es un desfile nocturno antes del sábado de carnaval.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-015",
+  "text": "La Lectura del Bando marca el inicio oficial de los precarnavales.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "Con la Lectura del Bando comienzan oficialmente las fiestas previas al carnaval.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-016",
+  "text": "¿Qué representa la danza del garabato?",
+  "options": [
+   "La pesca en el río",
+   "La lucha entre la vida y la muerte",
+   "La cosecha del algodón",
+   "Un matrimonio"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El garabato representa el enfrentamiento entre la vida y la muerte.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-017",
+  "text": "Para muchos, el congo es la danza símbolo del Carnaval de Barranquilla.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El congo es considerado por muchos la danza emblema del carnaval.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-018",
+  "text": "¿Qué disfraz del carnaval lleva una careta de nariz larga y se burla de la clase alta?",
+  "options": [
+   "La marimonda",
+   "El torito",
+   "La cumbiamba",
+   "El monocuco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "La marimonda usa pantalón, corbata y careta de nariz larga; satiriza a la clase alta.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-019",
+  "text": "¿Qué disfraz del carnaval permite ocultar la identidad y hablar con voz fingida?",
+  "options": [
+   "El monocuco",
+   "El garabato",
+   "La marimonda",
+   "El congo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El monocuco, de origen europeo, oculta la identidad de quien lo lleva.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-020",
+  "text": "¿Qué días son los cuatro días centrales del Carnaval de Barranquilla?",
+  "options": [
+   "De lunes a jueves de Semana Santa",
+   "Los fines de semana de julio",
+   "Del 24 al 31 de diciembre",
+   "De sábado a martes, antes del Miércoles de Ceniza"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "El carnaval se celebra de sábado a martes, antes del Miércoles de Ceniza.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-021",
+  "text": "¿En qué año fue elegida la primera reina del Carnaval de Barranquilla?",
+  "options": [
+   "1968",
+   "1918",
+   "1888",
+   "2003"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "La primera reina fue Alicia Lafaurie Roncallo, en 1918.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-022",
+  "text": "¿Con qué apodo se conoce a Barranquilla?",
+  "options": [
+   "La Perla de América",
+   "La Ciudad Blanca",
+   "La Sultana del Valle",
+   "La Puerta de Oro de Colombia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_simbolos",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "Barranquilla es conocida como la Puerta de Oro de Colombia.",
+  "source": "https://en.wikipedia.org/wiki/Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-023",
+  "text": "¿En qué año Barranquilla recibió el título de villa?",
+  "options": [
+   "1905",
+   "1813",
+   "1525",
+   "1950"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "Barranquilla fue erigida villa el 7 de abril de 1813.",
+  "source": "https://en.wikipedia.org/wiki/Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-024",
+  "text": "¿Qué aerolínea nació en Barranquilla en 1919 y luego se convirtió en Avianca?",
+  "options": [
+   "Satena",
+   "Aerocondor",
+   "SCADTA",
+   "LATAM"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "La Sociedad Colombo-Alemana de Transportes Aéreos (SCADTA) se creó en Barranquilla el 5 de diciembre de 1919.",
+  "source": "https://es.wikipedia.org/wiki/Aeropuerto_Internacional_Ernesto_Cortissoz",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-025",
+  "text": "¿En qué municipio está el Aeropuerto Internacional Ernesto Cortissoz?",
+  "options": [
+   "Malambo",
+   "Barranquilla",
+   "Soledad",
+   "Puerto Colombia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_geografia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El aeropuerto está en Soledad, a unos 7 km del centro de Barranquilla.",
+  "source": "https://es.wikipedia.org/wiki/Aeropuerto_Internacional_Ernesto_Cortissoz",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-026",
+  "text": "¿En qué ciudad nació Shakira?",
+  "options": [
+   "Bogotá",
+   "Cartagena",
+   "Barranquilla",
+   "Santa Marta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "Shakira nació en Barranquilla el 2 de febrero de 1977.",
+  "source": "https://es.wikipedia.org/wiki/Shakira",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-027",
+  "text": "¿Cuál fue el primer álbum de estudio oficial de Shakira?",
+  "options": [
+   "Magia",
+   "Dónde están los ladrones",
+   "Pies descalzos",
+   "Laundry Service"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "Pies descalzos (1995) es su primer álbum oficial; Magia (1991) no forma parte de su discografía oficial.",
+  "source": "https://es.wikipedia.org/wiki/Shakira",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-028",
+  "text": "¿Para qué Mundial de fútbol fue la canción oficial «Waka Waka» de Shakira?",
+  "options": [
+   "Brasil 2014",
+   "Sudáfrica 2010",
+   "Catar 2022",
+   "Alemania 2006"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Waka Waka fue la canción oficial del Mundial de Sudáfrica 2010.",
+  "source": "https://es.wikipedia.org/wiki/Shakira",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-029",
+  "text": "Shakira encabezó el espectáculo de medio tiempo del Super Bowl de 2020 junto a Jennifer López.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_personajes",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Fue en el Super Bowl LIV, el 2 de febrero de 2020.",
+  "source": "https://es.wikipedia.org/wiki/Shakira",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-030",
+  "text": "¿Quién diseñó el famoso muelle de Puerto Colombia, inaugurado en 1893?",
+  "options": [
+   "Simón Bolívar",
+   "Gustave Eiffel",
+   "Francisco Javier Cisneros",
+   "Rogelio Salmona"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Lo diseñó el ingeniero cubano Francisco Javier Cisneros.",
+  "source": "https://es.wikipedia.org/wiki/Puerto_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-031",
+  "text": "Cuando se inauguró, el muelle de Puerto Colombia era uno de los más largos del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Con unos 4000 pies, era el segundo más largo del mundo en su época.",
+  "source": "https://es.wikipedia.org/wiki/Puerto_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-032",
+  "text": "¿En qué año colapsó la parte final del muelle de Puerto Colombia?",
+  "options": [
+   "1993",
+   "2020",
+   "1950",
+   "2009"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_historia",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "El 7 de marzo de 2009 colapsaron sus últimos 200 metros.",
+  "source": "https://es.wikipedia.org/wiki/Puerto_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-033",
+  "text": "¿Con qué fibra natural tejen sus artesanías en Usiacurí?",
+  "options": [
+   "Seda",
+   "Caña flecha",
+   "Palma de iraca",
+   "Fique"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Los tejidos en palma de iraca son un renglón importante de la economía de Usiacurí.",
+  "source": "https://es.wikipedia.org/wiki/Usiacur%C3%AD",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-034",
+  "text": "¿Qué poeta colombiano vivió sus últimos años en Usiacurí?",
+  "options": [
+   "José Asunción Silva",
+   "León de Greiff",
+   "Julio Flórez",
+   "Rafael Pombo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_personajes",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "El poeta Julio Flórez vivió en Usiacurí sus últimos 15 años.",
+  "source": "https://es.wikipedia.org/wiki/Usiacur%C3%AD",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-035",
+  "text": "¿De qué municipio del Atlántico es considerada cuna la butifarra?",
+  "options": [
+   "Soledad",
+   "Tubará",
+   "Galapa",
+   "Luruaco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "atlantico",
+  "explanation": "Soledad es considerada la cuna de la butifarra en Colombia.",
+  "source": "https://es.wikipedia.org/wiki/Soledad_(Atl%C3%A1ntico)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-036",
+  "text": "¿Qué prócer estuvo en Soledad en 1830, en una casa que hoy es museo?",
+  "options": [
+   "Simón Bolívar",
+   "José María Córdova",
+   "Antonio Nariño",
+   "Policarpa Salavarrieta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_historia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Bolívar llegó enfermo a Soledad en octubre de 1830; la casa es hoy la Casa Museo Simón Bolívar.",
+  "source": "https://es.wikipedia.org/wiki/Soledad_(Atl%C3%A1ntico)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-037",
+  "text": "¿Qué plato a base de pescado se asocia con Barranquilla?",
+  "options": [
+   "Bandeja paisa",
+   "Tamal tolimense",
+   "Ajiaco",
+   "Arroz de lisa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "El arroz de lisa es un plato típico de Barranquilla.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-038",
+  "text": "¿Aproximadamente cuántos habitantes tenía Barranquilla en el censo de 2018?",
+  "options": [
+   "1,2 millones",
+   "5 millones",
+   "300 000",
+   "8 millones"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_geografia",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "Según el censo de 2018 tenía 1 206 319 habitantes.",
+  "source": "https://en.wikipedia.org/wiki/Barranquilla",
+  "referenceDate": "Censo de 2018"
+ },
+ {
+  "id": "atl-039",
+  "text": "Barranquilla tiene un puerto marítimo y fluvial.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "atlantico",
+  "explanation": "Su puerto, sobre el río Magdalena cerca del mar, es marítimo y fluvial.",
+  "source": "https://es.wikipedia.org/wiki/Atl%C3%A1ntico_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "atl-040",
+  "text": "¿En qué año se instituyó la Gran Parada del Carnaval, desfile de grupos folclóricos sin carrozas?",
+  "options": [
+   "1918",
+   "1903",
+   "1967",
+   "2003"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_tradiciones",
+  "difficulty": "HARD",
+  "region": "atlantico",
+  "explanation": "La Gran Parada se instituyó en 1967.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ }
+]
