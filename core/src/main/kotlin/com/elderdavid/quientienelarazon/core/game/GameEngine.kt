@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.core.game
 
+import com.elderdavid.quientienelarazon.core.questions.Question
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 
 /** Motivos por los que el motor rechaza una acción. El estado no cambia cuando se rechaza. */
@@ -16,6 +17,9 @@ enum class Rejection {
     INVALID_TIME,
     TIME_EXPIRED,
     NOT_A_TIEBREAK_PLAYER,
+
+    /** No queda otra pregunta de esa categoría para cambiar la actual. */
+    NO_REPLACEMENT,
 }
 
 sealed interface EngineResult {
@@ -43,7 +47,7 @@ class GameEngine(private val bank: QuestionBank) {
     /** La ruleta terminó de mostrar la categoría: empieza la pregunta. */
     fun startQuestion(state: GameState): EngineResult {
         if (state.phase != Phase.ROULETTE) return EngineResult.Rejected(Rejection.WRONG_PHASE)
-        return ok(state.copy(phase = Phase.QUESTION, bets = emptyMap(), answers = emptyMap()))
+        return ok(state.copy(phase = Phase.QUESTION, bets = emptyMap(), answers = emptyMap(), bonusTimeMillis = emptyMap()))
     }
 
     fun placeBet(state: GameState, playerId: PlayerId, amount: Int): EngineResult {
@@ -75,7 +79,8 @@ class GameEngine(private val bank: QuestionBank) {
         }
         checkTurn(state, playerId)?.let { return EngineResult.Rejected(it) }
         if (elapsedMillis < 0) return EngineResult.Rejected(Rejection.INVALID_TIME)
-        if (choice != null && elapsedMillis > state.config.questionTimeMillis) return EngineResult.Rejected(Rejection.TIME_EXPIRED)
+        val limit = state.timeLimitFor(playerId)
+        if (choice != null && elapsedMillis > limit) return EngineResult.Rejected(Rejection.TIME_EXPIRED)
 
         val questionId = if (tiebreak) state.plan.tiebreakQueue[state.tiebreakIndex] else state.currentPlanned!!.questionId
         val question = bank.question(questionId)
@@ -88,7 +93,7 @@ class GameEngine(private val bank: QuestionBank) {
             bets = bets + (playerId to Scoring.defaultBet(state.scores.getValue(playerId)))
         }
 
-        val answer = Answer(choice, elapsedMillis.coerceAtMost(state.config.questionTimeMillis))
+        val answer = Answer(choice, elapsedMillis.coerceAtMost(limit))
         val next = state.copy(bets = bets, answers = state.answers + (playerId to answer))
         val everyone = next.turnOrder
         if (!everyone.all { it in next.answers }) return ok(next)
@@ -119,6 +124,53 @@ class GameEngine(private val bank: QuestionBank) {
             }
         }
         else -> EngineResult.Rejected(Rejection.WRONG_PHASE)
+    }
+
+    /**
+     * Comodín de tiempo: [playerId] tiene [extraMillis] más en la pregunta actual. Solo antes de
+     * que responda y nunca en el desempate.
+     */
+    fun grantExtraTime(state: GameState, playerId: PlayerId, extraMillis: Long): EngineResult {
+        if (state.phase != Phase.QUESTION) return EngineResult.Rejected(Rejection.WRONG_PHASE)
+        checkTurn(state, playerId)?.let { return EngineResult.Rejected(it) }
+        if (extraMillis <= 0) return EngineResult.Rejected(Rejection.INVALID_TIME)
+        val total = (state.bonusTimeMillis[playerId] ?: 0L) + extraMillis
+        return ok(state.copy(bonusTimeMillis = state.bonusTimeMillis + (playerId to total)))
+    }
+
+    fun question(id: String): Question = bank.question(id)
+
+    /**
+     * Otra pregunta de la misma categoría para la posición actual, o null si no hay ninguna.
+     * Solo objetivas (con respuesta correcta), del mismo formato si es posible y nunca una ya
+     * usada en la partida ni reservada para el desempate.
+     */
+    fun replacementFor(state: GameState): String? {
+        if (state.phase != Phase.QUESTION) return null
+        val planned = state.currentPlanned ?: return null
+        val current = bank.question(planned.questionId)
+        val taken = state.plan.questions.map { it.questionId }.toSet() + state.plan.tiebreakQueue
+        val candidates = bank.pool(state.config.mode)
+            .filter { it.categoryId == planned.categoryId && it.id !in taken && it.correctIndex != null }
+            .sortedBy { it.id }
+        val sameFormat = candidates.filter { it.format == current.format }
+        val pick = sameFormat.ifEmpty { candidates }
+        if (pick.isEmpty()) return null
+        // Determinista: depende solo de la partida, así se puede probar y repetir.
+        return pick[(planned.questionId.hashCode() and Int.MAX_VALUE) % pick.size].id
+    }
+
+    /**
+     * Comodín «cambiar pregunta»: sustituye la pregunta actual por [replacementFor]. Solo antes de
+     * que nadie haya respondido, para que nadie pierda una pregunta ya contestada.
+     */
+    fun swapQuestion(state: GameState): EngineResult {
+        if (state.phase != Phase.QUESTION) return EngineResult.Rejected(Rejection.WRONG_PHASE)
+        if (state.answers.isNotEmpty()) return EngineResult.Rejected(Rejection.ALREADY_ANSWERED)
+        val newId = replacementFor(state) ?: return EngineResult.Rejected(Rejection.NO_REPLACEMENT)
+        val questions = state.plan.questions.toMutableList()
+        questions[state.questionIndex] = questions[state.questionIndex].copy(questionId = newId)
+        return ok(state.copy(plan = state.plan.copy(questions = questions)))
     }
 
     private fun checkTurn(state: GameState, playerId: PlayerId): Rejection? {
