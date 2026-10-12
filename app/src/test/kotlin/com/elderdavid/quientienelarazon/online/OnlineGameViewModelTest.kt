@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.online
 
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.Region
 import kotlinx.coroutines.Dispatchers
@@ -49,12 +50,13 @@ private class FakeOnline : OnlineRepository {
     var leaves = 0
     var stateCalls = 0
     var joinedCode: String? = null
+    val requestedLengths = mutableListOf<GameLength>()
 
     override suspend fun ensureSignedIn(): OnlineResult<Unit> = OnlineResult.Ok(Unit)
     override suspend fun currentRoom(): OnlineResult<RoomView?> = OnlineResult.Ok(current)
-    override suspend fun createRoom(publicRoom: Boolean, mode: String) = next
+    override suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength): OnlineResult<RoomView> { requestedLengths += length; return next }
     override suspend fun joinByCode(code: String): OnlineResult<RoomView> { joinedCode = code; return next }
-    override suspend fun findPublic(mode: String) = next
+    override suspend fun findPublic(mode: String, length: GameLength): OnlineResult<RoomView> { requestedLengths += length; return next }
     override suspend fun state(roomId: String): OnlineResult<RoomView> { stateCalls++; return stateResult }
     override suspend fun start(roomId: String) = next
     override suspend fun leave(roomId: String): OnlineResult<Unit> { leaves++; return OnlineResult.Ok(Unit) }
@@ -90,6 +92,24 @@ class OnlineGameViewModelTest {
     fun offersRegionsFromTheBank() = runTest(dispatcher) {
         val vm = vm(FakeOnline())
         assertEquals(listOf("general", "cesar"), vm.state.value.modes.map { it.id })
+    }
+
+    @Test
+    fun chosenLengthIsSentWhenCreatingOrSearching() = runTest(dispatcher) {
+        val repo = FakeOnline()
+        val vm = vm(repo)
+        vm.createPrivate()
+        runCurrent()
+        vm.leave()
+        runCurrent()
+        vm.setLength(GameLength.SHORT)
+        vm.findPublic()
+        runCurrent()
+        assertEquals(listOf(GameLength.STANDARD, GameLength.SHORT), repo.requestedLengths)
+        // Dentro de una sala ya no se puede cambiar.
+        vm.setLength(GameLength.MEDIUM)
+        assertEquals(GameLength.SHORT, vm.state.value.length)
+        vm.leave()
     }
 
     @Test
