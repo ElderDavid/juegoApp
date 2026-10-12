@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Solo se declara VIBRATE en esta fase. INTERNET se añadirá con Firebase/AdMob. -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Cuentas y perfil (Supabase). El modo local no usa la red. -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".QtrApplication"

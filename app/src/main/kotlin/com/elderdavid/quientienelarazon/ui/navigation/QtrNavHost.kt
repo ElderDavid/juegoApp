@@ -7,11 +7,13 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.elderdavid.quientienelarazon.AppContainer
+import com.elderdavid.quientienelarazon.account.ProfileViewModel
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
 import com.elderdavid.quientienelarazon.ui.local.LocalGameRoute
 import com.elderdavid.quientienelarazon.ui.screens.HomeScreen
 import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
+import com.elderdavid.quientienelarazon.ui.screens.ProfileScreen
 import com.elderdavid.quientienelarazon.ui.screens.RulesScreen
 import com.elderdavid.quientienelarazon.ui.screens.SettingsScreen
 import kotlin.random.Random
@@ -23,6 +25,7 @@ object Routes {
     const val RULES = "rules"
     const val SETTINGS = "settings"
     const val LOCAL_GAME = "local"
+    const val PROFILE = "profile"
 }
 
 @Composable
@@ -41,6 +44,7 @@ fun QtrNavHost(container: AppContainer) {
         composable(Routes.MENU) {
             MainMenuScreen(
                 onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
+                onProfile = { navController.navigate(Routes.PROFILE) },
                 onRules = { navController.navigate(Routes.RULES) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
             )
@@ -57,6 +61,20 @@ fun QtrNavHost(container: AppContainer) {
                 viewModel = vm,
                 settingsRepository = container.settingsRepository,
                 onExit = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.PROFILE) {
+            val vm: ProfileViewModel = viewModel(
+                factory = ProfileViewModel.factory(
+                    accounts = container.accountRepository,
+                    profiles = container.profileRepository,
+                    googleConfigured = container.supabaseSettings.googleConfigured,
+                ),
+            )
+            ProfileScreen(
+                viewModel = vm,
+                googleWebClientId = container.supabaseSettings.googleWebClientId,
+                onBack = { navController.popBackStack() },
             )
         }
         composable(Routes.RULES) {
