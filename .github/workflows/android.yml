@@ -48,6 +48,12 @@ jobs:
           print(f"Lint: {sum(c.values())} avisos")
           for (level, rule), n in sorted(c.items()):
               print(f"  {level:8} {rule}: {n}")
+          for run in runs:
+              for r in run.get("results", []):
+                  loc = r.get("locations", [{}])[0].get("physicalLocation", {})
+                  where = loc.get("artifactLocation", {}).get("uri", "?")
+                  line = loc.get("region", {}).get("startLine", "")
+                  print(f"- {r['ruleId']} {where}:{line} {r['message']['text']}")
           PY
 
       # Compila la release (sin firmar) para comprobar que R8 no rompe nada al reducir el código.
