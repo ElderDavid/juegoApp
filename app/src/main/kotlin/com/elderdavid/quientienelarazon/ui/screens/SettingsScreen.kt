@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.ui.screens
 
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,16 +16,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.elderdavid.quientienelarazon.ads.AdsConsent
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
+import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeNight
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
 
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel, onBack: () -> Unit) {
+fun SettingsScreen(viewModel: SettingsViewModel, adsConsent: AdsConsent?, onBack: () -> Unit) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
+    // La opción solo aparece donde la ley obliga a ofrecerla (la decide el SDK de consentimiento).
+    val privacyRequired = adsConsent?.privacyOptionsRequired?.collectAsStateWithLifecycle()?.value == true
+    val activity = LocalActivity.current
     ArcadeScreen(title = "Ajustes", onBack = onBack) {
         ArcadeCard {
             SettingRow(
@@ -45,6 +51,13 @@ fun SettingsScreen(viewModel: SettingsViewModel, onBack: () -> Unit) {
                 checked = settings.reducedMotion,
                 onCheckedChange = viewModel::setReducedMotion,
             )
+        }
+        if (privacyRequired && adsConsent != null && activity != null) {
+            ArcadeCard {
+                Text("Privacidad de anuncios", style = MaterialTheme.typography.titleMedium)
+                Text("Revisa o cambia tu consentimiento para los anuncios.", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+                ArcadeOutlinedButton(text = "Opciones de privacidad", onClick = { adsConsent.showPrivacyOptions(activity) }, color = ArcadeCyan)
+            }
         }
     }
 }

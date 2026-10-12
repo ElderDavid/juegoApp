@@ -69,6 +69,7 @@ fun QtrNavHost(container: AppContainer) {
             LocalGameRoute(
                 viewModel = vm,
                 settingsRepository = container.settingsRepository,
+                ads = container.ads,
                 onExit = { navController.popBackStack() },
             )
         }
@@ -83,6 +84,7 @@ fun QtrNavHost(container: AppContainer) {
             OnlineRoute(
                 viewModel = vm,
                 settingsRepository = container.settingsRepository,
+                ads = container.ads,
                 onExit = { navController.popBackStack() },
             )
         }
@@ -110,14 +112,14 @@ fun QtrNavHost(container: AppContainer) {
                     loadBank = container::questionBank,
                 ),
             )
-            StatsScreen(viewModel = vm, onBack = { navController.popBackStack() })
+            StatsScreen(viewModel = vm, ads = container.ads, onBack = { navController.popBackStack() })
         }
         composable(Routes.RULES) {
-            RulesScreen(onBack = { navController.popBackStack() })
+            RulesScreen(ads = container.ads, onBack = { navController.popBackStack() })
         }
         composable(Routes.SETTINGS) {
             val vm: SettingsViewModel = viewModel(factory = SettingsViewModel.factory(container.settingsRepository))
-            SettingsScreen(viewModel = vm, onBack = { navController.popBackStack() })
+            SettingsScreen(viewModel = vm, adsConsent = container.adsConsent, onBack = { navController.popBackStack() })
         }
     }
 }

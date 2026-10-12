@@ -66,33 +66,38 @@ fun ArcadeScreen(
     title: String?,
     modifier: Modifier = Modifier,
     onBack: (() -> Unit)? = null,
+    /** Contenido fijo bajo la zona desplazable (por ejemplo, un banner). */
+    bottomBar: (@Composable () -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     ArcadeBackground(modifier) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .windowInsetsPadding(WindowInsets.safeDrawing)
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp, vertical = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
+        Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
             Column(
-                modifier = Modifier.widthIn(max = 560.dp).fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 20.dp, vertical = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                if (onBack != null || title != null) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        if (onBack != null) {
-                            TextButton(onClick = onBack) { Text("‹ Volver", color = ArcadeCyan) }
+                Column(
+                    modifier = Modifier.widthIn(max = 560.dp).fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    if (onBack != null || title != null) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            if (onBack != null) {
+                                TextButton(onClick = onBack) { Text("‹ Volver", color = ArcadeCyan) }
+                            }
                         }
                     }
+                    if (title != null) {
+                        NeonTitle(title)
+                    }
+                    content()
                 }
-                if (title != null) {
-                    NeonTitle(title)
-                }
-                content()
             }
+            bottomBar?.invoke()
         }
     }
 }

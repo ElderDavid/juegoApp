@@ -6,6 +6,12 @@ import com.elderdavid.quientienelarazon.account.ProfileRepository
 import com.elderdavid.quientienelarazon.account.SupabaseAccountRepository
 import com.elderdavid.quientienelarazon.account.SupabaseProfileRepository
 import com.elderdavid.quientienelarazon.account.SupabaseSettings
+import com.elderdavid.quientienelarazon.ads.AdMobAdsController
+import com.elderdavid.quientienelarazon.ads.AdsConsent
+import com.elderdavid.quientienelarazon.ads.AdsController
+import com.elderdavid.quientienelarazon.ads.NoAds
+import com.elderdavid.quientienelarazon.billing.BillingRepository
+import com.elderdavid.quientienelarazon.billing.UnavailableBillingRepository
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
 import com.elderdavid.quientienelarazon.online.OnlineRepository
@@ -20,6 +26,7 @@ import com.elderdavid.quientienelarazon.stats.SupabaseLeaderboardRepository
 import com.elderdavid.quientienelarazon.stats.localHistoryDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -57,6 +64,24 @@ class AppContainer(application: Application) {
     /** Partidas locales de este teléfono. Fuente de verdad separada de las estadísticas de la cuenta. */
     val localHistoryRepository: LocalHistoryRepository =
         DataStoreLocalHistoryRepository(application.localHistoryDataStore)
+
+    /** Facturación: solo la interfaz; esta versión no vende nada. */
+    val billingRepository: BillingRepository = UnavailableBillingRepository()
+
+    /** null si esta compilación no muestra anuncios (release sin identificadores de AdMob). */
+    val adsConsent: AdsConsent? = if (BuildConfig.ADS_ENABLED) AdsConsent(application) else null
+
+    val ads: AdsController = adsConsent?.let { consent ->
+        AdMobAdsController(
+            context = application,
+            consent = consent,
+            billing = billingRepository,
+            // Hilo principal: el SDK de anuncios exige cargar y mostrar desde él.
+            scope = MainScope(),
+            interstitialUnitId = BuildConfig.ADMOB_INTERSTITIAL_ID,
+            bannerUnitId = BuildConfig.ADMOB_BANNER_ID,
+        )
+    } ?: NoAds
 
     private val bankLock = Mutex()
     private var bank: QuestionBank? = null

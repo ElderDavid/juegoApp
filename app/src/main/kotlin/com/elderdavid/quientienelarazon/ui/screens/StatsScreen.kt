@@ -20,6 +20,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.elderdavid.quientienelarazon.ads.AdBanner
+import com.elderdavid.quientienelarazon.ads.AdsController
 import com.elderdavid.quientienelarazon.core.profile.Avatars
 import com.elderdavid.quientienelarazon.core.profile.LocalGameSummary
 import com.elderdavid.quientienelarazon.core.profile.LocalHistory
@@ -44,7 +46,7 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun StatsScreen(viewModel: StatsViewModel, onBack: () -> Unit) {
+fun StatsScreen(viewModel: StatsViewModel, ads: AdsController, onBack: () -> Unit) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     if (state.confirmClear) {
@@ -57,7 +59,7 @@ fun StatsScreen(viewModel: StatsViewModel, onBack: () -> Unit) {
         )
     }
 
-    ArcadeScreen(title = "Estadísticas", onBack = onBack) {
+    ArcadeScreen(title = "Estadísticas", onBack = onBack, bottomBar = { AdBanner(ads) }) {
         SectionHeading("Online · tu cuenta")
         when (val online = state.online) {
             OnlineStats.NotConfigured -> ArcadeCard(accent = ArcadeOutline) {

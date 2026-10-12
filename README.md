@@ -20,5 +20,8 @@ Requisitos: Android Studio reciente (AGP 9.4, Gradle 9.7.1) con Android SDK 36 y
 Si no hay Android SDK (sin `local.properties` ni `ANDROID_HOME`), Gradle omite el módulo `:app`
 y solo compila `:core`.
 
+## Anuncios
+La versión debug usa solo anuncios de prueba de Google. Ver `docs/ANUNCIOS.md`.
+
 ## Estado
 Ver `docs/FASE0_DIAGNOSTICO.md` para el plan por fases y lo que falta.

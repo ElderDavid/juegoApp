@@ -4,6 +4,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.elderdavid.quientienelarazon.ads.AdBanner
+import com.elderdavid.quientienelarazon.ads.AdsController
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
@@ -16,9 +18,9 @@ import com.elderdavid.quientienelarazon.ui.theme.ArcadeViolet
 
 /** Las cifras salen de [GameRules] para que la pantalla nunca contradiga al motor. */
 @Composable
-fun RulesScreen(onBack: () -> Unit) {
+fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
     val seconds = GameRules.QUESTION_TIME_MILLIS / 1000
-    ArcadeScreen(title = "Reglas", onBack = onBack) {
+    ArcadeScreen(title = "Reglas", onBack = onBack, bottomBar = { AdBanner(ads) }) {
         Text(
             "${GameRules.MIN_PLAYERS} a ${GameRules.MAX_PLAYERS} jugadores · " +
                 "${GameRules.TOTAL_QUESTIONS} preguntas en ${GameRules.ROUNDS} rondas · " +

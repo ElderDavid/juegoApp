@@ -15,6 +15,18 @@ val localConfig = java.util.Properties().apply {
 fun clientConfig(key: String): String =
     (localConfig.getProperty(key) ?: providers.gradleProperty(key).orNull ?: "").trim().replace("\"", "")
 
+// AdMob. Los identificadores de prueba son los públicos de Google y nunca generan ingresos ni
+// cuentan como clics reales. La versión debug SIEMPRE usa estos. La release solo muestra anuncios
+// si se le pasan identificadores reales (admob.* en local.properties, nunca en el repositorio);
+// sin ellos, la release no muestra ningún anuncio. Ver docs/ANUNCIOS.md.
+object AdMobTestIds {
+    const val APP = "ca-app-pub-3940256099942544~3347511713"
+    const val INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"
+    const val BANNER = "ca-app-pub-3940256099942544/9214589741"
+}
+val admobRelease = listOf("admob.appId", "admob.interstitialId", "admob.bannerId").map(::clientConfig)
+val admobReleaseConfigured = admobRelease.all { it.isNotEmpty() }
+
 android {
     namespace = "com.elderdavid.quientienelarazon"
     // Las librerías AndroidX actuales (Compose 1.12, core 1.19, lifecycle 2.11) exigen compilar con API 37.
@@ -36,7 +48,18 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders["admobAppId"] = AdMobTestIds.APP
+            buildConfigField("boolean", "ADS_ENABLED", "true")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${AdMobTestIds.INTERSTITIAL}\"")
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"${AdMobTestIds.BANNER}\"")
+        }
         release {
+            // El SDK exige un APPLICATION_ID en el manifiesto aunque no se muestren anuncios.
+            manifestPlaceholders["admobAppId"] = if (admobReleaseConfigured) admobRelease[0] else AdMobTestIds.APP
+            buildConfigField("boolean", "ADS_ENABLED", admobReleaseConfigured.toString())
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${admobRelease[1]}\"")
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"${admobRelease[2]}\"")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -76,6 +99,8 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services)
     implementation(libs.googleid)
+    implementation(libs.play.services.ads)
+    implementation(libs.ump)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
