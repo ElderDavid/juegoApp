@@ -16,6 +16,7 @@ fun MainMenuScreen(
     onLocalGame: () -> Unit,
     onOnline: () -> Unit,
     onProfile: () -> Unit,
+    onShop: () -> Unit,
     onStats: () -> Unit,
     onRules: () -> Unit,
     onSettings: () -> Unit,
@@ -29,6 +30,7 @@ fun MainMenuScreen(
         ArcadeButton(text = "Jugar en este teléfono", onClick = onLocalGame, color = ArcadeMagenta)
         ArcadeButton(text = "Jugar online", onClick = onOnline, color = ArcadeCyan)
         ArcadeOutlinedButton(text = "Perfil y cuenta", onClick = onProfile, color = ArcadeCyan)
+        ArcadeOutlinedButton(text = "Tienda y premios", onClick = onShop, color = ArcadeMagenta)
         ArcadeOutlinedButton(text = "Estadísticas", onClick = onStats, color = ArcadeOrange)
         ArcadeButton(text = "Reglas del juego", onClick = onRules, color = ArcadeOrange)
         ArcadeOutlinedButton(text = "Ajustes", onClick = onSettings)

@@ -12,6 +12,7 @@ import io.github.jan.supabase.auth.providers.Google
 import io.github.jan.supabase.auth.providers.builtin.IDToken
 import io.github.jan.supabase.auth.status.SessionStatus
 import io.github.jan.supabase.createSupabaseClient
+import io.github.jan.supabase.functions.Functions
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.postgrest
@@ -34,6 +35,7 @@ data class SupabaseSettings(val url: String, val publishableKey: String, val goo
     fun createClient(): SupabaseClient = createSupabaseClient(url, publishableKey) {
         install(Auth)
         install(Postgrest)
+        install(Functions)
     }
 }
 

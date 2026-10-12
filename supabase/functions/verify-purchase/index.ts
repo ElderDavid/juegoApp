@@ -35,9 +35,11 @@ Deno.serve(async (req) => {
     const account = JSON.parse(env("GOOGLE_PLAY_SERVICE_ACCOUNT")) as ServiceAccount;
     const packageName = Deno.env.get("PLAY_PACKAGE_NAME") ?? "com.elderdavid.quientienelarazon";
     const purchase = await fetchProductPurchase(await accessToken(account), packageName, productId, purchaseToken);
-    if (!purchase) return json({ ok: false, reason: "not_found" }, 400);
+    // Las compras no válidas responden 200 con ok=false: la app distingue así «no vale» de
+    // «error, reintenta más tarde» (cualquier otro estado).
+    if (!purchase) return json({ ok: false, reason: "not_found" });
     const check = checkPurchase(purchase, kind, userId);
-    if (!check.ok) return json({ ok: false, reason: check.reason }, 409);
+    if (!check.ok) return json({ ok: false, reason: check.reason });
     const result = await rpcAsService<{ ok: boolean; coins?: number; duplicate: boolean }>("record_purchase", {
       p_user: userId,
       p_product: productId,
@@ -47,7 +49,7 @@ Deno.serve(async (req) => {
     return json(result);
   } catch (e) {
     const message = e instanceof Error ? e.message : String(e);
-    if (message.includes("purchase_belongs_to_other_user")) return json({ ok: false, reason: "other_account" }, 409);
+    if (message.includes("purchase_belongs_to_other_user")) return json({ ok: false, reason: "other_account" });
     console.error("verify-purchase", message);
     return json({ ok: false, reason: "server_error" }, 500);
   }

@@ -14,6 +14,9 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.google.android.gms.ads.rewarded.ServerSideVerificationOptions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,7 +32,10 @@ import kotlinx.coroutines.withContext
  * - Intersticial: solo al salir de la pantalla final de una partida, con el límite de
  *   [InterstitialPacing]. Nunca durante una pregunta ni en la configuración de la partida.
  * - Banner: solo en pantallas secundarias (Reglas y Estadísticas). Nunca en el juego ni en el menú.
- * No hay anuncios con recompensa: el juego no tiene nada que regalar a cambio.
+ * - Video con recompensa: solo cuando el jugador pulsa «Ver video» en la tienda. Las monedas las
+ *   paga el servidor cuando AdMob le confirma el video (verificación del lado del servidor).
+ * «Quitar anuncios» quita el intersticial y los banners; el video sigue disponible porque lo elige
+ * el jugador.
  */
 interface AdsController {
     /** true si en este momento se pueden mostrar banners. */
@@ -42,6 +48,15 @@ interface AdsController {
      * cerrarse el anuncio.
      */
     fun afterGame(activity: Activity, gameKey: String, proceed: () -> Unit)
+
+    /** true si hay un video con recompensa cargado y listo. */
+    val rewardedReady: StateFlow<Boolean>
+
+    /**
+     * Muestra el video con recompensa. [userId] viaja a AdMob y vuelve firmado al servidor, que
+     * paga a esa cuenta. [onClosed] recibe true si el jugador lo vio hasta ganar la recompensa.
+     */
+    fun showRewarded(activity: Activity, userId: String, onClosed: (earned: Boolean) -> Unit)
 }
 
 /** Versión sin anuncios (release sin identificadores reales, o compra de «quitar anuncios»). */
@@ -49,6 +64,8 @@ object NoAds : AdsController {
     override val bannersEnabled: StateFlow<Boolean> = MutableStateFlow(false)
     override val bannerUnitId: String = ""
     override fun afterGame(activity: Activity, gameKey: String, proceed: () -> Unit) = proceed()
+    override val rewardedReady: StateFlow<Boolean> = MutableStateFlow(false)
+    override fun showRewarded(activity: Activity, userId: String, onClosed: (earned: Boolean) -> Unit) = onClosed(false)
 }
 
 class AdMobAdsController(
@@ -58,6 +75,8 @@ class AdMobAdsController(
     private val scope: CoroutineScope,
     private val interstitialUnitId: String,
     override val bannerUnitId: String,
+    /** Vacío = sin videos con recompensa en esta compilación. */
+    private val rewardedUnitId: String,
     private val clock: () -> Long = SystemClock::elapsedRealtime,
 ) : AdsController {
     private val appContext = context.applicationContext
@@ -70,6 +89,11 @@ class AdMobAdsController(
     private var loading = false
     private var showing = false
 
+    private var rewarded: RewardedAd? = null
+    private var rewardedLoading = false
+    private val _rewardedReady = MutableStateFlow(false)
+    override val rewardedReady: StateFlow<Boolean> = _rewardedReady
+
     override val bannersEnabled: StateFlow<Boolean> =
         combine(initialized, consent.canRequestAds, adsRemoved) { init, can, removed -> init && can && !removed.removeAds }
             .stateIn(scope, SharingStarted.Eagerly, false)
@@ -81,7 +105,7 @@ class AdMobAdsController(
 
     /** Inicializa el SDK una sola vez, fuera del hilo principal, y precarga el primer intersticial. */
     private fun initialize() {
-        if (initStarted || adsRemoved.value.removeAds) return
+        if (initStarted) return
         initStarted = true
         MobileAds.setRequestConfiguration(
             RequestConfiguration.Builder()
@@ -94,6 +118,7 @@ class AdMobAdsController(
             withContext(Dispatchers.Main) {
                 initialized.value = true
                 loadInterstitial()
+                loadRewarded()
             }
         }
     }
@@ -119,6 +144,58 @@ class AdMobAdsController(
                 }
             },
         )
+    }
+
+    private fun loadRewarded() {
+        if (rewardedUnitId.isEmpty() || !initialized.value || rewardedLoading || rewarded != null) return
+        if (!consent.canRequestAds.value) return
+        rewardedLoading = true
+        RewardedAd.load(
+            appContext,
+            rewardedUnitId,
+            AdRequest.Builder().build(),
+            object : RewardedAdLoadCallback() {
+                override fun onAdLoaded(ad: RewardedAd) {
+                    rewardedLoading = false
+                    rewarded = ad
+                    _rewardedReady.value = true
+                }
+
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    rewardedLoading = false
+                    Log.i(TAG, "Video con recompensa no disponible (código ${error.code})")
+                }
+            },
+        )
+    }
+
+    override fun showRewarded(activity: Activity, userId: String, onClosed: (earned: Boolean) -> Unit) {
+        val ad = rewarded
+        if (ad == null || showing) {
+            loadRewarded()
+            onClosed(false)
+            return
+        }
+        rewarded = null
+        _rewardedReady.value = false
+        showing = true
+        var earned = false
+        ad.setServerSideVerificationOptions(ServerSideVerificationOptions.Builder().setUserId(userId).build())
+        ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() = finish()
+
+            override fun onAdFailedToShowFullScreenContent(error: AdError) {
+                Log.i(TAG, "No se pudo mostrar el video (código ${error.code})")
+                finish()
+            }
+
+            private fun finish() {
+                showing = false
+                loadRewarded()
+                onClosed(earned)
+            }
+        }
+        ad.show(activity) { earned = true }
     }
 
     override fun afterGame(activity: Activity, gameKey: String, proceed: () -> Unit) {

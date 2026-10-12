@@ -17,17 +17,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.elderdavid.quientienelarazon.ads.AdsConsent
+import com.elderdavid.quientienelarazon.economy.EconomyViewModel
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
 import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
+import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeNight
+import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
 
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel, adsConsent: AdsConsent?, onBack: () -> Unit) {
+fun SettingsScreen(
+    viewModel: SettingsViewModel,
+    economy: EconomyViewModel,
+    adsConsent: AdsConsent?,
+    onShop: () -> Unit,
+    onBack: () -> Unit,
+) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
+    val shop by economy.state.collectAsStateWithLifecycle()
     // La opción solo aparece donde la ley obliga a ofrecerla (la decide el SDK de consentimiento).
     val privacyRequired = adsConsent?.privacyOptionsRequired?.collectAsStateWithLifecycle()?.value == true
     val activity = LocalActivity.current
@@ -51,6 +61,24 @@ fun SettingsScreen(viewModel: SettingsViewModel, adsConsent: AdsConsent?, onBack
                 checked = settings.reducedMotion,
                 onCheckedChange = viewModel::setReducedMotion,
             )
+        }
+        if (shop.billingAvailable) {
+            ArcadeCard {
+                Text("Anuncios y compras", style = MaterialTheme.typography.titleMedium)
+                shop.message?.let { Text(it, color = ArcadeOrange, style = MaterialTheme.typography.bodyMedium) }
+                if (shop.removeAds) {
+                    Text("Compraste «Quitar anuncios». ¡Gracias!", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+                } else {
+                    Text("Un solo pago y no vuelves a ver anuncios.", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+                    ArcadeOutlinedButton(text = "Quitar anuncios", onClick = onShop, color = ArcadeMagenta)
+                }
+                ArcadeOutlinedButton(
+                    text = if (shop.busy) "Restaurando…" else "Restaurar compras",
+                    onClick = economy::restorePurchases,
+                    enabled = !shop.busy,
+                    color = ArcadeCyan,
+                )
+            }
         }
         if (privacyRequired && activity != null) {
             ArcadeCard {
