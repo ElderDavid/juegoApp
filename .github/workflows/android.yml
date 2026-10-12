@@ -35,6 +35,21 @@ jobs:
       - name: Pruebas de la app, lint y APK de depuración
         run: ./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug --console=plain
 
+      - name: Resumen de lint
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import collections, json, pathlib
+          p = pathlib.Path("app/build/reports/lint-results-debug.sarif")
+          if not p.exists():
+              raise SystemExit("Sin informe de lint")
+          runs = json.loads(p.read_text())["runs"]
+          c = collections.Counter((r.get("level", "warning"), r["ruleId"]) for run in runs for r in run.get("results", []))
+          print(f"Lint: {sum(c.values())} avisos")
+          for (level, rule), n in sorted(c.items()):
+              print(f"  {level:8} {rule}: {n}")
+          PY
+
       # Compila la release (sin firmar) para comprobar que R8 no rompe nada al reducir el código.
       - name: Compilación release con R8
         run: ./gradlew :app:assembleRelease --console=plain
