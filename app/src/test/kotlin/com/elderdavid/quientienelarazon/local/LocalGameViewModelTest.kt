@@ -1,6 +1,7 @@
 package com.elderdavid.quientienelarazon.local
 
 import com.elderdavid.quientienelarazon.core.game.GameRules
+import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalStage
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
@@ -82,6 +83,67 @@ class LocalGameViewModelTest {
         val match = vm.state.value.match!!
         assertTrue(match.stage is LocalStage.Handoff)
         assertNull(match.state.answers.values.single().choice)
+    }
+
+    /** Juega hasta el final: el primer jugador elige siempre la opción A y los demás la B. */
+    private fun TestScope.playToEnd(vm: LocalGameViewModel) {
+        var guard = 0
+        while (vm.state.value.match!!.stage !is LocalStage.Finished && guard++ < 1_000) {
+            when (val stage = vm.state.value.match!!.stage) {
+                is LocalStage.Roulette -> vm.rouletteDone()
+                is LocalStage.Handoff -> vm.ready()
+                is LocalStage.Betting -> vm.bet(stage.allowedBets.minOrNull() ?: 0)
+                // Respuestas distintas para que la partida no quede empatada indefinidamente.
+                is LocalStage.Answering -> vm.answer(if (stage.playerId == vm.state.value.match!!.players.first().id) 0 else 1)
+                is LocalStage.Reveal, is LocalStage.RoundSummary, is LocalStage.TiebreakReveal -> vm.next()
+                is LocalStage.Finished -> Unit
+            }
+            runCurrent()
+        }
+    }
+
+    @Test
+    fun finishedGamesAreRecordedOnceIncludingRematch() = runTest(dispatcher) {
+        val recorded = mutableListOf<GameState>()
+        val vm = LocalGameViewModel(
+            loadBank = { bank },
+            clock = { testScheduler.currentTime },
+            newSeed = { 42L },
+            recordFinished = { recorded += it },
+        )
+        runCurrent()
+        vm.setName(0, "Ana")
+        vm.setName(1, "Luis")
+        vm.start()
+        playToEnd(vm)
+        assertTrue(vm.state.value.match!!.stage is LocalStage.Finished)
+        assertEquals(1, recorded.size)
+        // Acciones repetidas en la pantalla final no vuelven a guardar la partida.
+        vm.next()
+        vm.answer(0)
+        runCurrent()
+        assertEquals(1, recorded.size)
+
+        vm.rematch()
+        playToEnd(vm)
+        assertEquals(2, recorded.size)
+        assertEquals(listOf("Ana", "Luis"), recorded.last().players.map { it.name })
+    }
+
+    @Test
+    fun failingToSaveHistoryDoesNotBreakTheGame() = runTest(dispatcher) {
+        val vm = LocalGameViewModel(
+            loadBank = { bank },
+            clock = { testScheduler.currentTime },
+            newSeed = { 42L },
+            recordFinished = { throw java.io.IOException("disco lleno") },
+        )
+        runCurrent()
+        vm.setName(0, "Ana")
+        vm.setName(1, "Luis")
+        vm.start()
+        playToEnd(vm)
+        assertTrue(vm.state.value.match!!.stage is LocalStage.Finished)
     }
 
     @Test

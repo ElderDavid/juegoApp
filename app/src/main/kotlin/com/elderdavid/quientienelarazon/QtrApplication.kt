@@ -13,6 +13,11 @@ import com.elderdavid.quientienelarazon.online.SupabaseOnlineRepository
 import com.elderdavid.quientienelarazon.settings.DataStoreSettingsRepository
 import com.elderdavid.quientienelarazon.settings.SettingsRepository
 import com.elderdavid.quientienelarazon.settings.settingsDataStore
+import com.elderdavid.quientienelarazon.stats.DataStoreLocalHistoryRepository
+import com.elderdavid.quientienelarazon.stats.LeaderboardRepository
+import com.elderdavid.quientienelarazon.stats.LocalHistoryRepository
+import com.elderdavid.quientienelarazon.stats.SupabaseLeaderboardRepository
+import com.elderdavid.quientienelarazon.stats.localHistoryDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -44,8 +49,14 @@ class AppContainer(application: Application) {
         accountRepository?.let { SupabaseOnlineRepository(client, it) }
     }
 
+    val leaderboardRepository: LeaderboardRepository? by lazy { supabase?.let { SupabaseLeaderboardRepository(it) } }
+
     val settingsRepository: SettingsRepository =
         DataStoreSettingsRepository(application.settingsDataStore)
+
+    /** Partidas locales de este teléfono. Fuente de verdad separada de las estadísticas de la cuenta. */
+    val localHistoryRepository: LocalHistoryRepository =
+        DataStoreLocalHistoryRepository(application.localHistoryDataStore)
 
     private val bankLock = Mutex()
     private var bank: QuestionBank? = null

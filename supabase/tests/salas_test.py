@@ -466,6 +466,38 @@ def test_planner_all_modes(admin):
     cur.execute("delete from public.rooms where id = %s", (room,))
 
 
+def test_leaderboard(admin):
+    print("\n— Clasificación —")
+    cur = admin.cursor()
+    # Solo cuentan los jugadores de esta prueba.
+    cur.execute("update public.player_stats set games_played = 0, wins = 0, losses = 0, correct_answers = 0, objective_answered = 0, xp = 0")
+    a, b, c = Player(admin, "Ana"), Player(admin, "Beto"), Player(admin, "Caro")
+    newbie = Player(admin, "Nuevo")
+    for p, xp, wins, games in ((a, 300, 3, 5), (b, 500, 4, 6), (c, 300, 1, 2)):
+        cur.execute(
+            "update public.player_stats set games_played = %s, wins = %s, losses = %s, xp = %s where user_id = %s",
+            (games, wins, games - wins, xp, p.id),
+        )
+    board = a.call("leaderboard", 20)
+    names = [row["name"] for row in board["top"]]
+    check(names == ["Beto", "Ana", "Caro"], "orden por XP y luego victorias")
+    check([row["rank"] for row in board["top"]] == [1, 2, 3], "posiciones")
+    check(board["me"]["name"] == "Ana" and board["me"]["rank"] == 2, "incluye la posición propia")
+    check([row["me"] for row in board["top"]] == [False, True, False], "marca la fila propia")
+    check("Nuevo" not in names, "sin partidas online no aparece")
+    check(newbie.call("leaderboard", 20)["me"] is None, "quien no ha jugado no tiene posición")
+    small = c.call("leaderboard", 1)
+    check(len(small["top"]) == 1 and small["me"]["rank"] == 3, "límite del top sin perder la posición propia")
+    check(set(board["top"][0].keys()) == {"rank", "name", "avatar_id", "xp", "wins", "games", "me"}, "solo datos públicos")
+    anon = connect(DB)
+    anon.cursor().execute("set role anon")
+    try:
+        anon.cursor().execute("select public.leaderboard(20)")
+        check(False, "sin sesión no se puede consultar")
+    except psycopg2.Error:
+        check(True, "sin sesión no se puede consultar")
+
+
 def main():
     admin = setup()
     cur = admin.cursor()
@@ -480,6 +512,7 @@ def main():
     test_timing_and_disconnects(admin)
     test_lobby_and_matchmaking(admin)
     test_rate_limit(admin)
+    test_leaderboard(admin)
     print(f"\n{passed} comprobaciones correctas, {len(failures)} fallos")
     sys.exit(1 if failures else 0)
 

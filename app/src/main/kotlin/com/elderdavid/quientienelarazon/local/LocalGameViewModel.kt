@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.elderdavid.quientienelarazon.core.game.GameEngine
 import com.elderdavid.quientienelarazon.core.game.GameRules
+import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalMatch
 import com.elderdavid.quientienelarazon.core.local.LocalSetup
 import com.elderdavid.quientienelarazon.core.local.LocalStage
@@ -15,6 +16,7 @@ import com.elderdavid.quientienelarazon.core.questions.Category
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.Region
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,12 +45,14 @@ data class LocalUiState(
  * se carga el banco, se gestiona la configuración y se programa el fin del tiempo de cada turno.
  *
  * [clock] debe ser monótono (en la app, `SystemClock.elapsedRealtime`) para que cambiar la hora
- * del teléfono no altere los tiempos.
+ * del teléfono no altere los tiempos. [recordFinished] guarda cada partida terminada en el
+ * historial del teléfono, una sola vez por partida (también tras una revancha).
  */
 class LocalGameViewModel(
     private val loadBank: suspend () -> QuestionBank,
     private val clock: () -> Long,
     private val newSeed: () -> Long,
+    private val recordFinished: suspend (GameState) -> Unit = {},
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(LocalUiState())
@@ -123,8 +127,20 @@ class LocalGameViewModel(
     }
 
     private fun setMatch(match: LocalMatch?) {
+        val previous = _state.value.match
         _state.update { it.copy(match = match) }
         scheduleTimeout(match)
+        if (match != null && match.stage is LocalStage.Finished && previous?.stage !is LocalStage.Finished) {
+            viewModelScope.launch {
+                try {
+                    recordFinished(match.state)
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    // Si no se puede guardar el historial, la partida sigue igual: no es un error de juego.
+                }
+            }
+        }
     }
 
     /** Programa el fin del tiempo del turno actual. El motor vuelve a comprobarlo con el reloj. */
@@ -147,7 +163,12 @@ class LocalGameViewModel(
     }
 
     companion object {
-        fun factory(loadBank: suspend () -> QuestionBank, clock: () -> Long, newSeed: () -> Long): ViewModelProvider.Factory =
-            viewModelFactory { initializer { LocalGameViewModel(loadBank, clock, newSeed) } }
+        fun factory(
+            loadBank: suspend () -> QuestionBank,
+            clock: () -> Long,
+            newSeed: () -> Long,
+            recordFinished: suspend (GameState) -> Unit,
+        ): ViewModelProvider.Factory =
+            viewModelFactory { initializer { LocalGameViewModel(loadBank, clock, newSeed, recordFinished) } }
     }
 }

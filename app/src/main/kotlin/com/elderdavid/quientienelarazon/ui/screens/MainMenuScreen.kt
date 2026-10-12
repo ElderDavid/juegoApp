@@ -12,7 +12,14 @@ import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
 
 @Composable
-fun MainMenuScreen(onLocalGame: () -> Unit, onOnline: () -> Unit, onProfile: () -> Unit, onRules: () -> Unit, onSettings: () -> Unit) {
+fun MainMenuScreen(
+    onLocalGame: () -> Unit,
+    onOnline: () -> Unit,
+    onProfile: () -> Unit,
+    onStats: () -> Unit,
+    onRules: () -> Unit,
+    onSettings: () -> Unit,
+) {
     ArcadeScreen(title = "Menú principal") {
         Text(
             "Elige cómo quieres jugar.",
@@ -21,7 +28,8 @@ fun MainMenuScreen(onLocalGame: () -> Unit, onOnline: () -> Unit, onProfile: () 
         )
         ArcadeButton(text = "Jugar en este teléfono", onClick = onLocalGame, color = ArcadeMagenta)
         ArcadeButton(text = "Jugar online", onClick = onOnline, color = ArcadeCyan)
-        ArcadeOutlinedButton(text = "Perfil y estadísticas", onClick = onProfile, color = ArcadeCyan)
+        ArcadeOutlinedButton(text = "Perfil y cuenta", onClick = onProfile, color = ArcadeCyan)
+        ArcadeOutlinedButton(text = "Estadísticas", onClick = onStats, color = ArcadeOrange)
         ArcadeButton(text = "Reglas del juego", onClick = onRules, color = ArcadeOrange)
         ArcadeOutlinedButton(text = "Ajustes", onClick = onSettings)
     }

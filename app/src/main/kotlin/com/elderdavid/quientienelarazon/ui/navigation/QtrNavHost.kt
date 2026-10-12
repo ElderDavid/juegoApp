@@ -11,6 +11,7 @@ import com.elderdavid.quientienelarazon.account.ProfileViewModel
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.online.OnlineGameViewModel
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
+import com.elderdavid.quientienelarazon.stats.StatsViewModel
 import com.elderdavid.quientienelarazon.ui.local.LocalGameRoute
 import com.elderdavid.quientienelarazon.ui.online.OnlineRoute
 import com.elderdavid.quientienelarazon.ui.screens.HomeScreen
@@ -18,6 +19,7 @@ import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
 import com.elderdavid.quientienelarazon.ui.screens.ProfileScreen
 import com.elderdavid.quientienelarazon.ui.screens.RulesScreen
 import com.elderdavid.quientienelarazon.ui.screens.SettingsScreen
+import com.elderdavid.quientienelarazon.ui.screens.StatsScreen
 import kotlin.random.Random
 
 /** Rutas de la app. Las de fases posteriores se añadirán aquí a medida que existan. */
@@ -29,6 +31,7 @@ object Routes {
     const val LOCAL_GAME = "local"
     const val PROFILE = "profile"
     const val ONLINE = "online"
+    const val STATS = "stats"
 }
 
 @Composable
@@ -49,6 +52,7 @@ fun QtrNavHost(container: AppContainer) {
                 onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
                 onOnline = { navController.navigate(Routes.ONLINE) },
                 onProfile = { navController.navigate(Routes.PROFILE) },
+                onStats = { navController.navigate(Routes.STATS) },
                 onRules = { navController.navigate(Routes.RULES) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
             )
@@ -59,6 +63,7 @@ fun QtrNavHost(container: AppContainer) {
                     loadBank = container::questionBank,
                     clock = SystemClock::elapsedRealtime,
                     newSeed = { Random.nextLong() },
+                    recordFinished = container.localHistoryRepository::record,
                 ),
             )
             LocalGameRoute(
@@ -94,6 +99,18 @@ fun QtrNavHost(container: AppContainer) {
                 googleWebClientId = container.supabaseSettings.googleWebClientId,
                 onBack = { navController.popBackStack() },
             )
+        }
+        composable(Routes.STATS) {
+            val vm: StatsViewModel = viewModel(
+                factory = StatsViewModel.factory(
+                    accounts = container.accountRepository,
+                    profiles = container.profileRepository,
+                    leaderboard = container.leaderboardRepository,
+                    localHistory = container.localHistoryRepository,
+                    loadBank = container::questionBank,
+                ),
+            )
+            StatsScreen(viewModel = vm, onBack = { navController.popBackStack() })
         }
         composable(Routes.RULES) {
             RulesScreen(onBack = { navController.popBackStack() })
