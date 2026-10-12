@@ -6,6 +6,7 @@ partidas online y el modo regional «De aquí somos» (La Guajira, Magdalena, Ce
 ## Estructura
 - `core/` — motor de reglas en Kotlin puro (compartido por los modos local y online). Se prueba sin Android SDK.
 - `app/` — aplicación Android con Jetpack Compose y Material 3.
+- `web/` — versión para navegador del juego online (iPhone y otros), en las mismas salas que la app. Ver `docs/WEB.md`.
 - `docs/` — diagnóstico, decisiones y guías.
 
 ## Compilar

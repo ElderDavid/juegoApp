@@ -1,0 +1,9 @@
+{
+  "name": "quien-tiene-la-razon-web",
+  "private": true,
+  "type": "module",
+  "description": "Cliente web (navegador) del juego online. Sin dependencias ni compilación.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
