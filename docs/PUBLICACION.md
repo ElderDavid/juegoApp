@@ -76,6 +76,8 @@ Resultado: `app/build/outputs/bundle/release/app-release.aab`. Antes de compilar
 | Nombre público y avatar | Supabase | Perfil, salas y clasificación (visibles para otros jugadores) | No |
 | Estadísticas y respuestas online | Supabase | Puntuación, nivel y clasificación | No |
 | ID de publicidad, datos del dispositivo, ubicación aproximada por IP | SDK de Google Mobile Ads | Anuncios, analítica de anuncios y prevención de fraude | Sí, con Google |
+| Historial de compras (producto, id de pedido) | Google Play Billing y Supabase | Entregar lo comprado | No (el cobro lo hace Google) |
+| Monedas, cosméticos, logros y partidas locales terminadas | Supabase | Premios del juego | No |
 
 - Todo viaja cifrado (HTTPS).
 - El usuario puede borrar su cuenta y sus datos online desde la app.
@@ -93,3 +95,7 @@ Resultado: `app/build/outputs/bundle/release/app-release.aab`. Antes de compilar
       versión de Play.
 - [ ] Supabase: inicios de sesión anónimos y vinculación manual activados; migraciones aplicadas.
 - [ ] Política de privacidad y página de borrado publicadas.
+- [ ] Monedas y compras: migración de economía aplicada, funciones `verify-purchase` y `admob-ssv`
+      desplegadas, productos creados en Play Console y verificación de servidor activada en el
+      bloque de video de AdMob (`ECONOMIA.md`).
+- [ ] En Play Console, la ficha declara «Compras en la aplicación».
