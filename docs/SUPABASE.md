@@ -25,9 +25,10 @@ En https://console.cloud.google.com, en un proyecto propio:
    - Al publicar habrá que añadir también el SHA-1 de la firma de Google Play.
 4. En Supabase, **Authentication → Sign In / Providers → Google**: actívalo, pega el *Client ID* y el *Client secret* del cliente **web**. Deja desactivado «Skip nonce checks».
 
-## 3. Valores en `local.properties`
+## 3. Valores del cliente
 
-`local.properties` no se sube al repositorio (está en `.gitignore`). Añade:
+El proyecto del juego (`sijsdrzgskieiusfukcf`) ya tiene la migración aplicada, y su URL y clave publishable están en `gradle.properties`, así que no hace falta configurar nada para compilar.
+Para apuntar a otro proyecto, o para añadir el cliente de Google, usa `local.properties` (no se sube al repositorio y tiene prioridad):
 
 ```properties
 supabase.url=https://TU-PROYECTO.supabase.co
@@ -47,4 +48,4 @@ Después recompila. Si falta `google.webClientId`, las cuentas de invitado funci
 
 ## Verificado
 
-La migración se probó en PostgreSQL 16 con un esquema `auth` simulado: creación automática de perfil, `update_profile` con nombres válidos e inválidos, y bloqueo por RLS de escrituras directas. No se ha probado aún contra un proyecto real de Supabase.
+La migración se probó en PostgreSQL 16 con un esquema `auth` simulado: creación automática de perfil, `update_profile` con nombres válidos e inválidos, y bloqueo por RLS de escrituras directas. El 12/10/2026 se aplicó en el proyecto real `sijsdrzgskieiusfukcf`; el asesor de seguridad de Supabase solo señala que `update_profile` es ejecutable por usuarios con sesión, que es intencional.
