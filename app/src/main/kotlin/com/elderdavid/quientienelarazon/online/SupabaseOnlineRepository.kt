@@ -46,9 +46,8 @@ class SupabaseOnlineRepository(
 
     override suspend fun start(roomId: String) = view("start_room") { put("p_room", roomId) }
 
-    override suspend fun leave(roomId: String): OnlineResult<Unit> = call {
+    override suspend fun leave(roomId: String): OnlineResult<Unit> = call<Unit> {
         client.postgrest.rpc("leave_room", buildJsonObject { put("p_room", roomId) })
-        Unit
     }
 
     override suspend fun bet(roomId: String, index: Int, amount: Int) = view("submit_bet") {
