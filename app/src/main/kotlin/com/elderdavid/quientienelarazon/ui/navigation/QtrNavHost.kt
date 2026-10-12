@@ -9,8 +9,10 @@ import androidx.navigation.compose.rememberNavController
 import com.elderdavid.quientienelarazon.AppContainer
 import com.elderdavid.quientienelarazon.account.ProfileViewModel
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
+import com.elderdavid.quientienelarazon.online.OnlineGameViewModel
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
 import com.elderdavid.quientienelarazon.ui.local.LocalGameRoute
+import com.elderdavid.quientienelarazon.ui.online.OnlineRoute
 import com.elderdavid.quientienelarazon.ui.screens.HomeScreen
 import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
 import com.elderdavid.quientienelarazon.ui.screens.ProfileScreen
@@ -26,6 +28,7 @@ object Routes {
     const val SETTINGS = "settings"
     const val LOCAL_GAME = "local"
     const val PROFILE = "profile"
+    const val ONLINE = "online"
 }
 
 @Composable
@@ -44,6 +47,7 @@ fun QtrNavHost(container: AppContainer) {
         composable(Routes.MENU) {
             MainMenuScreen(
                 onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
+                onOnline = { navController.navigate(Routes.ONLINE) },
                 onProfile = { navController.navigate(Routes.PROFILE) },
                 onRules = { navController.navigate(Routes.RULES) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
@@ -58,6 +62,20 @@ fun QtrNavHost(container: AppContainer) {
                 ),
             )
             LocalGameRoute(
+                viewModel = vm,
+                settingsRepository = container.settingsRepository,
+                onExit = { navController.popBackStack() },
+            )
+        }
+        composable(Routes.ONLINE) {
+            val vm: OnlineGameViewModel = viewModel(
+                factory = OnlineGameViewModel.factory(
+                    repository = container.onlineRepository,
+                    loadBank = container::questionBank,
+                    clock = SystemClock::elapsedRealtime,
+                ),
+            )
+            OnlineRoute(
                 viewModel = vm,
                 settingsRepository = container.settingsRepository,
                 onExit = { navController.popBackStack() },

@@ -49,3 +49,10 @@ Después recompila. Si falta `google.webClientId`, las cuentas de invitado funci
 ## Verificado
 
 La migración se probó en PostgreSQL 16 con un esquema `auth` simulado: creación automática de perfil, `update_profile` con nombres válidos e inválidos, y bloqueo por RLS de escrituras directas. El 12/10/2026 se aplicó en el proyecto real `sijsdrzgskieiusfukcf`; el asesor de seguridad de Supabase solo señala que `update_profile` es ejecutable por usuarios con sesión, que es intencional.
+
+Ese mismo día se aplicaron también `salas_online` y las preguntas (ver `docs/ONLINE.md`). El asesor
+de seguridad marca como «ejecutables por usuarios con sesión» las funciones de sala (`create_room`,
+`room_state`, `submit_answer`…), que es lo previsto: son la única puerta de entrada de los clientes.
+Las tablas de salas y preguntas tienen RLS sin políticas a propósito (nadie las lee directamente).
+También aparece `rls_auto_enable`, que no es de este proyecto sino una función de disparador de
+eventos que Supabase crea en proyectos nuevos; al devolver `event_trigger` no se puede llamar como RPC.

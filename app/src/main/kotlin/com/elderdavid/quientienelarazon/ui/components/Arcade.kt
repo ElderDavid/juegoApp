@@ -194,9 +194,12 @@ fun ArcadeCard(
     }
 }
 
-/** Avatar circular con inicial y color de jugador; distinguible también por la letra. */
+/**
+ * Avatar circular con el color del jugador y su inicial (o el emoji de su perfil en online);
+ * distinguible también sin color.
+ */
 @Composable
-fun PlayerAvatar(name: String, playerIndex: Int, modifier: Modifier = Modifier, size: Int = 48) {
+fun PlayerAvatar(name: String, playerIndex: Int, modifier: Modifier = Modifier, size: Int = 48, emoji: String? = null) {
     val color = PlayerColors[playerIndex.mod(PlayerColors.size)]
     Box(
         modifier = modifier
@@ -206,7 +209,7 @@ fun PlayerAvatar(name: String, playerIndex: Int, modifier: Modifier = Modifier, 
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = name.trim().firstOrNull()?.uppercase() ?: "?",
+            text = emoji ?: name.trim().firstOrNull()?.uppercase() ?: "?",
             color = color,
             fontWeight = FontWeight.Black,
             style = MaterialTheme.typography.titleLarge,

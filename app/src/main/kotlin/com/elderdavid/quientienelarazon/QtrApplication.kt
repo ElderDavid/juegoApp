@@ -8,6 +8,8 @@ import com.elderdavid.quientienelarazon.account.SupabaseProfileRepository
 import com.elderdavid.quientienelarazon.account.SupabaseSettings
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
+import com.elderdavid.quientienelarazon.online.OnlineRepository
+import com.elderdavid.quientienelarazon.online.SupabaseOnlineRepository
 import com.elderdavid.quientienelarazon.settings.DataStoreSettingsRepository
 import com.elderdavid.quientienelarazon.settings.SettingsRepository
 import com.elderdavid.quientienelarazon.settings.settingsDataStore
@@ -37,6 +39,10 @@ class AppContainer(application: Application) {
     /** null cuando la compilación no tiene configuración de Supabase. */
     val accountRepository: AccountRepository? by lazy { supabase?.let { SupabaseAccountRepository(it, appScope) } }
     val profileRepository: ProfileRepository? by lazy { supabase?.let { SupabaseProfileRepository(it) } }
+    val onlineRepository: OnlineRepository? by lazy {
+        val client = supabase ?: return@lazy null
+        accountRepository?.let { SupabaseOnlineRepository(client, it) }
+    }
 
     val settingsRepository: SettingsRepository =
         DataStoreSettingsRepository(application.settingsDataStore)

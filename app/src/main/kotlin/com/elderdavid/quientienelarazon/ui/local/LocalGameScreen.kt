@@ -172,7 +172,7 @@ private fun RouletteView(
     }
 }
 
-private fun roundRule(round: RoundType): String = when (round) {
+internal fun roundRule(round: RoundType): String = when (round) {
     RoundType.KNOWLEDGE -> "Acierto: +${GameRules.KNOWLEDGE_POINTS} puntos."
     RoundType.SPEED -> "Acierto: +${GameRules.SPEED_POINTS} y hasta +${GameRules.SPEED_BONUS_MAX} extra cuanto más rápido respondas."
     RoundType.STRATEGY -> "Antes de ver la pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos. Aciertas: los ganas. Fallas: los pierdes."
@@ -180,7 +180,7 @@ private fun roundRule(round: RoundType): String = when (round) {
 }
 
 @Composable
-private fun RoundHeader(round: RoundType, questionNumber: Int) {
+internal fun RoundHeader(round: RoundType, questionNumber: Int) {
     Text(
         "RONDA ${round.number} · ${round.title.uppercase()}   ·   PREGUNTA $questionNumber/${GameRules.TOTAL_QUESTIONS}",
         style = MaterialTheme.typography.labelMedium,
@@ -294,7 +294,7 @@ private fun QuestionCard(question: Question, bank: QuestionBank) {
 }
 
 @Composable
-private fun OptionButton(text: String, letter: String, onClick: () -> Unit, highlight: Color? = null, enabled: Boolean = true) {
+internal fun OptionButton(text: String, letter: String, onClick: () -> Unit, highlight: Color? = null, enabled: Boolean = true) {
     OutlinedButton(
         onClick = onClick,
         enabled = enabled,
@@ -308,7 +308,7 @@ private fun OptionButton(text: String, letter: String, onClick: () -> Unit, high
     }
 }
 
-private fun optionLetter(index: Int) = ('A' + index).toString()
+internal fun optionLetter(index: Int) = ('A' + index).toString()
 
 private fun betLabel(bet: Bet) = when (bet) {
     is Bet.Amount -> "APUESTA: ${bet.value}"
@@ -360,7 +360,7 @@ private fun RevealView(
 }
 
 @Composable
-private fun SourceLink(url: String) {
+internal fun SourceLink(url: String) {
     val uriHandler = LocalUriHandler.current
     TextButton(onClick = { runCatching { uriHandler.openUri(url) } }) {
         Text("Fuente: ${url.substringAfter("://").substringBefore("/")}", color = ArcadeCyan, style = MaterialTheme.typography.labelMedium)
@@ -392,7 +392,7 @@ private fun OutcomeRow(o: PlayerOutcome, question: Question, name: String, color
     }
 }
 
-private fun signed(n: Int) = when {
+internal fun signed(n: Int) = when {
     n > 0 -> "+$n"
     n < 0 -> "−${-n}"
     else -> "0"
