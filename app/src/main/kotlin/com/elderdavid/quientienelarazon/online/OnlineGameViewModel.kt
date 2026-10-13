@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 /** Modalidad elegible: «general» o el id de un departamento. */
 data class OnlineMode(val id: String, val name: String)
 
-enum class OnlineBusy { CREATING, JOINING, SEARCHING, STARTING, LEAVING }
+enum class OnlineBusy { CREATING, JOINING, SEARCHING, STARTING, LEAVING, LEVEL }
 
 data class OnlineUiState(
     /** false si la compilación no tiene Supabase configurado. */
@@ -30,6 +30,10 @@ data class OnlineUiState(
     val modes: List<OnlineMode> = listOf(OnlineMode("general", "General")),
     val mode: String = "general",
     val length: GameLength = GameLength.DEFAULT,
+    /** Tipo de sala al crear o buscar. Las de niños y mixtas solo con preguntas generales. */
+    val audience: OnlineAudience = OnlineAudience.STANDARD,
+    /** Nivel del jugador en salas mixtas: true = preguntas para niños con 12 s. */
+    val kidsLevel: Boolean = false,
     val codeInput: String = "",
     val busy: OnlineBusy? = null,
     val view: RoomView? = null,
@@ -50,14 +54,22 @@ data class OnlineUiState(
  * tiempo localmente a partir de lo que dice el servidor.
  *
  * [clock] debe ser monótono (`SystemClock.elapsedRealtime` en la app).
+ * [childPlayer]: quien juega dijo tener menos de 13 años; empieza con salas de niños y nivel niños.
  */
 class OnlineGameViewModel(
     private val repository: OnlineRepository?,
     private val loadBank: suspend () -> QuestionBank,
     private val clock: () -> Long,
+    childPlayer: Boolean = false,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(OnlineUiState(available = repository != null))
+    private val _state = MutableStateFlow(
+        OnlineUiState(
+            available = repository != null,
+            audience = if (childPlayer) OnlineAudience.KIDS else OnlineAudience.STANDARD,
+            kidsLevel = childPlayer,
+        ),
+    )
     val state: StateFlow<OnlineUiState> = _state.asStateFlow()
 
     private var bank: QuestionBank? = null
@@ -98,7 +110,40 @@ class OnlineGameViewModel(
 
     fun now(): Long = clock()
 
-    fun setMode(id: String) = _state.update { if (it.view == null) it.copy(mode = id) else it }
+    /** Las salas de niños y mixtas solo tienen preguntas generales: elegir un departamento vuelve a la sala normal. */
+    fun setMode(id: String) = _state.update {
+        when {
+            it.view != null -> it
+            id != GENERAL -> it.copy(mode = id, audience = OnlineAudience.STANDARD)
+            else -> it.copy(mode = id)
+        }
+    }
+
+    fun setAudience(audience: OnlineAudience) = _state.update {
+        when {
+            it.view != null -> it
+            audience != OnlineAudience.STANDARD -> it.copy(audience = audience, mode = GENERAL)
+            else -> it.copy(audience = audience)
+        }
+    }
+
+    /** Nivel en salas mixtas. Antes de entrar se recuerda; en la sala de espera de una mixta se cambia en el servidor. */
+    fun setKidsLevel(kids: Boolean) {
+        val view = _state.value.view
+        if (view == null) {
+            _state.update { it.copy(kidsLevel = kids) }
+            return
+        }
+        val repo = repository ?: return
+        if (!view.room.inLobby || view.room.roomAudience != OnlineAudience.MIXED || _state.value.busy != null) return
+        _state.update { it.copy(busy = OnlineBusy.LEVEL, kidsLevel = kids, error = null) }
+        viewModelScope.launch {
+            val seq = ++requestSeq
+            val result = repo.setKidsLevel(view.room.id, kids)
+            _state.update { it.copy(busy = null) }
+            handle(result, seq)
+        }
+    }
 
     fun setLength(length: GameLength) = _state.update { if (it.view == null) it.copy(length = length) else it }
 
@@ -106,13 +151,20 @@ class OnlineGameViewModel(
 
     fun dismissError() = _state.update { it.copy(error = null) }
 
-    fun createPrivate() = enter(OnlineBusy.CREATING) { createRoom(publicRoom = false, mode = _state.value.mode, length = _state.value.length) }
+    fun createPrivate() = enter(OnlineBusy.CREATING) {
+        val s = _state.value
+        createRoom(publicRoom = false, mode = s.mode, length = s.length, audience = s.audience, kids = s.kidsLevel)
+    }
 
-    fun findPublic() = enter(OnlineBusy.SEARCHING) { findPublic(_state.value.mode, _state.value.length) }
+    fun findPublic() = enter(OnlineBusy.SEARCHING) {
+        val s = _state.value
+        findPublic(s.mode, s.length, s.audience, s.kidsLevel)
+    }
 
+    /** El tipo de sala lo puso quien la creó; aquí solo cuenta el nivel, por si es mixta. */
     fun joinByCode() {
         if (!_state.value.codeValid) return
-        enter(OnlineBusy.JOINING) { joinByCode(_state.value.codeInput) }
+        enter(OnlineBusy.JOINING) { joinByCode(_state.value.codeInput, _state.value.kidsLevel) }
     }
 
     fun start() {
@@ -251,13 +303,19 @@ class OnlineGameViewModel(
     }
 
     companion object {
+        const val GENERAL = "general"
         const val GAME_POLL_MS = 1000L
         const val LOBBY_POLL_MS = 1500L
         const val MIN_POLL_MS = 250L
         const val MAX_BACKOFF_MS = 5000L
         const val AUTOSTART_TOTAL_MS = 15_000L
 
-        fun factory(repository: OnlineRepository?, loadBank: suspend () -> QuestionBank, clock: () -> Long): ViewModelProvider.Factory =
-            viewModelFactory { initializer { OnlineGameViewModel(repository, loadBank, clock) } }
+        fun factory(
+            repository: OnlineRepository?,
+            loadBank: suspend () -> QuestionBank,
+            clock: () -> Long,
+            childPlayer: Boolean = false,
+        ): ViewModelProvider.Factory =
+            viewModelFactory { initializer { OnlineGameViewModel(repository, loadBank, clock, childPlayer) } }
     }
 }

@@ -48,6 +48,7 @@ import com.elderdavid.quientienelarazon.core.online.PhaseClock
 import com.elderdavid.quientienelarazon.core.online.RoomCode
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.local.FeedbackEvent
+import com.elderdavid.quientienelarazon.online.OnlineAudience
 import com.elderdavid.quientienelarazon.online.OnlineBusy
 import com.elderdavid.quientienelarazon.online.OnlineError
 import com.elderdavid.quientienelarazon.online.OnlineUiState
@@ -82,6 +83,8 @@ import com.elderdavid.quientienelarazon.ui.theme.PlayerColors
 class OnlineActions(
     val setMode: (String) -> Unit,
     val setLength: (GameLength) -> Unit,
+    val setAudience: (OnlineAudience) -> Unit,
+    val setKidsLevel: (Boolean) -> Unit,
     val setCode: (String) -> Unit,
     val createPrivate: () -> Unit,
     val joinByCode: () -> Unit,
@@ -126,6 +129,8 @@ fun errorMessage(error: OnlineError): String = when (error) {
     OnlineError.INVALID_BET -> "Esa apuesta no está permitida con tus puntos."
     OnlineError.INVALID_OPTION -> "Opción no válida."
     OnlineError.INVALID_MODE -> "Esa modalidad no existe en el servidor."
+    OnlineError.INVALID_AUDIENCE -> "Las salas de niños y mixtas solo tienen preguntas generales."
+    OnlineError.WRONG_STATUS -> "La partida ya empezó: el nivel ya no se puede cambiar."
     OnlineError.NETWORK -> "Sin conexión con el servidor. Comprueba tu internet e inténtalo otra vez."
     OnlineError.UNKNOWN -> "Algo salió mal en el servidor. Inténtalo otra vez."
 }
@@ -173,11 +178,16 @@ private fun OnlineMenuScreen(state: OnlineUiState, actions: OnlineActions) {
                 }
             }
         }
+        AudienceCard(state, actions)
         GameLengthCard(state.length, actions.setLength)
 
         ArcadeCard(accent = ArcadeMagenta) {
             Text("Con amigos", style = MaterialTheme.typography.titleMedium, color = ArcadeMagenta)
-            Text("Crea una sala y comparte el código. De 2 a 4 jugadores, cada uno en su teléfono.", color = ArcadeTextMuted)
+            Text(
+                "Crea una sala y comparte el código. De 2 a 4 jugadores, cada uno en su teléfono. " +
+                    "Al entrar con código, el tipo de sala lo decide quien la creó.",
+                color = ArcadeTextMuted,
+            )
             ArcadeButton(
                 text = if (busy == OnlineBusy.CREATING) "Creando sala…" else "Crear sala privada",
                 onClick = actions.createPrivate,
@@ -203,12 +213,74 @@ private fun OnlineMenuScreen(state: OnlineUiState, actions: OnlineActions) {
 
         ArcadeCard(accent = ArcadeCyan) {
             Text("Partida pública", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
-            Text("Te unimos con otros jugadores que eligieron las mismas preguntas y la misma duración.", color = ArcadeTextMuted)
+            Text("Te unimos con otros jugadores que eligieron las mismas preguntas, el mismo tipo de sala y la misma duración.", color = ArcadeTextMuted)
             ArcadeButton(
                 text = if (busy == OnlineBusy.SEARCHING) "Buscando…" else "Buscar partida",
                 onClick = actions.findPublic,
                 enabled = busy == null,
                 color = ArcadeCyan,
+            )
+        }
+    }
+}
+
+fun audienceName(audience: OnlineAudience): String = when (audience) {
+    OnlineAudience.STANDARD -> "Normal"
+    OnlineAudience.KIDS -> "Niños"
+    OnlineAudience.MIXED -> "Mixta"
+}
+
+fun audienceHint(audience: OnlineAudience): String = when (audience) {
+    OnlineAudience.STANDARD -> "Preguntas normales y 8 segundos para responder."
+    OnlineAudience.KIDS -> "Todos reciben preguntas más fáciles, tienen 12 segundos y fallar una apuesta no resta puntos."
+    OnlineAudience.MIXED -> "Niños y mayores juntos: cada uno recibe una pregunta de la misma categoría pero de su nivel. " +
+        "Los niños tienen 12 segundos y los mayores 8."
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun AudienceCard(state: OnlineUiState, actions: OnlineActions) {
+    ArcadeCard(accent = ArcadeOrange) {
+        Text("Tipo de sala", style = MaterialTheme.typography.titleMedium, color = ArcadeOrange)
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            OnlineAudience.entries.forEach { a ->
+                FilterChip(
+                    selected = a == state.audience,
+                    onClick = { actions.setAudience(a) },
+                    label = { Text(audienceName(a)) },
+                    colors = FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = ArcadeOrange,
+                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                    ),
+                )
+            }
+        }
+        Text(audienceHint(state.audience), color = ArcadeTextMuted)
+        if (state.audience != OnlineAudience.STANDARD) {
+            Text("Solo con preguntas generales.", color = ArcadeTextMuted, style = MaterialTheme.typography.bodyMedium)
+        }
+        if (state.audience == OnlineAudience.MIXED) {
+            KidsLevelChips(state.kidsLevel, enabled = true, onChange = actions.setKidsLevel)
+        }
+    }
+}
+
+/** Nivel del jugador en una sala mixta. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun KidsLevelChips(kids: Boolean, enabled: Boolean, onChange: (Boolean) -> Unit) {
+    Text("Mis preguntas", style = MaterialTheme.typography.labelMedium, color = ArcadeTextMuted)
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        listOf(false to "Normales (8 s)", true to "De niños (12 s)").forEach { (value, label) ->
+            FilterChip(
+                selected = kids == value,
+                onClick = { if (kids != value) onChange(value) },
+                enabled = enabled,
+                label = { Text(label) },
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = ArcadeCyan,
+                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                ),
             )
         }
     }
@@ -223,7 +295,22 @@ private fun LobbyScreen(state: OnlineUiState, view: RoomView, actions: OnlineAct
     ArcadeScreen(title = if (view.room.isPublic) "Buscando rivales" else "Sala privada") {
         ReconnectBanner(state)
         ErrorCard(state, actions)
-        Text("Preguntas: ${state.modeName} · ${view.room.questionCount} preguntas", color = ArcadeTextMuted, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+        val audience = view.room.roomAudience
+        Text(
+            "Preguntas: ${state.modeName} · ${view.room.questionCount} preguntas" +
+                if (audience != OnlineAudience.STANDARD) " · Sala ${audienceName(audience).lowercase()}" else "",
+            color = ArcadeTextMuted,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+        )
+        if (audience != OnlineAudience.STANDARD) {
+            ArcadeCard(accent = ArcadeOrange) {
+                Text(audienceHint(audience), color = ArcadeTextMuted)
+                if (audience == OnlineAudience.MIXED) {
+                    KidsLevelChips(view.myKids, enabled = state.busy == null, onChange = actions.setKidsLevel)
+                }
+            }
+        }
         if (!view.room.isPublic) {
             ArcadeCard(accent = ArcadeOrange) {
                 Text("Código", style = MaterialTheme.typography.labelMedium, color = ArcadeTextMuted, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
@@ -247,7 +334,13 @@ private fun LobbyScreen(state: OnlineUiState, view: RoomView, actions: OnlineAct
         }
         ArcadeCard(accent = ArcadeCyan) {
             Text("Jugadores (${view.players.size}/${GameRules.MAX_PLAYERS})", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
-            view.players.forEach { p -> PlayerRow(p, view, trailing = if (p.userId == view.room.hostId) "anfitrión" else null) }
+            view.players.forEach { p ->
+                val tags = listOfNotNull(
+                    "anfitrión".takeIf { p.userId == view.room.hostId },
+                    "preguntas de niños".takeIf { p.kids && view.room.roomAudience == OnlineAudience.MIXED },
+                )
+                PlayerRow(p, view, trailing = tags.joinToString(" · ").ifEmpty { null })
+            }
         }
         val players = view.players.size
         when {
@@ -411,7 +504,7 @@ private fun RouletteView(view: RoomView, categoryName: (String) -> String) {
     if (view.room.length.isFirstOfRound(current.index)) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Ronda ${round.number}: ${round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
-            Text(roundRule(round), color = ArcadeTextMuted)
+            Text(roundRule(round, view.myKids), color = ArcadeTextMuted)
         }
     }
     ArcadeCard(accent = ArcadeOrange) {
@@ -436,6 +529,7 @@ private fun BettingView(state: OnlineUiState, view: RoomView, categoryName: (Str
     ArcadeCard(accent = ArcadeOrange) {
         Text("Categoría: ${categoryName(current.categoryId)}", style = MaterialTheme.typography.titleMedium)
         Text("Tienes ${me?.score ?: 0} puntos. La pregunta aparece cuando termine el tiempo de apuesta.", color = ArcadeTextMuted)
+        if (view.myKids) Text("Con preguntas de niños, si fallas no pierdes lo apostado.", color = ArcadeSuccess)
     }
     val myBet = current.myBet
     val allowed = current.allowedBets.orEmpty()
@@ -553,7 +647,15 @@ private fun RevealView(state: OnlineUiState, view: RoomView, categoryName: (Stri
                 PlayerAvatar(name = p.name, playerIndex = p.seat, size = 36, emoji = AvatarEmojis.getOrNull(p.avatarId))
                 Column(Modifier.weight(1f)) {
                     Text(p.name, style = MaterialTheme.typography.titleMedium)
-                    val answer = o.choice?.let { "${optionLetter(it)}. ${question.options.getOrElse(it) { "" }}" } ?: "Sin respuesta"
+                    // En una sala mixta, quien tiene otro nivel respondió otra pregunta: su opción no es de esta.
+                    val answer = when {
+                        !o.sameQuestion -> (if (p.kids) "Su pregunta de niños: " else "Su pregunta normal: ") + when (o.won) {
+                            true -> "acertó"
+                            false -> if (o.choice == null) "sin respuesta" else "falló"
+                            null -> if (o.choice == null) "sin respuesta" else "votó"
+                        }
+                        else -> o.choice?.let { "${optionLetter(it)}. ${question.options.getOrElse(it) { "" }}" } ?: "Sin respuesta"
+                    }
                     val extra = when {
                         current.isTiebreak && o.won == true && o.elapsedMs != null -> " · %.2f s".format(o.elapsedMs / 1000.0)
                         o.bet != null -> if (o.bet == 0) " · apuesta libre" else " · apostó ${o.bet}"
@@ -599,7 +701,7 @@ private fun SummaryView(state: OnlineUiState, view: RoomView, actions: OnlineAct
     RoundType.entries.getOrNull(finished.ordinal + 1)?.let { next ->
         ArcadeCard(accent = ArcadeViolet) {
             Text("Siguiente: ronda ${next.number}, ${next.title}", style = MaterialTheme.typography.titleMedium, color = ArcadeViolet)
-            Text(roundRule(next), color = ArcadeTextMuted)
+            Text(roundRule(next, view.myKids), color = ArcadeTextMuted)
         }
     }
     PhaseTimer(state, actions, "Siguiente ronda")

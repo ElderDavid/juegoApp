@@ -5,6 +5,7 @@ import { createAds } from "./ads.js";
 import { ApiError, createApi } from "./api.js";
 import { AVATARS, MODES, categoryName, modeName } from "./catalog.js";
 import {
+  AUDIENCES,
   AUTOSTART_TOTAL_MS,
   CODE_LENGTH,
   FREE_BET_REWARD,
@@ -12,6 +13,7 @@ import {
   MAX_PLAYERS,
   MIN_PLAYERS,
   ROUNDS,
+  audienceOf,
   clockRemaining,
   clockSeconds,
   displayCode,
@@ -27,6 +29,7 @@ import {
   playerById,
   questionCount,
   ranking,
+  roundRule,
   signed,
   startsRound,
 } from "./game.js";
@@ -48,6 +51,8 @@ const state = {
   profileDraft: null,
   mode: MODES.some((m) => m.id === prefs.mode) ? prefs.mode : "general",
   length: LENGTHS.includes(prefs.length) ? prefs.length : 12,
+  audience: AUDIENCES.some((a) => a.id === prefs.audience) ? prefs.audience : "standard",
+  kidsLevel: prefs.kidsLevel === true,
   codeInput: normalizeCode(new URLSearchParams(location.search).get("sala") ?? "").slice(0, CODE_LENGTH),
   busy: null,
   view: null,
@@ -94,8 +99,16 @@ async function boot() {
 const actions = {
   "pick-mode": (el) => {
     state.mode = el.dataset.value;
-    savePrefs({ mode: state.mode });
+    // Las salas de niños y mixtas solo tienen preguntas generales.
+    if (state.mode !== "general") state.audience = "standard";
+    savePrefs({ mode: state.mode, audience: state.audience });
   },
+  "pick-audience": (el) => {
+    state.audience = el.dataset.value;
+    if (state.audience !== "standard") state.mode = "general";
+    savePrefs({ mode: state.mode, audience: state.audience });
+  },
+  "pick-level": (el) => setKidsLevel(el.dataset.value === "kids"),
   "pick-length": (el) => {
     state.length = Number(el.dataset.value);
     savePrefs({ length: state.length });
@@ -112,12 +125,13 @@ const actions = {
   "dismiss-error": () => {
     state.error = null;
   },
-  create: () => enter("creating", () => api.createRoom(state.mode, state.length)),
+  create: () => enter("creating", () => api.createRoom(state.mode, state.length, state.audience, state.kidsLevel)),
   join: () => {
     if (!isValidCode(state.codeInput)) return;
-    enter("joining", () => api.joinByCode(state.codeInput));
+    // El tipo de sala lo puso quien la creó; aquí solo cuenta el nivel, por si es mixta.
+    enter("joining", () => api.joinByCode(state.codeInput, state.kidsLevel));
   },
-  "find-public": () => enter("searching", () => api.findPublic(state.mode, state.length)),
+  "find-public": () => enter("searching", () => api.findPublic(state.mode, state.length, state.audience, state.kidsLevel)),
   start: () => startRoom(),
   bet: (el) => act((v) => api.bet(v.room.id, v.current.index, Number(el.dataset.value))),
   answer: (el) => {
@@ -209,6 +223,25 @@ async function enter(busy, call) {
     state.busy = null;
     handleError(e);
   }
+  render();
+}
+
+/** Nivel en salas mixtas: antes de entrar se recuerda; en la sala de espera de una mixta se cambia en el servidor. */
+async function setKidsLevel(kids) {
+  state.kidsLevel = kids;
+  savePrefs({ kidsLevel: kids });
+  const room = state.view?.room;
+  if (!room || room.audience !== "mixed" || !inLobby(room) || state.busy) return;
+  state.busy = "level";
+  state.error = null;
+  render();
+  const seq = ++requestSeq;
+  try {
+    show(await api.setKidsLevel(room.id, kids), seq);
+  } catch (e) {
+    handleError(e);
+  }
+  state.busy = null;
   render();
 }
 
@@ -459,6 +492,12 @@ function menuHtml() {
       <div class="chips" role="group" aria-label="Preguntas">
         ${MODES.map((m) => chip("pick-mode", m.id, m.id === "general" ? "General" : `De aquí somos: ${m.name}`, m.id === state.mode)).join("")}
       </div>
+      <h2 class="violet">Tipo de sala</h2>
+      <div class="chips" role="group" aria-label="Tipo de sala">
+        ${AUDIENCES.map((a) => chip("pick-audience", a.id, a.name, a.id === state.audience)).join("")}
+      </div>
+      <p class="muted">${esc(audienceOf({ audience: state.audience }).hint)}${state.audience !== "standard" ? " Solo con preguntas generales." : ""}</p>
+      ${state.audience === "mixed" ? levelChips(state.kidsLevel, !!busy) : ""}
       <h2 class="violet">Duración</h2>
       <div class="chips" role="group" aria-label="Duración">
         ${LENGTHS.map((n) => chip("pick-length", n, `${n} preguntas`, n === state.length)).join("")}
@@ -466,7 +505,7 @@ function menuHtml() {
     </section>
     <section class="card accent-magenta stack">
       <h2 class="magenta">Con amigos</h2>
-      <p class="muted">Crea una sala y comparte el código, o entra con el código que te pasaron. Da igual si los demás juegan en Android o en el navegador.</p>
+      <p class="muted">Crea una sala y comparte el código, o entra con el código que te pasaron. Da igual si los demás juegan en Android o en el navegador. Al entrar con código, el tipo de sala lo decide quien la creó.</p>
       <button class="button magenta" data-action="create" ${busy ? "disabled" : ""}>${busy === "creating" ? "Creando sala…" : "Crear sala privada"}</button>
       <form id="join-form" class="stack">
         <label class="field">
@@ -478,7 +517,7 @@ function menuHtml() {
     </section>
     <section class="card accent-cyan stack">
       <h2 class="cyan">Partida pública</h2>
-      <p class="muted">Te unimos con otros jugadores que eligieron las mismas preguntas y duración.</p>
+      <p class="muted">Te unimos con otros jugadores que eligieron las mismas preguntas, el mismo tipo de sala y la misma duración.</p>
       <button class="button cyan" data-action="find-public" ${busy ? "disabled" : ""}>${busy === "searching" ? "Buscando…" : "Buscar partida"}</button>
     </section>
     <p class="muted small center-text">Juego online de 2 a 4 jugadores. Necesitas conexión a internet.</p>
@@ -489,12 +528,30 @@ function chip(action, value, label, selected) {
   return `<button class="chip${selected ? " selected" : ""}" data-action="${action}" data-value="${esc(String(value))}" aria-pressed="${selected}">${esc(label)}</button>`;
 }
 
+/** Nivel del jugador en una sala mixta. */
+function levelChips(kids, disabled) {
+  const options = [
+    ["adult", "Normales (8 s)", !kids],
+    ["kids", "De niños (12 s)", kids],
+  ];
+  return `<p class="label muted">Mis preguntas</p>
+      <div class="chips" role="group" aria-label="Mis preguntas">
+        ${options
+          .map(
+            ([value, label, selected]) =>
+              `<button class="chip${selected ? " selected" : ""}" data-action="pick-level" data-value="${value}" aria-pressed="${selected}" ${disabled ? "disabled" : ""}>${label}</button>`,
+          )
+          .join("")}
+      </div>`;
+}
+
 // ------------------------------------------------------------------ Sala de espera
 
 function lobbyHtml(view) {
   const room = view.room;
   const players = view.players.length;
   const isPublic = room.visibility === "public";
+  const audience = audienceOf(room);
   let footer;
   if (isPublic) {
     footer =
@@ -511,7 +568,15 @@ function lobbyHtml(view) {
   <main class="stack">
     ${reconnectBanner()}
     ${errorCard()}
-    <p class="muted center-text">Preguntas: ${esc(modeName(room.mode))} · ${questionCount(room)} preguntas</p>
+    <p class="muted center-text">Preguntas: ${esc(modeName(room.mode))} · ${questionCount(room)} preguntas${audience.id !== "standard" ? ` · Sala ${audience.name.toLowerCase()}` : ""}</p>
+    ${
+      audience.id === "standard"
+        ? ""
+        : `<section class="card accent-orange stack">
+        <p class="muted">${esc(audience.hint)}</p>
+        ${audience.id === "mixed" ? levelChips(!!view.my_kids, !!state.busy) : ""}
+      </section>`
+    }
     ${
       isPublic
         ? ""
@@ -523,7 +588,12 @@ function lobbyHtml(view) {
     }
     <section class="card accent-cyan stack">
       <h2 class="cyan">Jugadores (${players}/${MAX_PLAYERS})</h2>
-      ${view.players.map((p) => playerRow(p, view, p.user_id === room.host_id ? "anfitrión" : null)).join("")}
+      ${view.players
+        .map((p) => {
+          const tags = [p.user_id === room.host_id ? "anfitrión" : null, p.kids && audience.id === "mixed" ? "preguntas de niños" : null].filter(Boolean);
+          return playerRow(p, view, tags.join(" · ") || null);
+        })
+        .join("")}
     </section>
     ${footer}
     <button class="button outline" data-action="leave">Salir de la sala</button>
@@ -610,7 +680,7 @@ function rouletteHtml(view) {
   const round = roundOf(view);
   if (!current || !round) return "";
   const intro = startsRound(current.index, questionCount(view.room))
-    ? `<section class="card accent-violet"><h2 class="violet">Ronda ${round.number}: ${round.title}</h2><p class="muted">${round.rule}</p></section>`
+    ? `<section class="card accent-violet"><h2 class="violet">Ronda ${round.number}: ${round.title}</h2><p class="muted">${roundRule(round, view.my_kids)}</p></section>`
     : "";
   return `${roundHeader(view)}${intro}
   <section class="card accent-orange roulette">
@@ -643,6 +713,7 @@ function bettingHtml(view) {
   <section class="card accent-orange">
     <h2>Categoría: ${esc(categoryName(current.category_id))}</h2>
     <p class="muted">Tienes ${me?.score ?? 0} puntos. La pregunta aparece cuando termine el tiempo de apuesta.</p>
+    ${view.my_kids ? `<p class="success">Con preguntas de niños, si fallas no pierdes lo apostado.</p>` : ""}
   </section>
   ${choice}
   ${waitingFor(view, (p) => p.bet_placed)}`;
@@ -706,7 +777,13 @@ function revealHtml(view) {
     .map((o) => {
       const p = playerById(view, o.user_id);
       if (!p) return "";
-      const answer = o.choice != null ? `${optionLetter(o.choice)}. ${esc(q.options[o.choice] ?? "")}` : "Sin respuesta";
+      // En una sala mixta, quien tiene otro nivel respondió otra pregunta: su opción no es de esta.
+      const answer =
+        o.same_question === false
+          ? `${p.kids ? "Su pregunta de niños" : "Su pregunta normal"}: ${o.won ? "acertó" : o.choice == null ? "sin respuesta" : "falló"}`
+          : o.choice != null
+            ? `${optionLetter(o.choice)}. ${esc(q.options[o.choice] ?? "")}`
+            : "Sin respuesta";
       let extra = "";
       if (tiebreak && o.won && o.elapsed_ms != null) extra = ` · ${(o.elapsed_ms / 1000).toFixed(2).replace(".", ",")} s`;
       else if (o.bet != null) extra = o.bet === 0 ? " · apuesta libre" : ` · apostó ${o.bet}`;
@@ -747,7 +824,7 @@ function summaryHtml(view) {
   const next = ROUNDS[finished.number];
   return `<h1 class="neon">Fin de la ronda ${finished.number}</h1>
   ${scoreboard(view)}
-  ${next ? `<section class="card accent-violet"><h2 class="violet">Siguiente: ronda ${next.number}, ${next.title}</h2><p class="muted">${next.rule}</p></section>` : ""}
+  ${next ? `<section class="card accent-violet"><h2 class="violet">Siguiente: ronda ${next.number}, ${next.title}</h2><p class="muted">${roundRule(next, view.my_kids)}</p></section>` : ""}
   ${timer("Siguiente ronda")}`;
 }
 

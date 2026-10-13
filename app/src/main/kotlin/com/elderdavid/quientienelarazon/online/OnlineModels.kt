@@ -12,6 +12,8 @@ import kotlinx.serialization.Serializable
 data class RoomView(
     val room: RoomInfo,
     val me: String,
+    /** true si este jugador recibe preguntas para niños (sala de niños, o sala mixta con ese nivel). */
+    @SerialName("my_kids") val myKids: Boolean = false,
     val players: List<RoomPlayer>,
     val current: CurrentQuestion? = null,
     val result: QuestionOutcome? = null,
@@ -36,6 +38,8 @@ data class RoomInfo(
     val code: String,
     val visibility: String,
     val mode: String,
+    /** Tipo de sala: «standard», «kids» o «mixed» (ver [OnlineAudience]). */
+    val audience: String = OnlineAudience.STANDARD.id,
     val status: String,
     val phase: String? = null,
     @SerialName("host_id") val hostId: String,
@@ -50,6 +54,7 @@ data class RoomInfo(
 ) {
     val length: GameLength get() = GameLength.fromQuestions(questionCount) ?: GameLength.DEFAULT
     val isPublic: Boolean get() = visibility == "public"
+    val roomAudience: OnlineAudience get() = OnlineAudience.from(audience)
     val inLobby: Boolean get() = status == "waiting" || status == "ready"
     val isOver: Boolean get() = status == "finished" || status == "cancelled"
 }
@@ -61,6 +66,8 @@ data class RoomPlayer(
     val name: String,
     @SerialName("avatar_id") val avatarId: Int,
     val score: Int,
+    /** Recibe preguntas para niños. */
+    val kids: Boolean = false,
     val connected: Boolean,
     val left: Boolean,
     @SerialName("in_tiebreak") val inTiebreak: Boolean = false,
@@ -111,7 +118,25 @@ data class PlayerAnswer(
     val won: Boolean? = null,
     val points: Int,
     val bet: Int? = null,
+    /** false si respondió otra pregunta (sala mixta, otro nivel): su [choice] no es una opción de esta. */
+    @SerialName("same_question") val sameQuestion: Boolean = true,
 )
+
+/**
+ * Tipos de sala. En la de niños todos reciben preguntas para niños con 12 s; en la mixta cada
+ * jugador elige su nivel y recibe una pregunta de la misma categoría pero de su banco.
+ * Las salas de niños y mixtas solo existen con preguntas generales.
+ */
+enum class OnlineAudience(val id: String) {
+    STANDARD("standard"),
+    KIDS("kids"),
+    MIXED("mixed"),
+    ;
+
+    companion object {
+        fun from(id: String?): OnlineAudience = entries.firstOrNull { it.id == id } ?: STANDARD
+    }
+}
 
 @Serializable
 data class FinalEntry(@SerialName("user_id") val userId: String, val correct: Int)
@@ -137,6 +162,8 @@ enum class OnlineError(val code: String) {
     INVALID_BET("invalid_bet"),
     INVALID_OPTION("invalid_option"),
     INVALID_MODE("invalid_mode"),
+    INVALID_AUDIENCE("invalid_audience"),
+    WRONG_STATUS("wrong_status"),
     NETWORK("network"),
     UNKNOWN("unknown"),
     ;
@@ -159,10 +186,13 @@ interface OnlineRepository {
 
     /** Sala en la que el jugador sigue dentro (para reconectar al volver). null si no hay. */
     suspend fun currentRoom(): OnlineResult<RoomView?>
-    suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength): OnlineResult<RoomView>
-    suspend fun joinByCode(code: String): OnlineResult<RoomView>
-    /** Busca una sala pública de la misma modalidad y duración; si no hay, crea una. */
-    suspend fun findPublic(mode: String, length: GameLength): OnlineResult<RoomView>
+    /** [kids]: nivel del jugador si la sala es mixta (en las demás no cuenta). */
+    suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength, audience: OnlineAudience, kids: Boolean): OnlineResult<RoomView>
+    suspend fun joinByCode(code: String, kids: Boolean): OnlineResult<RoomView>
+    /** Busca una sala pública de la misma modalidad, tipo y duración; si no hay, crea una. */
+    suspend fun findPublic(mode: String, length: GameLength, audience: OnlineAudience, kids: Boolean): OnlineResult<RoomView>
+    /** Cambia el nivel del jugador en una sala mixta, antes de empezar. */
+    suspend fun setKidsLevel(roomId: String, kids: Boolean): OnlineResult<RoomView>
     suspend fun state(roomId: String): OnlineResult<RoomView>
     suspend fun start(roomId: String): OnlineResult<RoomView>
     suspend fun leave(roomId: String): OnlineResult<Unit>

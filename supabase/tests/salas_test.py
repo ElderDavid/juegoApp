@@ -115,14 +115,16 @@ def age_phase(admin, room, millis):
     )
 
 
-def key_for(admin, room, is_tiebreak, idx):
+def key_for(admin, room, is_tiebreak, idx, for_kids=None):
+    """Clave de la pregunta. En salas mixtas hay dos por turno: [for_kids] elige la de niños o la normal."""
     cur = admin.cursor()
     cur.execute(
         "select k.correct_index, q.is_vote, jsonb_array_length(q.options) from public.room_questions rq"
         " join public.question_keys k on k.question_id = rq.question_id"
         " join public.questions q on q.id = rq.question_id"
-        " where rq.room_id = %s and rq.is_tiebreak = %s and rq.idx = %s",
-        (room, is_tiebreak, idx),
+        " where rq.room_id = %s and rq.is_tiebreak = %s and rq.idx = %s"
+        " and (%s is null or rq.for_kids = %s)",
+        (room, is_tiebreak, idx, for_kids, for_kids),
     )
     return cur.fetchone()
 
@@ -510,13 +512,166 @@ def test_planner_all_modes(admin):
                     break
                 cur.execute(
                     "select count(distinct rq.question_id), bool_and(not q.is_vote or rq.round in (1, 3)),"
-                    " bool_and(q.region_id is not distinct from nullif(%s, 'general'))"
+                    " bool_and(q.region_id is not distinct from nullif(%s, 'general') and q.audience = 'ALL')"
                     " from public.room_questions rq join public.questions q on q.id = rq.question_id"
                     " where rq.room_id = %s and not rq.is_tiebreak", (mode, room))
                 distinct, votes_ok, same_pool = cur.fetchone()
                 ok = ok and distinct == 12 and votes_ok and same_pool
         check(ok, f"modalidad {mode}: 12 preguntas distintas de su banco, votaciones solo en rondas 1 y 3")
     cur.execute("delete from public.rooms where id = %s", (room,))
+
+
+def test_kids_room(admin):
+    print("Sala de niños")
+    a, b = Player(admin, "Nico"), Player(admin, "Olga")
+    expect_error("invalid_audience", lambda: a.call("create_room", "private", "cesar", 12, "kids"), "sala de niños solo en general")
+    expect_error("invalid_audience", lambda: a.call("create_room", "private", "general", 12, "infantil"), "tipo de sala inexistente")
+    s = a.call("create_room", "private", "general", 12, "kids")
+    room = s["room"]["id"]
+    check(s["room"]["audience"] == "kids" and s["my_kids"] is True, "sala de niños: preguntas de niños para quien la crea")
+    s = b.call("join_room_by_code", s["room"]["code"])
+    check(all(p["kids"] for p in s["players"]), "en la sala de niños todos juegan con preguntas de niños")
+    expect_error("invalid_audience", lambda: b.call("set_kids_level", room, False), "el nivel solo se elige en salas mixtas")
+    a.call("start_room", room)
+    cur = admin.cursor()
+    cur.execute(
+        "select count(*) filter (where not rq.is_tiebreak), count(*) filter (where rq.is_tiebreak),"
+        " bool_and(rq.for_kids), bool_and(q.audience = 'KIDS'), bool_or(q.is_vote)"
+        " from public.room_questions rq join public.questions q on q.id = rq.question_id where rq.room_id = %s", (room,))
+    check(cur.fetchone() == (12, 5, True, True, False), "12 preguntas y 5 de desempate, todas de niños y sin votaciones")
+    lost_bet = False
+    for _ in range(300):
+        s = a.state(room)
+        b.state(room)
+        r = s["room"]
+        if r["status"] == "finished":
+            break
+        if r["phase"] == "betting":
+            for p in (a, b):
+                allowed = p.state(room)["current"]["allowed_bets"]
+                p.call("submit_bet", room, s["current"]["index"], max(allowed) if allowed else 0)
+        elif r["phase"] == "question":
+            idx = s["current"]["index"]
+            check(r["phase_total_ms"] == 12000 and 8000 < r["phase_remaining_ms"] <= 12000, f"pregunta {idx + 1}: 12 s para responder")
+            correct, _, n = key_for(admin, room, False, idx)
+            age_phase(admin, room, 11000)
+            a.call("submit_answer", room, idx, correct, 11000)  # a los 11 s todavía vale
+            before = next(p["score"] for p in b.state(room)["players"] if p["user_id"] == b.id)
+            # Olga acierta hasta la ronda de apuestas y allí falla.
+            b.call("submit_answer", room, idx, wrong(correct, n) if s["current"]["round"] >= 3 else correct, 11000)
+            s = a.state(room)
+            check(s["room"]["phase"] == "reveal", f"pregunta {idx + 1}: se revela al responder los dos")
+            olga = next(o for o in s["result"]["outcomes"] if o["user_id"] == b.id)
+            if s["current"]["round"] >= 3:
+                check(olga["points"] == 0 and olga["won"] is False, f"pregunta {idx + 1}: fallar no resta puntos")
+            if olga["bet"]:
+                lost_bet = True
+                after = next(p["score"] for p in s["players"] if p["user_id"] == b.id)
+                check(after == before, "con preguntas de niños fallar la apuesta no la pierde")
+        expire(admin, room)
+    s = a.state(room)
+    check(s["room"]["status"] == "finished" and s["room"]["winners"] == [a.id], "la sala de niños termina con ganador")
+    check(lost_bet, "se probó una apuesta fallada")
+    check(stats(admin, a)[3] == 12 and stats(admin, a)[4] == 12, "aciertos de niños cuentan en las estadísticas")
+
+    x, y, z = Player(admin, "PubN1"), Player(admin, "PubN2"), Player(admin, "PubN3")
+    r1 = x.call("find_public_room", "general", 12, "kids")["room"]
+    r2 = y.call("find_public_room", "general", 12, "kids")["room"]
+    r3 = z.call("find_public_room", "general", 12)["room"]
+    check(r1["id"] == r2["id"] and r1["audience"] == "kids", "pública de niños: se emparejan entre sí")
+    check(r3["id"] != r1["id"], "pública normal no entra en la de niños")
+
+
+def test_mixed_room(admin):
+    print("Sala mixta")
+    adult, kid, other = Player(admin, "Papá"), Player(admin, "Sofi"), Player(admin, "Tomi")
+    s = adult.call("create_room", "private", "general", 8, "mixed", False)
+    room, code = s["room"]["id"], s["room"]["code"]
+    check(s["room"]["audience"] == "mixed" and s["my_kids"] is False, "sala mixta: quien la crea juega con preguntas normales")
+    s = kid.call("join_room_by_code", code, True)
+    check(s["my_kids"] is True, "Sofi entra con preguntas de niños")
+    other.call("join_room_by_code", code)
+    s = other.call("set_kids_level", room, True)
+    check(s["my_kids"] is True, "Tomi cambia a preguntas de niños en la sala de espera")
+    s = other.call("set_kids_level", room, False)
+    check(s["my_kids"] is False and [p["kids"] for p in s["players"]] == [False, True, False], "el nivel de cada uno se ve en la sala")
+    check(kid.call("join_room_by_code", code, False)["my_kids"] is True, "reconectarse conserva el nivel elegido")
+    adult.call("start_room", room)
+    expect_error("wrong_status", lambda: kid.call("set_kids_level", room, False), "el nivel no cambia con la partida empezada")
+
+    cur = admin.cursor()
+    cur.execute(
+        "select rq.idx, rq.for_kids, rq.category_id, q.audience, q.is_vote from public.room_questions rq"
+        " join public.questions q on q.id = rq.question_id where rq.room_id = %s and not rq.is_tiebreak order by rq.idx, rq.for_kids",
+        (room,))
+    rows = cur.fetchall()
+    pairs = {}
+    for idx, for_kids, category, audience, is_vote in rows:
+        pairs.setdefault(idx, {})[for_kids] = (category, audience, is_vote)
+    check(len(pairs) == 8 and all(set(v) == {False, True} for v in pairs.values()), "8 turnos con una pregunta normal y otra de niños")
+    check(all(v[False][0] == v[True][0] for v in pairs.values()), "las dos preguntas de cada turno son de la misma categoría")
+    check(all(v[False][1] == "ALL" and v[True][1] == "KIDS" for v in pairs.values()), "cada pregunta es del banco de su nivel")
+    check(not any(v[False][2] for v in pairs.values()), "sin votaciones en salas mixtas")
+    cur.execute("select count(*) filter (where for_kids), count(*) filter (where not for_kids) from public.room_questions"
+                " where room_id = %s and is_tiebreak", (room,))
+    check(cur.fetchone() == (5, 5), "desempate reservado para los dos niveles")
+
+    played = 0
+    for _ in range(300):
+        s = adult.state(room)
+        r = s["room"]
+        if r["status"] == "finished":
+            break
+        if r["phase"] == "betting":
+            for p in (adult, kid, other):
+                allowed = p.state(room)["current"]["allowed_bets"]
+                p.call("submit_bet", room, s["current"]["index"], max(allowed) if allowed else 0)
+        elif r["phase"] == "question":
+            idx = s["current"]["index"]
+            played += 1
+            ks = kid.state(room)
+            check(r["phase_total_ms"] == 8000 and ks["room"]["phase_total_ms"] == 12000, f"turno {idx + 1}: 8 s para mayores y 12 s para niños")
+            check(s["current"]["question"]["text"] != ks["current"]["question"]["text"], f"turno {idx + 1}: cada nivel ve su pregunta")
+            check(s["current"]["category_id"] == ks["current"]["category_id"], f"turno {idx + 1}: misma categoría")
+            adult_key, _, _ = key_for(admin, room, False, idx, False)
+            kid_key, _, kid_n = key_for(admin, room, False, idx, True)
+            adult.call("submit_answer", room, idx, adult_key, 2000)
+            if idx == 0:
+                age_phase(admin, room, 9700)
+                expect_error("time_expired", lambda: other.call("submit_answer", room, idx, 0, 9700), "un mayor no responde después de 8 s")
+                kid.call("submit_answer", room, idx, kid_key, 9700)  # para Sofi todavía hay tiempo
+                check(adult.state(room)["room"]["phase"] == "question", "la pregunta sigue abierta mientras quede tiempo de niños")
+                expire(admin, room)
+            else:
+                kid.call("submit_answer", room, idx, wrong(kid_key, kid_n), 3000)
+                other.call("submit_answer", room, idx, adult_key, 3000)
+            s = adult.state(room)
+            check(s["room"]["phase"] == "reveal", f"turno {idx + 1}: revelación")
+            outcomes = {o["user_id"]: o for o in s["result"]["outcomes"]}
+            check(outcomes[kid.id]["same_question"] is False and outcomes[other.id]["same_question"] is True,
+                  f"turno {idx + 1}: se marca quién respondió otra pregunta")
+            check(s["result"]["winning_options"] == [adult_key], f"turno {idx + 1}: el mayor ve la solución de su pregunta")
+            ks = kid.state(room)
+            check(ks["result"]["winning_options"] == [kid_key], f"turno {idx + 1}: la niña ve la solución de la suya")
+            check({o["user_id"]: o["same_question"] for o in ks["result"]["outcomes"]} == {adult.id: False, kid.id: True, other.id: False},
+                  f"turno {idx + 1}: la vista de la niña marca a los mayores")
+            if idx == 0:
+                check(outcomes[kid.id]["won"] is True and outcomes[kid.id]["points"] == 100, "acertar a los 9,7 s con 12 s sí puntúa")
+                check(outcomes[other.id]["choice"] is None and outcomes[other.id]["points"] == 0, "la respuesta tardía del mayor no cuenta")
+            else:
+                check(outcomes[kid.id]["points"] == 0, f"turno {idx + 1}: la niña falla sin perder puntos")
+        expire(admin, room)
+    s = adult.state(room)
+    check(s["room"]["status"] == "finished" and played == 8, "la sala mixta termina")
+    final = {f["user_id"]: f["correct"] for f in s["final"]}
+    check(final == {adult.id: 8, kid.id: 1, other.id: 7}, f"aciertos de cada uno sobre su propia pregunta {final}")
+    check(stats(admin, kid)[3:5] == (1, 8), "estadísticas de la niña con sus preguntas")
+
+    p = Player(admin, "Mixto")
+    expect_error("invalid_audience", lambda: p.call("find_public_room", "atlantico", 12, "mixed"), "pública mixta solo en general")
+    m1 = p.call("find_public_room", "general", 12, "mixed", True)["room"]
+    m2 = Player(admin, "Mixto2").call("find_public_room", "general", 12, "mixed", False)["room"]
+    check(m1["id"] == m2["id"], "pública mixta: niños y mayores comparten sala")
 
 
 def test_leaderboard(admin):
@@ -577,8 +732,10 @@ def main():
     cur = admin.cursor()
     cur.execute("select count(*), count(*) filter (where region_id is null) from public.questions")
     total, general = cur.fetchone()
-    print(f"Banco en la base de datos: {total} preguntas ({general} generales)")
-    check(total == 380 and general == 140, "banco completo cargado")
+    cur.execute("select count(*) from public.questions where audience = 'KIDS'")
+    kids = cur.fetchone()[0]
+    print(f"Banco en la base de datos: {total} preguntas ({general} generales, {kids} de niños)")
+    check(total - kids == 380 and general - kids == 140 and kids == 111, "banco completo cargado")
     test_planner_all_modes(admin)
     test_private_room_and_security(admin)
     test_full_game_three_players(admin)
@@ -586,6 +743,8 @@ def main():
     test_timing_and_disconnects(admin)
     test_lobby_and_matchmaking(admin)
     test_game_lengths(admin)
+    test_kids_room(admin)
+    test_mixed_room(admin)
     test_rate_limit(admin)
     test_leaderboard(admin)
     test_delete_account(admin)

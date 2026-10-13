@@ -34,17 +34,30 @@ class SupabaseOnlineRepository(
         return decode(raw.value)
     }
 
-    override suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength) = view("create_room") {
-        put("p_visibility", if (publicRoom) "public" else "private")
-        put("p_mode", mode)
-        put("p_questions", length.questions)
+    override suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength, audience: OnlineAudience, kids: Boolean) =
+        view("create_room") {
+            put("p_visibility", if (publicRoom) "public" else "private")
+            put("p_mode", mode)
+            put("p_questions", length.questions)
+            put("p_audience", audience.id)
+            put("p_kids", kids)
+        }
+
+    override suspend fun joinByCode(code: String, kids: Boolean) = view("join_room_by_code") {
+        put("p_code", code)
+        put("p_kids", kids)
     }
 
-    override suspend fun joinByCode(code: String) = view("join_room_by_code") { put("p_code", code) }
-
-    override suspend fun findPublic(mode: String, length: GameLength) = view("find_public_room") {
+    override suspend fun findPublic(mode: String, length: GameLength, audience: OnlineAudience, kids: Boolean) = view("find_public_room") {
         put("p_mode", mode)
         put("p_questions", length.questions)
+        put("p_audience", audience.id)
+        put("p_kids", kids)
+    }
+
+    override suspend fun setKidsLevel(roomId: String, kids: Boolean) = view("set_kids_level") {
+        put("p_room", roomId)
+        put("p_kids", kids)
     }
 
     override suspend fun state(roomId: String) = view("room_state") { put("p_room", roomId) }

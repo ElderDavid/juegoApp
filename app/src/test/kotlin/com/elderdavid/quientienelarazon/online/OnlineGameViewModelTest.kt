@@ -51,12 +51,27 @@ private class FakeOnline : OnlineRepository {
     var stateCalls = 0
     var joinedCode: String? = null
     val requestedLengths = mutableListOf<GameLength>()
+    val requests = mutableListOf<Triple<String, OnlineAudience?, Boolean>>()
+    val levels = mutableListOf<Boolean>()
 
     override suspend fun ensureSignedIn(): OnlineResult<Unit> = OnlineResult.Ok(Unit)
     override suspend fun currentRoom(): OnlineResult<RoomView?> = OnlineResult.Ok(current)
-    override suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength): OnlineResult<RoomView> { requestedLengths += length; return next }
-    override suspend fun joinByCode(code: String): OnlineResult<RoomView> { joinedCode = code; return next }
-    override suspend fun findPublic(mode: String, length: GameLength): OnlineResult<RoomView> { requestedLengths += length; return next }
+    override suspend fun createRoom(publicRoom: Boolean, mode: String, length: GameLength, audience: OnlineAudience, kids: Boolean): OnlineResult<RoomView> {
+        requestedLengths += length
+        requests += Triple(mode, audience, kids)
+        return next
+    }
+    override suspend fun joinByCode(code: String, kids: Boolean): OnlineResult<RoomView> {
+        joinedCode = code
+        requests += Triple(code, null, kids)
+        return next
+    }
+    override suspend fun findPublic(mode: String, length: GameLength, audience: OnlineAudience, kids: Boolean): OnlineResult<RoomView> {
+        requestedLengths += length
+        requests += Triple(mode, audience, kids)
+        return next
+    }
+    override suspend fun setKidsLevel(roomId: String, kids: Boolean): OnlineResult<RoomView> { levels += kids; return next }
     override suspend fun state(roomId: String): OnlineResult<RoomView> { stateCalls++; return stateResult }
     override suspend fun start(roomId: String) = next
     override suspend fun leave(roomId: String): OnlineResult<Unit> { leaves++; return OnlineResult.Ok(Unit) }
@@ -76,8 +91,8 @@ class OnlineGameViewModelTest {
     @Before fun setUp() = Dispatchers.setMain(dispatcher)
     @After fun tearDown() = Dispatchers.resetMain()
 
-    private fun TestScope.vm(repo: OnlineRepository?): OnlineGameViewModel =
-        OnlineGameViewModel(repo, loadBank = { bank }, clock = { time }).also { runCurrent() }
+    private fun TestScope.vm(repo: OnlineRepository?, child: Boolean = false): OnlineGameViewModel =
+        OnlineGameViewModel(repo, loadBank = { bank }, clock = { time }, childPlayer = child).also { runCurrent() }
 
     @Test
     fun withoutServerOnlineIsUnavailable() = runTest(dispatcher) {
@@ -205,9 +220,78 @@ class OnlineGameViewModelTest {
     }
 
     @Test
+    fun roomTypeAndLevelAreSent() = runTest(dispatcher) {
+        val repo = FakeOnline()
+        val vm = vm(repo)
+        assertEquals(OnlineAudience.STANDARD, vm.state.value.audience)
+        vm.setMode("cesar")
+        vm.setAudience(OnlineAudience.MIXED)
+        assertEquals("las salas mixtas solo son generales", "general", vm.state.value.mode)
+        vm.setKidsLevel(true)
+        vm.findPublic()
+        runCurrent()
+        assertEquals(Triple("general", OnlineAudience.MIXED, true), repo.requests.last())
+        vm.leave()
+        runCurrent()
+        vm.setMode("cesar")
+        assertEquals("un departamento vuelve a la sala normal", OnlineAudience.STANDARD, vm.state.value.audience)
+        vm.setCode("ABC234")
+        vm.joinByCode()
+        runCurrent()
+        assertEquals(Triple("ABC234", null, true), repo.requests.last())
+        vm.leave()
+    }
+
+    @Test
+    fun childrenStartWithKidsRooms() = runTest(dispatcher) {
+        val vm = vm(FakeOnline(), child = true)
+        assertEquals(OnlineAudience.KIDS, vm.state.value.audience)
+        assertTrue(vm.state.value.kidsLevel)
+    }
+
+    @Test
+    fun levelChangesOnTheServerOnlyInAMixedLobby() = runTest(dispatcher) {
+        val mixed = view().let { it.copy(room = it.room.copy(audience = "mixed")) }
+        val repo = FakeOnline().apply { current = mixed; next = OnlineResult.Ok(mixed.copy(myKids = true)) }
+        val vm = vm(repo)
+        vm.setKidsLevel(true)
+        runCurrent()
+        assertEquals(listOf(true), repo.levels)
+        assertTrue(vm.state.value.view!!.myKids)
+        vm.leave()
+
+        val standard = FakeOnline().apply { current = view() }
+        val vm2 = vm(standard)
+        vm2.setKidsLevel(true)
+        runCurrent()
+        assertTrue("en una sala normal no se llama al servidor", standard.levels.isEmpty())
+        vm2.leave()
+    }
+
+    @Test
+    fun mixedRoomFieldsAreDecoded() {
+        val json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true }
+        val raw = """
+            {"room": {"id": "r", "code": "ABC234", "visibility": "private", "mode": "general", "audience": "mixed",
+                      "status": "playing", "host_id": "me"},
+             "me": "me", "my_kids": true,
+             "players": [{"user_id": "me", "seat": 0, "name": "Sofi", "avatar_id": 1, "score": 0, "kids": true,
+                          "connected": true, "left": false}],
+             "result": {"winning_options": [1], "scored": true, "explanation": "", "outcomes": [
+                 {"user_id": "papa", "choice": 2, "won": true, "points": 100, "same_question": false}]}}
+        """.trimIndent()
+        val view = json.decodeFromString(RoomView.serializer(), raw)
+        assertEquals(OnlineAudience.MIXED, view.room.roomAudience)
+        assertTrue(view.myKids && view.players.single().kids)
+        assertFalse(view.result!!.outcomes.single().sameQuestion)
+        assertEquals(OnlineAudience.STANDARD, OnlineAudience.from(null))
+    }
+
+    @Test
     fun errorCodesAreRecognized() {
         assertEquals(OnlineError.TIME_EXPIRED, OnlineError.from("time_expired"))
         assertEquals(OnlineError.ROOM_NOT_FOUND, OnlineError.from("room_not_found"))
+        assertEquals(OnlineError.INVALID_AUDIENCE, OnlineError.from("invalid_audience"))
         assertEquals(OnlineError.UNKNOWN, OnlineError.from("algo raro"))
         assertEquals(OnlineError.UNKNOWN, OnlineError.from(null))
     }
