@@ -108,6 +108,14 @@ servidor coincide con el archivo: 380 preguntas (140 generales), 380 soluciones 
 MD5 de todas las filas que en una base local cargada con el archivo original. Al cambiar el banco,
 vuelve a generar el archivo y aplícalo entero (por ejemplo con `supabase db push`).
 
+El modo niños online (13/10/2026) también se cargó en partes: `modo_ninos_online_1_utilidades` y
+`modo_ninos_online_2_columnas` figuran en el historial de migraciones, y el resto (cambio de claves
+primarias, funciones con borrados y las 111 preguntas para niños) se ejecutó desde el SQL Editor de
+Supabase, porque la herramienta de migraciones pide confirmar las sentencias que borran. El
+resultado se comprobó contra una base local cargada con `20261013000000_modo_ninos_online.sql` y
+`20261013000100_preguntas_ninos.sql`: mismas funciones (sin contar espacios), mismos permisos y la
+misma suma MD5 de las 491 preguntas.
+
 ## Pruebas
 
 `supabase/tests/salas_test.py` crea una base de datos PostgreSQL desechable con una simulación de
