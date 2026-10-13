@@ -25,9 +25,12 @@ object AdMobTestIds {
     const val APP = "ca-app-pub-3940256099942544~3347511713"
     const val INTERSTITIAL = "ca-app-pub-3940256099942544/1033173712"
     const val BANNER = "ca-app-pub-3940256099942544/9214589741"
+    const val REWARDED = "ca-app-pub-3940256099942544/5224354917"
 }
 val admobRelease = listOf("admob.appId", "admob.interstitialId", "admob.bannerId").map(::clientConfig)
 val admobReleaseConfigured = admobRelease.all { it.isNotEmpty() }
+// Videos con recompensa: opcional. Sin admob.rewardedId la release no ofrece videos.
+val admobRewardedRelease = clientConfig("admob.rewardedId")
 
 // Firma de la release. keystore.properties y el .jks NUNCA se suben (están en .gitignore).
 // Sin ese archivo, la release se compila sin firmar (sirve para comprobar R8 en CI, no para Play).
@@ -74,6 +77,7 @@ android {
             buildConfigField("boolean", "ADS_ENABLED", "true")
             buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${AdMobTestIds.INTERSTITIAL}\"")
             buildConfigField("String", "ADMOB_BANNER_ID", "\"${AdMobTestIds.BANNER}\"")
+            buildConfigField("String", "ADMOB_REWARDED_ID", "\"${AdMobTestIds.REWARDED}\"")
         }
         release {
             if (releaseSigningConfigured) signingConfig = signingConfigs.getByName("release")
@@ -82,6 +86,7 @@ android {
             buildConfigField("boolean", "ADS_ENABLED", admobReleaseConfigured.toString())
             buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${admobRelease[1]}\"")
             buildConfigField("String", "ADMOB_BANNER_ID", "\"${admobRelease[2]}\"")
+            buildConfigField("String", "ADMOB_REWARDED_ID", "\"${if (admobReleaseConfigured) admobRewardedRelease else ""}\"")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -117,12 +122,14 @@ dependencies {
     implementation(platform(libs.supabase.bom))
     implementation(libs.supabase.auth)
     implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.functions)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services)
     implementation(libs.googleid)
     implementation(libs.play.services.ads)
     implementation(libs.ump)
+    implementation(libs.play.billing)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)

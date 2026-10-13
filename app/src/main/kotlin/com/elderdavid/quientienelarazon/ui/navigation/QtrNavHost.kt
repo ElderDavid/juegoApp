@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.elderdavid.quientienelarazon.AppContainer
 import com.elderdavid.quientienelarazon.account.ProfileViewModel
+import com.elderdavid.quientienelarazon.economy.EconomyViewModel
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.online.OnlineGameViewModel
 import com.elderdavid.quientienelarazon.settings.SettingsViewModel
@@ -19,6 +20,7 @@ import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
 import com.elderdavid.quientienelarazon.ui.screens.ProfileScreen
 import com.elderdavid.quientienelarazon.ui.screens.RulesScreen
 import com.elderdavid.quientienelarazon.ui.screens.SettingsScreen
+import com.elderdavid.quientienelarazon.ui.screens.ShopScreen
 import com.elderdavid.quientienelarazon.ui.screens.StatsScreen
 import kotlin.random.Random
 
@@ -32,6 +34,7 @@ object Routes {
     const val PROFILE = "profile"
     const val ONLINE = "online"
     const val STATS = "stats"
+    const val SHOP = "shop"
 }
 
 @Composable
@@ -52,6 +55,7 @@ fun QtrNavHost(container: AppContainer) {
                 onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
                 onOnline = { navController.navigate(Routes.ONLINE) },
                 onProfile = { navController.navigate(Routes.PROFILE) },
+                onShop = { navController.navigate(Routes.SHOP) },
                 onStats = { navController.navigate(Routes.STATS) },
                 onRules = { navController.navigate(Routes.RULES) },
                 onSettings = { navController.navigate(Routes.SETTINGS) },
@@ -64,12 +68,14 @@ fun QtrNavHost(container: AppContainer) {
                     clock = SystemClock::elapsedRealtime,
                     newSeed = { Random.nextLong() },
                     recordFinished = container.localHistoryRepository::record,
+                    economy = container.economyRepository,
                 ),
             )
             LocalGameRoute(
                 viewModel = vm,
                 settingsRepository = container.settingsRepository,
                 ads = container.ads,
+                equippedFlow = container.economyCache.equipped,
                 onExit = { navController.popBackStack() },
             )
         }
@@ -98,9 +104,14 @@ fun QtrNavHost(container: AppContainer) {
             )
             ProfileScreen(
                 viewModel = vm,
+                economy = economyViewModel(container),
                 googleWebClientId = container.supabaseSettings.googleWebClientId,
+                onShop = { navController.navigate(Routes.SHOP) },
                 onBack = { navController.popBackStack() },
             )
+        }
+        composable(Routes.SHOP) {
+            ShopScreen(viewModel = economyViewModel(container), onBack = { navController.popBackStack() })
         }
         composable(Routes.STATS) {
             val vm: StatsViewModel = viewModel(
@@ -119,7 +130,18 @@ fun QtrNavHost(container: AppContainer) {
         }
         composable(Routes.SETTINGS) {
             val vm: SettingsViewModel = viewModel(factory = SettingsViewModel.factory(container.settingsRepository))
-            SettingsScreen(viewModel = vm, adsConsent = container.adsConsent, onBack = { navController.popBackStack() })
+            SettingsScreen(
+                viewModel = vm,
+                economy = economyViewModel(container),
+                adsConsent = container.adsConsent,
+                onShop = { navController.navigate(Routes.SHOP) },
+                onBack = { navController.popBackStack() },
+            )
         }
     }
 }
+
+@Composable
+private fun economyViewModel(container: AppContainer): EconomyViewModel = viewModel(
+    factory = EconomyViewModel.factory(container.economyRepository, container.billingRepository, container.ads),
+)

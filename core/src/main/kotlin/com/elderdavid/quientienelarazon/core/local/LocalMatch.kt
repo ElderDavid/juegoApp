@@ -13,6 +13,7 @@ import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.core.game.Scoring
 import com.elderdavid.quientienelarazon.core.game.TiebreakResult
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
+import kotlin.random.Random
 
 /** Lo que debe mostrar la pantalla en cada momento de una partida local. */
 sealed interface LocalStage {
@@ -25,13 +26,20 @@ sealed interface LocalStage {
     /** Ronda de estrategia: el jugador apuesta antes de ver la pregunta. Lista vacía = apuesta libre. */
     data class Betting(val playerId: PlayerId, val allowedBets: List<Int>, val score: Int) : LocalStage
 
-    /** El jugador ve la pregunta; el tiempo corre desde [startedAt] hasta [deadline]. */
+    /**
+     * El jugador ve la pregunta; el tiempo corre desde [startedAt] hasta [deadline].
+     * [hiddenOptions]: opciones quitadas por el comodín 50/50. [wildcards]: comodines que le
+     * quedan y [usableWildcards]: los que puede usar ahora mismo.
+     */
     data class Answering(
         val playerId: PlayerId,
         val questionId: String,
         val startedAt: Long,
         val deadline: Long,
         val tiebreak: Boolean,
+        val hiddenOptions: Set<Int> = emptySet(),
+        val wildcards: Int = 0,
+        val usableWildcards: Set<Wildcard> = emptySet(),
     ) : LocalStage
 
     data class Reveal(val result: QuestionResult) : LocalStage
@@ -55,6 +63,14 @@ data class LocalMatch(
     private val readyPlayer: PlayerId? = null,
     /** Momento en que se mostró la pregunta al jugador actual. */
     private val turnStartedAt: Long? = null,
+    /** Comodines que le quedan a cada jugador en esta partida. */
+    val wildcards: Map<PlayerId, Int> = emptyMap(),
+    /** true si ya se compró el paquete de partida (uno por partida). */
+    val matchPackUsed: Boolean = false,
+    /** Opciones ocultas por el 50/50 en el turno actual. */
+    private val hiddenOptions: Set<Int> = emptySet(),
+    /** Como mucho un comodín por jugador y pregunta. */
+    private val wildcardUsedThisTurn: Boolean = false,
 ) {
     val players: List<Player> get() = state.players
 
@@ -80,8 +96,63 @@ data class LocalMatch(
             return LocalStage.Betting(player, Scoring.allowedBets(score), score)
         }
         val start = turnStartedAt!!
-        return LocalStage.Answering(player, currentQuestionId(), start, start + state.config.questionTimeMillis, tiebreak)
+        return LocalStage.Answering(
+            playerId = player,
+            questionId = currentQuestionId(),
+            startedAt = start,
+            deadline = start + state.timeLimitFor(player),
+            tiebreak = tiebreak,
+            hiddenOptions = hiddenOptions,
+            wildcards = wildcards[player] ?: 0,
+            usableWildcards = usableWildcards(player),
+        )
     }
+
+    private fun usableWildcards(player: PlayerId): Set<Wildcard> {
+        if (tiebreak || wildcardUsedThisTurn || (wildcards[player] ?: 0) <= 0) return emptySet()
+        val question = engine.question(currentQuestionId())
+        return buildSet {
+            add(Wildcard.EXTRA_TIME)
+            if (question.correctIndex != null && question.options.size >= 4) add(Wildcard.FIFTY_FIFTY)
+            if (state.answers.isEmpty() && engine.replacementFor(state) != null) add(Wildcard.CHANGE_QUESTION)
+        }
+    }
+
+    /**
+     * El jugador del turno usa un comodín mientras ve la pregunta. Al cambiar la pregunta su
+     * tiempo vuelve a empezar, porque es una pregunta nueva.
+     */
+    fun useWildcard(wildcard: Wildcard, now: Long): LocalMatch {
+        val answering = stage as? LocalStage.Answering ?: return this
+        if (wildcard !in answering.usableWildcards) return this
+        val player = answering.playerId
+        val spent = copy(wildcards = wildcards + (player to (wildcards.getValue(player) - 1)), wildcardUsedThisTurn = true)
+        return when (wildcard) {
+            Wildcard.EXTRA_TIME -> when (val r = engine.grantExtraTime(state, player, WildcardRules.EXTRA_TIME_MILLIS)) {
+                is EngineResult.Ok -> spent.copy(state = r.state)
+                is EngineResult.Rejected -> this
+            }
+            Wildcard.FIFTY_FIFTY -> {
+                val question = engine.question(answering.questionId)
+                val correct = question.correctIndex!!
+                val random = Random(answering.questionId.hashCode().toLong() * 31 + player.hashCode())
+                val hidden = question.options.indices.filter { it != correct }.shuffled(random).take(2).toSet()
+                spent.copy(hiddenOptions = hidden)
+            }
+            Wildcard.CHANGE_QUESTION -> when (val r = engine.swapQuestion(state)) {
+                is EngineResult.Ok -> spent.copy(state = r.state, turnStartedAt = now, hiddenOptions = emptySet())
+                is EngineResult.Rejected -> this
+            }
+        }
+    }
+
+    /** Paquete de partida: cada jugador recibe un comodín más. Uno por partida. */
+    fun addMatchPack(): LocalMatch {
+        if (matchPackUsed || state.phase == Phase.FINISHED) return this
+        return copy(wildcards = state.players.associate { it.id to (wildcards[it.id] ?: 0) + 1 }, matchPackUsed = true)
+    }
+
+    val canBuyMatchPack: Boolean get() = !matchPackUsed && state.phase != Phase.FINISHED
 
     private fun needsBet(player: PlayerId) =
         state.phase == Phase.QUESTION && state.round == RoundType.STRATEGY && player !in state.bets
@@ -118,7 +189,7 @@ data class LocalMatch(
     fun answer(choice: Int, now: Long): LocalMatch {
         val answering = stage as? LocalStage.Answering ?: return this
         val elapsed = (now - answering.startedAt).coerceAtLeast(0)
-        val late = elapsed > state.config.questionTimeMillis
+        val late = elapsed > state.timeLimitFor(answering.playerId)
         return submit(answering.playerId, if (late) null else choice, elapsed)
     }
 
@@ -126,7 +197,7 @@ data class LocalMatch(
     fun expire(now: Long): LocalMatch {
         val answering = stage as? LocalStage.Answering ?: return this
         if (now < answering.deadline) return this
-        return submit(answering.playerId, null, state.config.questionTimeMillis)
+        return submit(answering.playerId, null, state.timeLimitFor(answering.playerId))
     }
 
     /** Continúa tras una revelación o un marcador. */
@@ -143,12 +214,14 @@ data class LocalMatch(
 
     private fun submit(player: PlayerId, choice: Int?, elapsed: Long): LocalMatch =
         when (val r = engine.submitAnswer(state, player, choice, elapsed)) {
-            is EngineResult.Ok -> copy(state = r.state, readyPlayer = null, turnStartedAt = null)
+            is EngineResult.Ok -> copy(state = r.state, readyPlayer = null, turnStartedAt = null).endTurn()
             is EngineResult.Rejected -> this
         }
 
+    private fun endTurn() = copy(hiddenOptions = emptySet(), wildcardUsedThisTurn = false)
+
     private fun withEngine(result: EngineResult): LocalMatch = when (result) {
-        is EngineResult.Ok -> copy(state = result.state, readyPlayer = null, turnStartedAt = null)
+        is EngineResult.Ok -> copy(state = result.state, readyPlayer = null, turnStartedAt = null).endTurn()
         is EngineResult.Rejected -> this
     }
 
@@ -163,6 +236,7 @@ data class LocalMatch(
         ): LocalMatch = LocalMatch(
             state = engine.newGame(players, GameConfig(mode = mode, sequentialTurns = true, length = length), seed, avoidQuestionIds),
             engine = engine,
+            wildcards = players.associate { it.id to WildcardRules.FREE_PER_PLAYER },
         )
     }
 }

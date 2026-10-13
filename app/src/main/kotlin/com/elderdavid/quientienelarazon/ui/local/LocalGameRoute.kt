@@ -8,11 +8,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.elderdavid.quientienelarazon.ads.AdsController
+import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
 import com.elderdavid.quientienelarazon.core.local.LocalStage
+import com.elderdavid.quientienelarazon.economy.EquippedCosmetics
 import com.elderdavid.quientienelarazon.local.GameFeedback
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.settings.AppSettings
 import com.elderdavid.quientienelarazon.settings.SettingsRepository
+import kotlinx.coroutines.flow.Flow
 
 /** Conecta la partida local con su ViewModel, los ajustes y los sonidos. */
 @Composable
@@ -20,8 +23,10 @@ fun LocalGameRoute(
     viewModel: LocalGameViewModel,
     settingsRepository: SettingsRepository,
     ads: AdsController,
+    equippedFlow: Flow<EquippedCosmetics>,
     onExit: () -> Unit,
 ) {
+    val equipped by equippedFlow.collectAsStateWithLifecycle(initialValue = EquippedCosmetics())
     val state by viewModel.state.collectAsStateWithLifecycle()
     val settings by settingsRepository.settings.collectAsStateWithLifecycle(initialValue = AppSettings())
     val context = LocalContext.current
@@ -63,7 +68,16 @@ fun LocalGameRoute(
                 changePlayers = afterGame(viewModel::quit),
                 exitToMenu = afterGame { viewModel.quit(); onExit() },
                 now = viewModel::now,
-                feedback = { event -> feedback.play(event, settings) },
+                feedback = { event -> feedback.play(event, settings, equipped[CosmeticKind.ROULETTE_SOUND]) },
+                useWildcard = viewModel::useWildcard,
+                buyMatchPack = viewModel::buyMatchPack,
+            ),
+            extras = LocalGameExtras(
+                coins = state.coins,
+                buyingPack = state.buyingPack,
+                notice = state.notice,
+                reward = state.reward,
+                victoryId = equipped[CosmeticKind.VICTORY],
             ),
         )
     }

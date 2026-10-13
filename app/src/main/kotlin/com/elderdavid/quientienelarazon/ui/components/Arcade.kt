@@ -39,21 +39,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeDeep
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeNight
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeOutline
 import com.elderdavid.quientienelarazon.ui.theme.ArcadePanel
 import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
+import com.elderdavid.quientienelarazon.ui.theme.LocalArcadeStyle
 import com.elderdavid.quientienelarazon.ui.theme.PlayerColors
 
 /** Fondo arcade con degradado sutil; no anima para no gastar batería. */
 @Composable
 fun ArcadeBackground(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+    val style = LocalArcadeStyle.current
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Brush.verticalGradient(listOf(ArcadeDeep, ArcadeNight, ArcadeNight))),
+            .background(Brush.verticalGradient(listOf(style.backgroundTop, style.backgroundBottom, style.backgroundBottom))),
     ) { content() }
 }
 
@@ -103,7 +104,7 @@ fun ArcadeScreen(
 }
 
 @Composable
-fun NeonTitle(text: String, modifier: Modifier = Modifier, color: Color = ArcadeCyan) {
+fun NeonTitle(text: String, modifier: Modifier = Modifier, color: Color = LocalArcadeStyle.current.title) {
     Text(
         text = text,
         modifier = modifier.fillMaxWidth().semantics { heading() },
@@ -204,10 +205,19 @@ fun ArcadeCard(
  * distinguible también sin color.
  */
 @Composable
-fun PlayerAvatar(name: String, playerIndex: Int, modifier: Modifier = Modifier, size: Int = 48, emoji: String? = null) {
+fun PlayerAvatar(
+    name: String,
+    playerIndex: Int,
+    modifier: Modifier = Modifier,
+    size: Int = 48,
+    emoji: String? = null,
+    /** Marco equipado (cosmético): un segundo anillo por fuera. */
+    frame: Color? = null,
+) {
     val color = PlayerColors[playerIndex.mod(PlayerColors.size)]
+    val framed = if (frame != null) modifier.border(4.dp, frame, CircleShape).padding(5.dp) else modifier
     Box(
-        modifier = modifier
+        modifier = framed
             .size(size.dp)
             .border(3.dp, color, CircleShape)
             .background(ArcadePanel, CircleShape),

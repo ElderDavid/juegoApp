@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -44,6 +45,9 @@ import com.elderdavid.quientienelarazon.core.game.PlayerOutcome
 import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.core.local.LocalMatch
 import com.elderdavid.quientienelarazon.core.local.LocalStage
+import com.elderdavid.quientienelarazon.core.local.Wildcard
+import com.elderdavid.quientienelarazon.core.economy.EconomyRules
+import com.elderdavid.quientienelarazon.economy.LocalGameReward
 import com.elderdavid.quientienelarazon.core.questions.Category
 import com.elderdavid.quientienelarazon.core.questions.Question
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
@@ -79,6 +83,19 @@ class LocalGameActions(
     val exitToMenu: () -> Unit,
     val now: () -> Long,
     val feedback: (FeedbackEvent) -> Unit,
+    val useWildcard: (Wildcard) -> Unit = {},
+    val buyMatchPack: () -> Unit = {},
+)
+
+/** Lo que rodea a la partida: monedas del dueño, avisos, premio de la cuenta y cosméticos. */
+data class LocalGameExtras(
+    /** Monedas del dueño del teléfono; null sin cuenta (entonces no se ofrece el paquete). */
+    val coins: Int? = null,
+    val buyingPack: Boolean = false,
+    val notice: String? = null,
+    val reward: LocalGameReward? = null,
+    /** Animación de victoria equipada. */
+    val victoryId: String? = null,
 )
 
 @Composable
@@ -88,6 +105,7 @@ fun LocalGameScreen(
     rouletteCategories: List<Category>,
     reducedMotion: Boolean,
     actions: LocalGameActions,
+    extras: LocalGameExtras = LocalGameExtras(),
 ) {
     var confirmExit by remember { mutableStateOf(false) }
     val stage = match.stage
@@ -110,13 +128,16 @@ fun LocalGameScreen(
     ArcadeScreen(title = null) {
         when (stage) {
             is LocalStage.Roulette -> RouletteView(stage, match.state.config.length, bank, rouletteCategories, reducedMotion, actions)
-            is LocalStage.Handoff -> HandoffView(stage, names.getValue(stage.playerId), colorIndex.getValue(stage.playerId), match.state, actions)
+            is LocalStage.Handoff -> {
+                HandoffView(stage, names.getValue(stage.playerId), colorIndex.getValue(stage.playerId), match.state, actions)
+                if (!stage.tiebreak) MatchPackOffer(match, extras, actions)
+            }
             is LocalStage.Betting -> BettingView(stage, names.getValue(stage.playerId), match.state, bank, actions)
             is LocalStage.Answering -> AnsweringView(stage, names.getValue(stage.playerId), match.state, bank, actions)
             is LocalStage.Reveal -> RevealView(stage, match.state, bank, names, colorIndex, actions)
             is LocalStage.RoundSummary -> RoundSummaryView(stage, match.state, names, colorIndex, actions)
             is LocalStage.TiebreakReveal -> TiebreakRevealView(stage, bank, names, actions)
-            is LocalStage.Finished -> PodiumView(stage, match.state, names, colorIndex, actions)
+            is LocalStage.Finished -> PodiumView(stage, match.state, names, colorIndex, actions, extras, reducedMotion)
         }
     }
 }
@@ -274,7 +295,56 @@ private fun AnsweringView(stage: LocalStage.Answering, name: String, state: Game
     if (bet != null) Text(betLabel(bet), color = ArcadeOrange, style = MaterialTheme.typography.labelMedium)
     QuestionCard(question, bank)
     question.options.forEachIndexed { index, option ->
-        OptionButton(text = option, letter = optionLetter(index), onClick = { actions.feedback(FeedbackEvent.TAP); actions.answer(index) })
+        if (index in stage.hiddenOptions) {
+            OptionButton(text = "—", letter = optionLetter(index), onClick = {}, enabled = false, highlight = ArcadeOutline)
+        } else {
+            OptionButton(text = option, letter = optionLetter(index), onClick = { actions.feedback(FeedbackEvent.TAP); actions.answer(index) })
+        }
+    }
+    if (!stage.tiebreak) WildcardBar(stage, actions)
+}
+
+@Composable
+private fun WildcardBar(stage: LocalStage.Answering, actions: LocalGameActions) {
+    Text(
+        if (stage.wildcards == 1) "Te queda 1 comodín" else "Te quedan ${stage.wildcards} comodines",
+        style = MaterialTheme.typography.labelMedium,
+        color = ArcadeTextMuted,
+    )
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        Wildcard.entries.forEach { w ->
+            val enabled = w in stage.usableWildcards
+            OutlinedButton(
+                onClick = { actions.feedback(FeedbackEvent.TAP); actions.useWildcard(w) },
+                enabled = enabled,
+                modifier = Modifier.weight(1f).heightIn(min = 48.dp).semantics { contentDescription = "Comodín ${w.label}: ${w.description}" },
+                shape = MaterialTheme.shapes.medium,
+                border = BorderStroke(2.dp, if (enabled) ArcadeOrange else ArcadeOutline),
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = ArcadeOrange, disabledContentColor = ArcadeTextMuted),
+            ) { Text(w.label, style = MaterialTheme.typography.labelLarge) }
+        }
+    }
+}
+
+/** El dueño del teléfono puede pagar con monedas un comodín más para TODOS los jugadores. */
+@Composable
+private fun MatchPackOffer(match: LocalMatch, extras: LocalGameExtras, actions: LocalGameActions) {
+    extras.notice?.let { Text(it, color = ArcadeOrange, style = MaterialTheme.typography.bodyMedium) }
+    val coins = extras.coins ?: return
+    if (!match.canBuyMatchPack) return
+    ArcadeCard(accent = ArcadeOutline) {
+        Text("Paquete de partida", style = MaterialTheme.typography.titleMedium, color = ArcadeOrange)
+        Text(
+            "Un comodín más para cada jugador, pagado con las monedas de la cuenta de este teléfono (tienes $coins).",
+            color = ArcadeTextMuted,
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        ArcadeOutlinedButton(
+            text = if (extras.buyingPack) "Comprando…" else "Comprar · 🪙 ${EconomyRules.MATCH_PACK_PRICE}",
+            onClick = actions.buyMatchPack,
+            enabled = !extras.buyingPack && coins >= EconomyRules.MATCH_PACK_PRICE,
+            color = ArcadeOrange,
+        )
     }
 }
 
@@ -478,8 +548,11 @@ private fun PodiumView(
     names: Map<PlayerId, String>,
     colorIndex: Map<PlayerId, Int>,
     actions: LocalGameActions,
+    extras: LocalGameExtras,
+    reducedMotion: Boolean,
 ) {
     LaunchedEffect(Unit) { actions.feedback(FeedbackEvent.CORRECT) }
+    if (extras.victoryId != null && !reducedMotion) VictoryCelebration(extras.victoryId)
     val winners = stage.winners.map { names.getValue(it) }
     NeonTitle(if (winners.size == 1) "¡${winners.single()} tiene la razón!" else "¡Victoria compartida!", color = ArcadeOrange)
     if (winners.size > 1) {
@@ -492,6 +565,15 @@ private fun PodiumView(
             val right = state.results.count { r -> r.outcomes.any { it.playerId == p.id && it.won == true } }
             Text("${p.name}: $right de ${state.config.length.questions}", color = ArcadeTextMuted)
         }
+    }
+    extras.reward?.takeIf { it.xp > 0 || it.coins > 0 }?.let { r ->
+        val parts = listOfNotNull(r.xp.takeIf { it > 0 }?.let { "+$it XP" }, r.coins.takeIf { it > 0 }?.let { "+$it monedas" })
+        Text(
+            "Cuenta de este teléfono: ${parts.joinToString(" y ")}",
+            color = ArcadeSuccess,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
     ArcadeButton(text = "Revancha", onClick = actions.rematch, color = ArcadeMagenta)
     ArcadeOutlinedButton(text = "Cambiar jugadores", onClick = actions.changePlayers, color = ArcadeCyan)

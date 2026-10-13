@@ -5,6 +5,7 @@ import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.unit.dp
 
 private val ArcadeColorScheme = darkColorScheme(
@@ -33,13 +34,18 @@ private val ArcadeShapes = Shapes(
     large = RoundedCornerShape(24.dp),
 )
 
-/** El juego siempre usa el tema oscuro arcade, independientemente del tema del sistema. */
+/**
+ * El juego siempre usa el tema oscuro arcade, independientemente del tema del sistema.
+ * [themeId]: tema de color equipado (cosmético), que solo cambia el fondo y los títulos.
+ */
 @Composable
-fun QtrTheme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colorScheme = ArcadeColorScheme,
-        typography = QtrTypography,
-        shapes = ArcadeShapes,
-        content = content,
-    )
+fun QtrTheme(themeId: String? = null, content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalArcadeStyle provides ArcadeStyle.forTheme(themeId)) {
+        MaterialTheme(
+            colorScheme = ArcadeColorScheme,
+            typography = QtrTypography,
+            shapes = ArcadeShapes,
+            content = content,
+        )
+    }
 }
