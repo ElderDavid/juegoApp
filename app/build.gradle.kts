@@ -51,7 +51,8 @@ android {
         minSdk = 26
         // Google Play exige targetSdk 36 para apps nuevas desde el 31/08/2026.
         targetSdk = 36
-        versionCode = 2
+        // El flujo «Versión para Google Play» pasa -PversionCode con un número siempre mayor.
+        versionCode = providers.gradleProperty("versionCode").orNull?.toInt() ?: 2
         versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

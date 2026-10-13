@@ -1,0 +1,95 @@
+# Compila el .aab firmado para subir a Google Play. Se ejecuta a mano desde Actions.
+# Necesita los secretos descritos en docs/PUBLICACION.md (clave de subida, Supabase, Google y AdMob).
+# Ningún secreto queda en el repositorio: local.properties y la clave se crean solo dentro del runner.
+name: Versión para Google Play
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: version-play
+  cancel-in-progress: false
+
+jobs:
+  aab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Preparar clave y configuración
+        env:
+          KEYSTORE_B64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
+          KEYSTORE_PASS: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
+          ADMOB_APP_ID: ${{ secrets.ADMOB_APP_ID }}
+          ADMOB_INTERSTITIAL_ID: ${{ secrets.ADMOB_INTERSTITIAL_ID }}
+          ADMOB_BANNER_ID: ${{ secrets.ADMOB_BANNER_ID }}
+          ADMOB_REWARDED_ID: ${{ secrets.ADMOB_REWARDED_ID }}
+        run: |
+          missing=""
+          for v in KEYSTORE_B64 KEYSTORE_PASS SUPABASE_URL SUPABASE_KEY; do
+            [ -z "${!v}" ] && missing="$missing $v"
+          done
+          if [ -n "$missing" ]; then
+            echo "::error::Faltan secretos obligatorios:$missing (ver docs/PUBLICACION.md)"
+            exit 1
+          fi
+          [ -z "$GOOGLE_WEB_CLIENT_ID" ] && echo "::warning::Sin GOOGLE_WEB_CLIENT_ID: «Vincular con Google» no estará disponible."
+          if [ -z "$ADMOB_APP_ID" ] || [ -z "$ADMOB_INTERSTITIAL_ID" ] || [ -z "$ADMOB_BANNER_ID" ]; then
+            echo "::warning::Faltan identificadores de AdMob: esta versión NO mostrará anuncios."
+          fi
+          mkdir -p claves
+          echo "$KEYSTORE_B64" | base64 -d > claves/subida.jks
+          {
+            echo "storeFile=../claves/subida.jks"
+            echo "storePassword=$KEYSTORE_PASS"
+            echo "keyAlias=subida"
+            echo "keyPassword=$KEYSTORE_PASS"
+          } > keystore.properties
+          {
+            echo "supabase.url=$SUPABASE_URL"
+            echo "supabase.publishableKey=$SUPABASE_KEY"
+            echo "google.webClientId=$GOOGLE_WEB_CLIENT_ID"
+            echo "admob.appId=$ADMOB_APP_ID"
+            echo "admob.interstitialId=$ADMOB_INTERSTITIAL_ID"
+            echo "admob.bannerId=$ADMOB_BANNER_ID"
+            echo "admob.rewardedId=$ADMOB_REWARDED_ID"
+          } > local.properties
+
+      - name: Pruebas de la lógica del juego
+        run: ./gradlew :core:test --console=plain
+
+      # versionCode = 100 + número de ejecución: siempre mayor que el anterior enviado a Play.
+      - name: Compilar el .aab firmado
+        run: ./gradlew :app:bundleRelease -PversionCode=$((100 + ${{ github.run_number }})) --console=plain
+
+      - name: Comprobar la firma
+        run: |
+          jarsigner -verify app/build/outputs/bundle/release/app-release.aab | tee firma.txt
+          grep -q "jar verified" firma.txt
+
+      - name: Borrar la clave del runner
+        if: always()
+        run: rm -rf claves keystore.properties local.properties
+
+      - name: Archivo para Google Play
+        uses: actions/upload-artifact@v6
+        with:
+          name: version-play-${{ github.run_number }}
+          path: |
+            app/build/outputs/bundle/release/app-release.aab
+            app/build/outputs/mapping/release/mapping.txt
+          retention-days: 30
