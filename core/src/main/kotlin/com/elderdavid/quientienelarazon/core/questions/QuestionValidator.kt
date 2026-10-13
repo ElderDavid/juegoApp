@@ -36,6 +36,11 @@ object QuestionValidator {
         val rule = question.evaluation as? Evaluation.GameRule
         if (rule != null && rule.rule.isBlank()) issue("La regla de juego no puede estar vacía")
         if (question.isVote && question.format == AnswerFormat.TRUE_FALSE) issue("Las votaciones usan opción múltiple")
+        if (question.audience == Audience.KIDS) {
+            // Para niños solo preguntas con respuesta comprobable: nada de polémica ni de opinión.
+            if (question.kind != QuestionKind.OBJECTIVE) issue("Las preguntas para niños deben ser objetivas")
+            if (question.regionId != null) issue("Las preguntas para niños no pertenecen a un departamento")
+        }
 
         if (bank != null) {
             if (bank.categories.none { it.id == question.categoryId }) issue("Categoría inexistente: ${question.categoryId}")

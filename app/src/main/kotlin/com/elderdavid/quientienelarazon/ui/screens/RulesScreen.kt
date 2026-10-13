@@ -56,6 +56,15 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
+        ArcadeCard(accent = ArcadeOrange) {
+            Text("Modo niños", style = MaterialTheme.typography.titleLarge, color = ArcadeOrange)
+            Text(
+                "Para jugar en familia en el modo local: preguntas más fáciles pensadas para niños, " +
+                    "${GameRules.KIDS_QUESTION_TIME_MILLIS / 1000} segundos por pregunta y, en la ronda de estrategia, " +
+                    "fallar no resta lo apostado.",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
         ArcadeCard(accent = ArcadeMagenta) {
             Text("Preguntas de opinión", style = MaterialTheme.typography.titleLarge, color = ArcadeMagenta)
             Text(

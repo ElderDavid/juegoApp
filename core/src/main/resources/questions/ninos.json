@@ -1,0 +1,2495 @@
+[
+ {
+  "id": "nin-ani-001",
+  "text": "¿Cuál es el animal terrestre más grande del mundo?",
+  "options": [
+   "El elefante africano",
+   "La jirafa",
+   "El rinoceronte",
+   "El hipopótamo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El elefante africano puede pesar más de seis toneladas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-002",
+  "text": "¿Cuántas patas tiene una araña?",
+  "options": [
+   "Seis",
+   "Ocho",
+   "Diez",
+   "Cuatro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las arañas tienen ocho patas; los insectos tienen seis.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-003",
+  "text": "¿A qué animal se le llama «el rey de la selva»?",
+  "options": [
+   "Al tigre",
+   "Al oso",
+   "Al león",
+   "Al lobo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Al león se le dice así, aunque en realidad vive en la sabana africana.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-004",
+  "text": "¿Cuál es el animal más alto del mundo?",
+  "options": [
+   "El elefante",
+   "El camello",
+   "El avestruz",
+   "La jirafa"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Gracias a su cuello tan largo, la jirafa puede medir más de cinco metros.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-005",
+  "text": "¿Qué animal produce la miel?",
+  "options": [
+   "La abeja",
+   "La mariposa",
+   "La hormiga",
+   "La mosca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las abejas hacen la miel con el néctar de las flores.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-006",
+  "text": "¿En qué se convierte un renacuajo cuando crece?",
+  "options": [
+   "En un pez",
+   "En una rana",
+   "En una lagartija",
+   "En una tortuga"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El renacuajo nace en el agua y poco a poco le salen patas hasta convertirse en rana.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-007",
+  "text": "¿Qué come principalmente el oso panda?",
+  "options": [
+   "Pescado",
+   "Miel",
+   "Bambú",
+   "Frutas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El panda pasa gran parte del día comiendo bambú.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-008",
+  "text": "¿Cuál de estos animales es un mamífero?",
+  "options": [
+   "El tiburón",
+   "La tortuga",
+   "El pingüino",
+   "La ballena"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La ballena respira aire con pulmones y alimenta a sus crías con leche.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-009",
+  "text": "¿Cuál es el ave más grande del mundo?",
+  "options": [
+   "El avestruz",
+   "El cóndor",
+   "El águila",
+   "El pavo real"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El avestruz puede medir más de dos metros, aunque no puede volar.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-010",
+  "text": "¿Cómo se llama la cría de la vaca?",
+  "options": [
+   "Potro",
+   "Ternero",
+   "Cordero",
+   "Cachorro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La cría de la vaca es el ternero; el potro es la cría del caballo y el cordero, la de la oveja.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-011",
+  "text": "¿Qué animal cambia de color?",
+  "options": [
+   "El perro",
+   "El caballo",
+   "El camaleón",
+   "El conejo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El camaleón cambia el color de su piel, por ejemplo según la temperatura o su estado de ánimo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-012",
+  "text": "¿Qué ave aparece en el escudo de Colombia?",
+  "options": [
+   "El tucán",
+   "El loro",
+   "El colibrí",
+   "El cóndor"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El cóndor de los Andes corona el escudo de Colombia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-013",
+  "text": "¿Cuántas patas tiene un insecto?",
+  "options": [
+   "Seis",
+   "Ocho",
+   "Cuatro",
+   "Diez"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Todos los insectos, como las hormigas o las abejas, tienen seis patas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-014",
+  "text": "¿Qué animal tiene una trompa larga?",
+  "options": [
+   "La jirafa",
+   "El elefante",
+   "El cocodrilo",
+   "La cebra"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El elefante usa su trompa para respirar, oler, beber agua y agarrar cosas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-015",
+  "text": "¿Dónde viven casi todos los pingüinos?",
+  "options": [
+   "En el Polo Norte",
+   "En la selva",
+   "En el hemisferio sur",
+   "En el desierto del Sahara"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Casi todos los pingüinos viven en el hemisferio sur, por ejemplo en la Antártida. En el Polo Norte no hay pingüinos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-016",
+  "text": "¿Cuál es el animal más rápido en tierra?",
+  "options": [
+   "El caballo",
+   "El león",
+   "La liebre",
+   "El guepardo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El guepardo puede correr a más de 100 kilómetros por hora en carreras cortas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-001",
+  "text": "¿En qué planeta vivimos?",
+  "options": [
+   "Marte",
+   "La Tierra",
+   "Venus",
+   "Júpiter"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Vivimos en la Tierra, el tercer planeta desde el Sol.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-002",
+  "text": "Además de agua, ¿qué necesitan las plantas para crecer?",
+  "options": [
+   "Oscuridad",
+   "Ruido",
+   "Luz del sol",
+   "Hielo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las plantas usan la luz del sol para fabricar su alimento.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-003",
+  "text": "¿Cuál es el planeta más grande del sistema solar?",
+  "options": [
+   "Saturno",
+   "Neptuno",
+   "La Tierra",
+   "Júpiter"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Júpiter es tan grande que dentro de él cabrían más de mil Tierras.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-004",
+  "text": "¿Qué estrella nos da luz y calor durante el día?",
+  "options": [
+   "El Sol",
+   "La Luna",
+   "Marte",
+   "La estrella polar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El Sol es la estrella más cercana a la Tierra.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-005",
+  "text": "¿En qué se convierte el agua cuando se congela?",
+  "options": [
+   "En vapor",
+   "En hielo",
+   "En arena",
+   "En aire"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Cuando el agua se enfría mucho se vuelve sólida: es el hielo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-006",
+  "text": "¿Cuántos colores se cuentan tradicionalmente en el arcoíris?",
+  "options": [
+   "Cinco",
+   "Seis",
+   "Siete",
+   "Ocho"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Rojo, naranja, amarillo, verde, azul, añil y violeta.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-007",
+  "text": "¿Qué órgano bombea la sangre por todo el cuerpo?",
+  "options": [
+   "Los pulmones",
+   "El estómago",
+   "El cerebro",
+   "El corazón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El corazón late todo el tiempo para mover la sangre por el cuerpo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-008",
+  "text": "¿Con qué parte del cuerpo olemos?",
+  "options": [
+   "La nariz",
+   "Los oídos",
+   "Los ojos",
+   "La lengua"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El olfato está en la nariz.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-009",
+  "text": "¿Cuántos dientes de leche tiene normalmente un niño?",
+  "options": [
+   "Diez",
+   "Veinte",
+   "Treinta y dos",
+   "Cuarenta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Los niños tienen 20 dientes de leche, que luego cambian por los dientes permanentes.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-010",
+  "text": "¿Qué gas necesitamos respirar para vivir?",
+  "options": [
+   "Dióxido de carbono",
+   "Helio",
+   "Oxígeno",
+   "Humo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Al respirar tomamos oxígeno del aire.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-011",
+  "text": "¿Qué gira alrededor de la Tierra y vemos de noche en el cielo?",
+  "options": [
+   "El Sol",
+   "Marte",
+   "Venus",
+   "La Luna"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La Luna es el satélite natural de la Tierra.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cul-001",
+  "text": "¿Qué color sale al mezclar azul y amarillo?",
+  "options": [
+   "Verde",
+   "Morado",
+   "Naranja",
+   "Rosado"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Azul y amarillo dan verde.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cul-002",
+  "text": "¿Qué color sale al mezclar rojo y amarillo?",
+  "options": [
+   "Verde",
+   "Naranja",
+   "Morado",
+   "Gris"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Rojo y amarillo dan naranja.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-001",
+  "text": "¿Cuál es la capital de Colombia?",
+  "options": [
+   "Medellín",
+   "Cali",
+   "Bogotá",
+   "Barranquilla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Bogotá es la capital de Colombia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-002",
+  "text": "¿De qué colores es la bandera de Colombia?",
+  "options": [
+   "Rojo y blanco",
+   "Verde y blanco",
+   "Azul y rojo",
+   "Amarillo, azul y rojo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La bandera de Colombia es amarilla, azul y roja.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-003",
+  "text": "¿Cuál es el océano más grande del planeta?",
+  "options": [
+   "El Pacífico",
+   "El Atlántico",
+   "El Índico",
+   "El Ártico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El océano Pacífico es el más grande y el más profundo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-004",
+  "text": "¿Qué dos océanos bañan las costas de Colombia?",
+  "options": [
+   "El Índico y el Pacífico",
+   "El Pacífico y el Atlántico",
+   "El Ártico y el Atlántico",
+   "El Índico y el Ártico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Colombia tiene costa en el océano Pacífico y en el mar Caribe, que forma parte del océano Atlántico.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-005",
+  "text": "¿En qué continente está Colombia?",
+  "options": [
+   "Europa",
+   "África",
+   "América",
+   "Asia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Colombia está en América del Sur.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-006",
+  "text": "¿Cómo se llama un lugar donde casi nunca llueve?",
+  "options": [
+   "Una selva",
+   "Un páramo",
+   "Un glaciar",
+   "Un desierto"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "En los desiertos llueve muy poco, como en el desierto de La Guajira.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-007",
+  "text": "¿Cuál es el país más grande del mundo?",
+  "options": [
+   "Rusia",
+   "China",
+   "Brasil",
+   "Estados Unidos"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Rusia es el país con más territorio del mundo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-008",
+  "text": "¿Cuál es la montaña más alta del mundo?",
+  "options": [
+   "El Aconcagua",
+   "El Everest",
+   "El Kilimanjaro",
+   "El Nevado del Ruiz"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El monte Everest, en Asia, mide unos 8.849 metros.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-009",
+  "text": "¿En qué país están las famosas pirámides de Guiza?",
+  "options": [
+   "México",
+   "Perú",
+   "Egipto",
+   "India"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las pirámides de Guiza están en Egipto y tienen más de 4.000 años.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-001",
+  "text": "¿Cuántos jugadores tiene cada equipo de fútbol en la cancha?",
+  "options": [
+   "Nueve",
+   "Diez",
+   "Doce",
+   "Once"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Cada equipo juega con once jugadores, contando al arquero.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-002",
+  "text": "En el fútbol, ¿con qué no pueden tocar el balón los jugadores, salvo el arquero?",
+  "options": [
+   "Con las manos",
+   "Con la cabeza",
+   "Con el pecho",
+   "Con los pies"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Solo el arquero puede usar las manos, y únicamente dentro de su área.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-003",
+  "text": "¿En qué deporte se usa una raqueta y una pelota amarilla pequeña?",
+  "options": [
+   "Baloncesto",
+   "Tenis",
+   "Natación",
+   "Ciclismo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "En el tenis se golpea la pelota con una raqueta por encima de una red.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-004",
+  "text": "¿Cada cuántos años se juega el Mundial de fútbol?",
+  "options": [
+   "Cada año",
+   "Cada dos años",
+   "Cada cuatro años",
+   "Cada diez años"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La Copa Mundial de la FIFA se juega cada cuatro años.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-005",
+  "text": "¿Qué deporte practica Mariana Pajón, campeona olímpica colombiana?",
+  "options": [
+   "Atletismo",
+   "Natación",
+   "Patinaje",
+   "BMX"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Mariana Pajón ganó la medalla de oro en BMX en los Juegos Olímpicos de 2012 y de 2016.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-006",
+  "text": "¿En qué deporte hay que meter el balón por un aro?",
+  "options": [
+   "Baloncesto",
+   "Voleibol",
+   "Béisbol",
+   "Golf"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "En el baloncesto se anota encestando el balón en el aro.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-007",
+  "text": "¿Cuántos anillos tiene el símbolo de los Juegos Olímpicos?",
+  "options": [
+   "Cuatro",
+   "Cinco",
+   "Seis",
+   "Siete"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Los cinco anillos representan la unión de los continentes.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-008",
+  "text": "¿Qué se necesita para practicar ciclismo?",
+  "options": [
+   "Patines",
+   "Una raqueta",
+   "Una bicicleta",
+   "Un balón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El ciclismo es el deporte de la bicicleta.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-mus-001",
+  "text": "¿Cuántas cuerdas tiene normalmente una guitarra?",
+  "options": [
+   "Cuatro",
+   "Cinco",
+   "Doce",
+   "Seis"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La guitarra más común tiene seis cuerdas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-mus-002",
+  "text": "¿Qué instrumento tiene teclas blancas y negras?",
+  "options": [
+   "El piano",
+   "La flauta",
+   "El tambor",
+   "El violín"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El piano tiene teclas blancas y negras que se tocan con los dedos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-mus-003",
+  "text": "¿Qué instrumento es típico del vallenato?",
+  "options": [
+   "La trompeta",
+   "El acordeón",
+   "El arpa",
+   "El saxofón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El acordeón, la caja y la guacharaca son los instrumentos del vallenato.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-mus-004",
+  "text": "¿Qué instrumento se toca golpeándolo con las manos o con palos?",
+  "options": [
+   "La flauta",
+   "La guitarra",
+   "El tambor",
+   "El violín"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El tambor es un instrumento de percusión: suena al golpearlo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-mus-005",
+  "text": "¿Cuál de estos instrumentos se toca soplando?",
+  "options": [
+   "La guitarra",
+   "El piano",
+   "El tambor",
+   "La flauta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La flauta suena cuando soplamos aire por ella.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cur-001",
+  "text": "¿Cuántos días tiene una semana?",
+  "options": [
+   "Siete",
+   "Cinco",
+   "Seis",
+   "Diez"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La semana tiene siete días, de lunes a domingo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cur-002",
+  "text": "¿Cuántos meses tiene un año?",
+  "options": [
+   "Diez",
+   "Doce",
+   "Once",
+   "Catorce"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El año tiene doce meses, de enero a diciembre.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cur-003",
+  "text": "¿Qué mes viene después de marzo?",
+  "options": [
+   "Mayo",
+   "Febrero",
+   "Abril",
+   "Junio"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Después de marzo viene abril.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-001",
+  "text": "¿Cuántos lados tiene un triángulo?",
+  "options": [
+   "Cuatro",
+   "Cinco",
+   "Dos",
+   "Tres"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "«Tri» significa tres: el triángulo tiene tres lados.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-002",
+  "text": "¿Cuánto es 5 + 3?",
+  "options": [
+   "8",
+   "7",
+   "9",
+   "6"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "5 + 3 = 8.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-003",
+  "text": "¿Cuántos minutos tiene una hora?",
+  "options": [
+   "Cien",
+   "Sesenta",
+   "Treinta",
+   "Cuarenta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Una hora tiene 60 minutos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-004",
+  "text": "¿Cuánto es 3 × 4?",
+  "options": [
+   "7",
+   "10",
+   "12",
+   "14"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "numeros",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "3 × 4 = 12.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-005",
+  "text": "¿Cuántos lados tiene un cuadrado?",
+  "options": [
+   "Tres",
+   "Cinco",
+   "Seis",
+   "Cuatro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El cuadrado tiene cuatro lados iguales.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-006",
+  "text": "¿Cuál es la mitad de 10?",
+  "options": [
+   "5",
+   "2",
+   "4",
+   "20"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "10 dividido entre 2 es 5.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-007",
+  "text": "¿Cuántas horas tiene un día?",
+  "options": [
+   "Doce",
+   "Veinticuatro",
+   "Treinta",
+   "Diez"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Un día completo tiene 24 horas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-008",
+  "text": "¿Qué número viene después del 99?",
+  "options": [
+   "98",
+   "909",
+   "100",
+   "110"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Después del 99 viene el 100.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-009",
+  "text": "¿Cuál es el doble de 6?",
+  "options": [
+   "8",
+   "10",
+   "3",
+   "12"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "numeros",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El doble de 6 es 6 + 6 = 12.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-001",
+  "text": "¿De qué color es Bob Esponja?",
+  "options": [
+   "Amarillo",
+   "Azul",
+   "Verde",
+   "Rosado"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Bob Esponja es una esponja de mar amarilla.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-002",
+  "text": "¿En qué película de Disney aparece la familia Madrigal, que vive en Colombia?",
+  "options": [
+   "Coco",
+   "Encanto",
+   "Frozen",
+   "Moana"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "«Encanto» (2021) cuenta la historia de la familia Madrigal en un pueblo de Colombia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-003",
+  "text": "¿Cómo se llama el muñeco de nieve de la película «Frozen»?",
+  "options": [
+   "Sven",
+   "Kristoff",
+   "Olaf",
+   "Hans"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Olaf es el muñeco de nieve que sueña con el verano.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-004",
+  "text": "¿Qué tipo de animal es Nemo en «Buscando a Nemo»?",
+  "options": [
+   "Un tiburón",
+   "Una tortuga",
+   "Un pulpo",
+   "Un pez payaso"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Nemo es un pez payaso, naranja con rayas blancas.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-005",
+  "text": "¿Cómo se llama el vaquero de juguete de «Toy Story»?",
+  "options": [
+   "Woody",
+   "Buzz",
+   "Rex",
+   "Andy"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Woody es el vaquero; Buzz Lightyear es el astronauta.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-006",
+  "text": "¿Qué personaje dice «¡Hasta el infinito y más allá!»?",
+  "options": [
+   "Woody",
+   "Buzz Lightyear",
+   "Mickey Mouse",
+   "Shrek"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Es la frase famosa de Buzz Lightyear en «Toy Story».",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-007",
+  "text": "¿De qué color es el ogro Shrek?",
+  "options": [
+   "Azul",
+   "Rojo",
+   "Verde",
+   "Morado"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Shrek es un ogro verde que vive en un pantano.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cin-008",
+  "text": "¿Qué animal es Mickey?",
+  "options": [
+   "Un perro",
+   "Un gato",
+   "Un pato",
+   "Un ratón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cine",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Mickey Mouse es un ratón; «mouse» significa ratón en inglés.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-his-001",
+  "text": "¿Quién llegó a América en 1492 con tres barcos?",
+  "options": [
+   "Cristóbal Colón",
+   "Simón Bolívar",
+   "Antonio Nariño",
+   "Francisco de Paula Santander"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Cristóbal Colón llegó a América el 12 de octubre de 1492 con la Niña, la Pinta y la Santa María.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-his-002",
+  "text": "¿Qué día se celebra la independencia de Colombia?",
+  "options": [
+   "El 12 de octubre",
+   "El 20 de julio",
+   "El 25 de diciembre",
+   "El 1 de enero"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El 20 de julio de 1810 ocurrió el Grito de Independencia en Bogotá.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-his-003",
+  "text": "¿A quién se le conoce como «el Libertador»?",
+  "options": [
+   "A Francisco de Paula Santander",
+   "A Policarpa Salavarrieta",
+   "A Simón Bolívar",
+   "A Gabriel García Márquez"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Simón Bolívar dirigió la independencia de varios países de América del Sur, entre ellos Colombia.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-tec-001",
+  "text": "¿Qué inventaron los hermanos Wright, que volaron por primera vez en 1903?",
+  "options": [
+   "El carro",
+   "El tren",
+   "El teléfono",
+   "El avión"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "tecnologia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Los hermanos Wright hicieron el primer vuelo con un avión a motor en 1903.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-tec-002",
+  "text": "¿Qué aparato usamos para hablar con alguien que está lejos?",
+  "options": [
+   "El teléfono",
+   "La nevera",
+   "La lavadora",
+   "La licuadora"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "tecnologia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Con el teléfono podemos hablar con personas que están lejos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-tec-003",
+  "text": "¿Qué parte del computador usamos para escribir letras?",
+  "options": [
+   "El monitor",
+   "El teclado",
+   "El parlante",
+   "La impresora"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "tecnologia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El teclado tiene una tecla para cada letra.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cul-003",
+  "text": "¿Qué escritor colombiano escribió «Cien años de soledad»?",
+  "options": [
+   "Rafael Pombo",
+   "Jorge Isaacs",
+   "Gabriel García Márquez",
+   "Álvaro Mutis"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Gabriel García Márquez la publicó en 1967 y ganó el Premio Nobel de Literatura en 1982.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cul-004",
+  "text": "¿Quién escribió «Rin Rin Renacuajo» y «La pobre viejecita»?",
+  "options": [
+   "Gabriel García Márquez",
+   "Jorge Isaacs",
+   "José Asunción Silva",
+   "Rafael Pombo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Rafael Pombo es el autor colombiano de muchos cuentos y poemas para niños.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cur-004",
+  "text": "¿Qué fruta es amarilla, alargada y se pela antes de comerla?",
+  "options": [
+   "El banano",
+   "La fresa",
+   "La uva",
+   "El limón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El banano tiene una cáscara amarilla que se quita antes de comerlo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cul-005",
+  "text": "¿Qué comida colombiana se hace con masa de maíz, es redonda y se asa?",
+  "options": [
+   "El ajiaco",
+   "La arepa",
+   "La bandeja paisa",
+   "El sancocho"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La arepa se hace con masa de maíz y se come en todo el país.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-012",
+  "text": "El Sol es una estrella.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El Sol es una estrella, la más cercana a la Tierra.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-017",
+  "text": "Los peces respiran con pulmones.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Los peces respiran con branquias, que toman el oxígeno del agua.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-013",
+  "text": "La Luna tiene luz propia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La Luna no brilla sola: refleja la luz del Sol.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-018",
+  "text": "Las ballenas son peces.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las ballenas son mamíferos: respiran aire y toman leche de su mamá.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-014",
+  "text": "El agua hierve a 100 grados Celsius al nivel del mar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "A nivel del mar el agua hierve a 100 °C; en lugares altos, como Bogotá, hierve un poco antes.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-019",
+  "text": "Los murciélagos son mamíferos que pueden volar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El murciélago es el único mamífero que vuela de verdad.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cur-005",
+  "text": "Un año tiene 365 días, menos los bisiestos, que tienen 366.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Cada cuatro años, más o menos, febrero tiene 29 días y el año tiene 366.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-010",
+  "text": "Bogotá es la capital de Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Bogotá es la capital del país.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-020",
+  "text": "Las vacas ponen huevos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las vacas son mamíferos: sus terneros nacen de la barriga de la mamá.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-009",
+  "text": "Un balón de fútbol es cuadrado.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El balón de fútbol es redondo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-015",
+  "text": "El arcoíris aparece cuando la luz del sol atraviesa gotas de agua.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las gotas separan la luz del sol en sus colores.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-021",
+  "text": "Las arañas son insectos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las arañas son arácnidos: tienen ocho patas, no seis.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-022",
+  "text": "Los pingüinos pueden volar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Los pingüinos son aves, pero no vuelan: usan sus alas para nadar.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-016",
+  "text": "Las personas tenemos dos pulmones.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Tenemos un pulmón a cada lado del pecho.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-010",
+  "text": "El 10 es un número par.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El 10 se puede dividir entre 2 sin que sobre nada.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-011",
+  "text": "7 + 2 es igual a 10.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "7 + 2 = 9.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-geo-011",
+  "text": "Colombia tiene costa en el mar Caribe y en el océano Pacífico.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Colombia es el único país de América del Sur con costa en los dos.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-023",
+  "text": "Los tiburones son mamíferos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Los tiburones son peces.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-017",
+  "text": "La Tierra gira alrededor del Sol.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La Tierra tarda un año en dar una vuelta completa alrededor del Sol.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-018",
+  "text": "Las plantas fabrican su propio alimento con la luz del sol.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Ese proceso se llama fotosíntesis.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cur-006",
+  "text": "El chocolate se hace con las semillas del cacao.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Las semillas del cacao se secan, se tuestan y se muelen para hacer chocolate.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-dep-010",
+  "text": "En un partido de fútbol cada equipo tiene dos arqueros en la cancha.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Cada equipo tiene un solo arquero en la cancha.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cie-019",
+  "text": "El hielo es agua en estado sólido.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "ciencia",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Cuando el agua se congela se vuelve hielo.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-024",
+  "text": "Antes de ser mariposas, las mariposas son orugas.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "La oruga forma una crisálida y de ella sale la mariposa.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-num-012",
+  "text": "Un triángulo tiene cuatro lados.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "numeros",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El triángulo tiene tres lados.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-025",
+  "text": "El elefante es el animal más pequeño del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "animales",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Al contrario: el elefante es el animal terrestre más grande.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-mus-006",
+  "text": "El violín es un instrumento de cuerda.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El violín suena al frotar sus cuerdas con un arco.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-his-004",
+  "text": "Simón Bolívar nació en Colombia.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Simón Bolívar nació en Caracas, Venezuela, en 1783.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-cul-006",
+  "text": "La Navidad se celebra el 25 de diciembre.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "El 25 de diciembre es Navidad.",
+  "source": null,
+  "referenceDate": null
+ },
+ {
+  "id": "nin-ani-026",
+  "text": "El colibrí es una de las aves más pequeñas del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "animales",
+  "difficulty": "MEDIUM",
+  "region": null,
+  "audience": "KIDS",
+  "explanation": "Algunos colibríes pesan menos que una moneda, y Colombia es uno de los países con más especies.",
+  "source": null,
+  "referenceDate": null
+ }
+]

@@ -208,7 +208,7 @@ class GameEngine(private val bank: QuestionBank) {
             val won: Boolean? = if (!scored) null else answer.choice != null && answer.choice in winningOptions
             val delta = when {
                 won == null -> 0 // votación sin votos suficientes: ni premio ni pérdida de apuesta
-                round == RoundType.STRATEGY -> Scoring.betDelta(bet ?: Scoring.defaultBet(state.scores.getValue(id)), won)
+                round == RoundType.STRATEGY -> Scoring.betDelta(bet ?: Scoring.defaultBet(state.scores.getValue(id)), won, noLoss = state.config.kids)
                 question.isVote -> if (won) GameRules.MAJORITY_VOTE_POINTS else 0
                 !won -> 0
                 else -> Scoring.basePoints(round) +

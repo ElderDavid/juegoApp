@@ -59,6 +59,7 @@ object QuestionBankLoader {
         val explanation: String,
         val source: String? = null,
         val referenceDate: String? = null,
+        val audience: Audience = Audience.ALL,
     ) {
         fun toDomain() = Question(
             id = id,
@@ -81,6 +82,7 @@ object QuestionBankLoader {
             explanation = explanation,
             source = source,
             referenceDate = referenceDate,
+            audience = audience,
         )
     }
 }

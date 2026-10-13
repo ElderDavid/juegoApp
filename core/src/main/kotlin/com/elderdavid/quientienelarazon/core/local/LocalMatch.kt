@@ -148,11 +148,12 @@ data class LocalMatch(
 
     /** Paquete de partida: cada jugador recibe un comodín más. Uno por partida. */
     fun addMatchPack(): LocalMatch {
-        if (matchPackUsed || state.phase == Phase.FINISHED) return this
+        if (!canBuyMatchPack) return this
         return copy(wildcards = state.players.associate { it.id to (wildcards[it.id] ?: 0) + 1 }, matchPackUsed = true)
     }
 
-    val canBuyMatchPack: Boolean get() = !matchPackUsed && state.phase != Phase.FINISHED
+    /** En el modo niños no se ofrecen compras dentro de la partida. */
+    val canBuyMatchPack: Boolean get() = !matchPackUsed && state.phase != Phase.FINISHED && !state.config.kids
 
     private fun needsBet(player: PlayerId) =
         state.phase == Phase.QUESTION && state.round == RoundType.STRATEGY && player !in state.bets

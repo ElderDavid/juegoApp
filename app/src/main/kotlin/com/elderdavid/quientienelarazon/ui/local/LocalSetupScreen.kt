@@ -23,6 +23,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.elderdavid.quientienelarazon.core.game.GameLength
+import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.local.LocalSetup
 import com.elderdavid.quientienelarazon.core.local.NameIssue
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
@@ -143,6 +144,10 @@ private fun ModeCard(state: LocalUiState, onModeChange: (ContentMode) -> Unit) {
         Text("Preguntas", style = MaterialTheme.typography.titleLarge)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             ModeChip("General", state.mode == ContentMode.General) { onModeChange(ContentMode.General) }
+            ModeChip("Niños", state.mode == ContentMode.Kids) { onModeChange(ContentMode.Kids) }
+        }
+        if (state.mode == ContentMode.Kids) {
+            Text(kidsModeHint(), style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
         }
         Text("De aquí somos: preguntas de un departamento", style = MaterialTheme.typography.titleMedium)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -187,6 +192,11 @@ fun GameLengthCard(selected: GameLength, onChange: (GameLength) -> Unit) {
         Text(lengthHint(selected), style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
     }
 }
+
+/** Qué cambia en el modo niños. Las cifras salen de [GameRules] para no contradecir al motor. */
+fun kidsModeHint(): String =
+    "Preguntas más fáciles, ${GameRules.KIDS_QUESTION_TIME_MILLIS / 1000} segundos por pregunta " +
+        "y en las apuestas fallar no resta puntos."
 
 /** Reparto por rondas, para que se entienda qué cambia al elegir menos preguntas. */
 fun lengthHint(length: GameLength): String =

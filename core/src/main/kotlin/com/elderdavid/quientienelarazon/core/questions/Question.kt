@@ -16,6 +16,9 @@ enum class AnswerFormat { MULTIPLE_CHOICE, TRUE_FALSE }
 
 enum class Difficulty { EASY, MEDIUM, HARD }
 
+/** Público de la pregunta: las de [KIDS] solo salen en el modo niños y no se mezclan con las demás. */
+enum class Audience { ALL, KIDS }
+
 /** Cómo se decide quién acierta. Se conoce antes de que nadie responda. */
 sealed interface Evaluation {
     /** Respuesta factual. */
@@ -50,6 +53,7 @@ data class Question(
     val source: String? = null,
     /** Fecha o periodo de referencia para datos que cambian con el tiempo. */
     val referenceDate: String? = null,
+    val audience: Audience = Audience.ALL,
 ) {
     val isVote: Boolean get() = evaluation is Evaluation.MajorityVote
 

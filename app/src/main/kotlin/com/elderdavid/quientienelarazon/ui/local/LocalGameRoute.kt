@@ -48,8 +48,9 @@ fun LocalGameRoute(
         )
     } else {
         // Los botones de la pantalla final pasan antes por el posible anuncio; los demás, no.
+        // En el modo niños nunca hay anuncio (políticas de Google Play para familias).
         val activity = LocalActivity.current
-        val finished = match.stage is LocalStage.Finished
+        val finished = match.stage is LocalStage.Finished && !match.state.config.kids
         val gameKey = "local:${System.identityHashCode(match.state)}"
         fun afterGame(action: () -> Unit): () -> Unit =
             if (finished && activity != null) ({ ads.afterGame(activity, gameKey, action) }) else action

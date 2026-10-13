@@ -58,7 +58,7 @@ Resultado: `app/build/outputs/bundle/release/app-release.aab`. Antes de compilar
    en las salas online, pero no hay chat.
 7. **Público objetivo**: recomendado 13 años o más. Si se incluyen menores de 13, se aplica la
    política de Familias, que obliga a usar solo SDK de anuncios certificados para niños y otra
-   configuración de AdMob.
+   configuración de AdMob. El modo niños afecta a esta decisión: ver `MODO_NINOS.md`.
 8. **Seguridad de los datos**: ver la tabla siguiente.
 9. **Borrado de cuenta**: Play pide el método dentro de la app (ya existe) **y** una URL web
    donde pedir el borrado sin instalar la app. Puede ser una página sencilla con tu correo y
