@@ -73,10 +73,10 @@ data class LocalGameSummary(
     @SerialName("at") val finishedAtMillis: Long,
     /** null = modo general. */
     @SerialName("region") val regionId: String? = null,
-    /** true si se jugó en modo niños. */
-    val kids: Boolean = false,
     val players: List<LocalPlayerScore>,
     val winners: List<String>,
+    /** true si se jugó en modo niños. */
+    val kids: Boolean = false,
 )
 
 @Serializable
