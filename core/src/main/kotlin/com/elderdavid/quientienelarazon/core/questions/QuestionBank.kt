@@ -4,6 +4,9 @@ package com.elderdavid.quientienelarazon.core.questions
 sealed interface ContentMode {
     data object General : ContentMode
     data class Regional(val regionId: String) : ContentMode
+
+    /** Modo niños: preguntas más fáciles, más tiempo y apuestas sin pérdida (ver [com.elderdavid.quientienelarazon.core.game.GameConfig]). */
+    data object Kids : ContentMode
 }
 
 class QuestionBank(
@@ -18,7 +21,8 @@ class QuestionBank(
     fun category(id: String): Category = categoriesById[id] ?: error("Categoría desconocida: $id")
 
     fun pool(mode: ContentMode): List<Question> = when (mode) {
-        ContentMode.General -> questions.filter { it.regionId == null }
-        is ContentMode.Regional -> questions.filter { it.regionId == mode.regionId }
+        ContentMode.General -> questions.filter { it.regionId == null && it.audience == Audience.ALL }
+        is ContentMode.Regional -> questions.filter { it.regionId == mode.regionId && it.audience == Audience.ALL }
+        ContentMode.Kids -> questions.filter { it.audience == Audience.KIDS }
     }
 }

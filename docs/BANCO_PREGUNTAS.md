@@ -14,6 +14,9 @@ Ubicación: `core/src/main/resources/questions/`. Lo carga `QuestionBankLoader.f
 | `antioquia.json` | 40 | Modo «De aquí somos» |
 | `bogota.json` | 40 | Modo «De aquí somos». Bogotá es Distrito Capital, no departamento |
 
+Además, `ninos.json` tiene 111 preguntas con `"audience": "KIDS"` que solo salen en el modo niños
+(ver `MODO_NINOS.md`). No cuentan en las 380 ni se mezclan con el banco general.
+
 ## Formato
 
 Cada pregunta tiene `id`, `text`, `options`, `evaluation` (`correct` con índice, `rule` con índice y regla explícita, o `vote`), `category`, `kind` (OBJECTIVE, DEBATE, OPINION), `format` (MULTIPLE_CHOICE, TRUE_FALSE), `difficulty`, `region` (solo regionales), `explanation` y `source` (obligatoria en regionales).

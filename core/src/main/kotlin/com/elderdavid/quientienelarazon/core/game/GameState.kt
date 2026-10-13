@@ -6,9 +6,12 @@ data class GameConfig(
     val mode: ContentMode = ContentMode.General,
     /** true en el modo local: un solo teléfono, los jugadores responden por turnos. */
     val sequentialTurns: Boolean = true,
-    val questionTimeMillis: Long = GameRules.QUESTION_TIME_MILLIS,
+    val questionTimeMillis: Long = if (mode == ContentMode.Kids) GameRules.KIDS_QUESTION_TIME_MILLIS else GameRules.QUESTION_TIME_MILLIS,
     val length: GameLength = GameLength.DEFAULT,
-)
+) {
+    /** Modo niños: en la ronda de estrategia fallar no resta la apuesta. */
+    val kids: Boolean get() = mode == ContentMode.Kids
+}
 
 enum class Phase {
     /** La ruleta muestra la categoría ya decidida de la pregunta actual. */

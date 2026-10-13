@@ -4,6 +4,7 @@ import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalStage
+import com.elderdavid.quientienelarazon.core.questions.Audience
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
 import kotlinx.coroutines.Dispatchers
@@ -77,6 +78,27 @@ class LocalGameViewModelTest {
         assertEquals(2, vm.state.value.names.size)
         repeat(5) { vm.addPlayer() }
         assertEquals(GameRules.MAX_PLAYERS, vm.state.value.names.size)
+    }
+
+    @Test
+    fun kidsModeUsesKidsQuestionsAndLongerTimer() = runTest(dispatcher) {
+        val vm = viewModel()
+        vm.setName(0, "Ana")
+        vm.setName(1, "Luis")
+        vm.setMode(ContentMode.Kids)
+        vm.start()
+        val match = vm.state.value.match!!
+        assertTrue(match.state.config.kids)
+        assertTrue(match.state.plan.questions.all { bank.question(it.questionId).audience == Audience.KIDS })
+        vm.rouletteDone()
+        vm.ready()
+        advanceTimeBy(GameRules.QUESTION_TIME_MILLIS + 1)
+        runCurrent()
+        // Con el tiempo normal ya se habría agotado; en el modo niños sigue respondiendo.
+        assertTrue(vm.state.value.match!!.stage is LocalStage.Answering)
+        advanceTimeBy(GameRules.KIDS_QUESTION_TIME_MILLIS - GameRules.QUESTION_TIME_MILLIS)
+        runCurrent()
+        assertTrue(vm.state.value.match!!.stage is LocalStage.Handoff)
     }
 
     @Test

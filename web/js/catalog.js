@@ -12,6 +12,8 @@ export const CATEGORIES = {
   musica: "Música",
   cultura: "Cultura general",
   curiosidades: "Curiosidades",
+  animales: "Animales",
+  numeros: "Números y formas",
   debate: "Debate y opinión",
   reg_geografia: "Municipios y geografía",
   reg_historia: "Historia regional",

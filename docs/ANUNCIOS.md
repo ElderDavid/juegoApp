@@ -52,6 +52,8 @@ puede suspender la cuenta por clics no válidos.
 - **Banner:** abajo, fijo, en Reglas y Estadísticas. No hay banners en el menú ni en el juego.
 - **Contenido:** clasificación máxima de anuncios `PG` (apto con supervisión), elegida por ser un
   juego de preguntas para público general. Se puede cambiar en `AdMobAdsController`.
+- **Menores de 13** (según la pregunta de edad al abrir la app): anuncios dirigidos a niños,
+  clasificación `G`, sin personalizar y sin videos con recompensa. Ver `MODO_NINOS.md`.
 
 ## Consentimiento
 

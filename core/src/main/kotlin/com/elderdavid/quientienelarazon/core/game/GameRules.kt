@@ -12,6 +12,9 @@ object GameRules {
 
     const val QUESTION_TIME_MILLIS = 8_000L
 
+    /** Modo niños: 1,5 veces el tiempo normal para leer y responder con calma. */
+    const val KIDS_QUESTION_TIME_MILLIS = 12_000L
+
     const val KNOWLEDGE_POINTS = 100
     const val SPEED_POINTS = 100
     const val SPEED_BONUS_MAX = 50

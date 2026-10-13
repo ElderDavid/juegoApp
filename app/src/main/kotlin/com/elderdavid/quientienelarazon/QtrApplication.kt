@@ -7,6 +7,7 @@ import com.elderdavid.quientienelarazon.account.SupabaseAccountRepository
 import com.elderdavid.quientienelarazon.account.SupabaseProfileRepository
 import com.elderdavid.quientienelarazon.account.SupabaseSettings
 import com.elderdavid.quientienelarazon.ads.AdMobAdsController
+import com.elderdavid.quientienelarazon.ads.AgeGateStore
 import com.elderdavid.quientienelarazon.ads.AdsConsent
 import com.elderdavid.quientienelarazon.ads.AdsController
 import com.elderdavid.quientienelarazon.ads.NoAds
@@ -69,6 +70,9 @@ class AppContainer(application: Application) {
     val settingsRepository: SettingsRepository =
         DataStoreSettingsRepository(application.settingsDataStore)
 
+    /** Respuesta a la pregunta de edad (niño o no). Decide cómo se piden los anuncios. */
+    val ageGate = AgeGateStore(application.settingsDataStore, appScope)
+
     /** Partidas locales de este teléfono. Fuente de verdad separada de las estadísticas de la cuenta. */
     val localHistoryRepository: LocalHistoryRepository =
         DataStoreLocalHistoryRepository(application.localHistoryDataStore)
@@ -104,6 +108,7 @@ class AppContainer(application: Application) {
         AdMobAdsController(
             context = application,
             consent = consent,
+            ageStatus = ageGate.status,
             billing = billingRepository,
             // Hilo principal: el SDK de anuncios exige cargar y mostrar desde él.
             scope = MainScope(),

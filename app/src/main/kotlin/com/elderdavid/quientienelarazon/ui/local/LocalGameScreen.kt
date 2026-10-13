@@ -127,7 +127,7 @@ fun LocalGameScreen(
 
     ArcadeScreen(title = null) {
         when (stage) {
-            is LocalStage.Roulette -> RouletteView(stage, match.state.config.length, bank, rouletteCategories, reducedMotion, actions)
+            is LocalStage.Roulette -> RouletteView(stage, match.state.config.length, match.state.config.kids, bank, rouletteCategories, reducedMotion, actions)
             is LocalStage.Handoff -> {
                 HandoffView(stage, names.getValue(stage.playerId), colorIndex.getValue(stage.playerId), match.state, actions)
                 if (!stage.tiebreak) MatchPackOffer(match, extras, actions)
@@ -148,6 +148,7 @@ fun LocalGameScreen(
 private fun RouletteView(
     stage: LocalStage.Roulette,
     length: GameLength,
+    kids: Boolean,
     bank: QuestionBank,
     categories: List<Category>,
     reducedMotion: Boolean,
@@ -180,7 +181,7 @@ private fun RouletteView(
     if (length.isFirstOfRound(stage.questionNumber - 1)) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Ronda ${stage.round.number}: ${stage.round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
-            Text(roundRule(stage.round), color = ArcadeTextMuted)
+            Text(roundRule(stage.round, kids), color = ArcadeTextMuted)
         }
     }
     ArcadeCard(accent = if (landed) ArcadeOrange else ArcadeOutline, modifier = Modifier.heightIn(min = 160.dp)) {
@@ -195,10 +196,12 @@ private fun RouletteView(
     }
 }
 
-internal fun roundRule(round: RoundType): String = when (round) {
+/** [kids]: en el modo niños fallar una apuesta no resta puntos. */
+internal fun roundRule(round: RoundType, kids: Boolean = false): String = when (round) {
     RoundType.KNOWLEDGE -> "Acierto: +${GameRules.KNOWLEDGE_POINTS} puntos."
     RoundType.SPEED -> "Acierto: +${GameRules.SPEED_POINTS} y hasta +${GameRules.SPEED_BONUS_MAX} extra cuanto más rápido respondas."
-    RoundType.STRATEGY -> "Antes de ver la pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos. Aciertas: los ganas. Fallas: los pierdes."
+    RoundType.STRATEGY -> "Antes de ver la pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos. Aciertas: los ganas. " +
+        if (kids) "Fallas: no pierdes nada." else "Fallas: los pierdes."
     RoundType.FINAL -> "Preguntas más difíciles. Acierto: +${GameRules.FINAL_POINTS} y bono por rapidez."
 }
 
@@ -247,6 +250,7 @@ private fun BettingView(stage: LocalStage.Betting, name: String, state: GameStat
         Text("Categoría: ${bank.category(state.currentPlanned!!.categoryId).name}", style = MaterialTheme.typography.titleMedium)
         Text("Tienes ${stage.score} puntos.", color = ArcadeTextMuted)
         Text("Tras apostar verás la pregunta y empezará tu tiempo.", color = ArcadeTextMuted)
+        if (state.config.kids) Text("Modo niños: si fallas no pierdes lo apostado.", color = ArcadeCyan)
     }
     if (stage.allowedBets.isEmpty()) {
         ArcadeCard {
@@ -486,7 +490,7 @@ private fun RoundSummaryView(
     if (nextRound != null) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Siguiente: ronda ${nextRound.number}, ${nextRound.title}", style = MaterialTheme.typography.titleMedium, color = ArcadeViolet)
-            Text(roundRule(nextRound), color = ArcadeTextMuted)
+            Text(roundRule(nextRound, state.config.kids), color = ArcadeTextMuted)
         }
     }
     ArcadeButton(text = "Siguiente ronda", onClick = actions.next)

@@ -1,7 +1,8 @@
 # ¿Quién tiene la razón?
 
 Juego Android de cultura general competitivo para 2 a 4 jugadores, con modo local sin conexión,
-partidas online y el modo regional «De aquí somos» (La Guajira, Magdalena, Cesar y Atlántico).
+partidas online, el modo regional «De aquí somos» y un modo niños con preguntas más fáciles y más
+tiempo (ver `docs/MODO_NINOS.md`).
 
 ## Estructura
 - `core/` — motor de reglas en Kotlin puro (compartido por los modos local y online). Se prueba sin Android SDK.

@@ -38,6 +38,14 @@
    "name": "Curiosidades"
   },
   {
+   "id": "animales",
+   "name": "Animales"
+  },
+  {
+   "id": "numeros",
+   "name": "Números y formas"
+  },
+  {
    "id": "debate",
    "name": "Debate y opinión"
   },
@@ -111,6 +119,7 @@
   "cesar.json",
   "atlantico.json",
   "antioquia.json",
-  "bogota.json"
+  "bogota.json",
+  "ninos.json"
  ]
 }

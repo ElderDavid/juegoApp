@@ -5,7 +5,7 @@
 
 Última actualización: [fecha]
 
-Responsable: [nombre del desarrollador], contacto: [correo].
+Responsable: [nombre del desarrollador], contacto: vantivoc@gmail.com.
 
 ## Qué datos se usan
 
@@ -42,11 +42,17 @@ respuestas online.
 ## Cómo borrar tus datos
 
 - En la app: Perfil → «Borrar mi cuenta».
-- Sin la app: escribe a [correo] desde el correo vinculado o indicando tu nombre público.
+- Sin la app: escribe a vantivoc@gmail.com desde el correo vinculado o indicando tu nombre público.
 
 ## Menores
 
-La app no está dirigida a menores de 13 años.
+La app tiene un modo para jugar con niños. La primera vez que se abre pregunta el año de
+nacimiento y guarda en el teléfono solo si quien la usa es menor de 13 años (el año no se guarda
+ni se envía). A los menores de 13 se les muestran únicamente anuncios aptos para niños, sin
+personalizar y sin usar el identificador de publicidad, y no se les ofrecen videos con
+recompensa. Recomendamos que los menores no usen su nombre real como nombre de jugador en el
+juego online. Si eres madre, padre o tutor y quieres borrar los datos de un menor, escribe a
+vantivoc@gmail.com.
 
 ## Cambios
 

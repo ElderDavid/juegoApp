@@ -81,7 +81,8 @@ La versión debug usa siempre el bloque de video de prueba de Google.
 - No se venden premios al azar, así que no hay probabilidades que publicar.
 - Las monedas compradas no se pueden cambiar por dinero ni apostar: las apuestas de la ronda 3 son
   de puntos de la partida.
-- Público objetivo 13+ (ver `PUBLICACION.md`), para no entrar en la política de Familias.
+- Público mixto con política de Familias (ver `MODO_NINOS.md`): los menores de 13 no ven videos con
+  recompensa y en el modo niños no se ofrece el paquete de partida.
 - En online no hay comodines: comprar no da ventaja contra otros jugadores.
 
 ## Pruebas

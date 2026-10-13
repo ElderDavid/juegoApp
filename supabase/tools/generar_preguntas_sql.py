@@ -24,6 +24,8 @@ def main():
     rows, keys = [], []
     for name in index["files"]:
         for q in json.loads((BANK / name).read_text(encoding="utf-8")):
+            if q.get("audience") == "KIDS":
+                continue  # El modo niños solo existe en la partida local: no se sube al servidor.
             ev = q["evaluation"]
             is_vote = ev["type"] == "vote"
             rows.append(

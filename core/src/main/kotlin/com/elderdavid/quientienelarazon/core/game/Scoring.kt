@@ -32,9 +32,12 @@ object Scoring {
     /** Apuesta automática cuando el jugador no elige (p. ej. se le acaba el tiempo): la mínima posible. */
     fun defaultBet(score: Int): Bet = allowedBets(score).minOrNull()?.let { Bet.Amount(it) } ?: Bet.Free
 
-    /** Variación de puntos en la ronda de estrategia. Nunca deja el saldo en negativo. */
-    fun betDelta(bet: Bet, won: Boolean): Int = when (bet) {
-        is Bet.Amount -> if (won) bet.value else -bet.value
+    /**
+     * Variación de puntos en la ronda de estrategia. Nunca deja el saldo en negativo.
+     * Con [noLoss] (modo niños) fallar no resta: solo se gana lo apostado si se acierta.
+     */
+    fun betDelta(bet: Bet, won: Boolean, noLoss: Boolean = false): Int = when (bet) {
+        is Bet.Amount -> if (won) bet.value else if (noLoss) 0 else -bet.value
         Bet.Free -> if (won) GameRules.FREE_BET_REWARD else 0
     }
 }

@@ -173,7 +173,7 @@ private fun LocalHistoryCard(history: LocalHistory, regionNames: Map<String, Str
 
 @Composable
 private fun LocalGameRow(game: LocalGameSummary, regionNames: Map<String, String>, dateFormat: DateFormat) {
-    val mode = game.regionId?.let { regionNames[it] ?: it } ?: "General"
+    val mode = if (game.kids) "Niños" else game.regionId?.let { regionNames[it] ?: it } ?: "General"
     val ranking = game.players.sortedByDescending { it.score }.joinToString(" · ") { "${it.name} ${it.score}" }
     val winners = game.winners.joinToString(" y ")
     HorizontalDivider(color = ArcadeOutline)

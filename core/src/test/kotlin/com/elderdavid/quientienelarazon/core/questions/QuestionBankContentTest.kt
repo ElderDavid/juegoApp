@@ -12,11 +12,17 @@ import org.junit.Test
 class QuestionBankContentTest {
     private val bank = QuestionBankLoader.fromResources()
 
-    @Test fun hasExactly380Questions() = assertEquals(380, bank.questions.size)
+    private val adultQuestions = bank.questions.filter { it.audience == Audience.ALL }
+    private val kidsQuestions = bank.questions.filter { it.audience == Audience.KIDS }
+
+    @Test fun hasExactly380QuestionsPlus111ForKids() {
+        assertEquals(380, adultQuestions.size)
+        assertEquals(111, kidsQuestions.size)
+    }
 
     @Test
     fun distributionIsExact() {
-        val byRegion = bank.questions.groupingBy { it.regionId }.eachCount()
+        val byRegion = adultQuestions.groupingBy { it.regionId }.eachCount()
         assertEquals(
             mapOf(null to 140, "la-guajira" to 40, "magdalena" to 40, "cesar" to 40, "atlantico" to 40,
                 "antioquia" to 40, "bogota" to 40),
@@ -64,17 +70,17 @@ class QuestionBankContentTest {
     @Test
     fun everyModeCanPlanFullGamesForTwoToFourPlayers() {
         val engine = GameEngine(bank)
-        val modes = listOf(ContentMode.General) + bank.regions.map { ContentMode.Regional(it.id) }
+        val modes = listOf(ContentMode.General, ContentMode.Kids) + bank.regions.map { ContentMode.Regional(it.id) }
         for (mode in modes) {
             for (n in GameRules.MIN_PLAYERS..GameRules.MAX_PLAYERS) {
                 repeat(25) { seed ->
                     val state = engine.newGame(players(n), GameConfig(mode = mode), seed.toLong())
                     val ids = state.plan.questions.map { it.questionId } + state.plan.tiebreakQueue
                     assertEquals(ids.size, ids.toSet().size)
-                    if (mode is ContentMode.Regional) {
-                        assertTrue(ids.all { bank.question(it).regionId == mode.regionId })
-                    } else {
-                        assertTrue(ids.all { bank.question(it).regionId == null })
+                    when (mode) {
+                        is ContentMode.Regional -> assertTrue(ids.all { bank.question(it).regionId == mode.regionId })
+                        ContentMode.General -> assertTrue(ids.all { bank.question(it).let { q -> q.regionId == null && q.audience == Audience.ALL } })
+                        ContentMode.Kids -> assertTrue(ids.all { bank.question(it).audience == Audience.KIDS })
                     }
                 }
             }
@@ -87,5 +93,24 @@ class QuestionBankContentTest {
             val categories = bank.pool(ContentMode.Regional(region.id)).map { it.categoryId }.toSet()
             assertTrue("${region.name}: ${categories.size} categorías", categories.size >= 5)
         }
+    }
+
+    @Test
+    fun kidsQuestionsAreObjectiveAndNotTooHard() {
+        kidsQuestions.forEach {
+            assertEquals("${it.id}", QuestionKind.OBJECTIVE, it.kind)
+            assertTrue("${it.id} es difícil", it.difficulty != Difficulty.HARD)
+            assertTrue("${it.id} tiene departamento", it.regionId == null)
+            assertTrue("${it.id} categoría", !it.categoryId.startsWith("reg_") && it.categoryId != "debate")
+        }
+    }
+
+    @Test
+    fun kidsModeOffersVarietyAndRoomForRematches() {
+        val pool = bank.pool(ContentMode.Kids)
+        assertTrue(pool.map { it.categoryId }.toSet().size >= 8)
+        // Una revancha de 12 preguntas puede evitar todas las de la partida anterior.
+        assertTrue(pool.size >= 2 * (GameRules.ROUNDS * 3 + GameRules.TIEBREAK_RESERVE))
+        assertTrue(pool.count { it.format == AnswerFormat.TRUE_FALSE } >= 2 * 3)
     }
 }
