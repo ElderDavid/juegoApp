@@ -158,10 +158,15 @@ export function createApi(config, deps = {}) {
       const data = await rpc("current_room");
       return data && typeof data === "object" ? data : null;
     },
-    createRoom: (mode, questions) => rpc("create_room", { p_visibility: "private", p_mode: mode, p_questions: questions }),
-    /** Busca una sala pública de la misma modalidad y duración; si no hay, crea una. */
-    findPublic: (mode, questions) => rpc("find_public_room", { p_mode: mode, p_questions: questions }),
-    joinByCode: (code) => rpc("join_room_by_code", { p_code: code }),
+    /** [audience]: «standard», «kids» o «mixed». [kids]: nivel del jugador si la sala es mixta. */
+    createRoom: (mode, questions, audience = "standard", kids = false) =>
+      rpc("create_room", { p_visibility: "private", p_mode: mode, p_questions: questions, p_audience: audience, p_kids: kids }),
+    /** Busca una sala pública de la misma modalidad, tipo y duración; si no hay, crea una. */
+    findPublic: (mode, questions, audience = "standard", kids = false) =>
+      rpc("find_public_room", { p_mode: mode, p_questions: questions, p_audience: audience, p_kids: kids }),
+    joinByCode: (code, kids = false) => rpc("join_room_by_code", { p_code: code, p_kids: kids }),
+    /** Cambia el nivel en una sala mixta, antes de empezar. */
+    setKidsLevel: (roomId, kids) => rpc("set_kids_level", { p_room: roomId, p_kids: kids }),
     state: (roomId) => rpc("room_state", { p_room: roomId }),
     start: (roomId) => rpc("start_room", { p_room: roomId }),
     leave: (roomId) => rpc("leave_room", { p_room: roomId }),

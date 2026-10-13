@@ -35,7 +35,7 @@ test("entra como invitado anónimo y llama a la función con su token", async ()
   const storage = memoryStorage();
   const api = createApi(config, { fetch, storage, now: () => 1000 });
   const view = await api.joinByCode("ABCDEF");
-  assert.deepEqual(view.echo, { p_code: "ABCDEF" });
+  assert.deepEqual(view.echo, { p_code: "ABCDEF", p_kids: false });
   assert.equal(fetch.calls[1].auth, "Bearer t1");
   assert.equal(fetch.calls[1].apikey, "pub");
   assert.equal(api.userId, "u1");
@@ -104,8 +104,25 @@ test("crear y buscar sala envían modalidad y duración", async () => {
     "/rest/v1/rpc/find_public_room": (b) => [200, b],
   });
   const api = createApi(config, { fetch, storage: null });
-  assert.deepEqual(await api.createRoom("general", 8), { p_visibility: "private", p_mode: "general", p_questions: 8 });
-  assert.deepEqual(await api.findPublic("cesar", 10), { p_mode: "cesar", p_questions: 10 });
+  assert.deepEqual(await api.createRoom("general", 8), {
+    p_visibility: "private", p_mode: "general", p_questions: 8, p_audience: "standard", p_kids: false,
+  });
+  assert.deepEqual(await api.findPublic("cesar", 10), { p_mode: "cesar", p_questions: 10, p_audience: "standard", p_kids: false });
+});
+
+test("salas de niños y mixtas envían el tipo y el nivel", async () => {
+  const fetch = fakeFetch({
+    "/auth/v1/signup": () => [200, session()],
+    "/rest/v1/rpc/create_room": (b) => [200, b],
+    "/rest/v1/rpc/find_public_room": (b) => [200, b],
+    "/rest/v1/rpc/join_room_by_code": (b) => [200, b],
+    "/rest/v1/rpc/set_kids_level": (b) => [200, b],
+  });
+  const api = createApi(config, { fetch, storage: null });
+  assert.equal((await api.createRoom("general", 12, "kids")).p_audience, "kids");
+  assert.deepEqual(await api.findPublic("general", 12, "mixed", true), { p_mode: "general", p_questions: 12, p_audience: "mixed", p_kids: true });
+  assert.deepEqual(await api.joinByCode("ABCDEF", true), { p_code: "ABCDEF", p_kids: true });
+  assert.deepEqual(await api.setKidsLevel("r", false), { p_room: "r", p_kids: false });
 });
 
 test("el tiempo de respuesta se envía en milisegundos enteros", async () => {

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import {
-  ERROR_CODES, LENGTHS, clockRemaining, clockSeconds, displayCode, errorCode, isValidCode, normalizeCode,
+  AUDIENCES, ERROR_CODES, LENGTHS, ROUNDS, audienceOf, roundRule, clockRemaining, clockSeconds, displayCode, errorCode, isValidCode, normalizeCode,
   phaseClock, ranking, roundFor, signed, startsRound,
 } from "../js/game.js";
 
@@ -83,4 +83,22 @@ test("rondas iguales que GameLength y _round_for del servidor", () => {
   assert.match(sql, /when 10 then case when p_idx < 3 then 1 when p_idx < 5 then 2 when p_idx < 7 then 3 else 4 end/);
   assert.match(sql, /else p_idx \/ 3 \+ 1/);
   assert.match(sql, /question_count in \(8, 10, 12\)/);
+});
+
+test("tipos de sala iguales que OnlineAudience y el servidor", () => {
+  const kotlin = read("app/src/main/kotlin/com/elderdavid/quientienelarazon/online/OnlineModels.kt");
+  const sql = read("supabase/migrations/20261013000000_modo_ninos_online.sql");
+  for (const a of AUDIENCES) {
+    assert.match(kotlin, new RegExp(`\\("${a.id}"\\)`));
+    assert.match(sql, new RegExp(`'${a.id}'`));
+  }
+  assert.equal(audienceOf({ audience: "mixed" }).name, "Mixta");
+  assert.equal(audienceOf({}).id, "standard");
+  assert.ok(ERROR_CODES.includes("invalid_audience"));
+});
+
+test("con preguntas de niños fallar la apuesta no resta", () => {
+  assert.match(roundRule(ROUNDS[2], true), /Fallas: no pierdes nada\./);
+  assert.match(roundRule(ROUNDS[2], false), /Fallas: los pierdes\./);
+  assert.equal(roundRule(ROUNDS[0], true), ROUNDS[0].rule);
 });

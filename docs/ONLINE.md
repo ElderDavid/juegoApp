@@ -12,7 +12,7 @@
 - **Nadie lee las tablas.** Los clientes no tienen permisos de lectura ni escritura sobre salas,
   respuestas ni preguntas (RLS activado y privilegios revocados). Solo pueden llamar a:
   `create_room`, `join_room_by_code`, `find_public_room`, `current_room`, `room_state`,
-  `start_room`, `leave_room`, `submit_bet` y `submit_answer`.
+  `start_room`, `leave_room`, `submit_bet`, `submit_answer` y `set_kids_level`.
 
 ## Reglas online
 
@@ -33,6 +33,31 @@
 - **Votaciones** solo con 3 o más jugadores, como en local.
 - **Desempate**: solo los empatados en el primer puesto; gana el acierto más rápido según el
   servidor. No suma aciertos a las estadísticas.
+
+## Tipos de sala: normal, de niños y mixta
+
+Desde `20261013000000_modo_ninos_online.sql` cada sala tiene un tipo (`rooms.audience`), que elige
+quien la crea o busca partida pública (las públicas solo emparejan salas del mismo tipo):
+
+| | Normal | De niños | Mixta |
+|---|---|---|---|
+| Preguntas | Generales o de un departamento | Solo para niños (`audience = 'KIDS'`) | Cada jugador las de su nivel |
+| Tiempo para responder | 8 s | 12 s | 12 s niños, 8 s mayores |
+| Fallar la apuesta | Resta | No resta | No resta a los niños |
+| Votaciones | Con 3 o más jugadores | No | No |
+| Modalidad | Cualquiera | Solo general | Solo general |
+
+- **Sala mixta.** Cada jugador elige su nivel al crear, entrar con código o buscar
+  (`p_kids`), y puede cambiarlo en la sala de espera con `set_kids_level`. La ruleta elige una
+  categoría que exista en los dos bancos y el servidor planifica dos preguntas por turno, una
+  normal y otra de niños, de esa misma categoría (`room_questions.for_kids`). Cada uno ve, responde
+  y se corrige con la suya. La fase dura 12 s para todos, pero a los mayores se les muestra un reloj
+  de 8 s y el servidor rechaza sus respuestas pasados 8 s más el margen de red. El bono de rapidez y
+  el desempate se miden en proporción al tiempo de cada uno.
+- En la revelación, `same_question = false` marca a quien respondió la otra pregunta: la app muestra
+  solo si acertó, no su opción, porque es de otra pregunta.
+- En la app Android, quien dijo tener menos de 13 años empieza con «Niños» y nivel de niños ya
+  elegidos, pero puede cambiarlos. La edad no se envía al servidor.
 
 ## Salas
 
@@ -71,7 +96,9 @@
 ## Preguntas en el servidor
 
 `supabase/migrations/20261012010100_preguntas.sql` se genera desde el banco de la app con
-`python3 supabase/tools/generar_preguntas_sql.py`. Las soluciones van a la tabla `question_keys`,
+`python3 supabase/tools/generar_preguntas_sql.py`, y las preguntas para niños
+(`20261013000100_preguntas_ninos.sql`) con la opción `--ninos`. Cada archivo solo retira preguntas
+de su propio público (las de niños empiezan por `nin-`). Las soluciones van a la tabla `question_keys`,
 que solo leen las funciones del servidor y solo se muestran en la revelación.
 
 En el proyecto de Supabase real (12/10/2026) este archivo se cargó en cinco partes
@@ -86,7 +113,8 @@ vuelve a generar el archivo y aplícalo entero (por ejemplo con `supabase db pus
 `supabase/tests/salas_test.py` crea una base de datos PostgreSQL desechable con una simulación de
 `auth` (`supabase/tests/auth_simulado.sql`), aplica todas las migraciones y juega partidas completas
 como lo haría la app: sala privada, permisos, partida de 3 jugadores con apuestas y votación,
-empate y desempate, tiempos, desconexión, reconexión, abandono, emparejamiento público y límites.
+empate y desempate, tiempos, desconexión, reconexión, abandono, emparejamiento público, salas de
+niños y mixtas, y límites.
 
 ```
 PGTEST_DSN="host=/ruta/socket port=5432 user=postgres" python3 supabase/tests/salas_test.py

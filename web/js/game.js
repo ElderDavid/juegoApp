@@ -10,12 +10,35 @@ export const DEFAULT_QUESTIONS = 12;
 export const LENGTHS = [8, 10, 12];
 export const AUTOSTART_TOTAL_MS = 15_000;
 
+/**
+ * Tipos de sala (OnlineAudience). En la de niños todos tienen preguntas para niños con 12 s; en la
+ * mixta cada uno elige su nivel. Solo existen con preguntas generales.
+ */
+export const AUDIENCES = [
+  { id: "standard", name: "Normal", hint: "Preguntas normales y 8 segundos para responder." },
+  { id: "kids", name: "Niños", hint: "Todos reciben preguntas más fáciles, tienen 12 segundos y fallar una apuesta no resta puntos." },
+  {
+    id: "mixed",
+    name: "Mixta",
+    hint: "Niños y mayores juntos: cada uno recibe una pregunta de la misma categoría pero de su nivel. Los niños tienen 12 segundos y los mayores 8.",
+  },
+];
+
+export function audienceOf(room) {
+  return AUDIENCES.find((a) => a.id === room?.audience) ?? AUDIENCES[0];
+}
+
 export const ROUNDS = [
   { number: 1, title: "Conocimiento", rule: "Acierto: +100 puntos." },
   { number: 2, title: "Velocidad", rule: "Acierto: +100 y hasta +50 extra cuanto más rápido respondas." },
   { number: 3, title: "Estrategia", rule: "Antes de ver la pregunta apuestas 50 o 100 puntos. Aciertas: los ganas. Fallas: los pierdes." },
   { number: 4, title: "Final", rule: "Preguntas más difíciles. Acierto: +150 y bono por rapidez." },
 ];
+
+/** Regla de la ronda; con preguntas de niños fallar la apuesta no resta (roundRule en la app). */
+export function roundRule(round, kids = false) {
+  return kids && round.number === 3 ? round.rule.replace("Fallas: los pierdes.", "Fallas: no pierdes nada.") : round.rule;
+}
 
 /** Ronda (1 a 4) de la pregunta [index] en una partida de [count] preguntas (GameLength.roundFor). */
 export function roundFor(index, count = DEFAULT_QUESTIONS) {
@@ -139,9 +162,10 @@ const ERROR_MESSAGES = {
   invalid_option: "Opción no válida.",
   invalid_mode: "Esa modalidad no existe en el servidor.",
   invalid_visibility: "Tipo de sala no válido.",
+  invalid_audience: "Las salas de niños y mixtas solo tienen preguntas generales.",
   not_a_tiebreak_player: "Solo juegan el desempate los empatados en el primer puesto.",
   profile_missing: "No se encontró tu perfil. Recarga la página.",
-  wrong_status: "La sala cambió de estado. Actualizando…",
+  wrong_status: "La partida ya empezó: el nivel ya no se puede cambiar.",
   name_too_short: "El nombre debe tener al menos 3 caracteres.",
   name_too_long: "El nombre puede tener como mucho 16 caracteres.",
   name_invalid_characters: "Usa solo letras, números, espacios, puntos, guiones o guiones bajos.",

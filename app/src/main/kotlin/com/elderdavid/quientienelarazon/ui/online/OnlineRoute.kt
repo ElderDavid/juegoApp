@@ -43,6 +43,8 @@ fun OnlineRoute(
         actions = OnlineActions(
             setMode = viewModel::setMode,
             setLength = viewModel::setLength,
+            setAudience = viewModel::setAudience,
+            setKidsLevel = viewModel::setKidsLevel,
             setCode = viewModel::setCode,
             createPrivate = viewModel::createPrivate,
             joinByCode = viewModel::joinByCode,

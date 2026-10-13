@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.elderdavid.quientienelarazon.AppContainer
 import com.elderdavid.quientienelarazon.account.ProfileViewModel
 import com.elderdavid.quientienelarazon.ads.AgeStatus
+import com.elderdavid.quientienelarazon.core.ads.AgeGroup
 import com.elderdavid.quientienelarazon.economy.EconomyViewModel
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.online.OnlineGameViewModel
@@ -103,6 +104,7 @@ private fun AppNavHost(container: AppContainer) {
                     repository = container.onlineRepository,
                     loadBank = container::questionBank,
                     clock = SystemClock::elapsedRealtime,
+                    childPlayer = container.ageGate.status.value == AgeStatus.Known(AgeGroup.CHILD),
                 ),
             )
             OnlineRoute(
