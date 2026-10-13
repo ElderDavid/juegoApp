@@ -3,6 +3,7 @@ package com.elderdavid.quientienelarazon.core.local
 import com.elderdavid.quientienelarazon.core.game.EngineResult
 import com.elderdavid.quientienelarazon.core.game.GameConfig
 import com.elderdavid.quientienelarazon.core.game.GameEngine
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.game.Phase
 import com.elderdavid.quientienelarazon.core.game.Player
@@ -208,7 +209,7 @@ data class LocalMatch(
     /** Nueva partida con los mismos jugadores y modo, evitando en lo posible las preguntas ya vistas. */
     fun rematch(seed: Long): LocalMatch {
         val seen = state.plan.questions.map { it.questionId }.toSet() + state.plan.tiebreakQueue
-        return start(engine, state.players, state.config.mode, seed, seen)
+        return start(engine, state.players, state.config.mode, seed, seen, state.config.length)
     }
 
     private fun submit(player: PlayerId, choice: Int?, elapsed: Long): LocalMatch =
@@ -231,8 +232,9 @@ data class LocalMatch(
             mode: ContentMode,
             seed: Long,
             avoidQuestionIds: Set<String> = emptySet(),
+            length: GameLength = GameLength.DEFAULT,
         ): LocalMatch = LocalMatch(
-            state = engine.newGame(players, GameConfig(mode = mode, sequentialTurns = true), seed, avoidQuestionIds),
+            state = engine.newGame(players, GameConfig(mode = mode, sequentialTurns = true, length = length), seed, avoidQuestionIds),
             engine = engine,
             wildcards = players.associate { it.id to WildcardRules.FREE_PER_PLAYER },
         )

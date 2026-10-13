@@ -1,6 +1,5 @@
 package com.elderdavid.quientienelarazon.core.profile
 
-import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.game.Phase
 import com.elderdavid.quientienelarazon.core.game.PlayerId
@@ -58,14 +57,14 @@ object Levels {
     }
 
     /**
-     * Resultado de una partida terminada para un jugador. Solo cuentan las 12 preguntas principales:
+     * Resultado de una partida terminada para un jugador. Solo cuentan las preguntas principales:
      * el desempate decide el ganador pero no suma aciertos (sección 5 de la especificación).
      * Una victoria compartida cuenta como victoria para cada ganador.
      */
     fun deltaFor(state: GameState, player: PlayerId): GameStatsDelta {
         require(state.phase == Phase.FINISHED) { "La partida no ha terminado" }
         require(state.players.any { it.id == player }) { "Jugador desconocido" }
-        check(state.results.size == GameRules.TOTAL_QUESTIONS) { "Faltan resultados de preguntas" }
+        check(state.results.size == state.config.length.questions) { "Faltan resultados de preguntas" }
         // Las objetivas siempre se puntúan y nunca tienen recuento de votos.
         val objective = state.results.filter { r -> r.scored && r.voteCounts.isEmpty() }
         val correct = objective.count { r -> r.outcomes.any { it.playerId == player && it.won == true } }

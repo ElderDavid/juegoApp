@@ -22,6 +22,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.local.LocalSetup
 import com.elderdavid.quientienelarazon.core.local.NameIssue
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
@@ -47,6 +48,7 @@ fun LocalSetupScreen(
     onAddPlayer: () -> Unit,
     onRemovePlayer: (Int) -> Unit,
     onModeChange: (ContentMode) -> Unit,
+    onLengthChange: (GameLength) -> Unit,
     onStart: () -> Unit,
     onBack: () -> Unit,
 ) {
@@ -62,7 +64,7 @@ fun LocalSetupScreen(
                     color = ArcadeTextMuted,
                 )
             }
-            else -> SetupContent(state, onNameChange, onAddPlayer, onRemovePlayer, onModeChange, onStart)
+            else -> SetupContent(state, onNameChange, onAddPlayer, onRemovePlayer, onModeChange, onLengthChange, onStart)
         }
     }
 }
@@ -74,6 +76,7 @@ private fun SetupContent(
     onAddPlayer: () -> Unit,
     onRemovePlayer: (Int) -> Unit,
     onModeChange: (ContentMode) -> Unit,
+    onLengthChange: (GameLength) -> Unit,
     onStart: () -> Unit,
 ) {
     Text(
@@ -121,6 +124,7 @@ private fun SetupContent(
     }
 
     ModeCard(state, onModeChange)
+    GameLengthCard(state.length, onLengthChange)
 
     ArcadeButton(text = "¡A jugar!", onClick = onStart, enabled = state.canStart, color = ArcadeMagenta)
     if (!state.canStart) {
@@ -162,6 +166,31 @@ private fun ModeChip(label: String, selected: Boolean, onClick: () -> Unit) {
         ),
     )
 }
+
+@Composable
+fun GameLengthCard(selected: GameLength, onChange: (GameLength) -> Unit) {
+    ArcadeCard(accent = ArcadeCyan) {
+        Text("Duración", style = MaterialTheme.typography.titleLarge)
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            GameLength.entries.forEach { length ->
+                FilterChip(
+                    selected = length == selected,
+                    onClick = { onChange(length) },
+                    label = { Text("${length.questions} preguntas") },
+                    colors = FilterChipDefaults.filterChipColors(
+                        selectedContainerColor = ArcadeCyan,
+                        selectedLabelColor = ArcadeNight,
+                    ),
+                )
+            }
+        }
+        Text(lengthHint(selected), style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+    }
+}
+
+/** Reparto por rondas, para que se entienda qué cambia al elegir menos preguntas. */
+fun lengthHint(length: GameLength): String =
+    "4 rondas: " + length.perRound.joinToString(" + ") + " preguntas"
 
 private fun issueText(issue: NameIssue?, name: String): String? = when (issue) {
     null -> null

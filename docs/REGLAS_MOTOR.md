@@ -4,8 +4,9 @@ El motor (`GameEngine`) es puro y determinista: recibe el estado y una acción y
 estado o un rechazo. Lo usan el modo local y, más adelante, la validación del modo online.
 
 ## Partida
-- 2 a 4 jugadores, 12 preguntas en 4 rondas de 3, 8 segundos por pregunta.
-- Las 12 preguntas y 5 de desempate se **planifican al inicio con una semilla** (`GamePlanner`).
+- 2 a 4 jugadores, 8 segundos por pregunta. Siempre 4 rondas; la duración se elige antes de jugar (`GameLength`):
+  8 preguntas (2+2+2+2), 10 (3+2+2+3) o 12 (3+3+3+3, por defecto).
+- Las preguntas de la partida y 5 de desempate se **planifican al inicio con una semilla** (`GamePlanner`).
   Con la misma semilla todos los teléfonos obtienen el mismo plan.
 - La **ruleta** (`CategoryRoulette`) elige la categoría antes de animar; la animación solo la muestra.
   Evita repetir las dos últimas categorías cuando hay alternativas y nunca elige una categoría sin preguntas válidas.
@@ -45,7 +46,7 @@ y recortada a [0, 50]. Responder al instante da 50 y al vencer el tiempo da 0.
 - Solo decide el **primer puesto**. Juegan los empatados, sin apuestas.
 - Gana la respuesta correcta más rápida. Si nadie acierta o el tiempo coincide exactamente, se repite con otra pregunta.
 - Si se agotan las 5 preguntas reservadas, la victoria es compartida (no se inventa un ganador).
-- No cambia los puntos ni el historial de las 12 preguntas, que son la fuente de las estadísticas.
+- No cambia los puntos ni el historial de las preguntas principales, que son la fuente de las estadísticas.
 
 ## Protecciones
 Rechazos con el estado intacto: fase incorrecta, jugador desconocido, fuera de turno, respuesta o

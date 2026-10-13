@@ -42,6 +42,7 @@ fun LocalGameRoute(
             onAddPlayer = viewModel::addPlayer,
             onRemovePlayer = viewModel::removePlayer,
             onModeChange = viewModel::setMode,
+            onLengthChange = viewModel::setLength,
             onStart = viewModel::start,
             onBack = onExit,
         )

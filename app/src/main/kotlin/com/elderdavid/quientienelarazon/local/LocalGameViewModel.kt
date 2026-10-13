@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.elderdavid.quientienelarazon.core.economy.EconomyRules
 import com.elderdavid.quientienelarazon.core.economy.LocalGameReport
 import com.elderdavid.quientienelarazon.core.game.GameEngine
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalMatch
@@ -38,6 +39,7 @@ data class LocalUiState(
     val loadError: Boolean = false,
     val names: List<String> = listOf("", ""),
     val mode: ContentMode = ContentMode.General,
+    val length: GameLength = GameLength.DEFAULT,
     val regions: List<Region> = emptyList(),
     val match: LocalMatch? = null,
     /** Identifica la partida en curso ante el servidor (paquete de partida, XP). Cambia en cada revancha. */
@@ -123,12 +125,14 @@ class LocalGameViewModel(
 
     fun setMode(mode: ContentMode) = _state.update { it.copy(mode = mode) }
 
+    fun setLength(length: GameLength) = _state.update { it.copy(length = length) }
+
     fun start() {
         val s = _state.value
         val e = engine ?: return
         if (!s.canStart) return
         _state.update { it.copy(gameKey = newGameKey(), reward = null, notice = null) }
-        setMatch(LocalMatch.start(e, LocalSetup.players(s.names), s.mode, newSeed()))
+        setMatch(LocalMatch.start(e, LocalSetup.players(s.names), s.mode, newSeed(), length = s.length))
     }
 
     // --- Partida ---

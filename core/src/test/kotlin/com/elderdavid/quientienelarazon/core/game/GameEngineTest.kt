@@ -217,8 +217,34 @@ class GameEngineTest {
             val end = d.playMain(start) { _, id, s -> Move(if (id == PlayerId("p1")) RIGHT else WRONG, bet = betFor(s, id)) }
             assertEquals(Phase.FINISHED, end.phase)
             assertEquals(listOf(PlayerId("p1")), end.winners)
-            assertEquals(GameRules.TOTAL_QUESTIONS, end.results.size)
+            assertEquals(12, end.results.size)
             assertEquals(n, end.ranking.size)
+        }
+    }
+
+    @Test
+    fun shorterGamesShowRoundSummariesAtTheirRoundEnds() {
+        for ((length, expectedSummaries) in listOf(
+            GameLength.SHORT to listOf(1, 3, 5),
+            GameLength.MEDIUM to listOf(2, 4, 6),
+        )) {
+            var s = engine.newGame(players(2), GameConfig(length = length), seed = 3)
+            val summaries = mutableListOf<Int>()
+            val rounds = mutableListOf<RoundType>()
+            while (s.phase != Phase.FINISHED && s.phase != Phase.TIEBREAK_QUESTION) {
+                rounds += s.round
+                s = d.play(s) { id -> Move(if (id == p1) RIGHT else WRONG, bet = betFor(s, id)) }
+                s = engine.advance(s).ok()
+                if (s.phase == Phase.ROUND_SUMMARY) {
+                    summaries += s.questionIndex
+                    s = engine.advance(s).ok()
+                }
+            }
+            assertEquals(Phase.FINISHED, s.phase)
+            assertEquals(listOf(p1), s.winners)
+            assertEquals(length.questions, s.results.size)
+            assertEquals(expectedSummaries, summaries)
+            assertEquals((0 until length.questions).map { length.roundFor(it) }, rounds)
         }
     }
 
@@ -241,7 +267,7 @@ class GameEngineTest {
         assertEquals(listOf(p2), s.winners)
         // El desempate no altera puntos ni el historial de las 12 preguntas.
         assertEquals(scoresBefore, s.scores)
-        assertEquals(GameRules.TOTAL_QUESTIONS, s.results.size)
+        assertEquals(12, s.results.size)
         assertEquals(p2, s.ranking.first().first)
     }
 

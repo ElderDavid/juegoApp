@@ -36,13 +36,13 @@ class Driver(val bank: QuestionBank = TestBank.standard(), val engine: GameEngin
         return s
     }
 
-    /** Juega las 12 preguntas principales; [moves] recibe índice de pregunta y jugador. */
+    /** Juega las preguntas principales; [moves] recibe índice de pregunta y jugador. */
     fun playMain(state: GameState, moves: (Int, PlayerId, GameState) -> Move): GameState {
         var s = state
         while (true) {
             val index = s.questionIndex
             s = play(s) { id -> moves(index, id, s) }
-            if (index == GameRules.TOTAL_QUESTIONS - 1) return engine.advance(s).ok()
+            if (index == s.config.length.questions - 1) return engine.advance(s).ok()
             s = next(s)
         }
     }

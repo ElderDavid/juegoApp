@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.online.PhaseClock
 import com.elderdavid.quientienelarazon.core.online.RoomCode
 import com.elderdavid.quientienelarazon.core.online.clientElapsed
@@ -28,6 +29,7 @@ data class OnlineUiState(
     val available: Boolean = true,
     val modes: List<OnlineMode> = listOf(OnlineMode("general", "General")),
     val mode: String = "general",
+    val length: GameLength = GameLength.DEFAULT,
     val codeInput: String = "",
     val busy: OnlineBusy? = null,
     val view: RoomView? = null,
@@ -98,13 +100,15 @@ class OnlineGameViewModel(
 
     fun setMode(id: String) = _state.update { if (it.view == null) it.copy(mode = id) else it }
 
+    fun setLength(length: GameLength) = _state.update { if (it.view == null) it.copy(length = length) else it }
+
     fun setCode(input: String) = _state.update { it.copy(codeInput = RoomCode.normalize(input).take(RoomCode.LENGTH), error = null) }
 
     fun dismissError() = _state.update { it.copy(error = null) }
 
-    fun createPrivate() = enter(OnlineBusy.CREATING) { createRoom(publicRoom = false, mode = _state.value.mode) }
+    fun createPrivate() = enter(OnlineBusy.CREATING) { createRoom(publicRoom = false, mode = _state.value.mode, length = _state.value.length) }
 
-    fun findPublic() = enter(OnlineBusy.SEARCHING) { findPublic(_state.value.mode) }
+    fun findPublic() = enter(OnlineBusy.SEARCHING) { findPublic(_state.value.mode, _state.value.length) }
 
     fun joinByCode() {
         if (!_state.value.codeValid) return

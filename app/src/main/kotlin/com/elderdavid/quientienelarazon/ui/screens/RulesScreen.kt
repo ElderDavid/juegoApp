@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.elderdavid.quientienelarazon.ads.AdBanner
 import com.elderdavid.quientienelarazon.ads.AdsController
+import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
@@ -20,10 +21,11 @@ import com.elderdavid.quientienelarazon.ui.theme.ArcadeViolet
 @Composable
 fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
     val seconds = GameRules.QUESTION_TIME_MILLIS / 1000
+    val lengths = GameLength.entries.map { it.questions }
     ArcadeScreen(title = "Reglas", onBack = onBack, bottomBar = { AdBanner(ads) }) {
         Text(
             "${GameRules.MIN_PLAYERS} a ${GameRules.MAX_PLAYERS} jugadores · " +
-                "${GameRules.TOTAL_QUESTIONS} preguntas en ${GameRules.ROUNDS} rondas · " +
+                "${lengths.dropLast(1).joinToString(", ")} o ${lengths.last()} preguntas en ${GameRules.ROUNDS} rondas · " +
                 "$seconds segundos por pregunta",
             style = MaterialTheme.typography.bodyLarge,
             color = ArcadeTextMuted,

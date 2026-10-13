@@ -424,6 +424,59 @@ def test_lobby_and_matchmaking(admin):
     check(cur.fetchone()[0] == "cancelled", "al cambiar de sala, la anterior vacía se cancela")
 
 
+def test_game_lengths(admin):
+    print("Partidas de 8 y 10 preguntas")
+    rounds_for = {8: [1, 1, 2, 2, 3, 3, 4, 4], 10: [1, 1, 1, 2, 2, 3, 3, 4, 4, 4]}
+    summaries_for = {8: [1, 3, 5], 10: [2, 4, 6]}
+    for total in (8, 10):
+        a, b = Player(admin, f"Corta{total}a"), Player(admin, f"Corta{total}b")
+        s = a.call("create_room", "private", "general", total)
+        room = s["room"]["id"]
+        check(s["room"]["question_count"] == total, f"{total}: la sala informa su duración")
+        b.call("join_room_by_code", s["room"]["code"])
+        a.call("start_room", room)
+        cur = admin.cursor()
+        cur.execute("select idx, round from public.room_questions where room_id = %s and not is_tiebreak order by idx", (room,))
+        planned = cur.fetchall()
+        check([r for _, r in planned] == rounds_for[total], f"{total}: rondas planificadas {[r for _, r in planned]}")
+        summaries, played = [], 0
+        for _ in range(200):
+            s = a.state(room)
+            r = s["room"]
+            if r["status"] == "finished":
+                break
+            if r["phase"] == "betting":
+                for p in (a, b):
+                    ps = p.state(room)
+                    allowed = ps["current"]["allowed_bets"]
+                    p.call("submit_bet", room, ps["current"]["index"], min(allowed) if allowed else 0)
+            elif r["phase"] == "question":
+                idx = s["current"]["index"]
+                played += 1
+                correct, is_vote, n = key_for(admin, room, False, idx)
+                a.call("submit_answer", room, idx, correct if not is_vote else 0, 1000)
+                b.call("submit_answer", room, idx, wrong(correct, n) if not is_vote else 1, 1000)
+            elif r["phase"] == "summary":
+                summaries.append(r["question_index"])
+            expire(admin, room)
+        s = a.state(room)
+        check(s["room"]["status"] == "finished", f"{total}: la partida termina")
+        check(played == total, f"{total}: se jugaron {played} preguntas")
+        check(summaries == summaries_for[total], f"{total}: marcador entre rondas tras {summaries}")
+        check(s["room"]["winners"] == [a.id], f"{total}: gana quien acertó todo")
+        check(stats(admin, a)[0] == 1, f"{total}: cuenta como partida jugada")
+
+    p = Player(admin, "Largo")
+    expect_error("invalid_length", lambda: p.call("create_room", "private", "general", 9), "duración no permitida")
+    check(p.call("create_room", "private", "general")["room"]["question_count"] == 12, "sin duración: 12 preguntas")
+    x, y, z = Player(admin, "PubC1"), Player(admin, "PubC2"), Player(admin, "PubL1")
+    r1 = x.call("find_public_room", "general", 8)["room"]
+    r2 = y.call("find_public_room", "general", 8)["room"]
+    r3 = z.call("find_public_room", "general", 12)["room"]
+    check(r1["id"] == r2["id"] and r1["question_count"] == 8, "pública: misma duración comparte sala")
+    check(r3["id"] != r1["id"], "pública: otra duración va a otra sala")
+
+
 def test_rate_limit(admin):
     print("Límite de frecuencia")
     p = Player(admin, "Spam")
@@ -532,6 +585,7 @@ def main():
     test_tiebreak_two_players(admin)
     test_timing_and_disconnects(admin)
     test_lobby_and_matchmaking(admin)
+    test_game_lengths(admin)
     test_rate_limit(admin)
     test_leaderboard(admin)
     test_delete_account(admin)
