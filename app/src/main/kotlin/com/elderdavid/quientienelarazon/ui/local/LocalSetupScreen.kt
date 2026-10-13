@@ -88,7 +88,7 @@ private fun SetupContent(
     onStart: () -> Unit,
 ) {
     Text(
-        "Juega solo o con hasta 4 personas en este teléfono. En grupo os lo iréis pasando en cada turno.",
+        "Juega solo o con hasta 4 personas en este teléfono. En grupo se lo van pasando en cada turno.",
         style = MaterialTheme.typography.bodyLarge,
         color = ArcadeTextMuted,
     )
