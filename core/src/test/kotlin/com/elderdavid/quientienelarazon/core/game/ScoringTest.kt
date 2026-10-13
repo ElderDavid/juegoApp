@@ -46,7 +46,9 @@ class ScoringTest {
 
     @Test
     fun betDeltas() {
-        assertEquals(100, Scoring.betDelta(Bet.Amount(100), won = true))
+        assertEquals(200, Scoring.betDelta(Bet.Amount(100), won = true))
+        assertEquals(19, Scoring.heistAmount(99))
+        assertEquals(0, Scoring.heistAmount(0))
         assertEquals(-50, Scoring.betDelta(Bet.Amount(50), won = false))
         assertEquals(GameRules.FREE_BET_REWARD, Scoring.betDelta(Bet.Free, won = true))
         assertEquals(0, Scoring.betDelta(Bet.Free, won = false))

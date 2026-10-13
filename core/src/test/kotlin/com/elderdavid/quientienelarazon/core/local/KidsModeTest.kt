@@ -78,7 +78,7 @@ class KidsModeTest {
     fun wrongBetStillSubtractsOutsideKidsMode() {
         assertEquals(-100, Scoring.betDelta(Bet.Amount(100), won = false))
         assertEquals(0, Scoring.betDelta(Bet.Amount(100), won = false, noLoss = true))
-        assertEquals(100, Scoring.betDelta(Bet.Amount(100), won = true, noLoss = true))
+        assertEquals(200, Scoring.betDelta(Bet.Amount(100), won = true, noLoss = true))
     }
 
     @Test

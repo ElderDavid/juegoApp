@@ -128,7 +128,7 @@ fun LocalGameScreen(
 
     ArcadeScreen(title = null) {
         when (stage) {
-            is LocalStage.Roulette -> RouletteView(stage, match.state.config.length, match.state.config.kids, bank, rouletteCategories, reducedMotion, actions)
+            is LocalStage.Roulette -> RouletteView(stage, match.state.config.length, match.state.config.kids, match.state.players.size >= 2 && !match.state.config.kids, bank, rouletteCategories, reducedMotion, actions)
             is LocalStage.Handoff -> {
                 HandoffView(stage, names.getValue(stage.playerId), colorIndex.getValue(stage.playerId), match.state, actions)
                 if (!stage.tiebreak) MatchPackOffer(match, extras, actions)
@@ -150,6 +150,8 @@ private fun RouletteView(
     stage: LocalStage.Roulette,
     length: GameLength,
     kids: Boolean,
+    /** La partida tiene pregunta robo (2 o más jugadores y no es modo niños). */
+    heistGame: Boolean,
     bank: QuestionBank,
     categories: List<Category>,
     reducedMotion: Boolean,
@@ -178,11 +180,11 @@ private fun RouletteView(
         actions.rouletteDone()
     }
 
-    RoundHeader(stage.round, stage.questionNumber, length.questions)
+    RoundHeader(stage.round, stage.questionNumber, length.questions, heistGame && length.isHeist(stage.questionNumber - 1))
     if (length.isFirstOfRound(stage.questionNumber - 1)) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Ronda ${stage.round.number}: ${stage.round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
-            Text(roundRule(stage.round, kids), color = ArcadeTextMuted)
+            Text(roundRule(stage.round, kids, heistGame), color = ArcadeTextMuted)
         }
     }
     ArcadeCard(accent = if (landed) ArcadeOrange else ArcadeOutline, modifier = Modifier.heightIn(min = 160.dp)) {
@@ -197,17 +199,22 @@ private fun RouletteView(
     }
 }
 
-/** [kids]: en el modo niños fallar una apuesta no resta puntos. */
-internal fun roundRule(round: RoundType, kids: Boolean = false): String = when (round) {
+/** [kids]: en el modo niños fallar una apuesta no resta puntos. [heist]: la partida tiene pregunta robo. */
+internal fun roundRule(round: RoundType, kids: Boolean = false, heist: Boolean = !kids): String = when (round) {
     RoundType.KNOWLEDGE -> "Acierto: +${GameRules.KNOWLEDGE_POINTS} puntos."
-    RoundType.SPEED -> "Acierto: +${GameRules.SPEED_POINTS} y hasta +${GameRules.SPEED_BONUS_MAX} extra cuanto más rápido respondas."
-    RoundType.STRATEGY -> "Antes de ver la pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos. Aciertas: los ganas. " +
+    RoundType.SPEED -> "Acierto: +${GameRules.SPEED_POINTS} y hasta +${GameRules.SPEED_BONUS_MAX} extra cuanto más rápido respondas." +
+        if (heist) " La última es la pregunta robo." else ""
+    RoundType.STRATEGY -> "Antes de ver la pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos. Aciertas: ganas el doble. " +
         if (kids) "Fallas: no pierdes nada." else "Fallas: los pierdes."
     RoundType.FINAL -> "Preguntas más difíciles. Acierto: +${GameRules.FINAL_POINTS} y bono por rapidez."
 }
 
+/** Texto de la pregunta robo, compartido por el modo local y el online. */
+internal val HEIST_RULE = "Quien acierte más rápido le quita el ${GameRules.HEIST_PERCENT} % de sus puntos a cada rival."
+
+/** [heist]: la pregunta es la pregunta robo; se anuncia bajo la cabecera. */
 @Composable
-internal fun RoundHeader(round: RoundType, questionNumber: Int, totalQuestions: Int) {
+internal fun RoundHeader(round: RoundType, questionNumber: Int, totalQuestions: Int, heist: Boolean = false) {
     Text(
         "RONDA ${round.number} · ${round.title.uppercase()}   ·   PREGUNTA $questionNumber/$totalQuestions",
         style = MaterialTheme.typography.labelMedium,
@@ -215,6 +222,12 @@ internal fun RoundHeader(round: RoundType, questionNumber: Int, totalQuestions: 
         modifier = Modifier.fillMaxWidth(),
         textAlign = TextAlign.Center,
     )
+    if (heist) {
+        ArcadeCard(accent = ArcadeMagenta) {
+            Text("¡PREGUNTA ROBO!", style = MaterialTheme.typography.titleLarge, color = ArcadeMagenta)
+            Text(HEIST_RULE, color = ArcadeText)
+        }
+    }
 }
 
 // ---------------------------------------------------------------- Traspaso
@@ -230,7 +243,7 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
             modifier = Modifier.fillMaxWidth(),
         )
     } else {
-        RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
+        RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions, state.isHeistQuestion)
     }
     if (state.players.size == 1) {
         // Solitario: no hay que pasar el teléfono, solo una pausa antes de que corra el tiempo.
@@ -274,7 +287,7 @@ private fun BettingView(stage: LocalStage.Betting, name: String, state: GameStat
         ArcadeButton(text = "Jugar apuesta libre", onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(0) })
     } else {
         stage.allowedBets.forEach { amount ->
-            ArcadeButton(text = "Apostar $amount", onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(amount) }, color = if (amount == stage.allowedBets.max()) ArcadeMagenta else ArcadeCyan)
+            ArcadeButton(text = "Apostar $amount · ganas ${amount * GameRules.BET_WIN_MULTIPLIER}", onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(amount) }, color = if (amount == stage.allowedBets.max()) ArcadeMagenta else ArcadeCyan)
         }
     }
 }
@@ -295,7 +308,7 @@ private fun AnsweringView(stage: LocalStage.Answering, name: String, state: Game
     val fraction by animateFloatAsState(targetValue = (remaining / limit).coerceIn(0f, 1f), label = "timer")
     val seconds = ((remaining + 999) / 1000).toInt()
 
-    if (!stage.tiebreak) RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
+    if (!stage.tiebreak) RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions, state.isHeistQuestion)
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
         Text(name, style = MaterialTheme.typography.titleLarge, color = ArcadeCyan)
         Text("$seconds s", style = MaterialTheme.typography.headlineMedium, color = if (seconds <= 3) ArcadeError else ArcadeText)
@@ -420,7 +433,7 @@ private fun RevealView(
     LaunchedEffect(result.index) {
         actions.feedback(if (result.outcomes.any { it.won == true }) FeedbackEvent.CORRECT else FeedbackEvent.WRONG)
     }
-    RoundHeader(result.round, result.index + 1, state.config.length.questions)
+    RoundHeader(result.round, result.index + 1, state.config.length.questions, state.isHeistQuestion)
     QuestionCard(question, bank)
     question.options.forEachIndexed { index, option ->
         val winning = index in result.winningOptions
@@ -465,6 +478,7 @@ private fun OutcomeRow(o: PlayerOutcome, question: Question, name: String, color
             val answer = o.choice?.let { "${optionLetter(it)}. ${question.options[it]}" } ?: "Sin respuesta"
             val bet = o.bet?.let { " · ${betLabel(it).lowercase()}" } ?: ""
             Text(answer + bet, color = ArcadeTextMuted, style = MaterialTheme.typography.bodyMedium)
+            heistLabel(o.stolen)?.let { Text(it, color = ArcadeMagenta, style = MaterialTheme.typography.labelMedium) }
         }
         Column(horizontalAlignment = Alignment.End) {
             Text(
@@ -479,6 +493,13 @@ private fun OutcomeRow(o: PlayerOutcome, question: Question, name: String, color
             Text("$total pts", color = ArcadeTextMuted, style = MaterialTheme.typography.labelMedium)
         }
     }
+}
+
+/** Línea de la pregunta robo bajo el nombre del jugador; null si no robó ni le robaron. */
+internal fun heistLabel(stolen: Int): String? = when {
+    stolen > 0 -> "¡Robó $stolen puntos!"
+    stolen < 0 -> "Le robaron ${-stolen} puntos"
+    else -> null
 }
 
 internal fun signed(n: Int) = when {
@@ -503,7 +524,7 @@ private fun RoundSummaryView(
     if (nextRound != null) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Siguiente: ronda ${nextRound.number}, ${nextRound.title}", style = MaterialTheme.typography.titleMedium, color = ArcadeViolet)
-            Text(roundRule(nextRound, state.config.kids), color = ArcadeTextMuted)
+            Text(roundRule(nextRound, state.config.kids, state.players.size >= 2 && !state.config.kids), color = ArcadeTextMuted)
         }
     }
     ArcadeButton(text = "Siguiente ronda", onClick = actions.next)

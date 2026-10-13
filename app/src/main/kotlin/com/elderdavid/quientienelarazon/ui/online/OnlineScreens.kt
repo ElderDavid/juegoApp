@@ -64,6 +64,7 @@ import com.elderdavid.quientienelarazon.ui.local.GameLengthCard
 import com.elderdavid.quientienelarazon.ui.local.OptionButton
 import com.elderdavid.quientienelarazon.ui.local.RoundHeader
 import com.elderdavid.quientienelarazon.ui.local.SourceLink
+import com.elderdavid.quientienelarazon.ui.local.heistLabel
 import com.elderdavid.quientienelarazon.ui.local.optionLetter
 import com.elderdavid.quientienelarazon.ui.local.roundRule
 import com.elderdavid.quientienelarazon.ui.local.signed
@@ -500,11 +501,11 @@ private fun WaitingFor(view: RoomView, done: (RoomPlayer) -> Boolean) {
 private fun RouletteView(view: RoomView, categoryName: (String) -> String) {
     val current = view.current ?: return
     val round = roundOf(view) ?: return
-    RoundHeader(round, current.index + 1, view.room.questionCount)
+    RoundHeader(round, current.index + 1, view.room.questionCount, current.heist)
     if (view.room.length.isFirstOfRound(current.index)) {
         ArcadeCard(accent = ArcadeViolet) {
             Text("Ronda ${round.number}: ${round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
-            Text(roundRule(round, view.myKids), color = ArcadeTextMuted)
+            Text(roundRule(round, view.myKids, view.room.roomAudience == OnlineAudience.STANDARD), color = ArcadeTextMuted)
         }
     }
     ArcadeCard(accent = ArcadeOrange) {
@@ -523,7 +524,7 @@ private fun RouletteView(view: RoomView, categoryName: (String) -> String) {
 private fun BettingView(state: OnlineUiState, view: RoomView, categoryName: (String) -> String, actions: OnlineActions) {
     val current = view.current ?: return
     val round = roundOf(view) ?: return
-    RoundHeader(round, current.index + 1, view.room.questionCount)
+    RoundHeader(round, current.index + 1, view.room.questionCount, current.heist)
     PhaseTimer(state, actions, "Apuesta")
     val me = view.myPlayer
     ArcadeCard(accent = ArcadeOrange) {
@@ -552,7 +553,7 @@ private fun BettingView(state: OnlineUiState, view: RoomView, categoryName: (Str
         else -> {
             allowed.forEach { amount ->
                 ArcadeButton(
-                    text = "Apostar $amount",
+                    text = "Apostar $amount · ganas ${amount * GameRules.BET_WIN_MULTIPLIER}",
                     onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(amount) },
                     enabled = !state.sending,
                     color = if (amount == allowed.max()) ArcadeMagenta else ArcadeCyan,
@@ -575,7 +576,7 @@ private fun QuestionView(state: OnlineUiState, view: RoomView, categoryName: (St
         NeonTitle("¡Desempate!", color = ArcadeMagenta)
         Text("Gana quien acierte más rápido. No cambia las estadísticas.", color = ArcadeTextMuted, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
     } else {
-        roundOf(view)?.let { RoundHeader(it, current.index + 1, view.room.questionCount) }
+        roundOf(view)?.let { RoundHeader(it, current.index + 1, view.room.questionCount, current.heist) }
     }
     PhaseTimer(state, actions, if (participating) "Tu respuesta" else "Mirando")
     current.myBet?.takeIf { !tiebreak }?.let { Text(if (it == 0) "APUESTA LIBRE" else "APUESTA: $it", color = ArcadeOrange, style = MaterialTheme.typography.labelMedium) }
@@ -618,7 +619,7 @@ private fun RevealView(state: OnlineUiState, view: RoomView, categoryName: (Stri
     LaunchedEffect(current.isTiebreak, current.index) {
         actions.feedback(if (mine?.won == true) FeedbackEvent.CORRECT else FeedbackEvent.WRONG)
     }
-    if (current.isTiebreak) NeonTitle("Desempate", color = ArcadeMagenta) else roundOf(view)?.let { RoundHeader(it, current.index + 1, view.room.questionCount) }
+    if (current.isTiebreak) NeonTitle("Desempate", color = ArcadeMagenta) else roundOf(view)?.let { RoundHeader(it, current.index + 1, view.room.questionCount, current.heist) }
     ArcadeCard(accent = ArcadeViolet) {
         Text(categoryName(current.categoryId).uppercase(), style = MaterialTheme.typography.labelMedium, color = ArcadeViolet)
         Text(question.text, style = MaterialTheme.typography.titleLarge, color = ArcadeText)
@@ -662,6 +663,7 @@ private fun RevealView(state: OnlineUiState, view: RoomView, categoryName: (Stri
                         else -> ""
                     }
                     Text(answer + extra, color = ArcadeTextMuted, style = MaterialTheme.typography.bodyMedium)
+                    heistLabel(o.stolen)?.let { Text(it, color = ArcadeMagenta, style = MaterialTheme.typography.labelMedium) }
                 }
                 if (!current.isTiebreak) {
                     Column(horizontalAlignment = Alignment.End) {
@@ -701,7 +703,7 @@ private fun SummaryView(state: OnlineUiState, view: RoomView, actions: OnlineAct
     RoundType.entries.getOrNull(finished.ordinal + 1)?.let { next ->
         ArcadeCard(accent = ArcadeViolet) {
             Text("Siguiente: ronda ${next.number}, ${next.title}", style = MaterialTheme.typography.titleMedium, color = ArcadeViolet)
-            Text(roundRule(next, view.myKids), color = ArcadeTextMuted)
+            Text(roundRule(next, view.myKids, view.room.roomAudience == OnlineAudience.STANDARD), color = ArcadeTextMuted)
         }
     }
     PhaseTimer(state, actions, "Siguiente ronda")

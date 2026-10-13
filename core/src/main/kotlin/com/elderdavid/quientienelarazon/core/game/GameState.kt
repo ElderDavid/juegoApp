@@ -52,6 +52,11 @@ data class PlayerOutcome(
     val won: Boolean?,
     val pointsDelta: Int,
     val bet: Bet?,
+    /**
+     * Pregunta robo: puntos robados (positivo para quien roba, negativo para cada rival).
+     * Ya está incluido en [pointsDelta].
+     */
+    val stolen: Int = 0,
 )
 
 data class QuestionResult(
@@ -97,6 +102,11 @@ data class GameState(
     val currentPlanned: PlannedQuestion? get() = plan.questions.getOrNull(questionIndex)
     val round: RoundType get() = config.length.roundFor(questionIndex.coerceAtMost(config.length.questions - 1))
     val lastResult: QuestionResult? get() = results.lastOrNull()
+
+    /** true si la pregunta actual es la pregunta robo (ver [GameRules.HEIST_PERCENT]). */
+    val isHeistQuestion: Boolean
+        get() = players.size >= 2 && !config.kids && questionIndex < config.length.questions &&
+            config.length.isHeist(questionIndex)
 
     /** Jugadores que participan en la pregunta actual, en orden de turno. */
     val turnOrder: List<PlayerId>

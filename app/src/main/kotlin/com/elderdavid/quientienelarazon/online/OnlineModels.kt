@@ -87,6 +87,8 @@ data class CurrentQuestion(
     @SerialName("my_bet") val myBet: Int? = null,
     @SerialName("my_choice") val myChoice: Int? = null,
     @SerialName("allowed_bets") val allowedBets: List<Int>? = null,
+    /** true si es la pregunta robo (lo decide el servidor: solo en salas normales). */
+    val heist: Boolean = false,
 )
 
 @Serializable
@@ -120,6 +122,8 @@ data class PlayerAnswer(
     val bet: Int? = null,
     /** false si respondió otra pregunta (sala mixta, otro nivel): su [choice] no es una opción de esta. */
     @SerialName("same_question") val sameQuestion: Boolean = true,
+    /** Pregunta robo: puntos robados (positivo) o perdidos (negativo). Ya incluidos en [points]. */
+    val stolen: Int = 0,
 )
 
 /**

@@ -37,12 +37,14 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
         RoundCard(
             RoundType.SPEED, ArcadeMagenta,
             "Preguntas rápidas, sobre todo verdadero o falso. Acierto: +${GameRules.SPEED_POINTS}, " +
-                "más hasta +${GameRules.SPEED_BONUS_MAX} si respondes rápido. Error: 0.",
+                "más hasta +${GameRules.SPEED_BONUS_MAX} si respondes rápido. Error: 0. " +
+                "La última es la pregunta robo: quien acierte más rápido le quita el " +
+                "${GameRules.HEIST_PERCENT} % de sus puntos a cada rival. Si todos fallan, no hay robo.",
         )
         RoundCard(
             RoundType.STRATEGY, ArcadeOrange,
             "Antes de cada pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos " +
-                "(solo lo que tengas). Acierto: ganas lo apostado. Error: lo pierdes.",
+                "(solo lo que tengas). Acierto: ganas el doble de lo apostado. Error: lo pierdes.",
         )
         RoundCard(
             RoundType.FINAL, ArcadeViolet,
@@ -61,7 +63,7 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
             Text(
                 "Para jugar en familia en el modo local: preguntas más fáciles pensadas para niños, " +
                     "${GameRules.KIDS_QUESTION_TIME_MILLIS / 1000} segundos por pregunta y, en la ronda de estrategia, " +
-                    "fallar no resta lo apostado.",
+                    "fallar no resta lo apostado y no hay pregunta robo.",
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

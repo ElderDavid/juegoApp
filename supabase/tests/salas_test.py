@@ -218,6 +218,7 @@ def test_full_game_three_players(admin):
 
     expected = {a.id: 0, b.id: 0, c.id: 0}
     seen_questions = 0
+    heist_checked = False
     for _ in range(400):
         s = a.state(room)
         b.state(room)
@@ -272,12 +273,25 @@ def test_full_game_three_players(admin):
             else:
                 check(res["winning_options"] == [correct], f"pregunta {idx + 1}: se revela la correcta")
                 check(outcomes[b.id]["won"] is False, f"pregunta {idx + 1}: Eva falla")
+                if s["current"]["round"] == 3 and outcomes[a.id]["bet"]:
+                    check(outcomes[a.id]["points"] == 2 * outcomes[a.id]["bet"], f"pregunta {idx + 1}: la apuesta acertada paga el doble")
+            check(s["current"]["heist"] == (idx == 5), f"pregunta {idx + 1}: la robo es la última de la ronda 2")
+            stolen = {pid: o["stolen"] for pid, o in outcomes.items()}
+            if idx == 5 and not is_vote:
+                heist_checked = True
+                check(sum(stolen.values()) == 0 and stolen[a.id] >= 0, "robo: Dani, la más rápida, se lleva lo que pierden los demás")
+                for pid in (b.id, c.id):
+                    before_heist = expected[pid] - stolen[pid]
+                    check(stolen[pid] == -(before_heist * 20 // 100), "robo: cada rival pierde el 20 %")
+            else:
+                check(all(v == 0 for v in stolen.values()), f"pregunta {idx + 1}: sin robo")
             expire(admin, room)
         else:
             expire(admin, room)
     s = a.state(room)
     check(s["room"]["status"] == "finished", "la partida termina")
     check(seen_questions == 12, f"se jugaron 12 preguntas ({seen_questions})")
+    check(heist_checked, "se jugó la pregunta robo")
     check(s["room"]["winners"] == [a.id], "gana quien acertó todo")
     check(len(s["final"]) == 3, "resumen final para los 3")
 
@@ -631,7 +645,12 @@ def test_mixed_room(admin):
             played += 1
             ks = kid.state(room)
             check(r["phase_total_ms"] == 8000 and ks["room"]["phase_total_ms"] == 12000, f"turno {idx + 1}: 8 s para mayores y 12 s para niños")
-            check(s["current"]["question"]["text"] != ks["current"]["question"]["text"], f"turno {idx + 1}: cada nivel ve su pregunta")
+            cur.execute("select rq.for_kids, q.text from public.room_questions rq join public.questions q on q.id = rq.question_id"
+                        " where rq.room_id = %s and rq.idx = %s and not rq.is_tiebreak", (room, idx))
+            texts = dict(cur.fetchall())
+            # Algunas preguntas están en los dos bancos, así que se compara con la de cada nivel y no entre sí.
+            check(s["current"]["question"]["text"] == texts[False] and ks["current"]["question"]["text"] == texts[True],
+                  f"turno {idx + 1}: cada nivel ve su pregunta")
             check(s["current"]["category_id"] == ks["current"]["category_id"], f"turno {idx + 1}: misma categoría")
             adult_key, _, _ = key_for(admin, room, False, idx, False)
             kid_key, _, kid_n = key_for(admin, room, False, idx, True)

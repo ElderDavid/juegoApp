@@ -30,6 +30,8 @@ import {
   questionCount,
   ranking,
   roundRule,
+  BET_WIN_MULTIPLIER,
+  HEIST_RULE,
   signed,
   startsRound,
 } from "./game.js";
@@ -659,7 +661,10 @@ function roundOf(view) {
 function roundHeader(view) {
   const round = roundOf(view);
   if (!round) return "";
-  return `<p class="label cyan">RONDA ${round.number} · ${round.title.toUpperCase()} · PREGUNTA ${view.current.index + 1}/${questionCount(view.room)}</p>`;
+  const heist = view.current.heist
+    ? `<section class="card accent-magenta"><h2 class="magenta">¡PREGUNTA ROBO!</h2><p>${HEIST_RULE}</p></section>`
+    : "";
+  return `<p class="label cyan">RONDA ${round.number} · ${round.title.toUpperCase()} · PREGUNTA ${view.current.index + 1}/${questionCount(view.room)}</p>${heist}`;
 }
 
 function timer(label) {
@@ -680,7 +685,7 @@ function rouletteHtml(view) {
   const round = roundOf(view);
   if (!current || !round) return "";
   const intro = startsRound(current.index, questionCount(view.room))
-    ? `<section class="card accent-violet"><h2 class="violet">Ronda ${round.number}: ${round.title}</h2><p class="muted">${roundRule(round, view.my_kids)}</p></section>`
+    ? `<section class="card accent-violet"><h2 class="violet">Ronda ${round.number}: ${round.title}</h2><p class="muted">${roundRule(round, view.my_kids, view.room.audience === "standard")}</p></section>`
     : "";
   return `${roundHeader(view)}${intro}
   <section class="card accent-orange roulette">
@@ -706,7 +711,7 @@ function bettingHtml(view) {
     const max = Math.max(...allowed);
     choice =
       allowed
-        .map((a) => `<button class="button ${a === max ? "magenta" : "cyan"}" data-action="bet" data-value="${a}" ${state.sending ? "disabled" : ""}>Apostar ${a}</button>`)
+        .map((a) => `<button class="button ${a === max ? "magenta" : "cyan"}" data-action="bet" data-value="${a}" ${state.sending ? "disabled" : ""}>Apostar ${a} · ganas ${a * BET_WIN_MULTIPLIER}</button>`)
         .join("") + `<p class="muted small">Si no eliges, se aplica la apuesta mínima.</p>`;
   }
   return `${roundHeader(view)}${timer("Apuesta")}
@@ -790,7 +795,9 @@ function revealHtml(view) {
       const points = tiebreak
         ? ""
         : `<div class="right"><p class="points ${o.points > 0 ? "success" : o.points < 0 ? "error" : "muted"}">${signed(o.points)}</p><p class="small muted">${p.score} pts</p></div>`;
-      return `<div class="player">${avatarHtml(p, "small")}<div class="grow"><p class="name">${esc(p.name)}</p><p class="small muted">${answer}${extra}</p></div>${points}</div>`;
+      const heist = o.stolen > 0 ? `¡Robó ${o.stolen} puntos!` : o.stolen < 0 ? `Le robaron ${-o.stolen} puntos` : "";
+      const heistLine = heist ? `<p class="small magenta">${heist}</p>` : "";
+      return `<div class="player">${avatarHtml(p, "small")}<div class="grow"><p class="name">${esc(p.name)}</p><p class="small muted">${answer}${extra}</p>${heistLine}</div>${points}</div>`;
     })
     .join("");
   const winner = tiebreak ? playerById(view, result.tiebreak_winner)?.name : null;
@@ -824,7 +831,7 @@ function summaryHtml(view) {
   const next = ROUNDS[finished.number];
   return `<h1 class="neon">Fin de la ronda ${finished.number}</h1>
   ${scoreboard(view)}
-  ${next ? `<section class="card accent-violet"><h2 class="violet">Siguiente: ronda ${next.number}, ${next.title}</h2><p class="muted">${roundRule(next, view.my_kids)}</p></section>` : ""}
+  ${next ? `<section class="card accent-violet"><h2 class="violet">Siguiente: ronda ${next.number}, ${next.title}</h2><p class="muted">${roundRule(next, view.my_kids, view.room.audience === "standard")}</p></section>` : ""}
   ${timer("Siguiente ronda")}`;
 }
 
