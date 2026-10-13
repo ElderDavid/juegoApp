@@ -317,3 +317,8 @@ button.option:disabled { cursor: default; opacity: 0.7; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Página de política de privacidad */
+.legal a { color: var(--cyan); overflow-wrap: anywhere; }
+.legal ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 8px; }
+.legal h2 { font-size: 1.15rem; }
