@@ -99,12 +99,13 @@ private fun AppNavHost(container: AppContainer) {
             )
         }
         composable(Routes.ONLINE) {
+            val ageStatus by container.ageGate.status.collectAsStateWithLifecycle()
             val vm: OnlineGameViewModel = viewModel(
                 factory = OnlineGameViewModel.factory(
                     repository = container.onlineRepository,
                     loadBank = container::questionBank,
                     clock = SystemClock::elapsedRealtime,
-                    childPlayer = container.ageGate.status.value == AgeStatus.Known(AgeGroup.CHILD),
+                    childPlayer = ageStatus == AgeStatus.Known(AgeGroup.CHILD),
                 ),
             )
             OnlineRoute(
