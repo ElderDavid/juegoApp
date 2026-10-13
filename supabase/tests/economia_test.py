@@ -206,6 +206,13 @@ def main():
     d.call("equip_cosmetic", "TITLE", None)
     check(d.state()["equipped"] == {}, "quitar lo equipado")
 
+    print("— Modos de juego —")
+    set_coins(d, 300)
+    check(d.call("buy_cosmetic", "mode_pais_mexico") == 50, "un país cuesta 250")
+    check("mode_pais_mexico" in d.state()["owned"], "el país comprado aparece en owned")
+    expect_error("not_enough_coins", lambda: d.call("buy_cosmetic", "mode_muy_rapido"), "sin saldo para muy rápido")
+    expect_error("invalid_cosmetic", lambda: d.call("equip_cosmetic", "MODE", "mode_pais_mexico"), "los modos no se equipan")
+
     print("— Videos recompensados —")
     expect_error("permission denied", lambda: a.call("grant_rewarded_view", a.id, "tx-x"), "la app no puede acreditar videos")
     e = Player(admin)

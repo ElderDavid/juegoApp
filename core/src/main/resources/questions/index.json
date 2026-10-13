@@ -121,5 +121,39 @@
   "antioquia.json",
   "bogota.json",
   "ninos.json"
+ ],
+ "countries": [
+  {
+   "id": "pais-colombia",
+   "name": "Colombia"
+  },
+  {
+   "id": "pais-mexico",
+   "name": "México"
+  },
+  {
+   "id": "pais-argentina",
+   "name": "Argentina"
+  },
+  {
+   "id": "pais-brasil",
+   "name": "Brasil"
+  },
+  {
+   "id": "pais-estados-unidos",
+   "name": "Estados Unidos"
+  },
+  {
+   "id": "pais-espana",
+   "name": "España"
+  }
+ ],
+ "countryFiles": [
+  "pais-colombia.json",
+  "pais-mexico.json",
+  "pais-argentina.json",
+  "pais-brasil.json",
+  "pais-estados-unidos.json",
+  "pais-espana.json"
  ]
 }

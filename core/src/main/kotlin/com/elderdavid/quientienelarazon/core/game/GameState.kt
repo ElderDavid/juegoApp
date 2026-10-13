@@ -6,7 +6,13 @@ data class GameConfig(
     val mode: ContentMode = ContentMode.General,
     /** true en el modo local: un solo teléfono, los jugadores responden por turnos. */
     val sequentialTurns: Boolean = true,
-    val questionTimeMillis: Long = if (mode == ContentMode.Kids) GameRules.KIDS_QUESTION_TIME_MILLIS else GameRules.QUESTION_TIME_MILLIS,
+    /** Modo «muy rápido»: menos tiempo por pregunta. No se aplica al modo niños. */
+    val fast: Boolean = false,
+    val questionTimeMillis: Long = when {
+        mode == ContentMode.Kids -> GameRules.KIDS_QUESTION_TIME_MILLIS
+        fast -> GameRules.FAST_QUESTION_TIME_MILLIS
+        else -> GameRules.QUESTION_TIME_MILLIS
+    },
     val length: GameLength = GameLength.DEFAULT,
 ) {
     /** Modo niños: en la ronda de estrategia fallar no resta la apuesta. */

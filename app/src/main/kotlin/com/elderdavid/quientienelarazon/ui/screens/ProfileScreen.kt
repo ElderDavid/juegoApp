@@ -234,7 +234,7 @@ private fun StatsCard(stats: PlayerStats) {
     }
 }
 
-/** Nivel, barra de XP, monedas y lo próximo que se gana. */
+/** Nivel, barra de XP y monedas. Lo que se gana en cada nivel no se anuncia: es sorpresa. */
 @Composable
 private fun ProgressCard(state: ProfileUiState, economy: EconomyUiState, onShop: () -> Unit) {
     val profile = state.profile ?: return
@@ -267,7 +267,7 @@ private fun ProgressCard(state: ProfileUiState, economy: EconomyUiState, onShop:
             color = ArcadeOrange,
             trackColor = ArcadeOutline,
         )
-        Text("Siguiente premio · ${EconomyViewModel.nextRewardText(progress.level)}", color = ArcadeText)
+        Text("Cada nivel nuevo te da monedas, y algunos traen un premio sorpresa.", color = ArcadeText)
         Text(
             "Ganas ${Levels.XP_PER_GAME} XP por partida online, ${Levels.XP_PER_CORRECT} por acierto y ${Levels.XP_PER_WIN} por victoria. " +
                 "Las partidas en este teléfono dan ${EconomyRules.LOCAL_GAME_XP} XP a tu cuenta (hasta ${EconomyRules.LOCAL_GAMES_XP_PER_DAY} al día).",

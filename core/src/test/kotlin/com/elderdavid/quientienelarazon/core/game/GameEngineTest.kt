@@ -381,7 +381,14 @@ class GameEngineTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun rejectsOnePlayer() { engine.newGame(players(1), GameConfig(), 1) }
+    fun rejectsNoPlayers() { engine.newGame(players(0), GameConfig(), 1) }
+
+    @Test
+    fun fastModeShortensTheTimerButNotForKids() {
+        assertEquals(GameRules.FAST_QUESTION_TIME_MILLIS, GameConfig(fast = true).questionTimeMillis)
+        assertEquals(GameRules.KIDS_QUESTION_TIME_MILLIS, GameConfig(mode = ContentMode.Kids, fast = true).questionTimeMillis)
+        assertEquals(GameRules.QUESTION_TIME_MILLIS, GameConfig().questionTimeMillis)
+    }
 
     @Test(expected = IllegalArgumentException::class)
     fun rejectsFivePlayers() { engine.newGame(players(5), GameConfig(), 1) }

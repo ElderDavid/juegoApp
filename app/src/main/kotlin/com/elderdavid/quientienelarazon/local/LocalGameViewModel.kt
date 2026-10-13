@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.elderdavid.quientienelarazon.core.economy.EconomyRules
 import com.elderdavid.quientienelarazon.core.economy.LocalGameReport
+import com.elderdavid.quientienelarazon.core.economy.PaidModes
 import com.elderdavid.quientienelarazon.core.game.GameEngine
 import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
@@ -26,9 +27,15 @@ import com.elderdavid.quientienelarazon.economy.SpendResult
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.UUID
@@ -41,6 +48,12 @@ data class LocalUiState(
     val mode: ContentMode = ContentMode.General,
     val length: GameLength = GameLength.DEFAULT,
     val regions: List<Region> = emptyList(),
+    /** Países del modo países (se compran con monedas). */
+    val countries: List<Region> = emptyList(),
+    /** Modo «muy rápido» elegido (solo cuenta si se compró). */
+    val fast: Boolean = false,
+    /** Modos de juego comprados por la cuenta del teléfono (ids de [Cosmetics]). */
+    val ownedModes: Set<String> = emptySet(),
     val match: LocalMatch? = null,
     /** Identifica la partida en curso ante el servidor (paquete de partida, XP). Cambia en cada revancha. */
     val gameKey: String? = null,
@@ -52,9 +65,21 @@ data class LocalUiState(
     val notice: String? = null,
 ) {
     val nameIssues: Map<Int, NameIssue> get() = LocalSetup.issues(names)
-    val canStart: Boolean get() = !loading && !loadError && LocalSetup.canStart(names)
+    val canStart: Boolean get() = !loading && !loadError && LocalSetup.canStart(names) && modeUnlocked(mode)
     val canAddPlayer: Boolean get() = names.size < GameRules.MAX_PLAYERS
-    val canRemovePlayer: Boolean get() = names.size > GameRules.MIN_PLAYERS
+    val canRemovePlayer: Boolean get() = names.size > GameRules.MIN_LOCAL_PLAYERS
+
+    /** Modo solitario: un solo jugador. */
+    val solo: Boolean get() = names.size == 1
+
+    val ownsFast: Boolean get() = PaidModes.FAST in ownedModes
+
+    /** El modo «muy rápido» no se aplica al modo niños, que tiene más tiempo. */
+    val fastActive: Boolean get() = fast && ownsFast && mode != ContentMode.Kids
+
+    /** Los países se compran; el resto de modos son gratis. */
+    fun modeUnlocked(mode: ContentMode): Boolean =
+        mode !is ContentMode.Country || PaidModes.countryItem(mode.countryId) in ownedModes
 }
 
 /**
@@ -73,6 +98,8 @@ class LocalGameViewModel(
     /** Monedas y XP de la cuenta del teléfono. null = sin servidor: solo los comodines gratis. */
     private val economy: EconomyRepository? = null,
     private val newGameKey: () -> String = { UUID.randomUUID().toString() },
+    /** Modos comprados guardados en el teléfono, para jugarlos sin conexión. */
+    private val cachedOwnedModes: Flow<Set<String>> = emptyFlow(),
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(LocalUiState())
@@ -87,12 +114,18 @@ class LocalGameViewModel(
             viewModelScope.launch { economy.snapshot.collect { snap -> _state.update { it.copy(coins = snap?.coins) } } }
             viewModelScope.launch { economy.refresh() }
         }
+        // Lo comprado puede llegar del servidor o, sin conexión, de la copia del teléfono.
+        val serverOwned = economy?.snapshot?.map { it?.owned.orEmpty() } ?: flowOf(emptySet<String>())
+        viewModelScope.launch {
+            combine(serverOwned, cachedOwnedModes.onStart { emit(emptySet()) }) { server, cached -> server + cached }
+                .collect { owned -> _state.update { it.copy(ownedModes = owned) } }
+        }
         viewModelScope.launch {
             try {
                 val loaded = loadBank()
                 bank = loaded
                 engine = GameEngine(loaded)
-                _state.update { it.copy(loading = false, regions = loaded.regions) }
+                _state.update { it.copy(loading = false, regions = loaded.regions, countries = loaded.countries) }
             } catch (e: Exception) {
                 // El banco va dentro de la app; si falla es un error de empaquetado, no de red.
                 _state.update { it.copy(loading = false, loadError = true) }
@@ -127,12 +160,23 @@ class LocalGameViewModel(
 
     fun setLength(length: GameLength) = _state.update { it.copy(length = length) }
 
+    fun setFast(fast: Boolean) = _state.update { it.copy(fast = fast) }
+
+    /** Modo solitario: deja solo al primer jugador; al volver al grupo añade otro hueco. */
+    fun setSolo(solo: Boolean) = _state.update {
+        when {
+            solo -> it.copy(names = it.names.take(1))
+            it.names.size == 1 -> it.copy(names = it.names + "")
+            else -> it
+        }
+    }
+
     fun start() {
         val s = _state.value
         val e = engine ?: return
         if (!s.canStart) return
         _state.update { it.copy(gameKey = newGameKey(), reward = null, notice = null) }
-        setMatch(LocalMatch.start(e, LocalSetup.players(s.names), s.mode, newSeed(), length = s.length))
+        setMatch(LocalMatch.start(e, LocalSetup.players(s.names), s.mode, newSeed(), length = s.length, fast = s.fastActive))
     }
 
     // --- Partida ---
@@ -236,7 +280,11 @@ class LocalGameViewModel(
             newSeed: () -> Long,
             recordFinished: suspend (GameState) -> Unit,
             economy: EconomyRepository?,
-        ): ViewModelProvider.Factory =
-            viewModelFactory { initializer { LocalGameViewModel(loadBank, clock, newSeed, recordFinished, economy) } }
+            cachedOwnedModes: Flow<Set<String>>,
+        ): ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                LocalGameViewModel(loadBank, clock, newSeed, recordFinished, economy, cachedOwnedModes = cachedOwnedModes)
+            }
+        }
     }
 }

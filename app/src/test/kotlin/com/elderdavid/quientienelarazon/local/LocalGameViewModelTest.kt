@@ -1,14 +1,17 @@
 package com.elderdavid.quientienelarazon.local
 
+import com.elderdavid.quientienelarazon.core.economy.PaidModes
 import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalStage
 import com.elderdavid.quientienelarazon.core.questions.Audience
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
+import com.elderdavid.quientienelarazon.core.questions.Difficulty
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceTimeBy
@@ -99,6 +102,42 @@ class LocalGameViewModelTest {
         advanceTimeBy(GameRules.KIDS_QUESTION_TIME_MILLIS - GameRules.QUESTION_TIME_MILLIS)
         runCurrent()
         assertTrue(vm.state.value.match!!.stage is LocalStage.Handoff)
+    }
+
+    @Test
+    fun countriesAndFastModeNeedToBeBought() = runTest(dispatcher) {
+        val vm = viewModel()
+        vm.setName(0, "Ana")
+        vm.setSolo(true)
+        assertEquals(listOf("Ana"), vm.state.value.names)
+        assertTrue(vm.state.value.canStart)
+        vm.setMode(ContentMode.Country("pais-mexico"))
+        vm.setFast(true)
+        assertFalse(vm.state.value.canStart)
+        assertFalse(vm.state.value.fastActive)
+    }
+
+    @Test
+    fun boughtModesWorkOffline() = runTest(dispatcher) {
+        val owned = setOf(PaidModes.FAST, PaidModes.countryItem("pais-mexico"))
+        val vm = LocalGameViewModel(
+            loadBank = { bank },
+            clock = { testScheduler.currentTime },
+            newSeed = { 42L },
+            cachedOwnedModes = flowOf(owned),
+        )
+        runCurrent()
+        vm.setName(0, "Ana")
+        vm.setSolo(true)
+        vm.setMode(ContentMode.Country("pais-mexico"))
+        vm.setFast(true)
+        assertTrue(vm.state.value.canStart)
+        vm.start()
+        val match = vm.state.value.match!!
+        assertTrue(match.solo)
+        assertTrue(match.state.config.fast)
+        assertTrue(match.state.plan.questions.all { bank.question(it.questionId).regionId == "pais-mexico" })
+        assertTrue(match.state.plan.questions.none { bank.question(it.questionId).difficulty == Difficulty.EASY })
     }
 
     @Test

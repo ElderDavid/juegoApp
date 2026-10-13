@@ -24,7 +24,7 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
     val lengths = GameLength.entries.map { it.questions }
     ArcadeScreen(title = "Reglas", onBack = onBack, bottomBar = { AdBanner(ads) }) {
         Text(
-            "${GameRules.MIN_PLAYERS} a ${GameRules.MAX_PLAYERS} jugadores · " +
+            "${GameRules.MIN_LOCAL_PLAYERS} a ${GameRules.MAX_PLAYERS} jugadores en el teléfono (${GameRules.MIN_PLAYERS} a ${GameRules.MAX_PLAYERS} online) · " +
                 "${lengths.dropLast(1).joinToString(", ")} o ${lengths.last()} preguntas en ${GameRules.ROUNDS} rondas · " +
                 "$seconds segundos por pregunta",
             style = MaterialTheme.typography.bodyLarge,
@@ -62,6 +62,15 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
                 "Para jugar en familia en el modo local: preguntas más fáciles pensadas para niños, " +
                     "${GameRules.KIDS_QUESTION_TIME_MILLIS / 1000} segundos por pregunta y, en la ronda de estrategia, " +
                     "fallar no resta lo apostado.",
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+        ArcadeCard(accent = ArcadeCyan) {
+            Text("Solitario y modos extra", style = MaterialTheme.typography.titleLarge, color = ArcadeCyan)
+            Text(
+                "Solo: si juegas sin nadie más, las preguntas son de dificultad media y difícil. " +
+                    "Con monedas se desbloquean «Muy rápido» (${GameRules.FAST_QUESTION_TIME_MILLIS / 1000} segundos por pregunta) " +
+                    "y el modo países, con preguntas de un país.",
                 style = MaterialTheme.typography.bodyMedium,
             )
         }

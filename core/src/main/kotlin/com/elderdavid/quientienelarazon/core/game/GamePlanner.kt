@@ -53,7 +53,7 @@ object GamePlanner {
         length: GameLength = GameLength.DEFAULT,
     ): GamePlan {
         val random = Random(seed)
-        val fullPool = bank.pool(mode)
+        val fullPool = soloPool(bank.pool(mode), mode, playerCount, length)
         // Revancha: se evitan las preguntas recientes si quedan suficientes; si no, se permiten.
         val preferred = fullPool.filterNot { it.id in avoidQuestionIds }
         val pool = if (preferred.size >= length.questions + GameRules.TIEBREAK_RESERVE) preferred else fullPool
@@ -95,6 +95,16 @@ object GamePlanner {
             .map { it.id }
 
         return GamePlan(planned, tiebreak)
+    }
+
+    /**
+     * Modo solitario: solo preguntas de dificultad media y difícil, si alcanzan para la partida y el
+     * desempate. En el modo niños se juega con las de siempre.
+     */
+    private fun soloPool(pool: List<Question>, mode: ContentMode, playerCount: Int, length: GameLength): List<Question> {
+        if (playerCount != 1 || mode == ContentMode.Kids) return pool
+        val harder = pool.filter { it.difficulty != Difficulty.EASY }
+        return if (harder.size >= length.questions + GameRules.TIEBREAK_RESERVE) harder else pool
     }
 
     /** Filtros por ronda, del más estricto al más permisivo. */

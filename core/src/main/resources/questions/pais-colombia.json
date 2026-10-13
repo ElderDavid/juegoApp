@@ -1,0 +1,650 @@
+[
+ {
+  "id": "pco-001",
+  "text": "¿Cuál es la capital de Colombia?",
+  "options": [
+   "Medellín",
+   "Cali",
+   "Bogotá",
+   "Cartagena"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "Bogotá es la capital y la ciudad más poblada del país.",
+  "source": "https://es.wikipedia.org/wiki/Bogotá",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-002",
+  "text": "¿Cuál es la moneda de Colombia?",
+  "options": [
+   "Sol",
+   "Peso colombiano",
+   "Bolívar",
+   "Real"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "La moneda oficial es el peso colombiano.",
+  "source": "https://es.wikipedia.org/wiki/Peso_colombiano",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-003",
+  "text": "Colombia es el único país de Sudamérica con costas en el océano Pacífico y en el mar Caribe.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Es el único país sudamericano con costas en ambos océanos: el Pacífico y el Atlántico, a través del Caribe.",
+  "source": "https://es.wikipedia.org/wiki/Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-004",
+  "text": "¿Cuál es el principal río de Colombia, que la recorre de sur a norte hasta el Caribe?",
+  "options": [
+   "Amazonas",
+   "Orinoco",
+   "Cauca",
+   "Magdalena"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "El Magdalena nace en el Macizo Colombiano y desemboca en Bocas de Ceniza, junto a Barranquilla.",
+  "source": "https://es.wikipedia.org/wiki/Río_Magdalena",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-005",
+  "text": "¿Cuántos departamentos tiene Colombia?",
+  "options": [
+   "24",
+   "32",
+   "28",
+   "36"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Colombia tiene 32 departamentos y un distrito capital, Bogotá.",
+  "source": "https://es.wikipedia.org/wiki/Organización_territorial_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-006",
+  "text": "San Andrés está en el océano Pacífico.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "El archipiélago de San Andrés, Providencia y Santa Catalina está en el mar Caribe.",
+  "source": "https://es.wikipedia.org/wiki/San_Andrés_(Colombia)",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-007",
+  "text": "¿En qué fecha se celebra la independencia de Colombia por el Grito de 1810?",
+  "options": [
+   "20 de julio",
+   "12 de octubre",
+   "7 de agosto",
+   "11 de noviembre"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "El 20 de julio de 1810 se firmó en Santafé el Acta de Independencia.",
+  "source": "https://es.wikipedia.org/wiki/Grito_de_Independencia_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-008",
+  "text": "¿En qué año fue la batalla de Boyacá, que selló la independencia?",
+  "options": [
+   "1824",
+   "1830",
+   "1819",
+   "1810"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "La batalla de Boyacá fue el 7 de agosto de 1819.",
+  "source": "https://es.wikipedia.org/wiki/Batalla_de_Boyacá",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-009",
+  "text": "¿En qué año se promulgó la Constitución que rige hoy en Colombia?",
+  "options": [
+   "1886",
+   "1991",
+   "1810",
+   "1957"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "La Constitución Política vigente es de 1991 y reemplazó a la de 1886.",
+  "source": "https://es.wikipedia.org/wiki/Constitución_Política_de_Colombia_de_1991",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-010",
+  "text": "¿Qué país se formó en 1819 con los territorios de las actuales Colombia, Venezuela, Ecuador y Panamá?",
+  "options": [
+   "Provincias Unidas del Río de la Plata",
+   "Gran Colombia",
+   "Confederación Peruano-Boliviana",
+   "Imperio de Brasil"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-colombia",
+  "explanation": "La Gran Colombia existió entre 1819 y 1831.",
+  "source": "https://es.wikipedia.org/wiki/Gran_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-011",
+  "text": "¿En qué año se separó Panamá de Colombia?",
+  "options": [
+   "1830",
+   "1886",
+   "1903",
+   "1948"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-colombia",
+  "explanation": "Panamá se separó de Colombia el 3 de noviembre de 1903.",
+  "source": "https://es.wikipedia.org/wiki/Separación_de_Panamá_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-012",
+  "text": "¿En qué año se fundó Bogotá?",
+  "options": [
+   "1499",
+   "1538",
+   "1600",
+   "1810"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-colombia",
+  "explanation": "Gonzalo Jiménez de Quesada fundó Santafé de Bogotá en 1538.",
+  "source": "https://es.wikipedia.org/wiki/Bogotá",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-013",
+  "text": "¿La erupción de qué volcán destruyó la población de Armero en 1985?",
+  "options": [
+   "Volcán Galeras",
+   "Nevado del Huila",
+   "Nevado del Ruiz",
+   "Volcán Puracé"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-colombia",
+  "explanation": "La erupción del Nevado del Ruiz en noviembre de 1985 provocó la tragedia de Armero.",
+  "source": "https://es.wikipedia.org/wiki/Tragedia_de_Armero",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-014",
+  "text": "¿Qué presidente colombiano recibió el Premio Nobel de la Paz en 2016?",
+  "options": [
+   "Álvaro Uribe",
+   "Juan Manuel Santos",
+   "Iván Duque",
+   "César Gaviria"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Juan Manuel Santos lo recibió por el acuerdo de paz con las FARC.",
+  "source": "https://es.wikipedia.org/wiki/Juan_Manuel_Santos",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-015",
+  "text": "¿Cuál es el ave nacional de Colombia?",
+  "options": [
+   "Cóndor de los Andes",
+   "Colibrí",
+   "Guacamaya",
+   "Águila arpía"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "El cóndor de los Andes aparece en el escudo y es el ave nacional.",
+  "source": "https://es.wikipedia.org/wiki/Escudo_de_Colombia",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-016",
+  "text": "¿Cuál es la flor nacional de Colombia?",
+  "options": [
+   "Rosa",
+   "Girasol",
+   "Margarita",
+   "Orquídea"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "La flor nacional es la orquídea Cattleya trianae.",
+  "source": "https://es.wikipedia.org/wiki/Cattleya_trianae",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-017",
+  "text": "¿Cuál es el árbol nacional de Colombia?",
+  "options": [
+   "Ceiba",
+   "Guayacán",
+   "Palma de cera",
+   "Roble"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_simbolos",
+  "difficulty": "HARD",
+  "region": "pais-colombia",
+  "explanation": "La palma de cera del Quindío es el árbol nacional desde 1985.",
+  "source": "https://es.wikipedia.org/wiki/Ceroxylon_quindiuense",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-018",
+  "text": "¿Qué escritor colombiano ganó el Premio Nobel de Literatura en 1982?",
+  "options": [
+   "Jorge Isaacs",
+   "Gabriel García Márquez",
+   "Rafael Pombo",
+   "Álvaro Mutis"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "Gabriel García Márquez, autor de «Cien años de soledad», lo ganó en 1982.",
+  "source": "https://es.wikipedia.org/wiki/Gabriel_García_Márquez",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-019",
+  "text": "¿Qué artista de Medellín es famoso por sus figuras de formas voluminosas?",
+  "options": [
+   "Fernando Botero",
+   "Omar Rayo",
+   "Débora Arango",
+   "Alejandro Obregón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Fernando Botero es conocido en todo el mundo por sus figuras voluminosas.",
+  "source": "https://es.wikipedia.org/wiki/Fernando_Botero",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-020",
+  "text": "El Carnaval de Barranquilla fue declarado Patrimonio de la Humanidad por la Unesco.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "La Unesco lo proclamó Obra Maestra del Patrimonio Oral e Inmaterial de la Humanidad en 2003.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Barranquilla",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-021",
+  "text": "¿Cuál de estos NO es uno de los tres instrumentos tradicionales del vallenato?",
+  "options": [
+   "Acordeón",
+   "Caja",
+   "Arpa",
+   "Guacharaca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "El vallenato tradicional se toca con acordeón, caja y guacharaca. El arpa es típica de la música llanera.",
+  "source": "https://es.wikipedia.org/wiki/Vallenato",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-022",
+  "text": "Shakira nació en Barranquilla.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "Shakira nació en Barranquilla en 1977.",
+  "source": "https://es.wikipedia.org/wiki/Shakira",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-023",
+  "text": "¿Qué ciclista colombiano ganó el Tour de Francia en 2019?",
+  "options": [
+   "Egan Bernal",
+   "Rigoberto Urán",
+   "Nairo Quintana",
+   "Fernando Gaviria"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Egan Bernal fue el primer latinoamericano en ganar el Tour de Francia.",
+  "source": "https://es.wikipedia.org/wiki/Egan_Bernal",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-024",
+  "text": "¿En qué año ganó Colombia la Copa América de fútbol?",
+  "options": [
+   "1995",
+   "2001",
+   "2016",
+   "2021"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Colombia ganó la Copa América 2001, que se jugó en su territorio.",
+  "source": "https://es.wikipedia.org/wiki/Copa_América_2001",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-025",
+  "text": "James Rodríguez fue el máximo goleador del Mundial de Brasil 2014.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "James marcó 6 goles y ganó la Bota de Oro de ese Mundial.",
+  "source": "https://es.wikipedia.org/wiki/James_Rodríguez",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-026",
+  "text": "¿De qué región es típica la bandeja paisa?",
+  "options": [
+   "Costa Caribe",
+   "Antioquia y el Eje Cafetero",
+   "Llanos Orientales",
+   "Pacífico"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "La bandeja paisa es el plato insignia de la región paisa.",
+  "source": "https://es.wikipedia.org/wiki/Bandeja_paisa",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-027",
+  "text": "El ajiaco santafereño es un plato típico de Bogotá.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "pais-colombia",
+  "explanation": "El ajiaco, con tres tipos de papa, pollo y guascas, es tradicional de Bogotá.",
+  "source": "https://es.wikipedia.org/wiki/Ajiaco",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-028",
+  "text": "¿En qué sierra está Ciudad Perdida (Teyuna), construida por los taironas?",
+  "options": [
+   "Serranía de La Macarena",
+   "Serranía de San Lucas",
+   "Serranía del Perijá",
+   "Sierra Nevada de Santa Marta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Teyuna está en la Sierra Nevada de Santa Marta, en el Magdalena.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_Perdida",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-029",
+  "text": "¿En qué departamento está Caño Cristales, «el río de los cinco colores»?",
+  "options": [
+   "Chocó",
+   "Amazonas",
+   "Meta",
+   "Boyacá"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-colombia",
+  "explanation": "Caño Cristales está en la serranía de La Macarena, en el Meta.",
+  "source": "https://es.wikipedia.org/wiki/Caño_Cristales",
+  "referenceDate": null
+ },
+ {
+  "id": "pco-030",
+  "text": "¿Qué departamentos forman el núcleo del Eje Cafetero?",
+  "options": [
+   "Huila, Tolima y Cauca",
+   "Caldas, Quindío y Risaralda",
+   "Boyacá, Cundinamarca y Meta",
+   "Nariño, Cauca y Valle"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "HARD",
+  "region": "pais-colombia",
+  "explanation": "El Paisaje Cultural Cafetero, Patrimonio de la Humanidad desde 2011, tiene su núcleo en Caldas, Quindío y Risaralda.",
+  "source": "https://es.wikipedia.org/wiki/Paisaje_Cultural_Cafetero_de_Colombia",
+  "referenceDate": null
+ }
+]

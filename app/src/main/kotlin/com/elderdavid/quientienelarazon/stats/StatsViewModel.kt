@@ -59,7 +59,7 @@ class StatsViewModel(
         viewModelScope.launch { localHistory.history.collect { h -> _state.update { it.copy(local = h) } } }
         viewModelScope.launch {
             runCatching { loadBank() }.onSuccess { bank ->
-                _state.update { s -> s.copy(regionNames = bank.regions.associate { it.id to it.name }) }
+                _state.update { s -> s.copy(regionNames = (bank.regions + bank.countries).associate { it.id to it.name }) }
             }
         }
         refreshOnline()

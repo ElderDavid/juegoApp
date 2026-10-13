@@ -18,6 +18,8 @@ import com.elderdavid.quientienelarazon.economy.EconomyCache
 import com.elderdavid.quientienelarazon.economy.EconomyRepository
 import com.elderdavid.quientienelarazon.economy.SupabaseEconomyRepository
 import com.elderdavid.quientienelarazon.economy.economyCacheDataStore
+import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
+import com.elderdavid.quientienelarazon.core.economy.Cosmetics
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
 import com.elderdavid.quientienelarazon.online.OnlineRepository
@@ -120,9 +122,12 @@ class AppContainer(application: Application) {
     } ?: NoAds
 
     init {
-        // Lo equipado se guarda en el teléfono cada vez que llega del servidor.
+        // Lo equipado y los modos comprados se guardan en el teléfono cada vez que llegan del servidor.
         appScope.launch {
-            economyRepository?.snapshot?.filterNotNull()?.collect { economyCache.saveEquipped(it.equipped) }
+            economyRepository?.snapshot?.filterNotNull()?.collect { snapshot ->
+                economyCache.saveEquipped(snapshot.equipped)
+                economyCache.saveOwnedModes(snapshot.owned.filterTo(mutableSetOf()) { Cosmetics.byId(it)?.kind == CosmeticKind.MODE })
+            }
         }
     }
 

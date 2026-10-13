@@ -17,6 +17,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
@@ -50,6 +51,8 @@ fun LocalSetupScreen(
     onRemovePlayer: (Int) -> Unit,
     onModeChange: (ContentMode) -> Unit,
     onLengthChange: (GameLength) -> Unit,
+    onFastChange: (Boolean) -> Unit,
+    onSoloChange: (Boolean) -> Unit,
     onStart: () -> Unit,
     onBack: () -> Unit,
 ) {
@@ -65,7 +68,9 @@ fun LocalSetupScreen(
                     color = ArcadeTextMuted,
                 )
             }
-            else -> SetupContent(state, onNameChange, onAddPlayer, onRemovePlayer, onModeChange, onLengthChange, onStart)
+            else -> SetupContent(
+                state, onNameChange, onAddPlayer, onRemovePlayer, onModeChange, onLengthChange, onFastChange, onSoloChange, onStart,
+            )
         }
     }
 }
@@ -78,16 +83,29 @@ private fun SetupContent(
     onRemovePlayer: (Int) -> Unit,
     onModeChange: (ContentMode) -> Unit,
     onLengthChange: (GameLength) -> Unit,
+    onFastChange: (Boolean) -> Unit,
+    onSoloChange: (Boolean) -> Unit,
     onStart: () -> Unit,
 ) {
     Text(
-        "De 2 a 4 jugadores en este teléfono. Os lo iréis pasando en cada turno.",
+        "Juega solo o con hasta 4 personas en este teléfono. En grupo os lo iréis pasando en cada turno.",
         style = MaterialTheme.typography.bodyLarge,
         color = ArcadeTextMuted,
     )
     val issues = state.nameIssues
     ArcadeCard(accent = ArcadeCyan) {
         Text("Jugadores", style = MaterialTheme.typography.titleLarge)
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            ModeChip("Solo", state.solo, ArcadeCyan) { onSoloChange(true) }
+            ModeChip("En grupo", !state.solo, ArcadeCyan) { onSoloChange(false) }
+        }
+        if (state.solo) {
+            Text(
+                "Modo solitario: preguntas de dificultad media y difícil. ¡Intenta superar tu récord!",
+                style = MaterialTheme.typography.bodyMedium,
+                color = ArcadeTextMuted,
+            )
+        }
         state.names.forEachIndexed { index, name ->
             val message = issueText(issues[index], name)
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -119,18 +137,21 @@ private fun SetupContent(
                 }
             }
         }
-        if (state.canAddPlayer) {
+        if (state.canAddPlayer && !state.solo) {
             ArcadeOutlinedButton(text = "Añadir jugador", onClick = onAddPlayer, color = ArcadeCyan)
         }
     }
 
     ModeCard(state, onModeChange)
+    SpeedCard(state, onFastChange)
     GameLengthCard(state.length, onLengthChange)
 
     ArcadeButton(text = "¡A jugar!", onClick = onStart, enabled = state.canStart, color = ArcadeMagenta)
     if (!state.canStart) {
         Text(
-            "Escribe un nombre distinto para cada jugador.",
+            if (!state.modeUnlocked(state.mode)) "Ese país se desbloquea con monedas en Tienda y premios."
+            else if (state.solo) "Escribe tu nombre."
+            else "Escribe un nombre distinto para cada jugador.",
             style = MaterialTheme.typography.bodyMedium,
             color = ArcadeTextMuted,
         )
@@ -156,32 +177,88 @@ private fun ModeCard(state: LocalUiState, onModeChange: (ContentMode) -> Unit) {
                 ModeChip(region.name, state.mode == mode) { onModeChange(mode) }
             }
         }
+        if (state.countries.isNotEmpty()) {
+            Text("Países: preguntas de un país", style = MaterialTheme.typography.titleMedium)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                state.countries.forEach { country ->
+                    val mode = ContentMode.Country(country.id)
+                    val unlocked = state.modeUnlocked(mode)
+                    ModeChip(if (unlocked) country.name else "🔒 ${country.name}", state.mode == mode, enabled = unlocked) {
+                        onModeChange(mode)
+                    }
+                }
+            }
+            if (state.countries.any { !state.modeUnlocked(ContentMode.Country(it.id)) }) {
+                Text(
+                    "Los países con candado se desbloquean con monedas en Tienda y premios.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = ArcadeTextMuted,
+                )
+            }
+        }
+    }
+}
+
+/** Velocidad: normal o «muy rápido», que se compra con monedas. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun SpeedCard(state: LocalUiState, onFastChange: (Boolean) -> Unit) {
+    ArcadeCard(accent = ArcadeMagenta) {
+        Text("Velocidad", style = MaterialTheme.typography.titleLarge)
+        val kids = state.mode == ContentMode.Kids
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            ModeChip("Normal · ${GameRules.QUESTION_TIME_MILLIS / 1000} s", !state.fastActive, ArcadeMagenta) { onFastChange(false) }
+            ModeChip(
+                (if (state.ownsFast) "" else "🔒 ") + "Muy rápido · ${GameRules.FAST_QUESTION_TIME_MILLIS / 1000} s",
+                state.fastActive,
+                ArcadeMagenta,
+                enabled = state.ownsFast && !kids,
+            ) { onFastChange(true) }
+        }
+        Text(
+            when {
+                kids -> "El modo niños siempre tiene ${GameRules.KIDS_QUESTION_TIME_MILLIS / 1000} segundos por pregunta."
+                !state.ownsFast -> "«Muy rápido» se desbloquea con monedas en Tienda y premios."
+                else -> "Segundos para responder cada pregunta."
+            },
+            style = MaterialTheme.typography.bodyMedium,
+            color = ArcadeTextMuted,
+        )
     }
 }
 
 @Composable
-private fun ModeChip(label: String, selected: Boolean, onClick: () -> Unit) {
+private fun ModeChip(
+    label: String,
+    selected: Boolean,
+    color: Color = ArcadeOrange,
+    enabled: Boolean = true,
+    onClick: () -> Unit,
+) {
     FilterChip(
         selected = selected,
         onClick = onClick,
+        enabled = enabled,
         label = { Text(label) },
         colors = FilterChipDefaults.filterChipColors(
-            selectedContainerColor = ArcadeOrange,
+            selectedContainerColor = color,
             selectedLabelColor = ArcadeNight,
         ),
     )
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun GameLengthCard(selected: GameLength, onChange: (GameLength) -> Unit) {
     ArcadeCard(accent = ArcadeCyan) {
         Text("Duración", style = MaterialTheme.typography.titleLarge)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        // FlowRow: en pantallas estrechas el tercer chip baja de línea en vez de aplastarse.
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             GameLength.entries.forEach { length ->
                 FilterChip(
                     selected = length == selected,
                     onClick = { onChange(length) },
-                    label = { Text("${length.questions} preguntas") },
+                    label = { Text("${length.questions} preguntas", maxLines = 1, softWrap = false) },
                     colors = FilterChipDefaults.filterChipColors(
                         selectedContainerColor = ArcadeCyan,
                         selectedLabelColor = ArcadeNight,

@@ -1,0 +1,650 @@
+[
+ {
+  "id": "pes-001",
+  "text": "¿Cuál es la capital de España?",
+  "options": [
+   "Barcelona",
+   "Sevilla",
+   "Madrid",
+   "Valencia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "Madrid es la capital de España.",
+  "source": "https://es.wikipedia.org/wiki/Madrid",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-002",
+  "text": "La moneda de España es el euro.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "España usa el euro desde 2002.",
+  "source": "https://es.wikipedia.org/wiki/Euro",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-003",
+  "text": "¿Cuántas comunidades autónomas tiene España?",
+  "options": [
+   "15",
+   "17",
+   "19",
+   "21"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "España tiene 17 comunidades autónomas y 2 ciudades autónomas, Ceuta y Melilla.",
+  "source": "https://es.wikipedia.org/wiki/Comunidad_autónoma",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-004",
+  "text": "Las islas Canarias están en el mar Mediterráneo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "Las Canarias están en el océano Atlántico, frente a la costa de África.",
+  "source": "https://es.wikipedia.org/wiki/Canarias",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-005",
+  "text": "¿Cuál es la montaña más alta de España?",
+  "options": [
+   "Mulhacén",
+   "Aneto",
+   "Teide",
+   "Veleta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "El Teide, en Tenerife, es el pico más alto de España.",
+  "source": "https://es.wikipedia.org/wiki/Teide",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-006",
+  "text": "¿Cuál es la montaña más alta de la península ibérica?",
+  "options": [
+   "Aneto",
+   "Mulhacén",
+   "Teide",
+   "Almanzor"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "El Mulhacén, en Sierra Nevada (Granada), es el pico más alto de la península.",
+  "source": "https://es.wikipedia.org/wiki/Mulhacén",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-007",
+  "text": "El río Guadalquivir pasa por Sevilla.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "El Guadalquivir atraviesa Córdoba y Sevilla antes de llegar al Atlántico.",
+  "source": "https://es.wikipedia.org/wiki/Río_Guadalquivir",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-008",
+  "text": "¿Qué reyes financiaron el primer viaje de Cristóbal Colón en 1492?",
+  "options": [
+   "Carlos I y Felipe II",
+   "Alfonso X y Violante",
+   "Felipe V e Isabel de Farnesio",
+   "Isabel y Fernando, los Reyes Católicos"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "Isabel de Castilla y Fernando de Aragón apoyaron el viaje.",
+  "source": "https://es.wikipedia.org/wiki/Reyes_Católicos",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-009",
+  "text": "¿En qué año tomaron los Reyes Católicos Granada, último reino musulmán de la península?",
+  "options": [
+   "1469",
+   "1492",
+   "1512",
+   "1516"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "Granada se rindió el 2 de enero de 1492.",
+  "source": "https://es.wikipedia.org/wiki/Guerra_de_Granada",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-010",
+  "text": "¿De qué año es la Constitución española vigente?",
+  "options": [
+   "1931",
+   "1975",
+   "1978",
+   "1986"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "La Constitución se aprobó en referéndum en diciembre de 1978.",
+  "source": "https://es.wikipedia.org/wiki/Constitución_española_de_1978",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-011",
+  "text": "¿En qué año entró España en la Comunidad Europea, hoy Unión Europea?",
+  "options": [
+   "1975",
+   "1982",
+   "1992",
+   "1986"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "España se adhirió el 1 de enero de 1986.",
+  "source": "https://es.wikipedia.org/wiki/Adhesión_de_España_a_las_Comunidades_Europeas",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-012",
+  "text": "Barcelona fue sede de los Juegos Olímpicos de 1992.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "Los Juegos de la XXV Olimpiada se celebraron en Barcelona en 1992.",
+  "source": "https://es.wikipedia.org/wiki/Juegos_Olímpicos_de_Barcelona_1992",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-013",
+  "text": "¿En qué año ganó España la Copa del Mundo de fútbol?",
+  "options": [
+   "2006",
+   "2010",
+   "2014",
+   "2018"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "España ganó el Mundial de Sudáfrica 2010.",
+  "source": "https://es.wikipedia.org/wiki/Copa_Mundial_de_Fútbol_de_2010",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-014",
+  "text": "¿Cuántas veces ganó Rafael Nadal el torneo de Roland Garros?",
+  "options": [
+   "10",
+   "12",
+   "14",
+   "16"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "Nadal ganó Roland Garros 14 veces, un récord.",
+  "source": "https://es.wikipedia.org/wiki/Rafael_Nadal",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-015",
+  "text": "¿Qué club ha ganado más veces la Copa de Europa (Liga de Campeones)?",
+  "options": [
+   "Real Madrid",
+   "FC Barcelona",
+   "AC Milan",
+   "Bayern de Múnich"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "El Real Madrid es el club con más Copas de Europa.",
+  "source": "https://es.wikipedia.org/wiki/Real_Madrid_Club_de_Fútbol",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-016",
+  "text": "¿Qué arquitecto diseñó la Sagrada Familia?",
+  "options": [
+   "Ricardo Bofill",
+   "Santiago Calatrava",
+   "Rafael Moneo",
+   "Antoni Gaudí"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "Antoni Gaudí trabajó en la Sagrada Familia desde 1883 hasta su muerte.",
+  "source": "https://es.wikipedia.org/wiki/Templo_Expiatorio_de_la_Sagrada_Familia",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-017",
+  "text": "¿En qué ciudad está la Alhambra?",
+  "options": [
+   "Córdoba",
+   "Sevilla",
+   "Granada",
+   "Toledo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "La Alhambra es el gran conjunto palaciego de Granada.",
+  "source": "https://es.wikipedia.org/wiki/Alhambra",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-018",
+  "text": "La famosa Mezquita-catedral está en Córdoba.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "La Mezquita-catedral de Córdoba es Patrimonio de la Humanidad.",
+  "source": "https://es.wikipedia.org/wiki/Mezquita-catedral_de_Córdoba",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-019",
+  "text": "¿En qué comunidad termina el Camino de Santiago?",
+  "options": [
+   "Galicia",
+   "Asturias",
+   "Castilla y León",
+   "Navarra"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "El Camino termina en Santiago de Compostela, en Galicia.",
+  "source": "https://es.wikipedia.org/wiki/Camino_de_Santiago",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-020",
+  "text": "¿Quién escribió «Don Quijote de la Mancha»?",
+  "options": [
+   "Lope de Vega",
+   "Calderón de la Barca",
+   "Francisco de Quevedo",
+   "Miguel de Cervantes"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "Miguel de Cervantes publicó el Quijote en 1605 y 1615.",
+  "source": "https://es.wikipedia.org/wiki/Don_Quijote_de_la_Mancha",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-021",
+  "text": "¿En qué ciudad nació Pablo Picasso?",
+  "options": [
+   "Barcelona",
+   "Madrid",
+   "Málaga",
+   "Valencia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "Picasso nació en Málaga en 1881.",
+  "source": "https://es.wikipedia.org/wiki/Pablo_Picasso",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-022",
+  "text": "¿En qué museo de Madrid se exhibe el «Guernica» de Picasso?",
+  "options": [
+   "Museo del Prado",
+   "Museo Reina Sofía",
+   "Museo Thyssen-Bornemisza",
+   "Museo Sorolla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "El Guernica está en el Museo Nacional Centro de Arte Reina Sofía.",
+  "source": "https://es.wikipedia.org/wiki/Guernica_(Picasso)",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-023",
+  "text": "¿Quién pintó «Las meninas»?",
+  "options": [
+   "Diego Velázquez",
+   "El Greco",
+   "Francisco de Goya",
+   "Bartolomé Murillo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "Diego Velázquez pintó «Las meninas» en 1656.",
+  "source": "https://es.wikipedia.org/wiki/Las_meninas",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-024",
+  "text": "¿Quién escribió «La vida es sueño»?",
+  "options": [
+   "Lope de Vega",
+   "Tirso de Molina",
+   "Garcilaso de la Vega",
+   "Calderón de la Barca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "Es una obra de teatro de Pedro Calderón de la Barca.",
+  "source": "https://es.wikipedia.org/wiki/La_vida_es_sueño",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-025",
+  "text": "¿Cuál de estas NO es lengua cooficial en ninguna comunidad de España?",
+  "options": [
+   "Catalán",
+   "Gallego",
+   "Portugués",
+   "Euskera"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "El catalán, el gallego y el euskera son cooficiales en sus comunidades; el portugués no.",
+  "source": "https://es.wikipedia.org/wiki/Lenguas_de_España",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-026",
+  "text": "¿En qué ciudad se celebran los encierros de San Fermín?",
+  "options": [
+   "Valencia",
+   "Pamplona",
+   "Sevilla",
+   "Bilbao"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-espana",
+  "explanation": "Los Sanfermines se celebran en Pamplona en julio.",
+  "source": "https://es.wikipedia.org/wiki/Sanfermines",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-027",
+  "text": "¿En qué pueblo valenciano se celebra la Tomatina?",
+  "options": [
+   "Buñol",
+   "Alcoy",
+   "Xàtiva",
+   "Gandía"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": "pais-espana",
+  "explanation": "La Tomatina se celebra en Buñol el último miércoles de agosto.",
+  "source": "https://es.wikipedia.org/wiki/La_Tomatina",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-028",
+  "text": "¿De qué región del sur de España es típico el flamenco?",
+  "options": [
+   "Galicia",
+   "Navarra",
+   "Asturias",
+   "Andalucía"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "El flamenco nació en Andalucía y es patrimonio inmaterial de la Unesco.",
+  "source": "https://es.wikipedia.org/wiki/Flamenco",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-029",
+  "text": "¿De qué comunidad es típica la paella?",
+  "options": [
+   "Andalucía",
+   "Galicia",
+   "Comunidad Valenciana",
+   "Cataluña"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "La paella es el plato más conocido de la Comunidad Valenciana.",
+  "source": "https://es.wikipedia.org/wiki/Paella",
+  "referenceDate": null
+ },
+ {
+  "id": "pes-030",
+  "text": "El gazpacho es una sopa que se sirve fría.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "pais-espana",
+  "explanation": "El gazpacho andaluz se toma frío, sobre todo en verano.",
+  "source": "https://es.wikipedia.org/wiki/Gazpacho",
+  "referenceDate": null
+ }
+]

@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
 import kotlinx.coroutines.flow.Flow
@@ -22,13 +23,14 @@ data class EquippedCosmetics(val byKind: Map<CosmeticKind, String> = emptyMap())
 val Context.economyCacheDataStore: DataStore<Preferences> by preferencesDataStore(name = "economy_cache")
 
 /**
- * Copia local de lo que el servidor dice que está equipado, y de si «Quitar anuncios» ya se
- * verificó. No es la fuente de verdad: el servidor y Google Play lo son. Solo evita que el
+ * Copia local de lo que el servidor dice que está equipado, de los modos de juego comprados y de
+ * si «Quitar anuncios» ya se verificó. No es la fuente de verdad: el servidor y Google Play lo son. Solo evita que el
  * tema o los anuncios cambien al abrir la app sin conexión.
  */
 class EconomyCache(private val dataStore: DataStore<Preferences>) {
     private fun key(kind: CosmeticKind) = stringPreferencesKey("equipped_${kind.name.lowercase()}")
     private val removeAdsKey = booleanPreferencesKey("remove_ads")
+    private val ownedModesKey = stringSetPreferencesKey("owned_modes")
 
     private val prefs: Flow<Preferences> = dataStore.data
         .catch { error -> if (error is IOException) emit(emptyPreferences()) else throw error }
@@ -39,6 +41,9 @@ class EconomyCache(private val dataStore: DataStore<Preferences>) {
 
     val removeAds: Flow<Boolean> = prefs.map { it[removeAdsKey] ?: false }
 
+    /** Modos de juego comprados, para poder jugarlos sin conexión. */
+    val ownedModes: Flow<Set<String>> = prefs.map { it[ownedModesKey] ?: emptySet() }
+
     suspend fun saveEquipped(equipped: Map<CosmeticKind, String>) {
         dataStore.edit { p ->
             CosmeticKind.entries.forEach { kind ->
@@ -46,6 +51,10 @@ class EconomyCache(private val dataStore: DataStore<Preferences>) {
                 if (id == null) p.remove(key(kind)) else p[key(kind)] = id
             }
         }
+    }
+
+    suspend fun saveOwnedModes(ids: Set<String>) {
+        dataStore.edit { it[ownedModesKey] = ids }
     }
 
     suspend fun saveRemoveAds(removed: Boolean) {
