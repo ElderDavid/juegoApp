@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -235,7 +236,7 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
         // Solitario: no hay que pasar el teléfono, solo una pausa antes de que corra el tiempo.
         Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
             PlayerAvatar(name = name, playerIndex = colorIndex, size = 96)
-            Text("$name, ${state.scores.getValue(stage.playerId)} puntos", style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center)
+            Text("$name, ${state.scores.getValue(stage.playerId)} puntos", style = MaterialTheme.typography.titleLarge, color = ArcadeText, textAlign = TextAlign.Center)
             Text("El tiempo empieza al pulsar el botón.", color = ArcadeTextMuted)
         }
         ArcadeButton(text = "Siguiente pregunta", onClick = actions.ready, color = PlayerColors[colorIndex % PlayerColors.size])
@@ -335,7 +336,9 @@ private fun WildcardBar(stage: LocalStage.Answering, actions: LocalGameActions) 
                 shape = MaterialTheme.shapes.medium,
                 border = BorderStroke(2.dp, if (enabled) ArcadeOrange else ArcadeOutline),
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = ArcadeOrange, disabledContentColor = ArcadeTextMuted),
-            ) { Text(w.label, style = MaterialTheme.typography.labelLarge) }
+                // Con el relleno por defecto (24 dp) «Cambiar» no cabe en un tercio de pantalla y se parte.
+                contentPadding = PaddingValues(horizontal = 4.dp),
+            ) { Text(w.label, style = MaterialTheme.typography.labelLarge, maxLines = 1, softWrap = false) }
         }
     }
 }
