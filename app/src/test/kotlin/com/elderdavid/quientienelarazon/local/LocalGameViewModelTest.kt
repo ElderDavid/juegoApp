@@ -75,10 +75,10 @@ class LocalGameViewModelTest {
     }
 
     @Test
-    fun playerCountStaysBetweenTwoAndFour() = runTest(dispatcher) {
+    fun playerCountStaysBetweenOneAndFour() = runTest(dispatcher) {
         val vm = viewModel()
-        vm.removePlayer(0)
-        assertEquals(2, vm.state.value.names.size)
+        repeat(3) { vm.removePlayer(0) }
+        assertEquals(GameRules.MIN_LOCAL_PLAYERS, vm.state.value.names.size)
         repeat(5) { vm.addPlayer() }
         assertEquals(GameRules.MAX_PLAYERS, vm.state.value.names.size)
     }
