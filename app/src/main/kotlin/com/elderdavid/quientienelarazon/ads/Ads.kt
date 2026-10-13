@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.SystemClock
 import android.util.Log
 import com.elderdavid.quientienelarazon.billing.BillingRepository
+import com.elderdavid.quientienelarazon.core.ads.AgeGroup
 import com.elderdavid.quientienelarazon.core.ads.InterstitialPacing
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -71,6 +72,8 @@ object NoAds : AdsController {
 class AdMobAdsController(
     context: Context,
     private val consent: AdsConsent,
+    /** No se pide ningún anuncio hasta saber si quien juega es menor de 13. */
+    private val ageStatus: StateFlow<AgeStatus>,
     billing: BillingRepository,
     private val scope: CoroutineScope,
     private val interstitialUnitId: String,
@@ -100,19 +103,17 @@ class AdMobAdsController(
 
     init {
         // Si el consentimiento ya estaba resuelto de una sesión anterior, se puede empezar ya.
-        scope.launch { consent.canRequestAds.collect { if (it) initialize() } }
+        scope.launch {
+            combine(consent.canRequestAds, ageStatus) { can, age -> can && age is AgeStatus.Known }
+                .collect { if (it) initialize() }
+        }
     }
 
     /** Inicializa el SDK una sola vez, fuera del hilo principal, y precarga el primer intersticial. */
     private fun initialize() {
         if (initStarted) return
         initStarted = true
-        MobileAds.setRequestConfiguration(
-            RequestConfiguration.Builder()
-                // Juego de preguntas para público general: contenido apto para todos los públicos con supervisión.
-                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_PG)
-                .build(),
-        )
+        MobileAds.setRequestConfiguration(requestConfiguration(child))
         scope.launch(Dispatchers.IO) {
             MobileAds.initialize(appContext) {}
             withContext(Dispatchers.Main) {
@@ -147,7 +148,7 @@ class AdMobAdsController(
     }
 
     private fun loadRewarded() {
-        if (rewardedUnitId.isEmpty() || !initialized.value || rewardedLoading || rewarded != null) return
+        if (rewardedUnitId.isEmpty() || child || !initialized.value || rewardedLoading || rewarded != null) return
         if (!consent.canRequestAds.value) return
         rewardedLoading = true
         RewardedAd.load(
@@ -227,7 +228,28 @@ class AdMobAdsController(
         ad.show(activity)
     }
 
+    /** Menor de 13 según la pregunta de edad. */
+    private val child: Boolean get() = (ageStatus.value as? AgeStatus.Known)?.group == AgeGroup.CHILD
+
     private companion object {
         const val TAG = "Ads"
     }
+}
+
+/**
+ * Configuración de AdMob según la edad. Para menores de 13 (política de Familias y COPPA): anuncios
+ * dirigidos a niños, sin personalizar ni identificador de publicidad, y solo contenido para todos.
+ * Para el resto: contenido apto para todos los públicos con supervisión, como antes.
+ */
+internal fun requestConfiguration(child: Boolean): RequestConfiguration {
+    val builder = RequestConfiguration.Builder()
+    if (child) {
+        builder
+            .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+            .setTagForUnderAgeOfConsent(RequestConfiguration.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE)
+            .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
+    } else {
+        builder.setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_PG)
+    }
+    return builder.build()
 }

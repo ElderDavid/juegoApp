@@ -27,26 +27,34 @@ formas». `QuestionValidator` impide que una pregunta para niños sea de debate 
 departamento, y `QuestionBankContentTest` comprueba que el banco alcanza para una revancha sin
 repetir preguntas. Conviene una revisión humana antes de publicar, como con el resto del banco.
 
-## Google Play y AdMob
+## Google Play y AdMob: público mixto
 
-Hoy la app se declara para mayores de 13 años (`PUBLICACION.md`, punto 7). Un modo niños, sobre
-todo si aparece en la ficha de la tienda, es justo el tipo de señal por la que Google revisa si la
-app atrae a niños. Hay dos caminos:
+Se decidió declarar en Google Play un **público mixto** (incluye menores de 13), así que se aplica la
+política de Familias. Lo que ya hace la app:
 
-1. **Seguir con público 13+.** No hace falta más código, pero la ficha no debería anunciar la app
-   para niños y el modo se presenta como juego en familia con un adulto. Google puede igualmente
-   decidir que la app atrae a niños y pedir que cumpla la política de Familias.
-2. **Declarar público mixto (incluye menores de 13) y cumplir la política de Familias.** Es lo
-   correcto si se quiere promocionar el modo niños. Requiere:
-   - Una pregunta neutral de edad al abrir la app (sin sugerir la respuesta «correcta»).
-   - Para quien diga tener menos de 13: anuncios marcados como dirigidos a niños
-     (`setTagForChildDirectedTreatment`), clasificación máxima `G`, sin anuncios personalizados ni
-     identificador de publicidad, y sin pedir datos personales.
-   - Revisar compras y videos con recompensa para menores, y el juego online (nombres públicos y
-     clasificación).
-   - Actualizar la política de privacidad (sección «Menores»), la sección de seguridad de los
-     datos y el cuestionario de clasificación de contenido. En Colombia, los datos de niños tienen
-     protección reforzada (Ley 1581 de 2012).
+- **Pregunta neutral de edad** la primera vez que se abre: «¿En qué año naciste?», sin sugerir
+  ninguna respuesta (`AgeGateScreen`, `core/.../ads/AgeGate.kt`). Solo se guarda en el teléfono si
+  es menor de 13 o no, nunca el año. Ante la duda (nacido hace justo 13 años) cuenta como menor.
+  No se puede cambiar desde la app; para volver a preguntar hay que borrar los datos de la app.
+- **Menores de 13**: anuncios marcados como dirigidos a niños
+  (`TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE` y `TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE`), clasificación
+  máxima `G`, sin personalizar ni identificador de publicidad, y sin videos con recompensa. El
+  formulario de consentimiento del UMP también se pide marcado como menor de edad.
+- **13 o más**: igual que antes (clasificación máxima `PG`, consentimiento del UMP donde la ley lo
+  pide).
+- La edad no separa a los jugadores: todos pueden jugar juntos en local y en online.
+- En el modo niños no hay intersticial al terminar ni paquete de partida, tenga la edad que tenga
+  el dueño del teléfono.
 
-AdMob está en la lista de SDK de anuncios autocertificados para Familias, así que no hay que
-cambiar de red de anuncios en ninguno de los dos casos.
+Lo que tiene que hacer el dueño de la cuenta antes de publicar:
+
+1. Play Console → **Público objetivo y contenido**: marcar los grupos de edad que incluyan menores
+   de 13 y aceptar la política de Familias.
+2. AdMob → configuración de la app: revisar que no haya redes de mediación que no estén
+   certificadas para Familias (AdMob sí lo está).
+3. Publicar la política de privacidad actualizada (sección «Menores» de `POLITICA_PRIVACIDAD.md`).
+4. Responder el cuestionario de clasificación de contenido y la sección de seguridad de los datos
+   teniendo en cuenta a los menores.
+5. En online, los nombres de jugador son públicos en salas y clasificación. No hay chat, pero
+   conviene que la ficha y el perfil recomienden no usar el nombre real. Si Google lo pide,
+   habría que ocultar la clasificación a menores de 13.

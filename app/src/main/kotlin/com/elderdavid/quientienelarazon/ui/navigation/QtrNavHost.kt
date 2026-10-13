@@ -2,12 +2,16 @@ package com.elderdavid.quientienelarazon.ui.navigation
 
 import android.os.SystemClock
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.elderdavid.quientienelarazon.AppContainer
 import com.elderdavid.quientienelarazon.account.ProfileViewModel
+import com.elderdavid.quientienelarazon.ads.AgeStatus
 import com.elderdavid.quientienelarazon.economy.EconomyViewModel
 import com.elderdavid.quientienelarazon.local.LocalGameViewModel
 import com.elderdavid.quientienelarazon.online.OnlineGameViewModel
@@ -15,6 +19,7 @@ import com.elderdavid.quientienelarazon.settings.SettingsViewModel
 import com.elderdavid.quientienelarazon.stats.StatsViewModel
 import com.elderdavid.quientienelarazon.ui.local.LocalGameRoute
 import com.elderdavid.quientienelarazon.ui.online.OnlineRoute
+import com.elderdavid.quientienelarazon.ui.screens.AgeGateScreen
 import com.elderdavid.quientienelarazon.ui.screens.HomeScreen
 import com.elderdavid.quientienelarazon.ui.screens.MainMenuScreen
 import com.elderdavid.quientienelarazon.ui.screens.ProfileScreen
@@ -22,6 +27,7 @@ import com.elderdavid.quientienelarazon.ui.screens.RulesScreen
 import com.elderdavid.quientienelarazon.ui.screens.SettingsScreen
 import com.elderdavid.quientienelarazon.ui.screens.ShopScreen
 import com.elderdavid.quientienelarazon.ui.screens.StatsScreen
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 /** Rutas de la app. Las de fases posteriores se añadirán aquí a medida que existan. */
@@ -39,6 +45,18 @@ object Routes {
 
 @Composable
 fun QtrNavHost(container: AppContainer) {
+    // Pregunta neutral de edad, una vez por teléfono, antes de todo lo demás.
+    val age by container.ageGate.status.collectAsStateWithLifecycle()
+    val scope = rememberCoroutineScope()
+    when (age) {
+        AgeStatus.Loading -> Unit
+        AgeStatus.Unknown -> AgeGateScreen(onAnswered = { group -> scope.launch { container.ageGate.save(group) } })
+        is AgeStatus.Known -> AppNavHost(container)
+    }
+}
+
+@Composable
+private fun AppNavHost(container: AppContainer) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Routes.HOME) {
         composable(Routes.HOME) {

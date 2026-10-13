@@ -28,9 +28,13 @@ class AdsConsent(context: Context) {
     /** true si hay que ofrecer en Ajustes la opción de cambiar el consentimiento. */
     val privacyOptionsRequired: StateFlow<Boolean> = _privacyOptionsRequired.asStateFlow()
 
-    /** Actualiza el estado y muestra el formulario si hace falta. Se llama en cada arranque. */
-    fun gather(activity: Activity, onDone: () -> Unit) {
-        val params = ConsentRequestParameters.Builder().build()
+    /**
+     * Actualiza el estado y muestra el formulario si hace falta. Se llama en cada arranque, después
+     * de la pregunta de edad. [underAge]: menor de 13, el formulario no pide consentimiento para
+     * anuncios personalizados.
+     */
+    fun gather(activity: Activity, underAge: Boolean, onDone: () -> Unit) {
+        val params = ConsentRequestParameters.Builder().setTagForUnderAgeOfConsent(underAge).build()
         info.requestConsentInfoUpdate(
             activity,
             params,
