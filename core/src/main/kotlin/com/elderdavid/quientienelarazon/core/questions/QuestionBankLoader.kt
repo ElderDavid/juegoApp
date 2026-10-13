@@ -14,13 +14,14 @@ object QuestionBankLoader {
     /** [read] devuelve el contenido de un archivo dentro de `questions/`. */
     fun load(read: (fileName: String) -> String): QuestionBank {
         val index = json.decodeFromString<IndexDto>(read("index.json"))
-        val questions = index.files.flatMap { file ->
+        val questions = (index.files + index.countryFiles).flatMap { file ->
             json.decodeFromString<List<QuestionDto>>(read(file)).map { it.toDomain() }
         }
         return QuestionBank(
             questions = questions,
             categories = index.categories.map { Category(it.id, it.name) },
             regions = index.regions.map { Region(it.id, it.name) },
+            countries = index.countries.map { Region(it.id, it.name) },
         )
     }
 
@@ -37,6 +38,9 @@ object QuestionBankLoader {
         val categories: List<NamedDto>,
         val regions: List<NamedDto>,
         val files: List<String>,
+        /** Modo países. Van aparte porque solo existen en el teléfono, no en el servidor online. */
+        val countries: List<NamedDto> = emptyList(),
+        val countryFiles: List<String> = emptyList(),
     )
 
     @Serializable

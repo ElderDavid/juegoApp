@@ -1,0 +1,646 @@
+[
+ {
+  "id": "pbr-001",
+  "text": "¿Cuál es la capital de Brasil?",
+  "options": [
+   "Río de Janeiro",
+   "São Paulo",
+   "Brasilia",
+   "Salvador"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "Brasilia es la capital desde 1960.",
+  "source": "https://es.wikipedia.org/wiki/Brasilia",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-002",
+  "text": "¿Cuál es el idioma oficial de Brasil?",
+  "options": [
+   "Español",
+   "Portugués",
+   "Francés",
+   "Inglés"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "En Brasil se habla portugués, herencia de la colonización portuguesa.",
+  "source": "https://es.wikipedia.org/wiki/Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-003",
+  "text": "¿Cuál es la moneda de Brasil?",
+  "options": [
+   "Real",
+   "Bolívar",
+   "Peso",
+   "Dólar"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "La moneda oficial es el real.",
+  "source": "https://es.wikipedia.org/wiki/Real_brasileño",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-004",
+  "text": "¿Cuál es la ciudad más poblada de Brasil?",
+  "options": [
+   "Río de Janeiro",
+   "Fortaleza",
+   "Salvador",
+   "São Paulo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "São Paulo es la ciudad más poblada del país.",
+  "source": "https://es.wikipedia.org/wiki/São_Paulo",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-005",
+  "text": "Brasil es el país más grande de Sudamérica.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "Ocupa casi la mitad de la superficie de Sudamérica.",
+  "source": "https://es.wikipedia.org/wiki/Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-006",
+  "text": "La mayor parte de la selva amazónica está en Brasil.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "Cerca del 60 % de la Amazonía está en territorio brasileño.",
+  "source": "https://es.wikipedia.org/wiki/Amazonia",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-007",
+  "text": "¿Cuántos estados tiene Brasil, además del Distrito Federal?",
+  "options": [
+   "22",
+   "26",
+   "30",
+   "32"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "Brasil tiene 26 estados y un Distrito Federal.",
+  "source": "https://es.wikipedia.org/wiki/Organización_territorial_de_Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-008",
+  "text": "¿Cómo se llama el humedal tropical más grande del mundo, en el centro-oeste de Brasil?",
+  "options": [
+   "Mata Atlántica",
+   "Cerrado",
+   "Caatinga",
+   "Pantanal"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "curiosidades",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "El Pantanal es el mayor humedal tropical del planeta.",
+  "source": "https://es.wikipedia.org/wiki/Pantanal",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-009",
+  "text": "¿En qué año se independizó Brasil?",
+  "options": [
+   "1808",
+   "1822",
+   "1889",
+   "1500"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "Pedro I proclamó la independencia el 7 de septiembre de 1822.",
+  "source": "https://es.wikipedia.org/wiki/Independencia_de_Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-010",
+  "text": "¿Qué navegante portugués llegó a Brasil en 1500?",
+  "options": [
+   "Vasco da Gama",
+   "Pedro Álvares Cabral",
+   "Fernando de Magallanes",
+   "Bartolomeu Dias"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "Pedro Álvares Cabral llegó a la costa brasileña en abril de 1500.",
+  "source": "https://es.wikipedia.org/wiki/Pedro_Álvares_Cabral",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-011",
+  "text": "Después de su independencia, Brasil fue un imperio con emperadores propios.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "El Imperio del Brasil duró de 1822 a 1889.",
+  "source": "https://es.wikipedia.org/wiki/Imperio_del_Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-012",
+  "text": "¿En qué año se proclamó la república en Brasil?",
+  "options": [
+   "1822",
+   "1889",
+   "1930",
+   "1964"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "La república se proclamó el 15 de noviembre de 1889.",
+  "source": "https://es.wikipedia.org/wiki/Proclamación_de_la_República_(Brasil)",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-013",
+  "text": "¿Cuál fue la primera capital de Brasil?",
+  "options": [
+   "Río de Janeiro",
+   "Recife",
+   "Salvador",
+   "São Paulo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "Salvador de Bahía fue la capital desde 1549 hasta 1763.",
+  "source": "https://es.wikipedia.org/wiki/Salvador_de_Bahía",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-014",
+  "text": "Río de Janeiro fue la capital de Brasil hasta 1960.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "En 1960 la capital pasó a Brasilia.",
+  "source": "https://es.wikipedia.org/wiki/Río_de_Janeiro",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-015",
+  "text": "¿Qué lema aparece en la bandera de Brasil?",
+  "options": [
+   "Ordem e Progresso",
+   "Deus e Pátria",
+   "Liberdade e União",
+   "Paz e Trabalho"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "La bandera dice «Ordem e Progresso» («Orden y Progreso»).",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-016",
+  "text": "Las estrellas de la bandera de Brasil representan el cielo de Río de Janeiro el día en que se proclamó la república.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "Muestran el cielo de Río la mañana del 15 de noviembre de 1889.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-017",
+  "text": "¿En qué ciudad está el estadio Maracaná?",
+  "options": [
+   "São Paulo",
+   "Belo Horizonte",
+   "Río de Janeiro",
+   "Brasilia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "El Maracaná está en Río de Janeiro.",
+  "source": "https://es.wikipedia.org/wiki/Estadio_Maracaná",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-018",
+  "text": "¿Sobre qué cerro se alza el Cristo Redentor?",
+  "options": [
+   "Pan de Azúcar",
+   "Corcovado",
+   "Tijuca",
+   "Pedra da Gávea"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "El Cristo Redentor está en la cima del Corcovado.",
+  "source": "https://es.wikipedia.org/wiki/Cristo_Redentor",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-019",
+  "text": "Las Cataratas del Iguazú están en la frontera entre Brasil y Argentina.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "Las comparten el estado de Paraná y la provincia de Misiones.",
+  "source": "https://es.wikipedia.org/wiki/Cataratas_del_Iguazú",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-020",
+  "text": "¿Qué arquitecto diseñó los edificios más famosos de Brasilia?",
+  "options": [
+   "Lúcio Costa",
+   "Roberto Burle Marx",
+   "Paulo Mendes da Rocha",
+   "Oscar Niemeyer"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "Oscar Niemeyer diseñó los edificios; Lúcio Costa hizo el plano de la ciudad.",
+  "source": "https://es.wikipedia.org/wiki/Oscar_Niemeyer",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-021",
+  "text": "¿Qué escritor brasileño escribió «El alquimista»?",
+  "options": [
+   "Jorge Amado",
+   "Machado de Assis",
+   "Paulo Coelho",
+   "Clarice Lispector"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "«El alquimista» es la novela más conocida de Paulo Coelho.",
+  "source": "https://es.wikipedia.org/wiki/Paulo_Coelho",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-022",
+  "text": "¿Qué arte que mezcla lucha, danza y música nació entre los africanos esclavizados en Brasil?",
+  "options": [
+   "Jiu-jitsu",
+   "Capoeira",
+   "Kendo",
+   "Lucha libre"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "La capoeira es patrimonio cultural inmaterial reconocido por la Unesco.",
+  "source": "https://es.wikipedia.org/wiki/Capoeira",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-023",
+  "text": "¿Qué ritmo es el protagonista de los desfiles del Carnaval de Río?",
+  "options": [
+   "Samba",
+   "Tango",
+   "Salsa",
+   "Merengue"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "Las escuelas de samba desfilan en el Sambódromo.",
+  "source": "https://es.wikipedia.org/wiki/Carnaval_de_Río_de_Janeiro",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-024",
+  "text": "¿Qué género musical popularizó la canción «Garota de Ipanema»?",
+  "options": [
+   "Samba-enredo",
+   "Axé",
+   "Forró",
+   "Bossa nova"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "Tom Jobim y Vinicius de Moraes la compusieron en 1962.",
+  "source": "https://es.wikipedia.org/wiki/Garota_de_Ipanema",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-025",
+  "text": "¿Cuántas Copas del Mundo de fútbol ha ganado Brasil?",
+  "options": [
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": "pais-brasil",
+  "explanation": "Brasil ganó en 1958, 1962, 1970, 1994 y 2002.",
+  "source": "https://es.wikipedia.org/wiki/Selección_de_fútbol_de_Brasil",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-026",
+  "text": "Pelé ganó tres Copas del Mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "Pelé fue campeón en 1958, 1962 y 1970.",
+  "source": "https://es.wikipedia.org/wiki/Pelé",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-027",
+  "text": "¿Cuántos títulos mundiales de Fórmula 1 ganó Ayrton Senna?",
+  "options": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "Senna fue campeón en 1988, 1990 y 1991.",
+  "source": "https://es.wikipedia.org/wiki/Ayrton_Senna",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-028",
+  "text": "¿Cuál es el plato de frijoles negros con carne de cerdo considerado típico de Brasil?",
+  "options": [
+   "Coxinha",
+   "Moqueca",
+   "Acarajé",
+   "Feijoada"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "La feijoada es uno de los platos más representativos de Brasil.",
+  "source": "https://es.wikipedia.org/wiki/Feijoada",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-029",
+  "text": "La caipirinha se prepara con cachaça, un aguardiente de caña de azúcar.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "pais-brasil",
+  "explanation": "La caipirinha lleva cachaça, lima y azúcar.",
+  "source": "https://es.wikipedia.org/wiki/Caipiriña",
+  "referenceDate": null
+ },
+ {
+  "id": "pbr-030",
+  "text": "¿De qué estado es típico el pan de queso (pão de queijo)?",
+  "options": [
+   "Bahía",
+   "Minas Gerais",
+   "Paraná",
+   "Amazonas"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "HARD",
+  "region": "pais-brasil",
+  "explanation": "El pão de queijo es tradicional de Minas Gerais.",
+  "source": "https://es.wikipedia.org/wiki/Pan_de_queso",
+  "referenceDate": null
+ }
+]

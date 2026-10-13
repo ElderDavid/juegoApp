@@ -12,14 +12,17 @@
 | Monedas por jugar | 5 por partida terminada (local u online, 10 al día) y 10 por victoria online (10 al día). |
 | XP local | La cuenta del teléfono gana 10 XP por partida local terminada (5 al día). No cuenta para la clasificación online. |
 | Logros | 8 logros con monedas una sola vez (`core/economy/Economy.kt`). |
-| Cosméticos | Marcos, títulos, temas, sonidos de ruleta y animaciones de victoria. Unos se ganan por nivel (2, 3, 5, 7, 10, 15, 20, 25, 30) y otros se compran con monedas (150 a 600). |
+| Cosméticos | Marcos, títulos, temas, sonidos de ruleta y animaciones de victoria. Unos se ganan por nivel (2, 3, 5, 7, 10, 15, 20, 25, 30) y otros se compran con monedas (150 a 600). En la app no se dice qué se gana en cada nivel: la tienda solo pone «Se gana subiendo de nivel» y el perfil habla de premios sorpresa. |
+| Modos de juego | Se compran con monedas y solo existen en la partida en el teléfono: «Muy rápido» (300, 5 segundos por pregunta en vez de 8; no cambia el modo niños) y el modo países, 250 por país (Colombia, México, Argentina, Brasil, Estados Unidos y España, 30 preguntas cada uno). Son filas `MODE` del catálogo de cosméticos: se compran con `buy_cosmetic` y no se equipan. El teléfono guarda los modos comprados para jugarlos sin conexión. |
 | Comodines (solo local) | 50/50, +5 s y cambiar pregunta. Cada jugador tiene 1 gratis por partida, como mucho 1 por pregunta y ninguno en el desempate. El «paquete de partida» (60 monedas, uno por partida) lo paga el dueño del teléfono y da 1 comodín más **a todos**. En online no hay comodines. |
 
-Ninguna pregunta ni modo se bloquea: todo el contenido es gratis.
+Las preguntas generales, «De aquí somos», el modo niños y el modo solitario son gratis. Solo los modos
+extra («Muy rápido» y países) se compran con monedas.
 
 ## Quién decide qué
 
-- **El servidor** (`supabase/migrations/20261012050000_economia.sql`) guarda el saldo y cada
+- **El servidor** (`supabase/migrations/20261012050000_economia.sql`, ampliada por
+  `20261013010000_economia_modos.sql`) guarda el saldo y cada
   movimiento en `coin_ledger`. Los premios únicos llevan una referencia (nivel, logro, día,
   compra, video, partida) y no se pueden cobrar dos veces. La app no puede leer ni escribir esas
   tablas: solo llama a funciones (`economy_state`, `record_local_game`, `claim_daily`,
@@ -40,7 +43,9 @@ catálogo o los números del servidor y de la app no coinciden.
 
 ### Supabase
 
-1. Aplicar la migración `20261012050000_economia.sql` (SQL Editor o `supabase db push`).
+1. Aplicar las migraciones `20261012050000_economia.sql` y `20261013010000_economia_modos.sql` (SQL
+   Editor o `supabase db push`). La segunda añade los temas Selva y Galaxia, la Fanfarria de trompetas
+   y los modos de juego; sin ella la app los muestra, pero el servidor no los vende.
 2. Desplegar las funciones:
    ```
    supabase functions deploy verify-purchase

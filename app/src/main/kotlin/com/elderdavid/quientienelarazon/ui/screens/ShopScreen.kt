@@ -20,6 +20,7 @@ import com.elderdavid.quientienelarazon.core.economy.Cosmetic
 import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
 import com.elderdavid.quientienelarazon.core.economy.Cosmetics
 import com.elderdavid.quientienelarazon.core.economy.EconomyRules
+import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.economy.EconomyUiState
 import com.elderdavid.quientienelarazon.economy.EconomyViewModel
 import com.elderdavid.quientienelarazon.ui.components.ArcadeButton
@@ -68,7 +69,7 @@ fun ShopScreen(viewModel: EconomyViewModel, onBack: () -> Unit) {
                 Text("🪙 ${snapshot.coins}", style = MaterialTheme.typography.headlineMedium, color = ArcadeOrange)
             }
             Text(
-                "Úsalas en comodines para tus partidas y en marcos, títulos, temas y sonidos. Todas las preguntas y modos son gratis.",
+                "Úsalas en comodines, en modos de juego extra y en marcos, títulos, temas y sonidos. Las preguntas generales, «De aquí somos», el modo niños y el solitario son gratis.",
                 color = ArcadeTextMuted,
             )
         }
@@ -125,7 +126,9 @@ fun ShopScreen(viewModel: EconomyViewModel, onBack: () -> Unit) {
             }
         }
 
-        CosmeticKind.entries.forEach { kind -> CosmeticsCard(kind, state, viewModel) }
+        // Primero los modos de juego, después lo decorativo.
+        (listOf(CosmeticKind.MODE) + CosmeticKind.entries.filter { it != CosmeticKind.MODE })
+            .forEach { kind -> CosmeticsCard(kind, state, viewModel) }
     }
 }
 
@@ -161,28 +164,38 @@ private fun DailyCard(state: EconomyUiState, viewModel: EconomyViewModel) {
 @Composable
 private fun CosmeticsCard(kind: CosmeticKind, state: EconomyUiState, viewModel: EconomyViewModel) {
     val items = Cosmetics.all.filter { it.kind == kind }
-    val level = state.snapshot?.level ?: 1
-    ArcadeCard {
+    ArcadeCard(accent = if (kind == CosmeticKind.MODE) ArcadeOrange else ArcadeOutline) {
         Text(kindTitle(kind), style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
-        items.forEach { c -> CosmeticRow(c, level, state, viewModel) }
+        if (kind == CosmeticKind.MODE) {
+            Text(
+                "Muy rápido: ${GameRules.FAST_QUESTION_TIME_MILLIS / 1000} segundos por pregunta en vez de ${GameRules.QUESTION_TIME_MILLIS / 1000}. " +
+                    "Países: preguntas de ese país. Se eligen al preparar una partida en este teléfono.",
+                color = ArcadeTextMuted,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
+        items.forEach { c -> CosmeticRow(c, state, viewModel) }
     }
 }
 
 @Composable
-private fun CosmeticRow(c: Cosmetic, level: Int, state: EconomyUiState, viewModel: EconomyViewModel) {
+private fun CosmeticRow(c: Cosmetic, state: EconomyUiState, viewModel: EconomyViewModel) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(Modifier.weight(1f)) {
             Text(c.name, style = MaterialTheme.typography.bodyLarge)
             val detail = when {
                 state.isEquipped(c) -> "Equipado"
+                state.owns(c) && c.kind == CosmeticKind.MODE -> "Desbloqueado"
                 state.owns(c) -> "Tuyo"
-                c.unlockLevel != null -> "Se gana en el nivel ${c.unlockLevel} (vas en el $level)"
+                // No se dice en qué nivel: es un premio sorpresa.
+                c.unlockLevel != null -> "Se gana subiendo de nivel"
                 else -> "🪙 ${c.price}"
             }
             Text(detail, style = MaterialTheme.typography.bodyMedium, color = if (state.isEquipped(c)) ArcadeSuccess else ArcadeTextMuted)
         }
         val modifier = Modifier.widthIn(max = 150.dp)
         when {
+            state.owns(c) && c.kind == CosmeticKind.MODE -> Unit
             state.owns(c) -> ArcadeOutlinedButton(
                 text = if (state.isEquipped(c)) "Quitar" else "Usar",
                 onClick = { viewModel.toggleEquip(c) },
@@ -207,4 +220,5 @@ private fun kindTitle(kind: CosmeticKind) = when (kind) {
     CosmeticKind.THEME -> "Temas de color"
     CosmeticKind.ROULETTE_SOUND -> "Sonidos de la ruleta"
     CosmeticKind.VICTORY -> "Animaciones de victoria"
+    CosmeticKind.MODE -> "Modos de juego"
 }

@@ -17,6 +17,18 @@ Ubicación: `core/src/main/resources/questions/`. Lo carga `QuestionBankLoader.f
 Además, `ninos.json` tiene 111 preguntas con `"audience": "KIDS"` que solo salen en el modo niños
 (ver `MODO_NINOS.md`). No cuentan en las 380 ni se mezclan con el banco general.
 
+### Modo países (180)
+
+`pais-colombia.json`, `pais-mexico.json`, `pais-argentina.json`, `pais-brasil.json`,
+`pais-estados-unidos.json` y `pais-espana.json`: 30 preguntas objetivas cada uno, todas con fuente
+de Wikipedia. Se registran en `index.json` bajo `countries` y `countryFiles` (no en `files`), así
+el generador de preguntas del servidor no las carga: el modo países solo existe en la partida en el
+teléfono y se desbloquea con monedas (ver `ECONOMIA.md`). Usan las categorías generales más
+`reg_gastronomia`, `reg_simbolos` y `reg_lugares`.
+
+En el modo solitario (un jugador) el planificador usa solo preguntas de dificultad media y difícil
+si hay suficientes para la partida y el desempate.
+
 ## Formato
 
 Cada pregunta tiene `id`, `text`, `options`, `evaluation` (`correct` con índice, `rule` con índice y regla explícita, o `vote`), `category`, `kind` (OBJECTIVE, DEBATE, OPINION), `format` (MULTIPLE_CHOICE, TRUE_FALSE), `difficulty`, `region` (solo regionales), `explanation` y `source` (obligatoria en regionales).

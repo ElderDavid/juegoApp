@@ -13,7 +13,6 @@ import com.elderdavid.quientienelarazon.billing.PurchaseResult
 import com.elderdavid.quientienelarazon.core.economy.Cosmetic
 import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
 import com.elderdavid.quientienelarazon.core.economy.Cosmetics
-import com.elderdavid.quientienelarazon.core.economy.EconomyRules
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -79,8 +78,13 @@ class EconomyViewModel(
     fun buyCosmetic(c: Cosmetic) = act { repo ->
         when (repo.buyCosmetic(c.id)) {
             is SpendResult.Done -> {
-                repo.equip(c.kind, c.id)
-                "Compraste ${c.name}."
+                // Los modos no se equipan: se eligen al preparar la partida.
+                if (c.kind == CosmeticKind.MODE) {
+                    "¡Desbloqueaste ${c.name}! Elígelo al preparar una partida en este teléfono."
+                } else {
+                    repo.equip(c.kind, c.id)
+                    "Compraste ${c.name}."
+                }
             }
             SpendResult.NotEnoughCoins -> "Te faltan monedas."
             SpendResult.AlreadyDone -> "Ya lo tienes."
@@ -159,19 +163,6 @@ class EconomyViewModel(
 
     companion object {
         const val NO_CONNECTION = "No se pudo conectar. Inténtalo de nuevo."
-
-        /** Texto del próximo premio por nivel, para el perfil. */
-        fun nextRewardText(level: Int): String {
-            val next = Cosmetics.nextLevelReward(level)
-            val coins = EconomyRules.levelUpBonus(level + 1)
-            return if (next == null) {
-                "Nivel ${level + 1}: $coins monedas."
-            } else if (next.unlockLevel == level + 1) {
-                "Nivel ${level + 1}: $coins monedas y ${next.kind.label.lowercase()} «${next.name}»."
-            } else {
-                "Nivel ${level + 1}: $coins monedas. Nivel ${next.unlockLevel}: ${next.kind.label.lowercase()} «${next.name}»."
-            }
-        }
 
         fun cosmeticsOf(kind: CosmeticKind) = Cosmetics.all.filter { it.kind == kind }
 

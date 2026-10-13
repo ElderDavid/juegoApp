@@ -29,6 +29,29 @@ class LocalMatchTest {
     }
 
     @Test
+    fun soloGamePlaysToTheEndAndTheOnlyPlayerWins() {
+        var m = newMatch(1)
+        assertTrue(m.solo)
+        var now = 0L
+        while (m.stage !is LocalStage.Finished) {
+            m = when (m.stage) {
+                is LocalStage.Reveal, is LocalStage.RoundSummary -> m.next()
+                else -> toAnswering(m, now).answer(RIGHT, now + 500)
+            }
+            now += 10_000
+        }
+        assertEquals(listOf(m.players.single().id), (m.stage as LocalStage.Finished).winners)
+    }
+
+    @Test
+    fun fastModeIsKeptForTheRematch() {
+        val m = LocalMatch.start(engine, players(2), ContentMode.General, seed = 1, fast = true)
+        val answering = m.rouletteDone().ready(now = 0).stage as LocalStage.Answering
+        assertEquals(GameRules.FAST_QUESTION_TIME_MILLIS, answering.deadline)
+        assertTrue(m.rematch(seed = 2).state.config.fast)
+    }
+
+    @Test
     fun questionStaysHiddenUntilPlayerIsReady() {
         val m = newMatch().rouletteDone()
         val handoff = m.stage as LocalStage.Handoff

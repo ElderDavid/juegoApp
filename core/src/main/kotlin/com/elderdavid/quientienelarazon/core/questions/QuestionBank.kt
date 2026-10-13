@@ -5,6 +5,9 @@ sealed interface ContentMode {
     data object General : ContentMode
     data class Regional(val regionId: String) : ContentMode
 
+    /** Modo países (se compra con monedas): preguntas de un país. */
+    data class Country(val countryId: String) : ContentMode
+
     /** Modo niños: preguntas más fáciles, más tiempo y apuestas sin pérdida (ver [com.elderdavid.quientienelarazon.core.game.GameConfig]). */
     data object Kids : ContentMode
 }
@@ -13,6 +16,8 @@ class QuestionBank(
     val questions: List<Question>,
     val categories: List<Category>,
     val regions: List<Region>,
+    /** Países del modo países. Sus preguntas usan el id del país como `regionId`. */
+    val countries: List<Region> = emptyList(),
 ) {
     private val byId = questions.associateBy { it.id }
     private val categoriesById = categories.associateBy { it.id }
@@ -23,6 +28,7 @@ class QuestionBank(
     fun pool(mode: ContentMode): List<Question> = when (mode) {
         ContentMode.General -> questions.filter { it.regionId == null && it.audience == Audience.ALL }
         is ContentMode.Regional -> questions.filter { it.regionId == mode.regionId && it.audience == Audience.ALL }
+        is ContentMode.Country -> questions.filter { it.regionId == mode.countryId && it.audience == Audience.ALL }
         ContentMode.Kids -> questions.filter { it.audience == Audience.KIDS }
     }
 }

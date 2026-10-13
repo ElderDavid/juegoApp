@@ -5,7 +5,11 @@ package com.elderdavid.quientienelarazon.core.game
  * Cualquier cambio aquí afecta a todos los modos a la vez: hay un único motor de reglas.
  */
 object GameRules {
+    /** Mínimo de jugadores en una sala online. */
     const val MIN_PLAYERS = 2
+
+    /** En el teléfono también se puede jugar solo (modo solitario). */
+    const val MIN_LOCAL_PLAYERS = 1
     const val MAX_PLAYERS = 4
 
     const val ROUNDS = 4
@@ -14,6 +18,9 @@ object GameRules {
 
     /** Modo niños: 1,5 veces el tiempo normal para leer y responder con calma. */
     const val KIDS_QUESTION_TIME_MILLIS = 12_000L
+
+    /** Modo «muy rápido» (se compra con monedas): menos tiempo para responder. */
+    const val FAST_QUESTION_TIME_MILLIS = 5_000L
 
     const val KNOWLEDGE_POINTS = 100
     const val SPEED_POINTS = 100

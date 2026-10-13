@@ -5,13 +5,14 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
 
-/** El catálogo del servidor (migración de economía) debe coincidir con el de la app. */
+/** El catálogo del servidor (migraciones de economía) debe coincidir con el de la app. */
 class EconomyCatalogTest {
+    /** La migración de economía y las que amplían su catálogo (`*_economia_*.sql`), en orden. */
     private val sql: String = listOf(File("../supabase/migrations"), File("supabase/migrations"))
         .first { it.isDirectory }
-        .listFiles { f -> f.name.endsWith("_economia.sql") }!!
-        .single()
-        .readText()
+        .listFiles { f -> f.name.endsWith("_economia.sql") || f.name.contains("_economia_") }!!
+        .sortedBy { it.name }
+        .joinToString("\n") { it.readText() }
 
     @Test
     fun cosmeticsMatchTheServer() {

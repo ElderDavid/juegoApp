@@ -1,0 +1,648 @@
+[
+ {
+  "id": "par-001",
+  "text": "¿Cuál es la capital de Argentina?",
+  "options": [
+   "Córdoba",
+   "Rosario",
+   "Buenos Aires",
+   "Mendoza"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "Buenos Aires es la capital del país.",
+  "source": "https://es.wikipedia.org/wiki/Buenos_Aires",
+  "referenceDate": null
+ },
+ {
+  "id": "par-002",
+  "text": "¿Cuál es la moneda de Argentina?",
+  "options": [
+   "Real",
+   "Peso argentino",
+   "Sol",
+   "Guaraní"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "La moneda oficial es el peso argentino.",
+  "source": "https://es.wikipedia.org/wiki/Peso_argentino",
+  "referenceDate": null
+ },
+ {
+  "id": "par-003",
+  "text": "¿Cuál es la montaña más alta de América, ubicada en Mendoza?",
+  "options": [
+   "Aconcagua",
+   "Ojos del Salado",
+   "Chimborazo",
+   "Huascarán"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "El Aconcagua, en Mendoza, es la cumbre más alta de América.",
+  "source": "https://es.wikipedia.org/wiki/Aconcagua",
+  "referenceDate": null
+ },
+ {
+  "id": "par-004",
+  "text": "¿Qué ciudad argentina es conocida como «la ciudad del fin del mundo»?",
+  "options": [
+   "Río Gallegos",
+   "Bariloche",
+   "Puerto Madryn",
+   "Ushuaia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Ushuaia, en Tierra del Fuego, se presenta como la ciudad más austral del mundo.",
+  "source": "https://es.wikipedia.org/wiki/Ushuaia",
+  "referenceDate": null
+ },
+ {
+  "id": "par-005",
+  "text": "Argentina es uno de los diez países más grandes del mundo por superficie.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-argentina",
+  "explanation": "Con unos 2,8 millones de km² continentales, es el octavo país más extenso.",
+  "source": "https://es.wikipedia.org/wiki/Argentina",
+  "referenceDate": null
+ },
+ {
+  "id": "par-006",
+  "text": "¿Qué dos ríos forman el Río de la Plata?",
+  "options": [
+   "Paraná y Paraguay",
+   "Paraná y Uruguay",
+   "Uruguay y Bermejo",
+   "Salado y Colorado"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-argentina",
+  "explanation": "El Río de la Plata nace de la unión del Paraná y el Uruguay.",
+  "source": "https://es.wikipedia.org/wiki/Río_de_la_Plata",
+  "referenceDate": null
+ },
+ {
+  "id": "par-007",
+  "text": "¿En qué ciudad se declaró la independencia de Argentina en 1816?",
+  "options": [
+   "San Miguel de Tucumán",
+   "Córdoba",
+   "Buenos Aires",
+   "Salta"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "El Congreso de Tucumán la declaró el 9 de julio de 1816.",
+  "source": "https://es.wikipedia.org/wiki/Declaración_de_independencia_de_la_Argentina",
+  "referenceDate": null
+ },
+ {
+  "id": "par-008",
+  "text": "La Revolución de Mayo ocurrió en 1810.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "La Revolución de Mayo fue en mayo de 1810, en Buenos Aires.",
+  "source": "https://es.wikipedia.org/wiki/Revolución_de_Mayo",
+  "referenceDate": null
+ },
+ {
+  "id": "par-009",
+  "text": "¿Qué general cruzó los Andes con el Ejército de los Andes para liberar Chile?",
+  "options": [
+   "Manuel Belgrano",
+   "Juan Manuel de Rosas",
+   "José de San Martín",
+   "Domingo F. Sarmiento"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "José de San Martín cruzó los Andes en 1817.",
+  "source": "https://es.wikipedia.org/wiki/Cruce_de_los_Andes",
+  "referenceDate": null
+ },
+ {
+  "id": "par-010",
+  "text": "¿Qué presidente es llamado «el padre del aula» por impulsar la educación pública?",
+  "options": [
+   "Bartolomé Mitre",
+   "Domingo F. Sarmiento",
+   "Julio A. Roca",
+   "Hipólito Yrigoyen"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-argentina",
+  "explanation": "Domingo Faustino Sarmiento impulsó la escuela pública.",
+  "source": "https://es.wikipedia.org/wiki/Domingo_Faustino_Sarmiento",
+  "referenceDate": null
+ },
+ {
+  "id": "par-011",
+  "text": "¿Quién fue el primer latinoamericano en ganar un Nobel de ciencias (Medicina, 1947)?",
+  "options": [
+   "Bernardo Houssay",
+   "Luis Federico Leloir",
+   "César Milstein",
+   "René Favaloro"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-argentina",
+  "explanation": "Bernardo Houssay ganó el Nobel de Medicina en 1947.",
+  "source": "https://es.wikipedia.org/wiki/Bernardo_Houssay",
+  "referenceDate": null
+ },
+ {
+  "id": "par-012",
+  "text": "¿Quién creó la bandera argentina?",
+  "options": [
+   "Mariano Moreno",
+   "José de San Martín",
+   "Bernardino Rivadavia",
+   "Manuel Belgrano"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Manuel Belgrano la izó por primera vez en Rosario en 1812.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_la_Argentina",
+  "referenceDate": null
+ },
+ {
+  "id": "par-013",
+  "text": "La bandera argentina tiene un sol en el centro.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "La bandera oficial lleva el Sol de Mayo en la franja blanca.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_la_Argentina",
+  "referenceDate": null
+ },
+ {
+  "id": "par-014",
+  "text": "¿En qué provincia están las Cataratas del Iguazú?",
+  "options": [
+   "Corrientes",
+   "Misiones",
+   "Salta",
+   "Neuquén"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Las cataratas están en Misiones, en la frontera con Brasil.",
+  "source": "https://es.wikipedia.org/wiki/Cataratas_del_Iguazú",
+  "referenceDate": null
+ },
+ {
+  "id": "par-015",
+  "text": "El glaciar Perito Moreno está en la Patagonia argentina.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Está en el Parque Nacional Los Glaciares, en Santa Cruz.",
+  "source": "https://es.wikipedia.org/wiki/Glaciar_Perito_Moreno",
+  "referenceDate": null
+ },
+ {
+  "id": "par-016",
+  "text": "¿Qué monumento se levanta en la avenida 9 de Julio de Buenos Aires?",
+  "options": [
+   "El Cabildo",
+   "El Teatro Colón",
+   "La Casa Rosada",
+   "El Obelisco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "El Obelisco se construyó en 1936 en la avenida 9 de Julio.",
+  "source": "https://es.wikipedia.org/wiki/Obelisco_de_Buenos_Aires",
+  "referenceDate": null
+ },
+ {
+  "id": "par-017",
+  "text": "La Casa Rosada es la sede del Poder Ejecutivo argentino.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "La Casa Rosada, frente a la Plaza de Mayo, es la sede de la presidencia.",
+  "source": "https://es.wikipedia.org/wiki/Casa_Rosada",
+  "referenceDate": null
+ },
+ {
+  "id": "par-018",
+  "text": "¿Qué género musical y baile nació en el Río de la Plata a fines del siglo XIX?",
+  "options": [
+   "Cumbia",
+   "Tango",
+   "Samba",
+   "Cueca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "El tango nació en Buenos Aires y Montevideo.",
+  "source": "https://es.wikipedia.org/wiki/Tango",
+  "referenceDate": null
+ },
+ {
+  "id": "par-019",
+  "text": "¿Quién es el cantante de tango conocido como «el Zorzal criollo»?",
+  "options": [
+   "Carlos Gardel",
+   "Mercedes Sosa",
+   "Atahualpa Yupanqui",
+   "Astor Piazzolla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Carlos Gardel es la gran voz de la historia del tango.",
+  "source": "https://es.wikipedia.org/wiki/Carlos_Gardel",
+  "referenceDate": null
+ },
+ {
+  "id": "par-020",
+  "text": "¿Qué instrumento tocaba Astor Piazzolla?",
+  "options": [
+   "Guitarra",
+   "Piano",
+   "Violín",
+   "Bandoneón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "HARD",
+  "region": "pais-argentina",
+  "explanation": "Piazzolla fue un bandoneonista y renovó el tango.",
+  "source": "https://es.wikipedia.org/wiki/Astor_Piazzolla",
+  "referenceDate": null
+ },
+ {
+  "id": "par-021",
+  "text": "¿Cuántas Copas del Mundo de fútbol ha ganado Argentina?",
+  "options": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Argentina ganó los Mundiales de 1978, 1986 y 2022.",
+  "source": "https://es.wikipedia.org/wiki/Selección_de_fútbol_de_Argentina",
+  "referenceDate": null
+ },
+ {
+  "id": "par-022",
+  "text": "¿En qué ciudad nació Lionel Messi?",
+  "options": [
+   "Buenos Aires",
+   "Rosario",
+   "Córdoba",
+   "La Plata"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Messi nació en Rosario, Santa Fe, en 1987.",
+  "source": "https://es.wikipedia.org/wiki/Lionel_Messi",
+  "referenceDate": null
+ },
+ {
+  "id": "par-023",
+  "text": "El gol de la «mano de Dios» de Maradona fue contra Inglaterra en el Mundial de 1986.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Fue en los cuartos de final de México 1986.",
+  "source": "https://es.wikipedia.org/wiki/La_mano_de_Dios",
+  "referenceDate": null
+ },
+ {
+  "id": "par-024",
+  "text": "¿En qué año ganó Argentina su primer Mundial de fútbol?",
+  "options": [
+   "1930",
+   "1978",
+   "1986",
+   "1966"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "deportes",
+  "difficulty": "HARD",
+  "region": "pais-argentina",
+  "explanation": "Su primer título mundial fue en 1978, como local.",
+  "source": "https://es.wikipedia.org/wiki/Copa_Mundial_de_Fútbol_de_1978",
+  "referenceDate": null
+ },
+ {
+  "id": "par-025",
+  "text": "¿Qué infusión se toma en una calabaza con bombilla?",
+  "options": [
+   "Café",
+   "Té verde",
+   "Mate",
+   "Chocolate"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "El mate se prepara con yerba mate y se bebe con bombilla.",
+  "source": "https://es.wikipedia.org/wiki/Mate_(infusión)",
+  "referenceDate": null
+ },
+ {
+  "id": "par-026",
+  "text": "¿Cómo se llama la comida típica de carne cocinada a la parrilla o a las brasas?",
+  "options": [
+   "Ceviche",
+   "Asado",
+   "Feijoada",
+   "Mole"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "El asado es una tradición argentina.",
+  "source": "https://es.wikipedia.org/wiki/Asado",
+  "referenceDate": null
+ },
+ {
+  "id": "par-027",
+  "text": "¿Qué escritor argentino escribió «El Aleph» y «Ficciones»?",
+  "options": [
+   "Jorge Luis Borges",
+   "Julio Cortázar",
+   "Ernesto Sabato",
+   "Adolfo Bioy Casares"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Ambos libros son de Jorge Luis Borges.",
+  "source": "https://es.wikipedia.org/wiki/Jorge_Luis_Borges",
+  "referenceDate": null
+ },
+ {
+  "id": "par-028",
+  "text": "¿Qué humorista gráfico creó a Mafalda?",
+  "options": [
+   "Liniers",
+   "Fontanarrosa",
+   "Caloi",
+   "Quino"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "Joaquín Salvador Lavado, «Quino», creó a Mafalda en 1964.",
+  "source": "https://es.wikipedia.org/wiki/Mafalda",
+  "referenceDate": null
+ },
+ {
+  "id": "par-029",
+  "text": "¿Cuál era el nombre del papa Francisco, nacido en Buenos Aires?",
+  "options": [
+   "Juan Pablo Bergoglio",
+   "José María Bergoglio",
+   "Jorge Mario Bergoglio",
+   "Jorge Luis Bergoglio"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "pais-argentina",
+  "explanation": "Jorge Mario Bergoglio fue el primer papa latinoamericano.",
+  "source": "https://es.wikipedia.org/wiki/Francisco_(papa)",
+  "referenceDate": null
+ },
+ {
+  "id": "par-030",
+  "text": "Las Islas Malvinas están en el océano Atlántico.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-argentina",
+  "explanation": "Están en el Atlántico Sur, frente a la costa patagónica.",
+  "source": "https://es.wikipedia.org/wiki/Islas_Malvinas",
+  "referenceDate": null
+ }
+]

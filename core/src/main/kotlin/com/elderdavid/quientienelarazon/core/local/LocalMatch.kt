@@ -74,6 +74,9 @@ data class LocalMatch(
 ) {
     val players: List<Player> get() = state.players
 
+    /** Modo solitario: un solo jugador. */
+    val solo: Boolean get() = state.players.size == 1
+
     val stage: LocalStage
         get() = when (state.phase) {
             Phase.ROULETTE -> state.currentPlanned!!.let {
@@ -210,7 +213,7 @@ data class LocalMatch(
     /** Nueva partida con los mismos jugadores y modo, evitando en lo posible las preguntas ya vistas. */
     fun rematch(seed: Long): LocalMatch {
         val seen = state.plan.questions.map { it.questionId }.toSet() + state.plan.tiebreakQueue
-        return start(engine, state.players, state.config.mode, seed, seen, state.config.length)
+        return start(engine, state.players, state.config.mode, seed, seen, state.config.length, state.config.fast)
     }
 
     private fun submit(player: PlayerId, choice: Int?, elapsed: Long): LocalMatch =
@@ -234,8 +237,15 @@ data class LocalMatch(
             seed: Long,
             avoidQuestionIds: Set<String> = emptySet(),
             length: GameLength = GameLength.DEFAULT,
+            /** Modo «muy rápido» (comprado con monedas). */
+            fast: Boolean = false,
         ): LocalMatch = LocalMatch(
-            state = engine.newGame(players, GameConfig(mode = mode, sequentialTurns = true, length = length), seed, avoidQuestionIds),
+            state = engine.newGame(
+                players,
+                GameConfig(mode = mode, sequentialTurns = true, fast = fast, length = length),
+                seed,
+                avoidQuestionIds,
+            ),
             engine = engine,
             wildcards = players.associate { it.id to WildcardRules.FREE_PER_PLAYER },
         )

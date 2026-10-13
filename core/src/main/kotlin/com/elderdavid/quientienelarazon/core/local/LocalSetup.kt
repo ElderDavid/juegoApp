@@ -28,7 +28,7 @@ object LocalSetup {
     }
 
     fun canStart(names: List<String>): Boolean =
-        names.size in GameRules.MIN_PLAYERS..GameRules.MAX_PLAYERS && issues(names).isEmpty()
+        names.size in GameRules.MIN_LOCAL_PLAYERS..GameRules.MAX_PLAYERS && issues(names).isEmpty()
 
     /** Jugadores locales con IDs estables por posición; el avatar es el índice de color. */
     fun players(names: List<String>): List<Player> {

@@ -19,8 +19,9 @@ class LocalSetupTest {
     }
 
     @Test
-    fun playerCountMustBeTwoToFour() {
-        assertFalse(LocalSetup.canStart(listOf("Ana")))
+    fun playerCountMustBeOneToFour() {
+        assertTrue(LocalSetup.canStart(listOf("Ana")))
+        assertFalse(LocalSetup.canStart(emptyList()))
         assertFalse(LocalSetup.canStart(listOf("A", "B", "C", "D", "E")))
         assertTrue(LocalSetup.canStart(listOf("A", "B", "C", "D")))
     }

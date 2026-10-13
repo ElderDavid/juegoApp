@@ -231,6 +231,16 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
     } else {
         RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
     }
+    if (state.players.size == 1) {
+        // Solitario: no hay que pasar el teléfono, solo una pausa antes de que corra el tiempo.
+        Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            PlayerAvatar(name = name, playerIndex = colorIndex, size = 96)
+            Text("$name, ${state.scores.getValue(stage.playerId)} puntos", style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center)
+            Text("El tiempo empieza al pulsar el botón.", color = ArcadeTextMuted)
+        }
+        ArcadeButton(text = "Siguiente pregunta", onClick = actions.ready, color = PlayerColors[colorIndex % PlayerColors.size])
+        return
+    }
     Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text("Pasa el teléfono a", style = MaterialTheme.typography.titleMedium, color = ArcadeTextMuted)
         PlayerAvatar(name = name, playerIndex = colorIndex, size = 96)
@@ -557,8 +567,16 @@ private fun PodiumView(
 ) {
     LaunchedEffect(Unit) { actions.feedback(FeedbackEvent.CORRECT) }
     if (extras.victoryId != null && !reducedMotion) VictoryCelebration(extras.victoryId)
+    val solo = state.players.size == 1
     val winners = stage.winners.map { names.getValue(it) }
-    NeonTitle(if (winners.size == 1) "¡${winners.single()} tiene la razón!" else "¡Victoria compartida!", color = ArcadeOrange)
+    NeonTitle(
+        when {
+            solo -> "¡${state.scores.values.single()} puntos!"
+            winners.size == 1 -> "¡${winners.single()} tiene la razón!"
+            else -> "¡Victoria compartida!"
+        },
+        color = ArcadeOrange,
+    )
     if (winners.size > 1) {
         Text(winners.joinToString(" y "), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
     }
@@ -579,7 +597,7 @@ private fun PodiumView(
             modifier = Modifier.fillMaxWidth(),
         )
     }
-    ArcadeButton(text = "Revancha", onClick = actions.rematch, color = ArcadeMagenta)
-    ArcadeOutlinedButton(text = "Cambiar jugadores", onClick = actions.changePlayers, color = ArcadeCyan)
+    ArcadeButton(text = if (solo) "Jugar otra vez" else "Revancha", onClick = actions.rematch, color = ArcadeMagenta)
+    ArcadeOutlinedButton(text = if (solo) "Cambiar ajustes" else "Cambiar jugadores", onClick = actions.changePlayers, color = ArcadeCyan)
     ArcadeOutlinedButton(text = "Menú principal", onClick = actions.exitToMenu)
 }

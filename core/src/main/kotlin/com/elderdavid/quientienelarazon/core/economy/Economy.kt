@@ -9,9 +9,10 @@ import com.elderdavid.quientienelarazon.core.questions.ContentMode
  * Reglas de la economía del juego: monedas, premios por nivel, logros y racha diaria.
  *
  * El saldo y lo que cada jugador tiene los guarda y decide el servidor
- * (supabase/migrations/20261012050000_economia.sql). Estas constantes son las mismas que usa el
- * servidor; EconomyCatalogTest comprueba que el catálogo de la migración coincide con este.
- * Ningún premio bloquea contenido: todas las preguntas y modos son gratis.
+ * (supabase/migrations/20261012050000_economia.sql y las `*_economia_*.sql` que la amplían). Estas
+ * constantes son las mismas que usa el servidor; EconomyCatalogTest comprueba que el catálogo de la migración coincide con este.
+ * Las preguntas generales, «De aquí somos», el modo niños y el solitario son gratis; solo los modos
+ * extra ([PaidModes]) se compran con monedas.
  */
 object EconomyRules {
     /** Bono al llegar a un nivel: 50 + 10 por nivel (nivel 5 = 100). */
@@ -82,10 +83,13 @@ enum class CosmeticKind(val label: String) {
     THEME("Tema de color"),
     ROULETTE_SOUND("Sonido de la ruleta"),
     VICTORY("Animación de victoria"),
+
+    /** Modo de juego extra. No se equipa: con tenerlo ya se puede elegir al preparar la partida. */
+    MODE("Modo de juego"),
 }
 
 /**
- * Objeto decorativo. Se consigue al llegar a [unlockLevel] o comprándolo por [price] monedas;
+ * Objeto de la tienda: decorativo o, si es [CosmeticKind.MODE], un modo de juego. Se consigue al llegar a [unlockLevel] o comprándolo por [price] monedas;
  * nunca las dos cosas. Los ids son estables: el servidor los guarda.
  */
 data class Cosmetic(
@@ -119,6 +123,17 @@ object Cosmetics {
         Cosmetic("frame_oro", CosmeticKind.FRAME, "Marco Oro", price = 300),
         Cosmetic("theme_atardecer", CosmeticKind.THEME, "Atardecer", price = 400),
         Cosmetic("victory_fireworks", CosmeticKind.VICTORY, "Fuegos artificiales", price = 600),
+        Cosmetic("theme_selva", CosmeticKind.THEME, "Selva", price = 400),
+        Cosmetic("theme_galaxia", CosmeticKind.THEME, "Galaxia", price = 400),
+        Cosmetic("victory_trumpets", CosmeticKind.VICTORY, "Fanfarria de trompetas", price = 500),
+        // Modos de juego.
+        Cosmetic(PaidModes.FAST, CosmeticKind.MODE, "Muy rápido", price = 300),
+        Cosmetic("mode_pais_colombia", CosmeticKind.MODE, "Países: Colombia", price = 250),
+        Cosmetic("mode_pais_mexico", CosmeticKind.MODE, "Países: México", price = 250),
+        Cosmetic("mode_pais_argentina", CosmeticKind.MODE, "Países: Argentina", price = 250),
+        Cosmetic("mode_pais_brasil", CosmeticKind.MODE, "Países: Brasil", price = 250),
+        Cosmetic("mode_pais_estados_unidos", CosmeticKind.MODE, "Países: Estados Unidos", price = 250),
+        Cosmetic("mode_pais_espana", CosmeticKind.MODE, "Países: España", price = 250),
     )
 
     private val byId = all.associateBy { it.id }
@@ -132,6 +147,15 @@ object Cosmetics {
 
     /** Lo próximo que se gana por nivel a partir de [level], o null si ya se tiene todo. */
     fun nextLevelReward(level: Int): Cosmetic? = levelRewards.firstOrNull { it.unlockLevel!! > level }
+}
+
+/** Modos de juego que se compran con monedas. Los ids son los de [Cosmetics]. */
+object PaidModes {
+    /** Modo «muy rápido»: menos tiempo por pregunta. */
+    const val FAST = "mode_muy_rapido"
+
+    /** Artículo de la tienda que desbloquea el país [countryId] del modo países (p. ej. «pais-mexico»). */
+    fun countryItem(countryId: String): String = "mode_" + countryId.replace('-', '_')
 }
 
 /** Logro: se desbloquea una sola vez y da [coins] monedas. Lo decide el servidor. */

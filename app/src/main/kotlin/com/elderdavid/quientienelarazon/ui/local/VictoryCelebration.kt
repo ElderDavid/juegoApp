@@ -13,6 +13,10 @@ import androidx.compose.runtime.withFrameMillis
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
 import com.elderdavid.quientienelarazon.ui.theme.PlayerColors
@@ -53,6 +57,22 @@ internal fun VictoryCelebration(victoryId: String) {
                     center = center + Offset(cos(angle) * radius, sin(angle) * radius),
                 )
             }
+            "victory_trumpets" -> {
+                // Dos trompetas doradas, una a cada lado, que soplan notas hacia el centro.
+                val blow = 1f + 0.06f * sin(t * 12f)
+                drawTrumpet(blow)
+                scale(scaleX = -1f, scaleY = 1f, pivot = Offset(size.width / 2, size.height / 2)) { drawTrumpet(blow) }
+                seeds.take(24).forEachIndexed { i, p ->
+                    val local = (t - (i / 2) * 0.3f) % 1.8f
+                    if (local < 0f) return@forEachIndexed
+                    val fromLeft = i % 2 == 0
+                    val startX = size.width * if (fromLeft) 0.38f else 0.62f
+                    val dx = local * (40f + 50f * p[0]) * if (fromLeft) 1f else -1f
+                    val x = startX + dx + sin(local * 6f + p[1] * 6f) * 10f
+                    val y = size.height * 0.5f - local * size.height * 0.28f
+                    drawNote(Offset(x, y), PlayerColors[i % PlayerColors.size].copy(alpha = (1f - local / 1.8f).coerceIn(0f, 1f)))
+                }
+            }
             else -> seeds.forEachIndexed { i, p ->
                 // Confeti: cae con un vaivén lateral.
                 val x = size.width * p[0] + sin(t * 3 + p[1] * 6) * 18f
@@ -65,4 +85,38 @@ internal fun VictoryCelebration(victoryId: String) {
             }
         }
     }
+}
+
+private val TrumpetGold = Color(0xFFFFC94D)
+
+/** Trompeta que apunta a la derecha desde el borde izquierdo. [blow] hace vibrar la campana. */
+private fun DrawScope.drawTrumpet(blow: Float) {
+    val y = size.height * 0.5f
+    val start = size.width * 0.04f
+    val bellStart = size.width * 0.26f
+    val bellEnd = size.width * 0.38f
+    // Boquilla y tubo.
+    drawCircle(TrumpetGold, radius = 6f, center = Offset(start, y))
+    drawRect(TrumpetGold, topLeft = Offset(start, y - 4f), size = Size(bellStart - start, 8f))
+    // Pistones.
+    for (k in 0 until 3) {
+        drawRect(TrumpetGold, topLeft = Offset(start + (bellStart - start) * (0.35f + 0.15f * k), y - 18f), size = Size(6f, 14f))
+    }
+    // Campana.
+    val half = 24f * blow
+    val bell = Path().apply {
+        moveTo(bellStart, y - 4f)
+        lineTo(bellEnd, y - half)
+        lineTo(bellEnd, y + half)
+        lineTo(bellStart, y + 4f)
+        close()
+    }
+    drawPath(bell, TrumpetGold)
+}
+
+/** Nota musical sencilla: cabeza, plica y corchete. */
+private fun DrawScope.drawNote(at: Offset, color: Color) {
+    drawCircle(color, radius = 7f, center = at)
+    drawRect(color, topLeft = Offset(at.x + 5f, at.y - 26f), size = Size(3f, 26f))
+    drawRect(color, topLeft = Offset(at.x + 5f, at.y - 26f), size = Size(12f, 4f))
 }

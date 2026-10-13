@@ -8,6 +8,7 @@
 | Consentimiento con User Messaging Platform (UMP) 4.0.0 | Integrado |
 | Intersticial al salir de la pantalla final de una partida | Integrado, con límite de frecuencia |
 | Banner adaptable en Reglas y Estadísticas | Integrado |
+| Banner pequeño (320 × 50) al final del menú principal, debajo de «Ajustes» | Integrado |
 | Video con recompensa (monedas) | Integrado: solo al pulsar «Ver video» en la tienda. Ver `ECONOMIA.md` |
 | Facturación (quitar anuncios y monedas) | Integrada con Google Play Billing 9.1.0 y verificación en el servidor. Ver `ECONOMIA.md` |
 | Anuncio al abrir la app | No hay, a propósito |
@@ -49,7 +50,9 @@ puede suspender la cuenta por clics no válidos.
   - Como mucho uno cada 2 partidas terminadas y nunca dos con menos de 3 minutos de diferencia
     (`core/.../ads/InterstitialPacing.kt`). La primera partida de cada sesión nunca lleva anuncio.
   - Si el anuncio no está cargado, el juego sigue sin esperar.
-- **Banner:** abajo, fijo, en Reglas y Estadísticas. No hay banners en el menú ni en el juego.
+- **Banner:** abajo, fijo, en Reglas y Estadísticas, y uno pequeño (320 × 50) al final del menú
+  principal, debajo del botón «Ajustes», que no tapa ni separa los botones. Usa el mismo bloque de
+  banner y la misma configuración por edad. Nunca hay banners durante una partida.
 - **Contenido:** clasificación máxima de anuncios `PG` (apto con supervisión), elegida por ser un
   juego de preguntas para público general. Se puede cambiar en `AdMobAdsController`.
 - **Menores de 13** (según la pregunta de edad al abrir la app): anuncios dirigidos a niños,

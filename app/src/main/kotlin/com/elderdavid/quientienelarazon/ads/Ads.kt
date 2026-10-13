@@ -32,7 +32,8 @@ import kotlinx.coroutines.withContext
  * Anuncios de la app. Dónde aparecen:
  * - Intersticial: solo al salir de la pantalla final de una partida, con el límite de
  *   [InterstitialPacing]. Nunca durante una pregunta ni en la configuración de la partida.
- * - Banner: solo en pantallas secundarias (Reglas y Estadísticas). Nunca en el juego ni en el menú.
+ * - Banner: en pantallas secundarias (Reglas y Estadísticas) y uno pequeño al final del menú
+ *   principal, debajo de «Ajustes». Nunca durante una partida.
  * - Video con recompensa: solo cuando el jugador pulsa «Ver video» en la tienda. Las monedas las
  *   paga el servidor cuando AdMob le confirma el video (verificación del lado del servidor).
  * «Quitar anuncios» quita el intersticial y los banners; el video sigue disponible porque lo elige

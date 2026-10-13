@@ -1,6 +1,6 @@
 # ¿Quién tiene la razón?
 
-Juego Android de cultura general competitivo para 2 a 4 jugadores, con modo local sin conexión,
+Juego Android de cultura general competitivo para 2 a 4 jugadores (o solo, en el teléfono), con modo local sin conexión,
 partidas online, el modo regional «De aquí somos» y un modo niños con preguntas más fáciles y más
 tiempo (ver `docs/MODO_NINOS.md`).
 

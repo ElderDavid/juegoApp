@@ -17,6 +17,8 @@ data class ArcadeStyle(
         fun forTheme(themeId: String?): ArcadeStyle = when (themeId) {
             "theme_neon_caribe" -> ArcadeStyle(backgroundTop = Color(0xFF003B4A), backgroundBottom = ArcadeNight, title = Color(0xFF3DF5C8))
             "theme_atardecer" -> ArcadeStyle(backgroundTop = Color(0xFF4A1530), backgroundBottom = Color(0xFF1A0B20), title = Color(0xFFFFB347))
+            "theme_selva" -> ArcadeStyle(backgroundTop = Color(0xFF0F3D1E), backgroundBottom = Color(0xFF07160C), title = Color(0xFFB6F25A))
+            "theme_galaxia" -> ArcadeStyle(backgroundTop = Color(0xFF2A1458), backgroundBottom = Color(0xFF0B0620), title = Color(0xFFF59BFF))
             else -> ArcadeStyle()
         }
     }

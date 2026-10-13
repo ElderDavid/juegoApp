@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.core.game
 
+import com.elderdavid.quientienelarazon.core.questions.Difficulty
 import com.elderdavid.quientienelarazon.core.questions.Question
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 
@@ -35,8 +36,8 @@ sealed interface EngineResult {
 class GameEngine(private val bank: QuestionBank) {
 
     fun newGame(players: List<Player>, config: GameConfig, seed: Long, avoidQuestionIds: Set<String> = emptySet()): GameState {
-        require(players.size in GameRules.MIN_PLAYERS..GameRules.MAX_PLAYERS) {
-            "Se necesitan entre ${GameRules.MIN_PLAYERS} y ${GameRules.MAX_PLAYERS} jugadores"
+        require(players.size in GameRules.MIN_LOCAL_PLAYERS..GameRules.MAX_PLAYERS) {
+            "Se necesitan entre ${GameRules.MIN_LOCAL_PLAYERS} y ${GameRules.MAX_PLAYERS} jugadores"
         }
         require(players.map { it.id }.toSet().size == players.size) { "IDs de jugador repetidos" }
         require(players.all { it.name.isNotBlank() }) { "Todos los jugadores necesitan nombre" }
@@ -154,8 +155,11 @@ class GameEngine(private val bank: QuestionBank) {
         val candidates = bank.pool(state.config.mode)
             .filter { it.categoryId == planned.categoryId && it.id !in taken && it.correctIndex != null }
             .sortedBy { it.id }
-        val sameFormat = candidates.filter { it.format == current.format }
-        val pick = sameFormat.ifEmpty { candidates }
+        // En solitario se mantiene la dificultad media o alta si hay con qué.
+        val solo = state.players.size == 1 && !state.config.kids
+        val level = if (solo) candidates.filter { it.difficulty != Difficulty.EASY }.ifEmpty { candidates } else candidates
+        val sameFormat = level.filter { it.format == current.format }
+        val pick = sameFormat.ifEmpty { level }
         if (pick.isEmpty()) return null
         // Determinista: depende solo de la partida, así se puede probar y repetir.
         return pick[(planned.questionId.hashCode() and Int.MAX_VALUE) % pick.size].id

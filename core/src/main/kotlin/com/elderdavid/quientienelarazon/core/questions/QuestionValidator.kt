@@ -44,8 +44,8 @@ object QuestionValidator {
 
         if (bank != null) {
             if (bank.categories.none { it.id == question.categoryId }) issue("Categoría inexistente: ${question.categoryId}")
-            if (question.regionId != null && bank.regions.none { it.id == question.regionId }) {
-                issue("Departamento inexistente: ${question.regionId}")
+            if (question.regionId != null && (bank.regions + bank.countries).none { it.id == question.regionId }) {
+                issue("Departamento o país inexistente: ${question.regionId}")
             }
         }
         return issues

@@ -32,7 +32,11 @@ data class LocalHistory(
         val winners = state.players.filter { it.id in state.winners }.map { it.name }
         val summary = LocalGameSummary(
             finishedAtMillis = finishedAtMillis,
-            regionId = (state.config.mode as? ContentMode.Regional)?.regionId,
+            regionId = when (val mode = state.config.mode) {
+                is ContentMode.Regional -> mode.regionId
+                is ContentMode.Country -> mode.countryId
+                else -> null
+            },
             kids = state.config.kids,
             players = players,
             winners = winners,
@@ -71,7 +75,7 @@ data class LocalHistory(
 @Serializable
 data class LocalGameSummary(
     @SerialName("at") val finishedAtMillis: Long,
-    /** null = modo general. */
+    /** Departamento o país; null = modo general. */
     @SerialName("region") val regionId: String? = null,
     val players: List<LocalPlayerScore>,
     val winners: List<String>,

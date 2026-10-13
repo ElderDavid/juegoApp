@@ -46,7 +46,7 @@ data class Question(
     val evaluation: Evaluation,
     val categoryId: String,
     val difficulty: Difficulty,
-    /** Departamento para el modo «De aquí somos»; null en preguntas generales. */
+    /** Departamento para el modo «De aquí somos» o país del modo países; null en preguntas generales. */
     val regionId: String? = null,
     val explanation: String,
     /** Fuente verificable cuando el dato lo requiere. Nunca se inventa: null si no aplica. */

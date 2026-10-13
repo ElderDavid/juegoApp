@@ -1,0 +1,652 @@
+[
+ {
+  "id": "pus-001",
+  "text": "¿Cuál es la capital de Estados Unidos?",
+  "options": [
+   "Nueva York",
+   "Los Ángeles",
+   "Washington D. C.",
+   "Filadelfia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Washington D. C. es la capital federal.",
+  "source": "https://es.wikipedia.org/wiki/Washington_D._C.",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-002",
+  "text": "¿Cuántos estados tiene Estados Unidos?",
+  "options": [
+   "48",
+   "52",
+   "50",
+   "51"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Estados Unidos tiene 50 estados.",
+  "source": "https://es.wikipedia.org/wiki/Estados_Unidos",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-003",
+  "text": "¿Cuál es el estado más grande de Estados Unidos?",
+  "options": [
+   "Alaska",
+   "California",
+   "Texas",
+   "Montana"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Alaska es, de lejos, el estado más extenso.",
+  "source": "https://es.wikipedia.org/wiki/Alaska",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-004",
+  "text": "¿Cuál es la ciudad más poblada de Estados Unidos?",
+  "options": [
+   "Los Ángeles",
+   "Chicago",
+   "Houston",
+   "Nueva York"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Nueva York es la ciudad más poblada del país.",
+  "source": "https://es.wikipedia.org/wiki/Nueva_York",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-005",
+  "text": "Silicon Valley está en California.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Silicon Valley está al sur de la bahía de San Francisco.",
+  "source": "https://es.wikipedia.org/wiki/Silicon_Valley",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-006",
+  "text": "¿Cuál es el más grande de los Grandes Lagos?",
+  "options": [
+   "Lago Michigan",
+   "Lago Superior",
+   "Lago Erie",
+   "Lago Hurón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-estados-unidos",
+  "explanation": "El lago Superior es el más grande de los Grandes Lagos.",
+  "source": "https://es.wikipedia.org/wiki/Lago_Superior",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-007",
+  "text": "¿En qué año se firmó la Declaración de Independencia?",
+  "options": [
+   "1776",
+   "1789",
+   "1812",
+   "1865"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Se firmó el 4 de julio de 1776.",
+  "source": "https://es.wikipedia.org/wiki/Declaración_de_Independencia_de_los_Estados_Unidos",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-008",
+  "text": "¿Quién fue el primer presidente de Estados Unidos?",
+  "options": [
+   "Thomas Jefferson",
+   "Abraham Lincoln",
+   "John Adams",
+   "George Washington"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "George Washington gobernó de 1789 a 1797.",
+  "source": "https://es.wikipedia.org/wiki/George_Washington",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-009",
+  "text": "¿Qué presidente gobernó durante la guerra de Secesión y abolió la esclavitud?",
+  "options": [
+   "Andrew Jackson",
+   "Ulysses S. Grant",
+   "Abraham Lincoln",
+   "Theodore Roosevelt"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Abraham Lincoln firmó la Proclamación de Emancipación en 1863.",
+  "source": "https://es.wikipedia.org/wiki/Abraham_Lincoln",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-010",
+  "text": "¿A qué país le compró Estados Unidos Alaska en 1867?",
+  "options": [
+   "Canadá",
+   "Rusia",
+   "Reino Unido",
+   "España"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Alaska se compró al Imperio ruso en 1867.",
+  "source": "https://es.wikipedia.org/wiki/Compra_de_Alaska",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-011",
+  "text": "¿A qué país le compró Estados Unidos el territorio de Luisiana en 1803?",
+  "options": [
+   "Francia",
+   "España",
+   "Reino Unido",
+   "México"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-estados-unidos",
+  "explanation": "La compra de Luisiana se hizo a la Francia de Napoleón.",
+  "source": "https://es.wikipedia.org/wiki/Compra_de_Luisiana",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-012",
+  "text": "¿En qué año se redactó la Constitución de Estados Unidos?",
+  "options": [
+   "1776",
+   "1787",
+   "1791",
+   "1803"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-estados-unidos",
+  "explanation": "La Constitución se firmó en Filadelfia en 1787.",
+  "source": "https://es.wikipedia.org/wiki/Constitución_de_los_Estados_Unidos",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-013",
+  "text": "¿Quién pronunció el discurso «Tengo un sueño» en 1963?",
+  "options": [
+   "Malcolm X",
+   "Rosa Parks",
+   "Martin Luther King Jr.",
+   "John F. Kennedy"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Martin Luther King Jr. lo pronunció en Washington en agosto de 1963.",
+  "source": "https://es.wikipedia.org/wiki/I_Have_a_Dream",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-014",
+  "text": "¿Quién fue el primer ser humano en pisar la Luna, en 1969?",
+  "options": [
+   "Buzz Aldrin",
+   "Neil Armstrong",
+   "Yuri Gagarin",
+   "John Glenn"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Neil Armstrong bajó primero del módulo del Apolo 11.",
+  "source": "https://es.wikipedia.org/wiki/Apolo_11",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-015",
+  "text": "Hawái fue el último estado en unirse a Estados Unidos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Hawái se convirtió en el estado 50 en agosto de 1959.",
+  "source": "https://es.wikipedia.org/wiki/Hawái",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-016",
+  "text": "¿Cuántos senadores tiene cada estado en el Senado de Estados Unidos?",
+  "options": [
+   "1",
+   "Depende de su población",
+   "3",
+   "2"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "curiosidades",
+  "difficulty": "HARD",
+  "region": "pais-estados-unidos",
+  "explanation": "Cada estado elige dos senadores, sin importar su población.",
+  "source": "https://es.wikipedia.org/wiki/Senado_de_los_Estados_Unidos",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-017",
+  "text": "¿Cuántas franjas tiene la bandera de Estados Unidos?",
+  "options": [
+   "10",
+   "13",
+   "15",
+   "50"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_simbolos",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Sus 13 franjas representan las trece colonias originales.",
+  "source": "https://es.wikipedia.org/wiki/Bandera_de_los_Estados_Unidos",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-018",
+  "text": "El águila calva es el ave nacional de Estados Unidos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "El águila calva aparece en el gran sello del país.",
+  "source": "https://es.wikipedia.org/wiki/Haliaeetus_leucocephalus",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-019",
+  "text": "¿Qué país regaló la Estatua de la Libertad?",
+  "options": [
+   "Francia",
+   "Reino Unido",
+   "España",
+   "Italia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Francia la regaló para el centenario de la independencia; se inauguró en 1886.",
+  "source": "https://es.wikipedia.org/wiki/Estatua_de_la_Libertad",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-020",
+  "text": "¿En qué estado está el Gran Cañón?",
+  "options": [
+   "Utah",
+   "Nevada",
+   "Colorado",
+   "Arizona"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "El Gran Cañón del río Colorado está en Arizona.",
+  "source": "https://es.wikipedia.org/wiki/Gran_Cañón",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-021",
+  "text": "¿En qué ciudad está el puente Golden Gate?",
+  "options": [
+   "Los Ángeles",
+   "Seattle",
+   "San Francisco",
+   "San Diego"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "El Golden Gate une San Francisco con el condado de Marin.",
+  "source": "https://es.wikipedia.org/wiki/Puente_Golden_Gate",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-022",
+  "text": "¿Cuál de estos presidentes NO está tallado en el Monte Rushmore?",
+  "options": [
+   "George Washington",
+   "Franklin D. Roosevelt",
+   "Abraham Lincoln",
+   "Thomas Jefferson"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_lugares",
+  "difficulty": "HARD",
+  "region": "pais-estados-unidos",
+  "explanation": "En el monte están Washington, Jefferson, Theodore Roosevelt y Lincoln.",
+  "source": "https://es.wikipedia.org/wiki/Monte_Rushmore",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-023",
+  "text": "Hollywood está en Los Ángeles.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Hollywood es un barrio de Los Ángeles, en California.",
+  "source": "https://es.wikipedia.org/wiki/Hollywood",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-024",
+  "text": "¿Qué día se celebra el Día de Acción de Gracias?",
+  "options": [
+   "El último lunes de mayo",
+   "El primer lunes de septiembre",
+   "El 4 de julio",
+   "El cuarto jueves de noviembre"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Se celebra el cuarto jueves de noviembre.",
+  "source": "https://es.wikipedia.org/wiki/Día_de_Acción_de_Gracias",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-025",
+  "text": "¿En qué ciudad nació el jazz?",
+  "options": [
+   "Chicago",
+   "Nueva York",
+   "Nueva Orleans",
+   "Memphis"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "El jazz surgió en Nueva Orleans a comienzos del siglo XX.",
+  "source": "https://es.wikipedia.org/wiki/Jazz",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-026",
+  "text": "¿A quién llaman «el Rey del rock and roll»?",
+  "options": [
+   "Chuck Berry",
+   "Elvis Presley",
+   "Little Richard",
+   "Johnny Cash"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "musica",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "Elvis Presley es conocido como el Rey del rock and roll.",
+  "source": "https://es.wikipedia.org/wiki/Elvis_Presley",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-027",
+  "text": "¿Cómo se llama la final de la liga de fútbol americano (NFL)?",
+  "options": [
+   "Super Bowl",
+   "Serie Mundial",
+   "Copa Stanley",
+   "Final Four"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "EASY",
+  "region": "pais-estados-unidos",
+  "explanation": "La final de la NFL es el Super Bowl.",
+  "source": "https://es.wikipedia.org/wiki/Super_Bowl",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-028",
+  "text": "La Serie Mundial es la final del béisbol de las Grandes Ligas.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "La Serie Mundial decide el campeón de las Grandes Ligas (MLB).",
+  "source": "https://es.wikipedia.org/wiki/Serie_Mundial",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-029",
+  "text": "¿En qué equipo ganó Michael Jordan sus seis anillos de la NBA?",
+  "options": [
+   "Los Angeles Lakers",
+   "Boston Celtics",
+   "Chicago Bulls",
+   "New York Knicks"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-estados-unidos",
+  "explanation": "Jordan ganó seis títulos con los Chicago Bulls en los años 90.",
+  "source": "https://es.wikipedia.org/wiki/Michael_Jordan",
+  "referenceDate": null
+ },
+ {
+  "id": "pus-030",
+  "text": "¿Con qué ciudad se asocia la pizza de masa alta conocida como «deep dish»?",
+  "options": [
+   "Nueva York",
+   "Chicago",
+   "Boston",
+   "Filadelfia"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "HARD",
+  "region": "pais-estados-unidos",
+  "explanation": "La «deep-dish pizza» es el estilo típico de Chicago.",
+  "source": "https://es.wikipedia.org/wiki/Pizza_estilo_Chicago",
+  "referenceDate": null
+ }
+]

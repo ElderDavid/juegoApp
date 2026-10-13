@@ -71,6 +71,7 @@ private fun AppNavHost(container: AppContainer) {
         }
         composable(Routes.MENU) {
             MainMenuScreen(
+                ads = container.ads,
                 onLocalGame = { navController.navigate(Routes.LOCAL_GAME) },
                 onOnline = { navController.navigate(Routes.ONLINE) },
                 onProfile = { navController.navigate(Routes.PROFILE) },
@@ -88,6 +89,7 @@ private fun AppNavHost(container: AppContainer) {
                     newSeed = { Random.nextLong() },
                     recordFinished = container.localHistoryRepository::record,
                     economy = container.economyRepository,
+                    cachedOwnedModes = container.economyCache.ownedModes,
                 ),
             )
             LocalGameRoute(

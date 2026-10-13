@@ -1,0 +1,646 @@
+[
+ {
+  "id": "pmx-001",
+  "text": "¿Cuál es la capital de México?",
+  "options": [
+   "Guadalajara",
+   "Monterrey",
+   "Ciudad de México",
+   "Puebla"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "La Ciudad de México es la capital del país.",
+  "source": "https://es.wikipedia.org/wiki/Ciudad_de_México",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-002",
+  "text": "¿Cuál es la moneda de México?",
+  "options": [
+   "Dólar",
+   "Peso mexicano",
+   "Quetzal",
+   "Colón"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "La moneda oficial es el peso mexicano.",
+  "source": "https://es.wikipedia.org/wiki/Peso_mexicano",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-003",
+  "text": "¿Cuántos estados tiene México, sin contar la Ciudad de México?",
+  "options": [
+   "28",
+   "31",
+   "32",
+   "35"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "México tiene 32 entidades federativas: 31 estados y la Ciudad de México.",
+  "source": "https://es.wikipedia.org/wiki/Organización_territorial_de_México",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-004",
+  "text": "¿Cuál es el estado más grande de México?",
+  "options": [
+   "Sonora",
+   "Durango",
+   "Coahuila",
+   "Chihuahua"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Chihuahua es el estado con mayor superficie.",
+  "source": "https://es.wikipedia.org/wiki/Chihuahua",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-005",
+  "text": "¿En qué estado está Cancún?",
+  "options": [
+   "Yucatán",
+   "Campeche",
+   "Quintana Roo",
+   "Tabasco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "geografia",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Cancún está en Quintana Roo, en la península de Yucatán.",
+  "source": "https://es.wikipedia.org/wiki/Cancún",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-006",
+  "text": "¿Cuál es la montaña más alta de México?",
+  "options": [
+   "Popocatépetl",
+   "Pico de Orizaba",
+   "Iztaccíhuatl",
+   "Nevado de Toluca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "geografia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "El Pico de Orizaba o Citlaltépetl es la cumbre más alta del país.",
+  "source": "https://es.wikipedia.org/wiki/Pico_de_Orizaba",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-007",
+  "text": "El río Bravo marca parte de la frontera entre México y Estados Unidos.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "geografia",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "El río Bravo (río Grande en Estados Unidos) forma buena parte de la frontera.",
+  "source": "https://es.wikipedia.org/wiki/Río_Bravo",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-008",
+  "text": "¿Qué sacerdote dio el Grito de Dolores en 1810?",
+  "options": [
+   "José María Morelos",
+   "Agustín de Iturbide",
+   "Benito Juárez",
+   "Miguel Hidalgo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Miguel Hidalgo inició la guerra de independencia con el Grito de Dolores.",
+  "source": "https://es.wikipedia.org/wiki/Grito_de_Dolores",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-009",
+  "text": "En México la independencia se celebra el 16 de septiembre.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "El 16 de septiembre se recuerda el Grito de Dolores de 1810.",
+  "source": "https://es.wikipedia.org/wiki/Independencia_de_México",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-010",
+  "text": "¿En qué año empezó la Revolución mexicana?",
+  "options": [
+   "1810",
+   "1910",
+   "1867",
+   "1940"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "La Revolución mexicana comenzó en noviembre de 1910.",
+  "source": "https://es.wikipedia.org/wiki/Revolución_mexicana",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-011",
+  "text": "¿Sobre qué lago se fundó Tenochtitlan, la capital mexica?",
+  "options": [
+   "Lago de Texcoco",
+   "Lago de Chapala",
+   "Lago de Pátzcuaro",
+   "Lago Titicaca"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Tenochtitlan se fundó en un islote del lago de Texcoco.",
+  "source": "https://es.wikipedia.org/wiki/Tenochtitlan",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-012",
+  "text": "¿Cómo se llamaba el último tlatoani mexica, que defendió Tenochtitlan?",
+  "options": [
+   "Moctezuma II",
+   "Cuitláhuac",
+   "Nezahualcóyotl",
+   "Cuauhtémoc"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Cuauhtémoc defendió la ciudad hasta su caída en 1521.",
+  "source": "https://es.wikipedia.org/wiki/Cuauhtémoc",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-013",
+  "text": "¿Qué presidente, de origen zapoteco, dijo «El respeto al derecho ajeno es la paz»?",
+  "options": [
+   "Porfirio Díaz",
+   "Lázaro Cárdenas",
+   "Benito Juárez",
+   "Francisco I. Madero"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Benito Juárez, nacido en Oaxaca, es autor de la célebre frase.",
+  "source": "https://es.wikipedia.org/wiki/Benito_Juárez",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-014",
+  "text": "¿Qué presidente decretó la expropiación petrolera de 1938?",
+  "options": [
+   "Plutarco Elías Calles",
+   "Lázaro Cárdenas",
+   "Miguel Alemán",
+   "Venustiano Carranza"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "historia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Lázaro Cárdenas la decretó el 18 de marzo de 1938.",
+  "source": "https://es.wikipedia.org/wiki/Expropiación_petrolera_en_México",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-015",
+  "text": "¿Qué animal aparece en el escudo de México, posado sobre un nopal?",
+  "options": [
+   "Águila",
+   "Quetzal",
+   "Jaguar",
+   "Colibrí"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_simbolos",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "El escudo muestra un águila sobre un nopal devorando una serpiente.",
+  "source": "https://es.wikipedia.org/wiki/Escudo_de_México",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-016",
+  "text": "¿Qué civilización construyó Chichén Itzá?",
+  "options": [
+   "Azteca",
+   "Olmeca",
+   "Inca",
+   "Maya"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "reg_lugares",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "Chichén Itzá, en Yucatán, fue una gran ciudad maya.",
+  "source": "https://es.wikipedia.org/wiki/Chichén_Itzá",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-017",
+  "text": "Las pirámides del Sol y de la Luna están en Teotihuacán.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_lugares",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Ambas pirámides están en la zona arqueológica de Teotihuacán.",
+  "source": "https://es.wikipedia.org/wiki/Teotihuacán",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-018",
+  "text": "¿En qué lugar de la Ciudad de México vive en libertad el ajolote, un anfibio endémico?",
+  "options": [
+   "Chapultepec",
+   "Xochimilco",
+   "Coyoacán",
+   "Tlatelolco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "El ajolote vive en los canales de Xochimilco.",
+  "source": "https://es.wikipedia.org/wiki/Ambystoma_mexicanum",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-019",
+  "text": "México es el país con más hablantes de español del mundo.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "curiosidades",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Con más de 120 millones de hablantes, es el país con más hispanohablantes.",
+  "source": "https://es.wikipedia.org/wiki/Idioma_español",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-020",
+  "text": "El Día de Muertos se celebra el 1 y el 2 de noviembre.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "Se celebra el 1 y el 2 de noviembre, y la Unesco lo reconoce como patrimonio inmaterial.",
+  "source": "https://es.wikipedia.org/wiki/Día_de_Muertos",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-021",
+  "text": "¿Con qué muralista estuvo casada Frida Kahlo?",
+  "options": [
+   "José Clemente Orozco",
+   "David Alfaro Siqueiros",
+   "Diego Rivera",
+   "Rufino Tamayo"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Frida Kahlo se casó con Diego Rivera en 1929.",
+  "source": "https://es.wikipedia.org/wiki/Frida_Kahlo",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-022",
+  "text": "¿Qué escritor mexicano ganó el Premio Nobel de Literatura en 1990?",
+  "options": [
+   "Carlos Fuentes",
+   "Octavio Paz",
+   "Juan Rulfo",
+   "Elena Poniatowska"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "cultura",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Octavio Paz recibió el Nobel de Literatura en 1990.",
+  "source": "https://es.wikipedia.org/wiki/Octavio_Paz",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-023",
+  "text": "¿Quién creó y protagonizó «El Chavo del 8»?",
+  "options": [
+   "Roberto Gómez Bolaños",
+   "Cantinflas",
+   "Pedro Infante",
+   "Capulina"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "EASY",
+  "region": "pais-mexico",
+  "explanation": "Roberto Gómez Bolaños, «Chespirito», creó y protagonizó la serie.",
+  "source": "https://es.wikipedia.org/wiki/El_Chavo_del_Ocho",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-024",
+  "text": "¿De qué estado es originario el mariachi?",
+  "options": [
+   "Veracruz",
+   "Chihuahua",
+   "Yucatán",
+   "Jalisco"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 3
+  },
+  "category": "musica",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "El mariachi tiene su origen en el occidente de México, sobre todo en Jalisco.",
+  "source": "https://es.wikipedia.org/wiki/Mariachi",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-025",
+  "text": "¿De qué planta se elabora el tequila?",
+  "options": [
+   "Maíz",
+   "Caña de azúcar",
+   "Agave azul",
+   "Cebada"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "El tequila se destila del agave azul.",
+  "source": "https://es.wikipedia.org/wiki/Tequila",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-026",
+  "text": "¿De qué estado es típico el mole poblano?",
+  "options": [
+   "Oaxaca",
+   "Puebla",
+   "Jalisco",
+   "Sonora"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 1
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Como dice su nombre, el mole poblano es tradicional de Puebla.",
+  "source": "https://es.wikipedia.org/wiki/Mole_poblano",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-027",
+  "text": "Los tacos al pastor se inspiraron en el shawarma que llevaron inmigrantes libaneses.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "reg_gastronomia",
+  "difficulty": "HARD",
+  "region": "pais-mexico",
+  "explanation": "Los inmigrantes libaneses llevaron el asado vertical, que dio origen a los tacos al pastor.",
+  "source": "https://es.wikipedia.org/wiki/Tacos_al_pastor",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-028",
+  "text": "México ha sido sede de la Copa del Mundo de fútbol más de una vez.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Fue sede en 1970 y en 1986, y es una de las sedes de 2026.",
+  "source": "https://es.wikipedia.org/wiki/Selección_de_fútbol_de_México",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-029",
+  "text": "¿En qué estadio se jugaron las finales de los Mundiales de 1970 y 1986?",
+  "options": [
+   "Estadio Jalisco",
+   "Estadio Olímpico Universitario",
+   "Estadio Azteca",
+   "Estadio BBVA"
+  ],
+  "format": "MULTIPLE_CHOICE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 2
+  },
+  "category": "deportes",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Las dos finales se jugaron en el Estadio Azteca de la Ciudad de México.",
+  "source": "https://es.wikipedia.org/wiki/Estadio_Azteca",
+  "referenceDate": null
+ },
+ {
+  "id": "pmx-030",
+  "text": "Cantinflas era el personaje del actor Mario Moreno.",
+  "options": [
+   "Verdadero",
+   "Falso"
+  ],
+  "format": "TRUE_FALSE",
+  "kind": "OBJECTIVE",
+  "evaluation": {
+   "type": "correct",
+   "index": 0
+  },
+  "category": "cultura",
+  "difficulty": "MEDIUM",
+  "region": "pais-mexico",
+  "explanation": "Mario Moreno creó y dio vida a Cantinflas.",
+  "source": "https://es.wikipedia.org/wiki/Cantinflas",
+  "referenceDate": null
+ }
+]
