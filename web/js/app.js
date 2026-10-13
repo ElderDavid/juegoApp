@@ -520,7 +520,7 @@ function menuHtml() {
       <p class="muted">Te unimos con otros jugadores que eligieron las mismas preguntas, el mismo tipo de sala y la misma duración.</p>
       <button class="button cyan" data-action="find-public" ${busy ? "disabled" : ""}>${busy === "searching" ? "Buscando…" : "Buscar partida"}</button>
     </section>
-    <p class="muted small center-text">Juego online de 2 a 4 jugadores. Necesitas conexión a internet.</p>
+    <p class="muted small center-text">Juego online de 2 a 4 jugadores. Necesitas conexión a internet. <a class="muted" href="privacidad.html">Política de privacidad</a></p>
   </main>`;
 }
 

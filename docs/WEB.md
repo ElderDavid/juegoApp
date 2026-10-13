@@ -66,7 +66,8 @@ Pasos para activarlos:
    año; Cloudflare los vende a precio de coste) y añádelo en Cloudflare Pages → **Custom domains**.
 2. Crea la cuenta en https://adsense.google.com, añade el sitio con tu dominio y solicita
    **H5 Games Ads** (Ad Placement API). Necesita una política de privacidad publicada en el sitio
-   (puedes adaptar `docs/POLITICA_PRIVACIDAD.md`).
+   (ya está: `web/privacidad.html`, que se publica en `/privacidad.html` y es copia de
+   `docs/POLITICA_PRIVACIDAD.md`; el menú online la enlaza).
 3. Con la aprobación, en `web/config.js`:
    - `adsenseClient: "ca-pub-…"` con tu ID de editor (sin él, o con uno mal escrito, no se carga nada).
    - Deja `adsTestMode: true` mientras pruebas; pásalo a `false` para cobrar.

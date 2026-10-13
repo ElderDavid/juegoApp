@@ -1,11 +1,11 @@
 # Política de privacidad · ¿Quién tiene la razón?
 
-> **Borrador.** Antes de publicarla, sustituye lo que está entre [corchetes] y revísala. No es
-> asesoría legal.
+> Publicada en la web del juego como `web/privacidad.html` (las pruebas de `web/test` comprueban
+> que coinciden). Si cambias este texto, cambia también esa página. No es asesoría legal.
 
-Última actualización: [fecha]
+Última actualización: 13 de octubre de 2026
 
-Responsable: [nombre del desarrollador], contacto: vantivoc@gmail.com.
+Responsable: el desarrollador de «¿Quién tiene la razón?», contacto: vantivoc@gmail.com.
 
 ## Qué datos se usan
 
