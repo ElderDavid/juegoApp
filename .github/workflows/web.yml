@@ -1,0 +1,26 @@
+# Pruebas del cliente web (web/). Sin dependencias: solo Node.
+name: Web
+
+on:
+  pull_request:
+    paths: ["web/**", "core/src/main/resources/questions/index.json", "supabase/migrations/**", ".github/workflows/web.yml"]
+  push:
+    branches: [main]
+    paths: ["web/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+      - name: Pruebas del cliente web
+        working-directory: web
+        run: npm test
