@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.elderdavid.quientienelarazon.core.economy.EconomyRules
+import com.elderdavid.quientienelarazon.core.economy.LocalGameReport
 import com.elderdavid.quientienelarazon.core.game.GameEngine
 import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
@@ -13,10 +15,14 @@ import com.elderdavid.quientienelarazon.core.local.LocalMatch
 import com.elderdavid.quientienelarazon.core.local.LocalSetup
 import com.elderdavid.quientienelarazon.core.local.LocalStage
 import com.elderdavid.quientienelarazon.core.local.NameIssue
+import com.elderdavid.quientienelarazon.core.local.Wildcard
 import com.elderdavid.quientienelarazon.core.questions.Category
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.Region
+import com.elderdavid.quientienelarazon.economy.EconomyRepository
+import com.elderdavid.quientienelarazon.economy.LocalGameReward
+import com.elderdavid.quientienelarazon.economy.SpendResult
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -25,6 +31,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 /** Estado de la pantalla de partida local: configuración y, una vez iniciada, la partida. */
 data class LocalUiState(
@@ -35,6 +42,14 @@ data class LocalUiState(
     val length: GameLength = GameLength.DEFAULT,
     val regions: List<Region> = emptyList(),
     val match: LocalMatch? = null,
+    /** Identifica la partida en curso ante el servidor (paquete de partida, XP). Cambia en cada revancha. */
+    val gameKey: String? = null,
+    /** Monedas del dueño del teléfono; null sin cuenta o sin conexión. */
+    val coins: Int? = null,
+    val buyingPack: Boolean = false,
+    /** Lo que ganó la cuenta del teléfono con la partida terminada. */
+    val reward: LocalGameReward? = null,
+    val notice: String? = null,
 ) {
     val nameIssues: Map<Int, NameIssue> get() = LocalSetup.issues(names)
     val canStart: Boolean get() = !loading && !loadError && LocalSetup.canStart(names)
@@ -55,6 +70,9 @@ class LocalGameViewModel(
     private val clock: () -> Long,
     private val newSeed: () -> Long,
     private val recordFinished: suspend (GameState) -> Unit = {},
+    /** Monedas y XP de la cuenta del teléfono. null = sin servidor: solo los comodines gratis. */
+    private val economy: EconomyRepository? = null,
+    private val newGameKey: () -> String = { UUID.randomUUID().toString() },
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(LocalUiState())
@@ -65,6 +83,10 @@ class LocalGameViewModel(
     private var timerJob: Job? = null
 
     init {
+        if (economy != null) {
+            viewModelScope.launch { economy.snapshot.collect { snap -> _state.update { it.copy(coins = snap?.coins) } } }
+            viewModelScope.launch { economy.refresh() }
+        }
         viewModelScope.launch {
             try {
                 val loaded = loadBank()
@@ -109,6 +131,7 @@ class LocalGameViewModel(
         val s = _state.value
         val e = engine ?: return
         if (!s.canStart) return
+        _state.update { it.copy(gameKey = newGameKey(), reward = null, notice = null) }
         setMatch(LocalMatch.start(e, LocalSetup.players(s.names), s.mode, newSeed(), length = s.length))
     }
 
@@ -119,7 +142,38 @@ class LocalGameViewModel(
     fun bet(amount: Int) = act { it.bet(amount, clock()) }
     fun answer(choice: Int) = act { it.answer(choice, clock()) }
     fun next() = act { it.next() }
-    fun rematch() = act { it.rematch(newSeed()) }
+    fun rematch() {
+        _state.update { it.copy(gameKey = newGameKey(), reward = null, notice = null) }
+        act { it.rematch(newSeed()) }
+    }
+
+    fun useWildcard(wildcard: Wildcard) = act { it.useWildcard(wildcard, clock()) }
+
+    /** El dueño paga el paquete de partida con sus monedas y todos reciben un comodín más. */
+    fun buyMatchPack() {
+        val repo = economy ?: return
+        val s = _state.value
+        val match = s.match ?: return
+        val key = s.gameKey ?: return
+        if (!match.canBuyMatchPack || s.buyingPack) return
+        _state.update { it.copy(buyingPack = true, notice = null) }
+        viewModelScope.launch {
+            val result = repo.buyMatchPack(key)
+            val current = _state.value.match
+            val notice = when (result) {
+                is SpendResult.Done, SpendResult.AlreadyDone -> {
+                    // Si la partida cambió mientras tanto (abandono o revancha), no se aplica aquí.
+                    if (current != null && _state.value.gameKey == key) setMatch(current.addMatchPack())
+                    "¡Todos tienen un comodín más!"
+                }
+                SpendResult.NotEnoughCoins -> "Faltan monedas: el paquete cuesta ${EconomyRules.MATCH_PACK_PRICE}."
+                is SpendResult.Failed -> "No se pudo conectar. Los comodines gratis siguen disponibles."
+            }
+            _state.update { it.copy(buyingPack = false, notice = notice) }
+        }
+    }
+
+    fun consumeNotice() = _state.update { it.copy(notice = null) }
 
     /** Abandona la partida y vuelve a la configuración con los mismos nombres. */
     fun quit() = setMatch(null)
@@ -142,6 +196,15 @@ class LocalGameViewModel(
                     throw e
                 } catch (e: Exception) {
                     // Si no se puede guardar el historial, la partida sigue igual: no es un error de juego.
+                }
+            }
+            val key = _state.value.gameKey
+            if (economy != null && key != null) {
+                viewModelScope.launch {
+                    // Sin conexión no hay XP para esta partida: el juego sigue igual.
+                    economy.recordLocalGame(key, LocalGameReport.of(match.state)).onSuccess { reward ->
+                        _state.update { if (it.gameKey == key) it.copy(reward = reward) else it }
+                    }
                 }
             }
         }
@@ -172,7 +235,8 @@ class LocalGameViewModel(
             clock: () -> Long,
             newSeed: () -> Long,
             recordFinished: suspend (GameState) -> Unit,
+            economy: EconomyRepository?,
         ): ViewModelProvider.Factory =
-            viewModelFactory { initializer { LocalGameViewModel(loadBank, clock, newSeed, recordFinished) } }
+            viewModelFactory { initializer { LocalGameViewModel(loadBank, clock, newSeed, recordFinished, economy) } }
     }
 }

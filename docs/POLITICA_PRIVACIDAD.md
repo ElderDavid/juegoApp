@@ -21,6 +21,13 @@ Responsable: [nombre del desarrollador], contacto: [correo].
   la IP para mostrar anuncios, medirlos y evitar fraudes. Donde la ley lo exige, la app pide tu
   consentimiento y puedes cambiarlo en Ajustes → Opciones de privacidad. Más información:
   https://policies.google.com/technologies/ads
+- **Monedas, premios y compras:** guardamos en nuestro servidor tus monedas, lo que has ganado o
+  comprado en el juego, tus logros, tu racha diaria y un registro de las partidas locales
+  terminadas en tu teléfono (sin los nombres de los jugadores). Las compras las cobra Google Play;
+  nosotros solo recibimos de Google el producto comprado y el número de pedido para entregártelo.
+  No vemos ni guardamos datos de pago.
+- **Videos con recompensa:** cuando ves un video para ganar monedas, Google AdMob nos confirma que
+  lo viste junto con tu identificador de usuario del juego.
 
 ## Qué ven otros jugadores
 

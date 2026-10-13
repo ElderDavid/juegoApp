@@ -27,10 +27,15 @@ class GameFeedback(context: Context) {
     // Puede fallar en algunos dispositivos sin salida de audio; entonces el juego sigue sin sonido.
     private val tones: ToneGenerator? = runCatching { ToneGenerator(AudioManager.STREAM_MUSIC, 60) }.getOrNull()
 
-    fun play(event: FeedbackEvent, settings: AppSettings) {
+    /** [rouletteSound]: sonido de ruleta equipado (cosmético), o null para el normal. */
+    fun play(event: FeedbackEvent, settings: AppSettings, rouletteSound: String? = null) {
         if (settings.soundEnabled) {
             val (tone, millis) = when (event) {
-                FeedbackEvent.TICK -> ToneGenerator.TONE_PROP_BEEP to 30
+                FeedbackEvent.TICK -> when (rouletteSound) {
+                    "sound_retro" -> ToneGenerator.TONE_DTMF_1 to 25
+                    "sound_campana" -> ToneGenerator.TONE_CDMA_PIP to 40
+                    else -> ToneGenerator.TONE_PROP_BEEP to 30
+                }
                 FeedbackEvent.TAP -> ToneGenerator.TONE_PROP_BEEP2 to 60
                 FeedbackEvent.CORRECT -> ToneGenerator.TONE_PROP_ACK to 200
                 FeedbackEvent.WRONG -> ToneGenerator.TONE_PROP_NACK to 250

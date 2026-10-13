@@ -82,6 +82,8 @@ data class GameState(
     val tiebreakResults: List<TiebreakResult> = emptyList(),
     /** Ganadores al terminar. Más de uno solo si se agotaron las preguntas de desempate. */
     val winners: List<PlayerId> = emptyList(),
+    /** Tiempo extra de cada jugador en la pregunta actual (comodín de tiempo). Se borra al empezar otra. */
+    val bonusTimeMillis: Map<PlayerId, Long> = emptyMap(),
 ) {
     val currentPlanned: PlannedQuestion? get() = plan.questions.getOrNull(questionIndex)
     val round: RoundType get() = config.length.roundFor(questionIndex.coerceAtMost(config.length.questions - 1))
@@ -100,6 +102,9 @@ data class GameState(
             val shift = (questionIndex + tiebreakIndex) % ids.size
             return ids.drop(shift) + ids.take(shift)
         }
+
+    /** Tiempo total que tiene [playerId] para la pregunta actual. */
+    fun timeLimitFor(playerId: PlayerId): Long = config.questionTimeMillis + (bonusTimeMillis[playerId] ?: 0L)
 
     /** Jugador que debe responder ahora en modo por turnos; null si ya respondieron todos. */
     val currentTurn: PlayerId? get() = turnOrder.firstOrNull { it !in answers }

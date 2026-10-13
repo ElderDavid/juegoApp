@@ -2,6 +2,8 @@ package com.elderdavid.quientienelarazon.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -32,7 +35,17 @@ import com.elderdavid.quientienelarazon.account.AccountState
 import com.elderdavid.quientienelarazon.account.ProfileUiState
 import com.elderdavid.quientienelarazon.account.ProfileViewModel
 import com.elderdavid.quientienelarazon.account.requestGoogleToken
+import com.elderdavid.quientienelarazon.core.economy.Achievements
+import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
+import com.elderdavid.quientienelarazon.core.economy.Cosmetics
+import com.elderdavid.quientienelarazon.core.economy.EconomyRules
+import com.elderdavid.quientienelarazon.core.economy.LevelProgress
 import com.elderdavid.quientienelarazon.core.profile.Avatars
+import com.elderdavid.quientienelarazon.economy.EconomyUiState
+import com.elderdavid.quientienelarazon.economy.EconomyViewModel
+import com.elderdavid.quientienelarazon.ui.components.PlayerAvatar
+import com.elderdavid.quientienelarazon.ui.theme.ArcadeText
+import com.elderdavid.quientienelarazon.ui.theme.frameColor
 import com.elderdavid.quientienelarazon.core.profile.Levels
 import com.elderdavid.quientienelarazon.core.profile.PlayerStats
 import com.elderdavid.quientienelarazon.ui.components.ArcadeButton
@@ -52,8 +65,15 @@ import kotlinx.coroutines.launch
 val AvatarEmojis = listOf("🦜", "🐆", "🦊", "🐢", "🐬", "🦉", "🐸", "🦋", "🐝", "🦁", "🐙", "🦩")
 
 @Composable
-fun ProfileScreen(viewModel: ProfileViewModel, googleWebClientId: String, onBack: () -> Unit) {
+fun ProfileScreen(
+    viewModel: ProfileViewModel,
+    economy: EconomyViewModel,
+    googleWebClientId: String,
+    onShop: () -> Unit,
+    onBack: () -> Unit,
+) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val economyState by economy.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val askGoogle: (Boolean) -> Unit = { switching ->
@@ -117,8 +137,10 @@ fun ProfileScreen(viewModel: ProfileViewModel, googleWebClientId: String, onBack
                     }
                 }
                 if (state.profile != null) {
+                    ProgressCard(state, economyState, onShop)
                     EditCard(state, viewModel)
                     state.stats?.let { StatsCard(it) }
+                    economyState.snapshot?.let { AchievementsCard(it.achievements) }
                     ArcadeCard(accent = ArcadeOutline) {
                         Text("Borrar cuenta", style = MaterialTheme.typography.titleMedium)
                         Text("Borra tu perfil y todo tu progreso online del servidor.", color = ArcadeTextMuted)
@@ -199,19 +221,76 @@ private fun EditCard(state: ProfileUiState, viewModel: ProfileViewModel) {
 
 @Composable
 private fun StatsCard(stats: PlayerStats) {
-    ArcadeCard(accent = ArcadeOrange) {
+    ArcadeCard(accent = ArcadeCyan) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
-            Text("Nivel ${stats.level}", style = MaterialTheme.typography.headlineMedium, color = ArcadeOrange)
-            Text("${stats.xp} XP", color = ArcadeTextMuted)
+            Text("Online", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
+            // La clasificación online solo cuenta el XP de partidas online.
+            Text("${stats.xp} XP online", color = ArcadeTextMuted)
         }
         Text("Partidas online: ${stats.gamesPlayed}", color = ArcadeTextMuted)
         Text("Victorias: ${stats.wins} · Derrotas: ${stats.losses}", color = ArcadeTextMuted)
         Text("Aciertos: ${stats.correctAnswers} de ${stats.objectiveAnswered} (${stats.accuracyPercent} %)", color = ArcadeTextMuted)
         Text("Mejor puntuación: ${stats.bestScore}", color = ArcadeTextMuted)
+    }
+}
+
+/** Nivel, barra de XP, monedas y lo próximo que se gana. */
+@Composable
+private fun ProgressCard(state: ProfileUiState, economy: EconomyUiState, onShop: () -> Unit) {
+    val profile = state.profile ?: return
+    val snapshot = economy.snapshot
+    val xp = snapshot?.xp ?: state.stats?.xp ?: 0
+    val progress = LevelProgress.of(xp)
+    val equipped = snapshot?.equipped.orEmpty()
+    ArcadeCard(accent = ArcadeOrange) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+            PlayerAvatar(
+                name = profile.displayName,
+                playerIndex = 2,
+                size = 56,
+                emoji = AvatarEmojis.getOrNull(profile.avatarId),
+                frame = frameColor(equipped[CosmeticKind.FRAME]),
+            )
+            Column(Modifier.weight(1f)) {
+                Text(profile.displayName, style = MaterialTheme.typography.titleLarge)
+                Cosmetics.byId(equipped[CosmeticKind.TITLE])?.let { Text(it.name, color = ArcadeViolet, style = MaterialTheme.typography.labelLarge) }
+            }
+            snapshot?.let { Text("🪙 ${it.coins}", style = MaterialTheme.typography.titleLarge, color = ArcadeOrange) }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+            Text("Nivel ${progress.level}", style = MaterialTheme.typography.headlineMedium, color = ArcadeOrange)
+            Text("${progress.xpIntoLevel} / ${progress.xpForNextLevel} XP", color = ArcadeTextMuted)
+        }
+        LinearProgressIndicator(
+            progress = { progress.fraction },
+            modifier = Modifier.fillMaxWidth().height(10.dp),
+            color = ArcadeOrange,
+            trackColor = ArcadeOutline,
+        )
+        Text("Siguiente premio · ${EconomyViewModel.nextRewardText(progress.level)}", color = ArcadeText)
         Text(
-            "Ganas ${Levels.XP_PER_GAME} XP por partida, ${Levels.XP_PER_CORRECT} por acierto y ${Levels.XP_PER_WIN} por victoria.",
+            "Ganas ${Levels.XP_PER_GAME} XP por partida online, ${Levels.XP_PER_CORRECT} por acierto y ${Levels.XP_PER_WIN} por victoria. " +
+                "Las partidas en este teléfono dan ${EconomyRules.LOCAL_GAME_XP} XP a tu cuenta (hasta ${EconomyRules.LOCAL_GAMES_XP_PER_DAY} al día).",
             style = MaterialTheme.typography.bodyMedium,
             color = ArcadeTextMuted,
         )
+        ArcadeButton(text = "Tienda y premios", onClick = onShop, color = ArcadeOrange)
+    }
+}
+
+@Composable
+private fun AchievementsCard(unlocked: List<String>) {
+    ArcadeCard(accent = ArcadeViolet) {
+        Text("Logros ${unlocked.size}/${Achievements.all.size}", style = MaterialTheme.typography.titleMedium, color = ArcadeViolet)
+        Achievements.all.forEach { a ->
+            val done = a.id in unlocked
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(if (done) "★" else "☆", color = if (done) ArcadeOrange else ArcadeTextMuted, style = MaterialTheme.typography.titleLarge)
+                Column(Modifier.weight(1f)) {
+                    Text(a.name, style = MaterialTheme.typography.bodyLarge, color = if (done) ArcadeText else ArcadeTextMuted)
+                    Text("${a.description} · 🪙 ${a.coins}", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+                }
+            }
+        }
     }
 }

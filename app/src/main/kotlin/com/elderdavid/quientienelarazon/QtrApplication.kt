@@ -11,7 +11,12 @@ import com.elderdavid.quientienelarazon.ads.AdsConsent
 import com.elderdavid.quientienelarazon.ads.AdsController
 import com.elderdavid.quientienelarazon.ads.NoAds
 import com.elderdavid.quientienelarazon.billing.BillingRepository
+import com.elderdavid.quientienelarazon.billing.PlayBillingRepository
 import com.elderdavid.quientienelarazon.billing.UnavailableBillingRepository
+import com.elderdavid.quientienelarazon.economy.EconomyCache
+import com.elderdavid.quientienelarazon.economy.EconomyRepository
+import com.elderdavid.quientienelarazon.economy.SupabaseEconomyRepository
+import com.elderdavid.quientienelarazon.economy.economyCacheDataStore
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
 import com.elderdavid.quientienelarazon.online.OnlineRepository
@@ -28,6 +33,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -65,8 +73,29 @@ class AppContainer(application: Application) {
     val localHistoryRepository: LocalHistoryRepository =
         DataStoreLocalHistoryRepository(application.localHistoryDataStore)
 
-    /** Facturación: solo la interfaz; esta versión no vende nada. */
-    val billingRepository: BillingRepository = UnavailableBillingRepository()
+    /** Monedas, premios y cosméticos. null sin configuración de Supabase. */
+    val economyRepository: EconomyRepository? by lazy {
+        val client = supabase ?: return@lazy null
+        accountRepository?.let { SupabaseEconomyRepository(client, it) }
+    }
+
+    /** Copia local de lo equipado y de «Quitar anuncios», para que funcionen sin conexión. */
+    val economyCache = EconomyCache(application.economyCacheDataStore)
+
+    /**
+     * Facturación de Google Play. Sin servidor no se puede verificar una compra, y una compra
+     * sin verificar no se debe reconocer: entonces no se vende nada.
+     */
+    val billingRepository: BillingRepository = economyRepository?.let { economy ->
+        PlayBillingRepository(
+            context = application,
+            scope = appScope,
+            verify = economy::verifyPurchase,
+            accountId = economy::userId,
+            loadCachedRemoveAds = { economyCache.removeAds.first() },
+            saveRemoveAds = economyCache::saveRemoveAds,
+        )
+    } ?: UnavailableBillingRepository()
 
     /** null si esta compilación no muestra anuncios (release sin identificadores de AdMob). */
     val adsConsent: AdsConsent? = if (BuildConfig.ADS_ENABLED) AdsConsent(application) else null
@@ -80,8 +109,17 @@ class AppContainer(application: Application) {
             scope = MainScope(),
             interstitialUnitId = BuildConfig.ADMOB_INTERSTITIAL_ID,
             bannerUnitId = BuildConfig.ADMOB_BANNER_ID,
+            // Sin servidor no hay quién pague la recompensa: entonces no se ofrecen videos.
+            rewardedUnitId = if (supabaseSettings.isConfigured) BuildConfig.ADMOB_REWARDED_ID else "",
         )
     } ?: NoAds
+
+    init {
+        // Lo equipado se guarda en el teléfono cada vez que llega del servidor.
+        appScope.launch {
+            economyRepository?.snapshot?.filterNotNull()?.collect { economyCache.saveEquipped(it.equipped) }
+        }
+    }
 
     private val bankLock = Mutex()
     private var bank: QuestionBank? = null

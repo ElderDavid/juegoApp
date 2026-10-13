@@ -8,8 +8,9 @@
 | Consentimiento con User Messaging Platform (UMP) 4.0.0 | Integrado |
 | Intersticial al salir de la pantalla final de una partida | Integrado, con límite de frecuencia |
 | Banner adaptable en Reglas y Estadísticas | Integrado |
-| Anuncios con recompensa | No hay: el juego no tiene nada que dar a cambio, así que no se añade un botón sin efecto real |
-| Facturación (quitar anuncios) | Solo la interfaz `BillingRepository`. No se cobra nada ni hay botón de compra |
+| Video con recompensa (monedas) | Integrado: solo al pulsar «Ver video» en la tienda. Ver `ECONOMIA.md` |
+| Facturación (quitar anuncios y monedas) | Integrada con Google Play Billing 9.1.0 y verificación en el servidor. Ver `ECONOMIA.md` |
+| Anuncio al abrir la app | No hay, a propósito |
 
 ## Identificadores
 
@@ -21,6 +22,7 @@
   | App | `ca-app-pub-3940256099942544~3347511713` |
   | Intersticial | `ca-app-pub-3940256099942544/1033173712` |
   | Banner | `ca-app-pub-3940256099942544/9214589741` |
+  | Video con recompensa | `ca-app-pub-3940256099942544/5224354917` |
 
 - **Versión release:** no muestra ningún anuncio salvo que se compile con identificadores reales
   en `local.properties` (que no se sube al repositorio):
@@ -29,6 +31,8 @@
   admob.appId=ca-app-pub-XXXXXXXXXXXXXXXX~XXXXXXXXXX
   admob.interstitialId=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
   admob.bannerId=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
+  # Opcional: sin él no hay videos con monedas.
+  admob.rewardedId=ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX
   ```
 
   Si falta cualquiera de los tres, `BuildConfig.ADS_ENABLED` es `false` y la release no pide
@@ -74,23 +78,9 @@ puede suspender la cuenta por clics no válidos.
 
 ## Facturación (quitar anuncios)
 
-Existe `billing/Billing.kt` con:
-
-- `Product.REMOVE_ADS` (`remove_ads`), `Entitlements(removeAds)`, `PurchaseResult`.
-- `BillingRepository` y su única implementación, `UnavailableBillingRepository`, que nunca vende
-  nada ni simula una compra (`available = false`). La app no muestra ningún botón de compra.
-- Los anuncios ya respetan `entitlements.removeAds`: si algún día es `true`, no se muestran.
-
-Para activarla hace falta:
-
-1. Crear en Play Console el producto de compra única `remove_ads` (requiere cuenta de comerciante).
-2. Implementar `BillingRepository` con Google Play Billing Library (versión actual en ese momento):
-   consultar compras al abrir, lanzar el flujo de compra y **reconocer** cada compra.
-3. Verificar las compras en el servidor (por ejemplo, una función de Supabase con la API de Google
-   Play Developer). La credencial de servicio de Google va solo en el servidor, nunca en la app.
-4. Añadir entonces el botón «Quitar anuncios» y la opción «Restaurar compras».
-
-La app nunca guarda datos de pago: el cobro lo hace Google Play.
+Integrada: `billing/PlayBilling.kt`. Con «Quitar anuncios» comprado no se cargan intersticiales
+ni banners; el video con recompensa sigue disponible. Lo que hay que configurar en Play Console y
+Supabase está en `ECONOMIA.md`.
 
 ## Pruebas
 
