@@ -1,0 +1,44 @@
+# Se ejecuta UNA sola vez: crea la clave de subida (upload key) para firmar las versiones de Play.
+# Antes de ejecutarlo, crea el secreto RELEASE_KEYSTORE_PASSWORD (mínimo 8 caracteres).
+# Deja la clave como artefacto durante 1 día: descárgala, guárdala en un lugar seguro y copia el
+# contenido de subida.jks.base64.txt en el secreto RELEASE_KEYSTORE_BASE64. Ver docs/PUBLICACION.md.
+name: Crear clave de subida
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clave:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Generar la clave
+        env:
+          PASS: ${{ secrets.RELEASE_KEYSTORE_PASSWORD }}
+        run: |
+          if [ "${#PASS}" -lt 8 ]; then
+            echo "::error::Falta el secreto RELEASE_KEYSTORE_PASSWORD (mínimo 8 caracteres)."
+            exit 1
+          fi
+          mkdir clave
+          keytool -genkeypair -keystore clave/subida.jks -storetype PKCS12 -alias subida \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass "$PASS" -keypass "$PASS" \
+            -dname "CN=Quien tiene la razon, O=ElderDavid, C=CO"
+          base64 -w0 clave/subida.jks > clave/subida.jks.base64.txt
+          keytool -list -v -keystore clave/subida.jks -storepass "$PASS" | grep -E "SHA1:|SHA256:" > clave/huellas.txt
+          cat clave/huellas.txt
+
+      - name: Clave (se borra en 1 día)
+        uses: actions/upload-artifact@v6
+        with:
+          name: clave-subida
+          path: clave/
+          retention-days: 1

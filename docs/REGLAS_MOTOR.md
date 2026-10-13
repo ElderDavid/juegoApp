@@ -20,14 +20,19 @@ estado o un rechazo. Lo usan el modo local y, más adelante, la validación del 
 |---|---|---|
 | 1 Conocimiento | +100 | 0 |
 | 2 Velocidad | +100 + bonificación | 0 |
-| 3 Estrategia | + apuesta | − apuesta |
+| 3 Estrategia | + 2 × apuesta | − apuesta |
 | 4 Final | +150 + bonificación | 0 |
 
 **Bonificación por rapidez:** `50 × (tiempo_límite − tiempo_usado) / tiempo_límite`, con división entera
 y recortada a [0, 50]. Responder al instante da 50 y al vencer el tiempo da 0.
 
+**Pregunta robo (última de la ronda 2):** quien acierta más rápido le quita el 20 % de su saldo
+(redondeado hacia abajo, calculado tras puntuar esa pregunta) a cada rival y se lo suma. Responder
+rápido pero mal no roba. Si nadie acierta o los más rápidos empatan al milisegundo, no hay robo.
+No hay robo en solitario, en modo niños ni en salas de niños o mixtas.
+
 **Apuestas (ronda 3):**
-- Se apuesta 50 o 100, solo si el saldo lo permite.
+- Se apuesta 50 o 100, solo si el saldo lo permite. Acertar paga el doble (apuestas 100, ganas 200).
 - **Regla para quien no puede apostar** (saldo < 50): juega una *apuesta libre*: si acierta gana 50 y si
   falla no pierde nada. Así nadie queda en negativo y siempre tiene algo por qué jugar.
 - Si se agota el tiempo sin apostar, se aplica la apuesta mínima posible y cuenta como error.

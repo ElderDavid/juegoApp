@@ -134,8 +134,57 @@ class GameEngineTest {
             s = engine.placeBet(s, id, 100).ok()
             s = engine.submitAnswer(s, id, if (id == p1) RIGHT else WRONG, 500).ok()
         }
-        assertEquals(200, s.scores[p1])
+        assertEquals(300, s.scores[p1]) // 100 + apuesta de 100 acertada, que paga el doble
         assertEquals(0, s.scores[p2])
+    }
+
+    // --- Pregunta robo: última de la ronda de velocidad ---
+
+    /** Juega hasta la pregunta robo (índice 5 en partidas de 12): p1 y p2 acertaron la primera. */
+    private fun atHeist(n: Int = 2): GameState {
+        var s = engine.newGame(players(n), GameConfig(), 7)
+        repeat(5) { q -> s = d.next(d.play(s) { Move(if (q == 0) RIGHT else WRONG) }) }
+        assertTrue(s.config.length.isHeist(s.questionIndex))
+        return s
+    }
+
+    @Test
+    fun fastestCorrectAnswerStealsTwentyPercentFromEachRival() {
+        val before = atHeist(3)
+        val s = d.play(before) { id ->
+            when (id) {
+                p1 -> Move(RIGHT, elapsed = 2_000)
+                p2 -> Move(RIGHT, elapsed = 1_000) // más rápida y acierta: roba
+                else -> Move(WRONG, elapsed = 500) // rápido pero falla: no roba
+            }
+        }
+        assertTrue(s.isHeistQuestion)
+        val out = s.lastResult!!.outcomes.associateBy { it.playerId }
+        val p1Base = 100 + Scoring.speedBonus(2_000, s.config.questionTimeMillis)
+        val p1Loss = Scoring.heistAmount(100 + p1Base)
+        val p3Loss = Scoring.heistAmount(100)
+        assertEquals(-p1Loss, out.getValue(p1).stolen)
+        assertEquals(-p3Loss, out.getValue(p3).stolen)
+        assertEquals(p1Loss + p3Loss, out.getValue(p2).stolen)
+        assertEquals(100 + p1Base - p1Loss, s.scores[p1])
+        assertEquals(100 - p3Loss, s.scores[p3])
+    }
+
+    @Test
+    fun noHeistWhenNobodyIsRightOrFastestIsTied() {
+        val nobody = d.play(atHeist()) { Move(WRONG, elapsed = 500) }
+        assertTrue(nobody.lastResult!!.outcomes.all { it.stolen == 0 })
+        val tied = d.play(atHeist()) { Move(RIGHT, elapsed = 1_000) }
+        assertTrue(tied.lastResult!!.outcomes.all { it.stolen == 0 })
+    }
+
+    @Test
+    fun noHeistOnOtherQuestionsOrSolo() {
+        val s = d.play(newGame()) { if (it == p1) Move(RIGHT, elapsed = 100) else Move(WRONG) }
+        assertTrue(s.lastResult!!.outcomes.all { it.stolen == 0 })
+        var solo = engine.newGame(players(1), GameConfig(), 7)
+        repeat(5) { solo = d.next(d.play(solo) { Move(RIGHT) }) }
+        assertTrue(!solo.isHeistQuestion)
     }
 
     @Test

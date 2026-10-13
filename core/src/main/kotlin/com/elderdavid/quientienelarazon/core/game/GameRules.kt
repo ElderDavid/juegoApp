@@ -31,6 +31,15 @@ object GameRules {
     /** Apuestas permitidas en la ronda de estrategia. */
     val ALLOWED_BETS: List<Int> = listOf(50, 100)
 
+    /** Acertar una apuesta paga el doble de lo apostado (apuestas 100, ganas 200). Fallar resta lo apostado. */
+    const val BET_WIN_MULTIPLIER = 2
+
+    /**
+     * Pregunta robo: la última de la ronda de velocidad, a mitad de partida. Quien acierta más rápido
+     * le quita este porcentaje de sus puntos a cada rival. No hay robo en solitario ni en modo niños.
+     */
+    const val HEIST_PERCENT = 20
+
     /**
      * Regla explícita para quien no tiene saldo para la apuesta mínima: juega una «apuesta libre»
      * que suma esta cantidad si acierta y no resta nada si falla. Así nadie queda en negativo.
@@ -74,6 +83,9 @@ enum class GameLength(val questions: Int, val perRound: List<Int>) {
 
     /** true si [index] cierra su ronda (después viene el marcador o el final). */
     fun isLastOfRound(index: Int): Boolean = index + 1 in starts.drop(1)
+
+    /** true si [index] es la pregunta robo: la última de la ronda de velocidad. */
+    fun isHeist(index: Int): Boolean = roundFor(index) == RoundType.SPEED && isLastOfRound(index)
 
     companion object {
         val DEFAULT = STANDARD

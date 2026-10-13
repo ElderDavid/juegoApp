@@ -44,6 +44,7 @@ quien la crea o busca partida pública (las públicas solo emparejan salas del m
 | Preguntas | Generales o de un departamento | Solo para niños (`audience = 'KIDS'`) | Cada jugador las de su nivel |
 | Tiempo para responder | 8 s | 12 s | 12 s niños, 8 s mayores |
 | Fallar la apuesta | Resta | No resta | No resta a los niños |
+| Pregunta robo (última de la ronda 2) | Sí | No | No |
 | Votaciones | Con 3 o más jugadores | No | No |
 | Modalidad | Cualquiera | Solo general | Solo general |
 

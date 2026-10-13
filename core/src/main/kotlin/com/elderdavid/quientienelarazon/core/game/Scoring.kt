@@ -21,6 +21,9 @@ object Scoring {
         RoundType.FINAL -> GameRules.FINAL_POINTS
     }
 
+    /** Puntos que pierde un rival en la pregunta robo: [GameRules.HEIST_PERCENT] % de su saldo, redondeado hacia abajo. */
+    fun heistAmount(score: Int): Int = score.coerceAtLeast(0) * GameRules.HEIST_PERCENT / 100
+
     fun hasSpeedBonus(round: RoundType): Boolean = round == RoundType.SPEED || round == RoundType.FINAL
 
     /**
@@ -34,10 +37,11 @@ object Scoring {
 
     /**
      * Variación de puntos en la ronda de estrategia. Nunca deja el saldo en negativo.
-     * Con [noLoss] (modo niños) fallar no resta: solo se gana lo apostado si se acierta.
+     * Acertar paga [GameRules.BET_WIN_MULTIPLIER] veces lo apostado; fallar resta lo apostado.
+     * Con [noLoss] (modo niños) fallar no resta.
      */
     fun betDelta(bet: Bet, won: Boolean, noLoss: Boolean = false): Int = when (bet) {
-        is Bet.Amount -> if (won) bet.value else if (noLoss) 0 else -bet.value
+        is Bet.Amount -> if (won) bet.value * GameRules.BET_WIN_MULTIPLIER else if (noLoss) 0 else -bet.value
         Bet.Free -> if (won) GameRules.FREE_BET_REWARD else 0
     }
 }

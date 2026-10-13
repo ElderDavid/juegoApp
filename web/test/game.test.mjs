@@ -101,4 +101,8 @@ test("con preguntas de niños fallar la apuesta no resta", () => {
   assert.match(roundRule(ROUNDS[2], true), /Fallas: no pierdes nada\./);
   assert.match(roundRule(ROUNDS[2], false), /Fallas: los pierdes\./);
   assert.equal(roundRule(ROUNDS[0], true), ROUNDS[0].rule);
+  assert.match(roundRule(ROUNDS[1]), /pregunta robo/);
+  assert.doesNotMatch(roundRule(ROUNDS[1], false, false), /robo/);
+  assert.doesNotMatch(roundRule(ROUNDS[1], true), /robo/);
+  assert.match(roundRule(ROUNDS[2]), /ganas el doble/);
 });

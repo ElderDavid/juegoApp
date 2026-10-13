@@ -9,40 +9,60 @@ Console lo muestra como publicada.
 | Pieza | Estado |
 |---|---|
 | `applicationId` `com.elderdavid.quientienelarazon` | Fijo. No se puede cambiar después de publicar |
-| `versionCode` 1, `versionName` 1.0.0 | Subir `versionCode` en cada envío a Play |
+| `versionCode` | El flujo «Versión para Google Play» lo sube solo (100 + número de ejecución) |
 | `targetSdk` 36, `minSdk` 26 | Cumple el requisito de Play para apps nuevas |
 | R8 (reducción de código y recursos) | Activado; CI compila la release en cada PR |
-| Firma de la release | Se lee de `keystore.properties` (fuera del repositorio). Sin él, la release sale sin firmar |
+| Firma de la release | En GitHub, con secretos (ver abajo). En un PC, se lee de `keystore.properties` |
 | Borrar la cuenta desde la app | Perfil → «Borrar mi cuenta» (función `delete_my_account` en Supabase) |
 | Anuncios | Solo de prueba hasta poner los identificadores reales (ver `ANUNCIOS.md`) |
 | Copia de seguridad de Android | Desactivada (`allowBackup="false"`) |
 
-## 1. Crear la clave de subida (una sola vez, en tu PC)
+## 1 y 2. Clave de subida y .aab firmado desde GitHub (recomendado)
+
+No hace falta Android Studio. Todo se hace en GitHub → repositorio → **Settings → Secrets and
+variables → Actions → New repository secret**, y en la pestaña **Actions**.
+
+**Una sola vez: crear la clave**
+
+1. Crea el secreto `RELEASE_KEYSTORE_PASSWORD` con una contraseña de al menos 8 caracteres.
+   Apúntala también en un lugar seguro.
+2. En **Actions → Crear clave de subida → Run workflow**. Al terminar, descarga el artefacto
+   `clave-subida` (se borra solo en 1 día).
+3. Guarda `subida.jks` en un lugar seguro (por ejemplo, Google Drive) junto con la contraseña.
+4. Abre `subida.jks.base64.txt`, copia todo el texto y crea el secreto `RELEASE_KEYSTORE_BASE64`.
+5. Borra la descarga del computador cuando la tengas guardada.
+
+**Resto de secretos**
+
+| Secreto | Obligatorio | Valor |
+|---|---|---|
+| `SUPABASE_URL` | Sí | `https://sijsdrzgskieiusfukcf.supabase.co` |
+| `SUPABASE_PUBLISHABLE_KEY` | Sí | Supabase → Project Settings → API Keys → *publishable* (nunca la *secret*) |
+| `GOOGLE_WEB_CLIENT_ID` | No | ID de cliente web de Google Cloud, para «Vincular con Google» |
+| `ADMOB_APP_ID`, `ADMOB_INTERSTITIAL_ID`, `ADMOB_BANNER_ID` | No | Identificadores reales de AdMob. Sin ellos la versión no muestra anuncios |
+| `ADMOB_REWARDED_ID` | No | Bloque de video con recompensa |
+
+**Cada vez que quieras subir una versión**
+
+**Actions → Versión para Google Play → Run workflow**. Al terminar, descarga el artefacto
+`version-play-N`: trae `app-release.aab` (lo que se sube a Play) y `mapping.txt` (Play lo pide
+para leer los informes de fallos). El `versionCode` sube solo en cada ejecución.
+
+En Google Cloud, el cliente OAuth de Android debe tener la **huella SHA-1 de la clave de firma de
+Google Play** (Play Console → Configuración → Integridad de la app), además de la de la clave de
+subida (sale en `huellas.txt`). Si falta, «Vincular con Google» falla en la versión de Play.
+
+### Alternativa: compilar en un PC
 
 ```bash
 keytool -genkeypair -v -keystore claves/subida.jks -alias subida \
   -keyalg RSA -keysize 2048 -validity 10000
-```
-
-- Guarda `subida.jks` y sus contraseñas fuera del repositorio y con copia de seguridad. Si se
-  pierde, se puede pedir a Google que la cambie, pero lleva tiempo.
-- Copia `keystore.properties.example` como `keystore.properties` y rellénalo.
-- Google Play guarda la clave definitiva de la app («Firma de apps de Google Play»); la tuya
-  solo sirve para subir versiones.
-
-## 2. Compilar el AAB
-
-```bash
 ./gradlew :app:bundleRelease
 ```
 
-Resultado: `app/build/outputs/bundle/release/app-release.aab`. Antes de compilarlo para Play:
-
-- En `local.properties`: `supabase.url`, `supabase.publishableKey`, `google.webClientId` y,
-  si quieres anuncios reales, los tres `admob.*`.
-- En Google Cloud, el cliente OAuth de Android debe tener la **huella SHA-1 de la clave de firma
-  de Google Play** (Play Console → Configuración → Integridad de la app), además de la de tu
-  clave de subida. Si falta, «Vincular con Google» falla en la versión descargada de Play.
+Copia `keystore.properties.example` como `keystore.properties` y rellénalo. En `local.properties`
+van `supabase.url`, `supabase.publishableKey`, `google.webClientId` y los `admob.*`. Resultado:
+`app/build/outputs/bundle/release/app-release.aab`.
 
 ## 3. Play Console
 

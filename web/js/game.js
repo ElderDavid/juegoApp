@@ -5,6 +5,11 @@
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 4;
 export const FREE_BET_REWARD = 50;
+/** Acertar una apuesta paga el doble (GameRules.BET_WIN_MULTIPLIER). */
+export const BET_WIN_MULTIPLIER = 2;
+/** Pregunta robo: porcentaje que pierde cada rival (GameRules.HEIST_PERCENT). */
+export const HEIST_PERCENT = 20;
+export const HEIST_RULE = `Quien acierte más rápido le quita el ${HEIST_PERCENT} % de sus puntos a cada rival.`;
 export const DEFAULT_QUESTIONS = 12;
 /** Duraciones de partida (GameLength en core): siempre 4 rondas. */
 export const LENGTHS = [8, 10, 12];
@@ -30,14 +35,19 @@ export function audienceOf(room) {
 
 export const ROUNDS = [
   { number: 1, title: "Conocimiento", rule: "Acierto: +100 puntos." },
-  { number: 2, title: "Velocidad", rule: "Acierto: +100 y hasta +50 extra cuanto más rápido respondas." },
-  { number: 3, title: "Estrategia", rule: "Antes de ver la pregunta apuestas 50 o 100 puntos. Aciertas: los ganas. Fallas: los pierdes." },
+  { number: 2, title: "Velocidad", rule: "Acierto: +100 y hasta +50 extra cuanto más rápido respondas. La última es la pregunta robo." },
+  { number: 3, title: "Estrategia", rule: "Antes de ver la pregunta apuestas 50 o 100 puntos. Aciertas: ganas el doble. Fallas: los pierdes." },
   { number: 4, title: "Final", rule: "Preguntas más difíciles. Acierto: +150 y bono por rapidez." },
 ];
 
-/** Regla de la ronda; con preguntas de niños fallar la apuesta no resta (roundRule en la app). */
-export function roundRule(round, kids = false) {
-  return kids && round.number === 3 ? round.rule.replace("Fallas: los pierdes.", "Fallas: no pierdes nada.") : round.rule;
+/**
+ * Regla de la ronda (roundRule en la app). Con preguntas de niños fallar la apuesta no resta; sin
+ * pregunta robo ([heist] false: salas de niños y mixtas) no se anuncia.
+ */
+export function roundRule(round, kids = false, heist = !kids) {
+  if (kids && round.number === 3) return round.rule.replace("Fallas: los pierdes.", "Fallas: no pierdes nada.");
+  if (!heist && round.number === 2) return round.rule.replace(" La última es la pregunta robo.", "");
+  return round.rule;
 }
 
 /** Ronda (1 a 4) de la pregunta [index] en una partida de [count] preguntas (GameLength.roundFor). */

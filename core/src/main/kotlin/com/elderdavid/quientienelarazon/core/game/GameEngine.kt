@@ -219,7 +219,7 @@ class GameEngine(private val bank: QuestionBank) {
                     if (Scoring.hasSpeedBonus(round)) Scoring.speedBonus(answer.elapsedMillis, state.config.questionTimeMillis) else 0
             }
             PlayerOutcome(id, answer.choice, answer.elapsedMillis, won, delta, bet)
-        }
+        }.let { applyHeist(state, it) }
         val scores = state.scores.mapValues { (id, score) ->
             val updated = score + (outcomes.firstOrNull { it.playerId == id }?.pointsDelta ?: 0)
             check(updated >= 0) { "El saldo no puede ser negativo" }
@@ -227,6 +227,26 @@ class GameEngine(private val bank: QuestionBank) {
         }
         val result = QuestionResult(state.questionIndex, round, question.id, winningOptions, voteCounts, scored, outcomes)
         return state.copy(phase = Phase.REVEAL, scores = scores, results = state.results + result)
+    }
+
+    /**
+     * Pregunta robo: quien acierta más rápido (sin empate exacto) le quita
+     * [GameRules.HEIST_PERCENT] % a cada rival, calculado sobre el saldo de ese rival tras esta
+     * pregunta. Sin robo en solitario, en modo niños ni si nadie acierta.
+     */
+    private fun applyHeist(state: GameState, outcomes: List<PlayerOutcome>): List<PlayerOutcome> {
+        if (!state.isHeistQuestion) return outcomes
+        val right = outcomes.filter { it.won == true }
+        val fastest = right.minOfOrNull { it.elapsedMillis } ?: return outcomes
+        val thief = right.filter { it.elapsedMillis == fastest }.singleOrNull()?.playerId ?: return outcomes
+        val losses = outcomes.filter { it.playerId != thief }.associate { o ->
+            o.playerId to Scoring.heistAmount(state.scores.getValue(o.playerId) + o.pointsDelta)
+        }
+        val gain = losses.values.sum()
+        return outcomes.map { o ->
+            val stolen = if (o.playerId == thief) gain else -losses.getValue(o.playerId)
+            o.copy(pointsDelta = o.pointsDelta + stolen, stolen = stolen)
+        }
     }
 
     private fun finishOrTiebreak(state: GameState): GameState {
