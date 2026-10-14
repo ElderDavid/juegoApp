@@ -50,6 +50,9 @@ jobs:
       - name: Compilar la release
         run: ./gradlew :app:assembleRelease --console=plain
 
+      - name: Liberar espacio en el runner
+        run: sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost /usr/local/lib/node_modules "$AGENT_TOOLSDIRECTORY/CodeQL" && df -h /
+
       - name: Activar KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -62,6 +65,7 @@ jobs:
           api-level: 34
           arch: x86_64
           target: google_apis
+          disk-size: 3G
           script: ./scripts/prueba-arranque.sh
 
       - name: Resumen de fallos
