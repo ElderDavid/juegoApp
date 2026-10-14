@@ -5,6 +5,9 @@ name: Prueba de arranque
 
 on:
   workflow_dispatch:
+  push:
+    branches: [claude/project-thread-ts0hs5]
+    paths: [".github/workflows/prueba-arranque.yml"]
 
 permissions:
   contents: read
