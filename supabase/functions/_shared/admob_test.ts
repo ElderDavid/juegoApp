@@ -45,11 +45,14 @@ Deno.test("rechaza un aviso modificado", async () => {
   assertEquals(await verifyRewardCallback(query, keys), null);
 });
 
-Deno.test("rechaza clave desconocida o usuario inválido", async () => {
+Deno.test("rechaza clave desconocida; sin usuario válido no hay a quién pagar", async () => {
   const { query, keys } = await signedQuery(USER);
   assertEquals(await verifyRewardCallback(query, [{ keyId: 7, base64: keys[0].base64 }]), null);
   const bad = await signedQuery("no-es-un-uuid");
-  assertEquals(await verifyRewardCallback(bad.query, bad.keys), null);
+  assertEquals((await verifyRewardCallback(bad.query, bad.keys))?.userId, null);
+  // La prueba de «Verificar URL» de AdMob llega firmada y sin user_id.
+  const test = await signedQuery("");
+  assertEquals(await verifyRewardCallback(test.query, test.keys), { userId: null, transactionId: "tx123", adUnit: "1234567890" });
 });
 
 Deno.test("la parte firmada termina antes de la firma", () => {

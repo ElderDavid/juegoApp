@@ -10,7 +10,8 @@ export interface AdMobKey {
 }
 
 export interface RewardCallback {
-  userId: string;
+  /** null si el aviso no trae un usuario válido, como la prueba de «Verificar URL» de AdMob. */
+  userId: string | null;
   transactionId: string;
   adUnit: string;
 }
@@ -51,7 +52,7 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 /**
  * Comprueba la firma de un aviso de AdMob. Devuelve los datos de la recompensa o null si la firma
- * no es válida o faltan datos. [keys]: claves públicas de AdMob.
+ * no es válida o falta la transacción. [keys]: claves públicas de AdMob.
  */
 export async function verifyRewardCallback(rawQuery: string, keys: AdMobKey[]): Promise<RewardCallback | null> {
   const message = signedPart(rawQuery);
@@ -84,7 +85,11 @@ export async function verifyRewardCallback(rawQuery: string, keys: AdMobKey[]): 
     return null;
   }
   if (!valid) return null;
+  if (transactionId.length === 0 || transactionId.length > 200) return null;
   // La app pone el id del usuario de Supabase; sin él no hay a quién pagar.
-  if (!UUID.test(userId) || transactionId.length === 0 || transactionId.length > 200) return null;
-  return { userId: userId.toLowerCase(), transactionId, adUnit: params.get("ad_unit") ?? "" };
+  return {
+    userId: UUID.test(userId) ? userId.toLowerCase() : null,
+    transactionId,
+    adUnit: params.get("ad_unit") ?? "",
+  };
 }
