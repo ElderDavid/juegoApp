@@ -5,6 +5,11 @@ name: Versión para Google Play
 
 on:
   workflow_dispatch:
+    inputs:
+      anuncios:
+        description: "Anuncios reales de AdMob (desmárcalo para las versiones de prueba)"
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -38,6 +43,7 @@ jobs:
           ADMOB_INTERSTITIAL_ID: ${{ secrets.ADMOB_INTERSTITIAL_ID }}
           ADMOB_BANNER_ID: ${{ secrets.ADMOB_BANNER_ID }}
           ADMOB_REWARDED_ID: ${{ secrets.ADMOB_REWARDED_ID }}
+          ANUNCIOS: ${{ inputs.anuncios }}
         run: |
           missing=""
           for v in KEYSTORE_B64 KEYSTORE_PASS SUPABASE_URL SUPABASE_KEY; do
@@ -48,7 +54,11 @@ jobs:
             exit 1
           fi
           [ -z "$GOOGLE_WEB_CLIENT_ID" ] && echo "::warning::Sin GOOGLE_WEB_CLIENT_ID: «Vincular con Google» no estará disponible."
-          if [ -z "$ADMOB_APP_ID" ] || [ -z "$ADMOB_INTERSTITIAL_ID" ] || [ -z "$ADMOB_BANNER_ID" ]; then
+          if [ "$ANUNCIOS" != "true" ]; then
+            # Sin identificadores, la release no carga anuncios (ADS_ENABLED = false en app/build.gradle.kts).
+            ADMOB_APP_ID=""; ADMOB_INTERSTITIAL_ID=""; ADMOB_BANNER_ID=""; ADMOB_REWARDED_ID=""
+            echo "::notice::Versión sin anuncios, como se pidió al ejecutar el flujo."
+          elif [ -z "$ADMOB_APP_ID" ] || [ -z "$ADMOB_INTERSTITIAL_ID" ] || [ -z "$ADMOB_BANNER_ID" ]; then
             echo "::warning::Faltan identificadores de AdMob: esta versión NO mostrará anuncios."
           fi
           mkdir -p claves

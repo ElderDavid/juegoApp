@@ -44,7 +44,9 @@ variables → Actions → New repository secret**, y en la pestaña **Actions**.
 
 **Cada vez que quieras subir una versión**
 
-**Actions → Versión para Google Play → Run workflow**. Al terminar, descarga el artefacto
+**Actions → Versión para Google Play → Run workflow**. Para las pruebas interna y cerrada, desmarca
+«Anuncios reales»: así los verificadores no tocan anuncios reales, algo que AdMob puede tomar como
+tráfico no válido. Para producción, déjalo marcado. Al terminar, descarga el artefacto
 `version-play-N`: trae `app-release.aab` (lo que se sube a Play) y `mapping.txt` (Play lo pide
 para leer los informes de fallos). El `versionCode` sube solo en cada ejecución.
 
