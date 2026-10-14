@@ -1,0 +1,88 @@
+# Abre la versión release (con R8 y la configuración real de Supabase, sin anuncios) en un emulador
+# y guarda el registro del sistema. Sirve para ver por qué se cierra la app al abrir.
+# Se ejecuta a mano desde Actions. Usa una clave desechable: nunca la de subida.
+name: Prueba de arranque
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  arranque:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Configuración y clave desechable
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+          GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
+        run: |
+          mkdir -p claves
+          keytool -genkeypair -keystore claves/prueba.jks -storepass pruebaprueba -keypass pruebaprueba \
+            -alias prueba -keyalg RSA -keysize 2048 -validity 2 -dname "CN=prueba"
+          {
+            echo "storeFile=claves/prueba.jks"
+            echo "storePassword=pruebaprueba"
+            echo "keyAlias=prueba"
+            echo "keyPassword=pruebaprueba"
+          } > keystore.properties
+          {
+            echo "supabase.url=$SUPABASE_URL"
+            echo "supabase.publishableKey=$SUPABASE_KEY"
+            echo "google.webClientId=$GOOGLE_WEB_CLIENT_ID"
+          } > local.properties
+
+      - name: Compilar la release
+        run: ./gradlew :app:assembleRelease --console=plain
+
+      - name: Liberar espacio en el runner
+        run: sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost /usr/local/lib/node_modules "$AGENT_TOOLSDIRECTORY/CodeQL" && df -h /
+
+      - name: Activar KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Abrir la app en el emulador
+        uses: reactivecircus/android-emulator-runner@v2.34.0
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          disk-size: 3G
+          script: ./scripts/prueba-arranque.sh
+
+      - name: Resumen de fallos
+        if: always()
+        run: |
+          echo "Proceso: $(cat pid.txt 2>/dev/null)"
+          grep -n -E "FATAL EXCEPTION|AndroidRuntime|Process: com.elderdavid" -A 25 logcat.txt | head -120 || true
+
+      - name: Borrar claves
+        if: always()
+        run: rm -rf claves keystore.properties local.properties
+
+      - name: Registro y captura
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: prueba-arranque-${{ github.run_number }}
+          path: |
+            logcat.txt
+            pid.txt
+            pantalla.png
+            app/build/outputs/mapping/release/mapping.txt
+          retention-days: 7
