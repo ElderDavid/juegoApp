@@ -54,7 +54,8 @@ jobs:
           mkdir -p claves
           echo "$KEYSTORE_B64" | base64 -d > claves/subida.jks
           {
-            echo "storeFile=../claves/subida.jks"
+            # Relativo a la raíz del proyecto (rootProject.file), donde se escribió el .jks.
+            echo "storeFile=claves/subida.jks"
             echo "storePassword=$KEYSTORE_PASS"
             echo "keyAlias=subida"
             echo "keyPassword=$KEYSTORE_PASS"
