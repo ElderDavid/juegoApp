@@ -25,6 +25,8 @@ Deno.serve(async (req) => {
     // Google rota las claves: si la firma no cuadra, se prueba una vez con las claves recién bajadas.
     if (!reward) reward = await verifyRewardCallback(query, await admobKeys(true));
     if (!reward) return new Response("invalid signature", { status: 400 });
+    // Firmado por AdMob pero sin usuario: es la prueba de «Verificar URL». Responde 200 sin pagar.
+    if (!reward.userId) return new Response("no user", { status: 200 });
 
     const expectedUnit = Deno.env.get("ADMOB_REWARDED_AD_UNIT");
     if (expectedUnit && !reward.adUnit.endsWith(expectedUnit.split("/").pop()!)) {
