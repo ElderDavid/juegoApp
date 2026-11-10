@@ -113,6 +113,10 @@ android {
 
 // Las capturas (CapturasTest) solo corren con -Pcapturas: tardan y no comprueban lógica.
 tasks.withType<Test>().configureEach {
+    testLogging {
+        events("failed")
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
     if (project.hasProperty("capturas")) {
         systemProperty("capturas.dir", layout.buildDirectory.dir("capturas").get().asFile.absolutePath)
         filter { includeTestsMatching("*CapturasTest") }
