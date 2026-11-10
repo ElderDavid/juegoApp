@@ -1,0 +1,63 @@
+# Genera capturas de las pantallas principales en la JVM (Robolectric), sin emulador, para
+# revisar cambios de diseño. Las imágenes quedan como artefacto «capturas» y, en los PR de este
+# repositorio, también en la rama «capturas/<rama del PR>» para poder verlas en la descripción.
+name: Capturas
+
+on:
+  pull_request:
+    paths:
+      - "app/src/main/kotlin/com/elderdavid/quientienelarazon/ui/**"
+      - "app/src/main/res/**"
+      - "app/src/test/kotlin/com/elderdavid/quientienelarazon/ui/**"
+      - ".github/workflows/capturas.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: capturas-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: gradle/actions/setup-gradle@v5
+
+      - name: Capturas de pantalla
+        run: ./gradlew :app:testDebugUnitTest -Pcapturas --console=plain
+
+      - name: Subir capturas
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: capturas
+          path: |
+            app/build/capturas/
+            app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: ignore
+
+      # Solo PR del mismo repositorio: los de forks no tienen permiso de escritura.
+      - name: Publicar capturas en una rama aparte
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          BRANCH: capturas/${{ github.head_ref }}
+        run: |
+          mkdir -p /tmp/capturas && cp app/build/capturas/*.png /tmp/capturas/
+          cd /tmp/capturas
+          git init -q -b "$BRANCH"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add . && git commit -q -m "Capturas de ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "HEAD:refs/heads/$BRANCH"

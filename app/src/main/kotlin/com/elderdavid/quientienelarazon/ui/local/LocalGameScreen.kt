@@ -1,9 +1,15 @@
 package com.elderdavid.quientienelarazon.ui.local
 
+import androidx.compose.runtime.setValue
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -11,32 +17,35 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameMillis
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.elderdavid.quientienelarazon.core.economy.EconomyRules
 import com.elderdavid.quientienelarazon.core.game.Bet
 import com.elderdavid.quientienelarazon.core.game.GameLength
 import com.elderdavid.quientienelarazon.core.game.GameRules
@@ -47,29 +56,38 @@ import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.core.local.LocalMatch
 import com.elderdavid.quientienelarazon.core.local.LocalStage
 import com.elderdavid.quientienelarazon.core.local.Wildcard
-import com.elderdavid.quientienelarazon.core.economy.EconomyRules
-import com.elderdavid.quientienelarazon.economy.LocalGameReward
 import com.elderdavid.quientienelarazon.core.questions.Category
 import com.elderdavid.quientienelarazon.core.questions.Question
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.QuestionKind
+import com.elderdavid.quientienelarazon.economy.LocalGameReward
 import com.elderdavid.quientienelarazon.local.FeedbackEvent
 import com.elderdavid.quientienelarazon.ui.components.ArcadeButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
 import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
+import com.elderdavid.quientienelarazon.ui.components.MeterBar
 import com.elderdavid.quientienelarazon.ui.components.NeonTitle
 import com.elderdavid.quientienelarazon.ui.components.PlayerAvatar
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeError
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOutline
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeSuccess
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeText
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeViolet
+import com.elderdavid.quientienelarazon.ui.components.StickerButton
+import com.elderdavid.quientienelarazon.ui.components.Tag
+import com.elderdavid.quientienelarazon.ui.components.sticker
+import com.elderdavid.quientienelarazon.ui.theme.AnilDeep
+import com.elderdavid.quientienelarazon.ui.theme.Chicle
+import com.elderdavid.quientienelarazon.ui.theme.Cielo
+import com.elderdavid.quientienelarazon.ui.theme.Letrero
+import com.elderdavid.quientienelarazon.ui.theme.Linea
+import com.elderdavid.quientienelarazon.ui.theme.Mango
+import com.elderdavid.quientienelarazon.ui.theme.Menta
+import com.elderdavid.quientienelarazon.ui.theme.Naranja
+import com.elderdavid.quientienelarazon.ui.theme.Panel
+import com.elderdavid.quientienelarazon.ui.theme.Papel
+import com.elderdavid.quientienelarazon.ui.theme.PapelSoft
 import com.elderdavid.quientienelarazon.ui.theme.PlayerColors
+import com.elderdavid.quientienelarazon.ui.theme.Rojo
+import com.elderdavid.quientienelarazon.ui.theme.Tinta
+import com.elderdavid.quientienelarazon.ui.theme.TintaSoft
+import com.elderdavid.quientienelarazon.ui.theme.inkShadow
 import kotlinx.coroutines.delay
 
 /** Acciones que la partida necesita de la capa superior. */
@@ -117,9 +135,9 @@ fun LocalGameScreen(
             title = { Text("¿Abandonar la partida?") },
             text = { Text("Se perderá el progreso de esta partida.") },
             confirmButton = {
-                TextButton(onClick = { confirmExit = false; actions.changePlayers() }) { Text("Abandonar", color = ArcadeError) }
+                TextButton(onClick = { confirmExit = false; actions.changePlayers() }) { Text("Abandonar", color = Rojo) }
             },
-            dismissButton = { TextButton(onClick = { confirmExit = false }) { Text("Seguir jugando", color = ArcadeCyan) } },
+            dismissButton = { TextButton(onClick = { confirmExit = false }) { Text("Seguir jugando", color = Mango) } },
         )
     }
 
@@ -182,18 +200,27 @@ private fun RouletteView(
 
     RoundHeader(stage.round, stage.questionNumber, length.questions, heistGame && length.isHeist(stage.questionNumber - 1))
     if (length.isFirstOfRound(stage.questionNumber - 1)) {
-        ArcadeCard(accent = ArcadeViolet) {
-            Text("Ronda ${stage.round.number}: ${stage.round.title}", style = MaterialTheme.typography.titleLarge, color = ArcadeViolet)
-            Text(roundRule(stage.round, kids, heistGame), color = ArcadeTextMuted)
+        ArcadeCard(accent = Cielo) {
+            Text("Ronda ${stage.round.number}: ${stage.round.title}", style = MaterialTheme.typography.titleLarge, color = Cielo)
+            Text(roundRule(stage.round, kids, heistGame), color = PapelSoft)
         }
     }
-    ArcadeCard(accent = if (landed) ArcadeOrange else ArcadeOutline, modifier = Modifier.heightIn(min = 160.dp)) {
-        Text("Categoría", style = MaterialTheme.typography.labelMedium, color = ArcadeTextMuted, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
+    // Al detenerse, el panel se vuelve un letrero mango: es el único momento animado de la ruleta.
+    Column(
+        Modifier.fillMaxWidth().heightIn(min = 180.dp).sticker(if (landed) Mango else Panel, MaterialTheme.shapes.extraLarge, depth = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            if (landed) "Te toca" else "Girando la ruleta…",
+            style = MaterialTheme.typography.titleMedium,
+            color = if (landed) Tinta else PapelSoft,
+            modifier = Modifier.padding(top = 22.dp),
+        )
         Text(
             text = shown.name,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp).semantics { liveRegion = LiveRegionMode.Polite },
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 28.dp).semantics { liveRegion = LiveRegionMode.Polite },
             style = MaterialTheme.typography.displayMedium,
-            color = if (landed) ArcadeOrange else ArcadeText,
+            color = if (landed) Tinta else Papel,
             textAlign = TextAlign.Center,
         )
     }
@@ -215,17 +242,44 @@ internal val HEIST_RULE = "Quien acierte más rápido le quita el ${GameRules.HE
 /** [heist]: la pregunta es la pregunta robo; se anuncia bajo la cabecera. */
 @Composable
 internal fun RoundHeader(round: RoundType, questionNumber: Int, totalQuestions: Int, heist: Boolean = false) {
-    Text(
-        "RONDA ${round.number} · ${round.title.uppercase()}   ·   PREGUNTA $questionNumber/$totalQuestions",
-        style = MaterialTheme.typography.labelMedium,
-        color = ArcadeCyan,
-        modifier = Modifier.fillMaxWidth(),
-        textAlign = TextAlign.Center,
-    )
+    Column(
+        Modifier.fillMaxWidth().semantics(mergeDescendants = true) {
+            contentDescription = "Ronda ${round.number}, ${round.title}. Pregunta $questionNumber de $totalQuestions"
+        },
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text("Ronda ${round.number}: ${round.title}", style = MaterialTheme.typography.titleMedium, color = Mango, modifier = Modifier.weight(1f))
+            Text("$questionNumber/$totalQuestions", style = MaterialTheme.typography.headlineMedium, color = Papel)
+        }
+        QuestionPips(questionNumber, totalQuestions)
+    }
     if (heist) {
-        ArcadeCard(accent = ArcadeMagenta) {
-            Text("¡PREGUNTA ROBO!", style = MaterialTheme.typography.titleLarge, color = ArcadeMagenta)
-            Text(HEIST_RULE, color = ArcadeText)
+        ArcadeCard(accent = Chicle) {
+            Text("¡Pregunta robo!", style = MaterialTheme.typography.headlineMedium, color = Chicle)
+            Text(HEIST_RULE, color = Papel)
+        }
+    }
+}
+
+/** Una marca por pregunta: hechas en mango, la actual en papel y las que faltan vacías. */
+@Composable
+private fun QuestionPips(current: Int, total: Int) {
+    Row(Modifier.fillMaxWidth().clearAndSetSemantics { }, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        repeat(total) { i ->
+            val color = when {
+                i + 1 < current -> Mango
+                i + 1 == current -> Papel
+                else -> AnilDeep
+            }
+            Box(
+                Modifier
+                    .weight(1f)
+                    .height(10.dp)
+                    .clip(RoundedCornerShape(3.dp))
+                    .background(color)
+                    .border(2.dp, Tinta, RoundedCornerShape(3.dp)),
+            )
         }
     }
 }
@@ -235,10 +289,10 @@ internal fun RoundHeader(round: RoundType, questionNumber: Int, totalQuestions: 
 @Composable
 private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int, state: GameState, actions: LocalGameActions) {
     if (stage.tiebreak) {
-        NeonTitle("¡Desempate!", color = ArcadeMagenta)
+        NeonTitle("¡Desempate!", color = Chicle, align = TextAlign.Center)
         Text(
             "Gana quien acierte más rápido. Sin apuestas y sin cambios en las estadísticas.",
-            color = ArcadeTextMuted,
+            color = PapelSoft,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(),
         )
@@ -248,18 +302,23 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
     if (state.players.size == 1) {
         // Solitario: no hay que pasar el teléfono, solo una pausa antes de que corra el tiempo.
         Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            PlayerAvatar(name = name, playerIndex = colorIndex, size = 96)
-            Text("$name, ${state.scores.getValue(stage.playerId)} puntos", style = MaterialTheme.typography.titleLarge, color = ArcadeText, textAlign = TextAlign.Center)
-            Text("El tiempo empieza al pulsar el botón.", color = ArcadeTextMuted)
+            PlayerAvatar(name = name, playerIndex = colorIndex, size = 112)
+            Text("$name, ${state.scores.getValue(stage.playerId)} puntos", style = MaterialTheme.typography.titleLarge, color = Papel, textAlign = TextAlign.Center)
+            Text("El tiempo empieza al pulsar el botón.", color = PapelSoft)
         }
         ArcadeButton(text = "Siguiente pregunta", onClick = actions.ready, color = PlayerColors[colorIndex % PlayerColors.size])
         return
     }
     Column(Modifier.fillMaxWidth().padding(vertical = 24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text("Pasa el teléfono a", style = MaterialTheme.typography.titleMedium, color = ArcadeTextMuted)
-        PlayerAvatar(name = name, playerIndex = colorIndex, size = 96)
-        Text(name, style = MaterialTheme.typography.displayMedium, color = PlayerColors[colorIndex % PlayerColors.size], textAlign = TextAlign.Center)
-        Text("Que nadie más mire la pantalla.", color = ArcadeTextMuted)
+        Text("Pasa el teléfono a", style = MaterialTheme.typography.titleMedium, color = PapelSoft)
+        PlayerAvatar(name = name, playerIndex = colorIndex, size = 112)
+        Text(
+            name,
+            style = MaterialTheme.typography.displayMedium.copy(shadow = inkShadow()),
+            color = PlayerColors[colorIndex % PlayerColors.size],
+            textAlign = TextAlign.Center,
+        )
+        Text("Que nadie más mire la pantalla.", color = PapelSoft)
     }
     ArcadeButton(text = "Soy $name, estoy listo", onClick = actions.ready, color = PlayerColors[colorIndex % PlayerColors.size])
 }
@@ -269,25 +328,25 @@ private fun HandoffView(stage: LocalStage.Handoff, name: String, colorIndex: Int
 @Composable
 private fun BettingView(stage: LocalStage.Betting, name: String, state: GameState, bank: QuestionBank, actions: LocalGameActions) {
     RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions)
-    NeonTitle("$name, apuesta", color = ArcadeOrange)
-    ArcadeCard(accent = ArcadeOrange) {
-        Text("Categoría: ${bank.category(state.currentPlanned!!.categoryId).name}", style = MaterialTheme.typography.titleMedium)
-        Text("Tienes ${stage.score} puntos.", color = ArcadeTextMuted)
-        Text("Tras apostar verás la pregunta y empezará tu tiempo.", color = ArcadeTextMuted)
-        if (state.config.kids) Text("Modo niños: si fallas no pierdes lo apostado.", color = ArcadeCyan)
+    NeonTitle("$name, apuesta", color = Mango)
+    ArcadeCard(accent = Naranja) {
+        Tag(bank.category(state.currentPlanned!!.categoryId).name, Cielo)
+        Text("Tienes ${stage.score} puntos.", color = PapelSoft)
+        Text("Tras apostar verás la pregunta y empezará tu tiempo.", color = PapelSoft)
+        if (state.config.kids) Text("Modo niños: si fallas no pierdes lo apostado.", color = Mango)
     }
     if (stage.allowedBets.isEmpty()) {
         ArcadeCard {
-            Text("Apuesta libre", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
+            Text("Apuesta libre", style = MaterialTheme.typography.titleMedium, color = Mango)
             Text(
                 "No te alcanza para la apuesta mínima. Si aciertas ganas ${GameRules.FREE_BET_REWARD} puntos y si fallas no pierdes nada.",
-                color = ArcadeTextMuted,
+                color = PapelSoft,
             )
         }
         ArcadeButton(text = "Jugar apuesta libre", onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(0) })
     } else {
         stage.allowedBets.forEach { amount ->
-            ArcadeButton(text = "Apostar $amount · ganas ${amount * GameRules.BET_WIN_MULTIPLIER}", onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(amount) }, color = if (amount == stage.allowedBets.max()) ArcadeMagenta else ArcadeCyan)
+            ArcadeButton(text = "Apostar $amount · ganas ${amount * GameRules.BET_WIN_MULTIPLIER}", onClick = { actions.feedback(FeedbackEvent.TAP); actions.bet(amount) }, color = if (amount == stage.allowedBets.max()) Naranja else Mango)
         }
     }
 }
@@ -309,22 +368,22 @@ private fun AnsweringView(stage: LocalStage.Answering, name: String, state: Game
     val seconds = ((remaining + 999) / 1000).toInt()
 
     if (!stage.tiebreak) RoundHeader(state.round, state.questionIndex + 1, state.config.length.questions, state.isHeistQuestion)
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-        Text(name, style = MaterialTheme.typography.titleLarge, color = ArcadeCyan)
-        Text("$seconds s", style = MaterialTheme.typography.headlineMedium, color = if (seconds <= 3) ArcadeError else ArcadeText)
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
+        PlayerAvatar(name = name, playerIndex = colorIndexOf(state, stage.playerId), size = 40)
+        Text(name, style = MaterialTheme.typography.titleLarge, color = Papel, modifier = Modifier.weight(1f))
+        Text(
+            "$seconds s",
+            style = MaterialTheme.typography.displaySmall.copy(shadow = inkShadow(4f)),
+            color = if (seconds <= 3) Chicle else Mango,
+        )
     }
-    LinearProgressIndicator(
-        progress = { fraction },
-        modifier = Modifier.fillMaxWidth().height(10.dp),
-        color = if (seconds <= 3) ArcadeError else ArcadeCyan,
-        trackColor = ArcadeOutline,
-    )
+    TimerBar(fraction, urgent = seconds <= 3)
     val bet = state.bets[stage.playerId]
-    if (bet != null) Text(betLabel(bet), color = ArcadeOrange, style = MaterialTheme.typography.labelMedium)
+    if (bet != null) Tag(betLabel(bet), Naranja)
     QuestionCard(question, bank)
     question.options.forEachIndexed { index, option ->
         if (index in stage.hiddenOptions) {
-            OptionButton(text = "—", letter = optionLetter(index), onClick = {}, enabled = false, highlight = ArcadeOutline)
+            OptionButton(text = "—", letter = optionLetter(index), onClick = {}, enabled = false, highlight = Linea)
         } else {
             OptionButton(text = option, letter = optionLetter(index), onClick = { actions.feedback(FeedbackEvent.TAP); actions.answer(index) })
         }
@@ -332,24 +391,27 @@ private fun AnsweringView(stage: LocalStage.Answering, name: String, state: Game
     if (!stage.tiebreak) WildcardBar(stage, actions)
 }
 
+private fun colorIndexOf(state: GameState, id: PlayerId): Int = state.players.indexOfFirst { it.id == id }.coerceAtLeast(0)
+
 @Composable
 private fun WildcardBar(stage: LocalStage.Answering, actions: LocalGameActions) {
     Text(
         if (stage.wildcards == 1) "Te queda 1 comodín" else "Te quedan ${stage.wildcards} comodines",
         style = MaterialTheme.typography.labelMedium,
-        color = ArcadeTextMuted,
+        color = PapelSoft,
     )
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         Wildcard.entries.forEach { w ->
             val enabled = w in stage.usableWildcards
-            OutlinedButton(
+            StickerButton(
                 onClick = { actions.feedback(FeedbackEvent.TAP); actions.useWildcard(w) },
                 enabled = enabled,
-                modifier = Modifier.weight(1f).heightIn(min = 48.dp).semantics { contentDescription = "Comodín ${w.label}: ${w.description}" },
-                shape = MaterialTheme.shapes.medium,
-                border = BorderStroke(2.dp, if (enabled) ArcadeOrange else ArcadeOutline),
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = ArcadeOrange, disabledContentColor = ArcadeTextMuted),
-                // Con el relleno por defecto (24 dp) «Cambiar» no cabe en un tercio de pantalla y se parte.
+                modifier = Modifier.weight(1f).semantics { contentDescription = "Comodín ${w.label}: ${w.description}" },
+                fill = Panel,
+                contentColor = Naranja,
+                depth = 3.dp,
+                minHeight = 48.dp,
+                // Con más relleno «Cambiar» no cabe en un tercio de pantalla y se parte.
                 contentPadding = PaddingValues(horizontal = 4.dp),
             ) { Text(w.label, style = MaterialTheme.typography.labelLarge, maxLines = 1, softWrap = false) }
         }
@@ -359,62 +421,117 @@ private fun WildcardBar(stage: LocalStage.Answering, actions: LocalGameActions) 
 /** El dueño del teléfono puede pagar con monedas un comodín más para TODOS los jugadores. */
 @Composable
 private fun MatchPackOffer(match: LocalMatch, extras: LocalGameExtras, actions: LocalGameActions) {
-    extras.notice?.let { Text(it, color = ArcadeOrange, style = MaterialTheme.typography.bodyMedium) }
+    extras.notice?.let { Text(it, color = Mango, style = MaterialTheme.typography.bodyMedium) }
     val coins = extras.coins ?: return
     if (!match.canBuyMatchPack) return
-    ArcadeCard(accent = ArcadeOutline) {
-        Text("Paquete de partida", style = MaterialTheme.typography.titleMedium, color = ArcadeOrange)
+    ArcadeCard(accent = Linea) {
+        Text("Paquete de partida", style = MaterialTheme.typography.titleMedium, color = Naranja)
         Text(
             "Un comodín más para cada jugador, pagado con las monedas de la cuenta de este teléfono (tienes $coins).",
-            color = ArcadeTextMuted,
+            color = PapelSoft,
             style = MaterialTheme.typography.bodyMedium,
         )
         ArcadeOutlinedButton(
             text = if (extras.buyingPack) "Comprando…" else "Comprar · 🪙 ${EconomyRules.MATCH_PACK_PRICE}",
             onClick = actions.buyMatchPack,
             enabled = !extras.buyingPack && coins >= EconomyRules.MATCH_PACK_PRICE,
-            color = ArcadeOrange,
+            color = Naranja,
         )
     }
 }
 
 @Composable
 private fun QuestionCard(question: Question, bank: QuestionBank) {
-    ArcadeCard(accent = ArcadeViolet) {
-        Text(bank.category(question.categoryId).name.uppercase(), style = MaterialTheme.typography.labelMedium, color = ArcadeViolet)
-        when (question.kind) {
-            QuestionKind.OPINION -> Text("Opinión: gana la opción más votada", style = MaterialTheme.typography.labelMedium, color = ArcadeOrange)
-            QuestionKind.DEBATE -> Text(
-                if (question.isVote) "Debate: gana la opción más votada" else "Debate: se resuelve con la regla del juego",
-                style = MaterialTheme.typography.labelMedium,
-                color = ArcadeOrange,
-            )
-            QuestionKind.OBJECTIVE -> Unit
-        }
-        Text(question.text, style = MaterialTheme.typography.headlineMedium, color = ArcadeText)
+    QuestionSign(
+        category = bank.category(question.categoryId).name,
+        note = when (question.kind) {
+            QuestionKind.OPINION -> "Opinión: gana la opción más votada"
+            QuestionKind.DEBATE -> if (question.isVote) "Debate: gana la opción más votada" else "Debate: se resuelve con la regla del juego"
+            QuestionKind.OBJECTIVE -> null
+        },
+        text = question.text,
+    )
+}
+
+/**
+ * La pregunta, impresa en papel: es la pieza más clara de la pantalla para que se lea en voz alta.
+ * La comparten el modo local y el online.
+ */
+@Composable
+internal fun QuestionSign(category: String, note: String?, text: String, compact: Boolean = false) {
+    Column(
+        Modifier.fillMaxWidth().sticker(Papel, MaterialTheme.shapes.extraLarge, depth = 6.dp).padding(18.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { Tag(category, Cielo) }
+        if (note != null) Text(note, style = MaterialTheme.typography.labelMedium, color = TintaSoft)
+        Text(
+            text,
+            style = if (compact) MaterialTheme.typography.titleLarge else MaterialTheme.typography.headlineSmall,
+            color = Tinta,
+        )
     }
 }
 
+/** Barra de tiempo; se vuelve chicle en los últimos segundos. */
+@Composable
+internal fun TimerBar(fraction: Float, urgent: Boolean) = MeterBar(fraction, if (urgent) Chicle else Mango)
+
+/**
+ * Opción de respuesta. Con [highlight] de color (respuesta correcta, opción elegida) la pieza se
+ * rellena de ese color; con [Linea] queda apagada (opción descartada o incorrecta).
+ */
 @Composable
 internal fun OptionButton(text: String, letter: String, onClick: () -> Unit, highlight: Color? = null, enabled: Boolean = true) {
-    OutlinedButton(
-        onClick = onClick,
-        enabled = enabled,
-        modifier = Modifier.fillMaxWidth().heightIn(min = 60.dp),
-        shape = MaterialTheme.shapes.medium,
-        border = BorderStroke(2.dp, highlight ?: ArcadeCyan),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = ArcadeText, disabledContentColor = ArcadeText),
+    val interaction = remember { MutableInteractionSource() }
+    val pressed by interaction.collectIsPressedAsState()
+    val lit = highlight != null && highlight != Linea
+    val dimmed = !lit && (highlight == Linea || !enabled)
+    val shape = MaterialTheme.shapes.medium
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .sticker(
+                fill = if (lit) highlight!! else Panel,
+                shape = shape,
+                raised = !dimmed,
+                pressed = pressed,
+                outline = if (dimmed) Linea else Tinta,
+            )
+            .clickable(interactionSource = interaction, indication = ripple(), enabled = enabled, role = Role.Button, onClick = onClick)
+            .heightIn(min = 60.dp)
+            .padding(horizontal = 12.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Text("$letter  ", fontWeight = FontWeight.Black, color = highlight ?: ArcadeCyan)
-        Text(text, modifier = Modifier.weight(1f), style = MaterialTheme.typography.bodyLarge)
+        Box(
+            Modifier
+                .size(36.dp)
+                .clip(RoundedCornerShape(9.dp))
+                .background(if (lit) Tinta else if (dimmed) AnilDeep else Mango)
+                .border(2.dp, Tinta, RoundedCornerShape(9.dp)),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                letter,
+                style = MaterialTheme.typography.titleMedium.copy(fontFamily = Letrero),
+                color = if (lit) highlight!! else if (dimmed) PapelSoft else Tinta,
+            )
+        }
+        Text(
+            text,
+            modifier = Modifier.weight(1f),
+            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+            color = if (lit) Tinta else if (dimmed) PapelSoft else Papel,
+        )
     }
 }
 
 internal fun optionLetter(index: Int) = ('A' + index).toString()
 
 private fun betLabel(bet: Bet) = when (bet) {
-    is Bet.Amount -> "APUESTA: ${bet.value}"
-    Bet.Free -> "APUESTA LIBRE"
+    is Bet.Amount -> "Apuesta: ${bet.value}"
+    Bet.Free -> "Apuesta libre"
 }
 
 // ---------------------------------------------------------------- Revelación
@@ -443,18 +560,18 @@ private fun RevealView(
             letter = optionLetter(index),
             onClick = {},
             enabled = false,
-            highlight = if (winning) ArcadeSuccess else ArcadeOutline,
+            highlight = if (winning) Menta else Linea,
         )
     }
     if (question.isVote && !result.scored) {
-        Text("Menos de 2 votos válidos: esta pregunta no da puntos.", color = ArcadeOrange)
+        Text("Menos de 2 votos válidos: esta pregunta no da puntos.", color = Naranja)
     }
-    ArcadeCard {
-        Text(if (question.isVote) "Resultado de la votación" else "Respuesta", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
-        Text(question.explanation, color = ArcadeTextMuted)
+    ArcadeCard(accent = Menta) {
+        Text(if (question.isVote) "Resultado de la votación" else "Respuesta", style = MaterialTheme.typography.titleMedium, color = Menta)
+        Text(question.explanation, color = PapelSoft)
         question.source?.let { SourceLink(it) }
     }
-    ArcadeCard(accent = ArcadeMagenta) {
+    ArcadeCard(accent = Chicle) {
         result.outcomes.forEach { o -> OutcomeRow(o, question, names.getValue(o.playerId), colorIndex.getValue(o.playerId), state.scores.getValue(o.playerId)) }
     }
     val lastOfGame = result.index == state.config.length.questions - 1
@@ -465,7 +582,7 @@ private fun RevealView(
 internal fun SourceLink(url: String) {
     val uriHandler = LocalUriHandler.current
     TextButton(onClick = { runCatching { uriHandler.openUri(url) } }) {
-        Text("Fuente: ${url.substringAfter("://").substringBefore("/")}", color = ArcadeCyan, style = MaterialTheme.typography.labelMedium)
+        Text("Fuente: ${url.substringAfter("://").substringBefore("/")}", color = Mango, style = MaterialTheme.typography.labelMedium)
     }
 }
 
@@ -477,20 +594,20 @@ private fun OutcomeRow(o: PlayerOutcome, question: Question, name: String, color
             Text(name, style = MaterialTheme.typography.titleMedium)
             val answer = o.choice?.let { "${optionLetter(it)}. ${question.options[it]}" } ?: "Sin respuesta"
             val bet = o.bet?.let { " · ${betLabel(it).lowercase()}" } ?: ""
-            Text(answer + bet, color = ArcadeTextMuted, style = MaterialTheme.typography.bodyMedium)
-            heistLabel(o.stolen)?.let { Text(it, color = ArcadeMagenta, style = MaterialTheme.typography.labelMedium) }
+            Text(answer + bet, color = PapelSoft, style = MaterialTheme.typography.bodyMedium)
+            heistLabel(o.stolen)?.let { Text(it, color = Chicle, style = MaterialTheme.typography.labelMedium) }
         }
         Column(horizontalAlignment = Alignment.End) {
             Text(
                 signed(o.pointsDelta),
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.headlineMedium,
                 color = when {
-                    o.pointsDelta > 0 -> ArcadeSuccess
-                    o.pointsDelta < 0 -> ArcadeError
-                    else -> ArcadeTextMuted
+                    o.pointsDelta > 0 -> Menta
+                    o.pointsDelta < 0 -> Rojo
+                    else -> PapelSoft
                 },
             )
-            Text("$total pts", color = ArcadeTextMuted, style = MaterialTheme.typography.labelMedium)
+            Text("$total pts", color = PapelSoft, style = MaterialTheme.typography.labelMedium)
         }
     }
 }
@@ -518,13 +635,13 @@ private fun RoundSummaryView(
     colorIndex: Map<PlayerId, Int>,
     actions: LocalGameActions,
 ) {
-    NeonTitle("Fin de la ronda ${stage.finishedRound.number}")
+    NeonTitle("Fin de la ronda ${stage.finishedRound.number}", align = TextAlign.Center)
     Scoreboard(state, names, colorIndex)
     val nextRound = RoundType.entries.getOrNull(stage.finishedRound.ordinal + 1)
     if (nextRound != null) {
-        ArcadeCard(accent = ArcadeViolet) {
-            Text("Siguiente: ronda ${nextRound.number}, ${nextRound.title}", style = MaterialTheme.typography.titleMedium, color = ArcadeViolet)
-            Text(roundRule(nextRound, state.config.kids, state.players.size >= 2 && !state.config.kids), color = ArcadeTextMuted)
+        ArcadeCard(accent = Cielo) {
+            Text("Siguiente: ronda ${nextRound.number}, ${nextRound.title}", style = MaterialTheme.typography.titleMedium, color = Cielo)
+            Text(roundRule(nextRound, state.config.kids, state.players.size >= 2 && !state.config.kids), color = PapelSoft)
         }
     }
     ArcadeButton(text = "Siguiente ronda", onClick = actions.next)
@@ -532,13 +649,13 @@ private fun RoundSummaryView(
 
 @Composable
 private fun Scoreboard(state: GameState, names: Map<PlayerId, String>, colorIndex: Map<PlayerId, Int>) {
-    ArcadeCard(accent = ArcadeCyan) {
+    ArcadeCard(accent = Mango) {
         state.ranking.forEachIndexed { position, (id, score) ->
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("${position + 1}.", style = MaterialTheme.typography.titleLarge, color = ArcadeTextMuted)
+                Text("${position + 1}", style = MaterialTheme.typography.headlineMedium, color = if (position == 0) Mango else PapelSoft)
                 PlayerAvatar(name = names.getValue(id), playerIndex = colorIndex.getValue(id), size = 40)
                 Text(names.getValue(id), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                Text("$score", style = MaterialTheme.typography.headlineMedium, color = PlayerColors[colorIndex.getValue(id) % PlayerColors.size])
+                Text("$score", style = MaterialTheme.typography.headlineLarge, color = PlayerColors[colorIndex.getValue(id) % PlayerColors.size])
             }
         }
     }
@@ -550,13 +667,13 @@ private fun Scoreboard(state: GameState, names: Map<PlayerId, String>, colorInde
 private fun TiebreakRevealView(stage: LocalStage.TiebreakReveal, bank: QuestionBank, names: Map<PlayerId, String>, actions: LocalGameActions) {
     val result = stage.result
     val question = bank.question(result.questionId)
-    NeonTitle("Desempate", color = ArcadeMagenta)
+    NeonTitle("Desempate", color = Chicle, align = TextAlign.Center)
     ArcadeCard {
         Text(question.text, style = MaterialTheme.typography.titleMedium)
-        Text("Respuesta: ${question.options[question.correctIndex!!]}", color = ArcadeSuccess)
-        Text(question.explanation, color = ArcadeTextMuted)
+        Text("Respuesta: ${question.options[question.correctIndex!!]}", color = Menta, style = MaterialTheme.typography.titleMedium)
+        Text(question.explanation, color = PapelSoft)
     }
-    ArcadeCard(accent = ArcadeMagenta) {
+    ArcadeCard(accent = Chicle) {
         result.outcomes.forEach { o ->
             val verdict = when {
                 o.choice == null -> "sin respuesta"
@@ -569,8 +686,8 @@ private fun TiebreakRevealView(stage: LocalStage.TiebreakReveal, bank: QuestionB
     val winner = result.winner
     Text(
         if (winner != null) "¡${names.getValue(winner)} gana el desempate!" else "Sigue el empate: otra pregunta.",
-        style = MaterialTheme.typography.headlineMedium,
-        color = ArcadeOrange,
+        style = MaterialTheme.typography.headlineMedium.copy(shadow = inkShadow(4f)),
+        color = Mango,
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth(),
     )
@@ -599,29 +716,30 @@ private fun PodiumView(
             winners.size == 1 -> "¡${winners.single()} tiene la razón!"
             else -> "¡Victoria compartida!"
         },
-        color = ArcadeOrange,
+        color = Mango,
+        align = TextAlign.Center,
     )
     if (winners.size > 1) {
         Text(winners.joinToString(" y "), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
     }
     Scoreboard(state, names, colorIndex)
     ArcadeCard {
-        Text("Aciertos", style = MaterialTheme.typography.titleMedium, color = ArcadeCyan)
+        Text("Aciertos", style = MaterialTheme.typography.titleMedium, color = Mango)
         state.players.forEach { p ->
             val right = state.results.count { r -> r.outcomes.any { it.playerId == p.id && it.won == true } }
-            Text("${p.name}: $right de ${state.config.length.questions}", color = ArcadeTextMuted)
+            Text("${p.name}: $right de ${state.config.length.questions}", color = PapelSoft)
         }
     }
     extras.reward?.takeIf { it.xp > 0 || it.coins > 0 }?.let { r ->
         val parts = listOfNotNull(r.xp.takeIf { it > 0 }?.let { "+$it XP" }, r.coins.takeIf { it > 0 }?.let { "+$it monedas" })
         Text(
             "Cuenta de este teléfono: ${parts.joinToString(" y ")}",
-            color = ArcadeSuccess,
+            color = Menta,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(),
         )
     }
-    ArcadeButton(text = if (solo) "Jugar otra vez" else "Revancha", onClick = actions.rematch, color = ArcadeMagenta)
-    ArcadeOutlinedButton(text = if (solo) "Cambiar ajustes" else "Cambiar jugadores", onClick = actions.changePlayers, color = ArcadeCyan)
+    ArcadeButton(text = if (solo) "Jugar otra vez" else "Revancha", onClick = actions.rematch)
+    ArcadeOutlinedButton(text = if (solo) "Cambiar ajustes" else "Cambiar jugadores", onClick = actions.changePlayers, color = Mango)
     ArcadeOutlinedButton(text = "Menú principal", onClick = actions.exitToMenu)
 }

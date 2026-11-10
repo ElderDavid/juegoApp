@@ -11,11 +11,11 @@ import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.RoundType
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeViolet
+import com.elderdavid.quientienelarazon.ui.theme.Mango
+import com.elderdavid.quientienelarazon.ui.theme.Chicle
+import com.elderdavid.quientienelarazon.ui.theme.Naranja
+import com.elderdavid.quientienelarazon.ui.theme.PapelSoft
+import com.elderdavid.quientienelarazon.ui.theme.Cielo
 
 /** Las cifras salen de [GameRules] para que la pantalla nunca contradiga al motor. */
 @Composable
@@ -28,38 +28,38 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
                 "${lengths.dropLast(1).joinToString(", ")} o ${lengths.last()} preguntas en ${GameRules.ROUNDS} rondas · " +
                 "$seconds segundos por pregunta",
             style = MaterialTheme.typography.bodyLarge,
-            color = ArcadeTextMuted,
+            color = PapelSoft,
         )
         RoundCard(
-            RoundType.KNOWLEDGE, ArcadeCyan,
+            RoundType.KNOWLEDGE, Mango,
             "Opción múltiple. Acierto: +${GameRules.KNOWLEDGE_POINTS}. Error: 0.",
         )
         RoundCard(
-            RoundType.SPEED, ArcadeMagenta,
+            RoundType.SPEED, Chicle,
             "Preguntas rápidas, sobre todo verdadero o falso. Acierto: +${GameRules.SPEED_POINTS}, " +
                 "más hasta +${GameRules.SPEED_BONUS_MAX} si respondes rápido. Error: 0. " +
                 "La última es la pregunta robo: quien acierte más rápido le quita el " +
                 "${GameRules.HEIST_PERCENT} % de sus puntos a cada rival. Si todos fallan, no hay robo.",
         )
         RoundCard(
-            RoundType.STRATEGY, ArcadeOrange,
+            RoundType.STRATEGY, Naranja,
             "Antes de cada pregunta apuestas ${GameRules.ALLOWED_BETS.joinToString(" o ")} puntos " +
                 "(solo lo que tengas). Acierto: ganas el doble de lo apostado. Error: lo pierdes.",
         )
         RoundCard(
-            RoundType.FINAL, ArcadeViolet,
+            RoundType.FINAL, Cielo,
             "Preguntas más difíciles. Acierto: +${GameRules.FINAL_POINTS} más bonificación por rapidez. Error: 0.",
         )
-        ArcadeCard(accent = ArcadeCyan) {
-            Text("Desempate", style = MaterialTheme.typography.titleLarge, color = ArcadeCyan)
+        ArcadeCard(accent = Mango) {
+            Text("Desempate", style = MaterialTheme.typography.titleLarge, color = Mango)
             Text(
                 "Si hay empate al final, los empatados responden una pregunta extra sin apuestas. " +
                     "Gana la respuesta correcta más rápida; si nadie acierta, se repite con otra pregunta.",
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        ArcadeCard(accent = ArcadeOrange) {
-            Text("Modo niños", style = MaterialTheme.typography.titleLarge, color = ArcadeOrange)
+        ArcadeCard(accent = Naranja) {
+            Text("Modo niños", style = MaterialTheme.typography.titleLarge, color = Naranja)
             Text(
                 "Para jugar en familia en el modo local: preguntas más fáciles pensadas para niños, " +
                     "${GameRules.KIDS_QUESTION_TIME_MILLIS / 1000} segundos por pregunta y, en la ronda de estrategia, " +
@@ -67,8 +67,8 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        ArcadeCard(accent = ArcadeCyan) {
-            Text("Solitario y modos extra", style = MaterialTheme.typography.titleLarge, color = ArcadeCyan)
+        ArcadeCard(accent = Mango) {
+            Text("Solitario y modos extra", style = MaterialTheme.typography.titleLarge, color = Mango)
             Text(
                 "Solo: si juegas sin nadie más, las preguntas son de dificultad media y difícil. " +
                     "Con monedas se desbloquean «Muy rápido» (${GameRules.FAST_QUESTION_TIME_MILLIS / 1000} segundos por pregunta) " +
@@ -76,8 +76,8 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        ArcadeCard(accent = ArcadeMagenta) {
-            Text("Preguntas de opinión", style = MaterialTheme.typography.titleLarge, color = ArcadeMagenta)
+        ArcadeCard(accent = Chicle) {
+            Text("Preguntas de opinión", style = MaterialTheme.typography.titleLarge, color = Chicle)
             Text(
                 "No tienen respuesta correcta. Cada jugador vota en secreto y quienes eligen la opción " +
                     "más votada ganan +${GameRules.MAJORITY_VOTE_POINTS}. Si hay empate, todas las opciones " +
@@ -92,7 +92,7 @@ fun RulesScreen(ads: AdsController, onBack: () -> Unit) {
 private fun RoundCard(round: RoundType, accent: Color, description: String) {
     ArcadeCard(accent = accent) {
         Text(
-            "Ronda ${round.number} · ${round.title}",
+            "Ronda ${round.number}: ${round.title}",
             style = MaterialTheme.typography.titleLarge,
             color = accent,
         )

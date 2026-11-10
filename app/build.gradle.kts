@@ -106,6 +106,23 @@ android {
         compose = true
         buildConfig = true
     }
+
+    // Robolectric necesita los recursos (fuentes incluidas) para las capturas de pantalla.
+    testOptions.unitTests.isIncludeAndroidResources = true
+}
+
+// Las capturas (CapturasTest) solo corren con -Pcapturas: tardan y no comprueban lógica.
+tasks.withType<Test>().configureEach {
+    testLogging {
+        events("failed")
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+    }
+    if (project.hasProperty("capturas")) {
+        systemProperty("capturas.dir", layout.buildDirectory.dir("capturas").get().asFile.absolutePath)
+        filter { includeTestsMatching("*CapturasTest") }
+    } else {
+        filter { excludeTestsMatching("*CapturasTest") }
+    }
 }
 
 dependencies {
@@ -142,6 +159,9 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.compose.ui.test.junit4)
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

@@ -662,9 +662,15 @@ function roundHeader(view) {
   const round = roundOf(view);
   if (!round) return "";
   const heist = view.current.heist
-    ? `<section class="card accent-magenta"><h2 class="magenta">¡PREGUNTA ROBO!</h2><p>${HEIST_RULE}</p></section>`
+    ? `<section class="card accent-magenta"><h2 class="magenta">¡Pregunta robo!</h2><p>${HEIST_RULE}</p></section>`
     : "";
-  return `<p class="label cyan">RONDA ${round.number} · ${round.title.toUpperCase()} · PREGUNTA ${view.current.index + 1}/${questionCount(view.room)}</p>${heist}`;
+  const n = view.current.index + 1;
+  const total = questionCount(view.room);
+  const pips = Array.from({ length: total }, (_, i) => `<span class="pip${i + 1 < n ? " done" : i + 1 === n ? " now" : ""}"></span>`).join("");
+  return `<div class="round-head" aria-label="Ronda ${round.number}, ${round.title}. Pregunta ${n} de ${total}">
+    <div class="row between" aria-hidden="true"><p class="cyan strong">Ronda ${round.number}: ${round.title}</p><p class="count">${n}/${total}</p></div>
+    <div class="pips" aria-hidden="true">${pips}</div>
+  </div>${heist}`;
 }
 
 function timer(label) {
@@ -741,7 +747,7 @@ function questionHtml(view) {
   const head = tiebreak
     ? `<h1 class="neon magenta">¡Desempate!</h1><p class="muted center-text">Gana quien acierte más rápido. No cambia las estadísticas.</p>`
     : roundHeader(view);
-  const bet = !tiebreak && current.my_bet != null ? `<p class="label orange">${current.my_bet === 0 ? "APUESTA LIBRE" : `APUESTA: ${current.my_bet}`}</p>` : "";
+  const bet = !tiebreak && current.my_bet != null ? `<p><span class="tag orange-bg">${current.my_bet === 0 ? "Apuesta libre" : `Apuesta: ${current.my_bet}`}</span></p>` : "";
   const kind = kindLabel(q);
   const options = q.options
     .map(
@@ -754,9 +760,9 @@ function questionHtml(view) {
   else if (!participating) note = `<p class="muted">Abandonaste la partida: solo puedes mirar.</p>`;
   else if (chosen != null) note = `<p class="magenta center-text">Respuesta enviada. Esperando a los demás…</p>`;
   return `${head}${timer(participating ? "Tu respuesta" : "Mirando")}${bet}
-  <section class="card accent-violet">
-    <p class="label violet">${esc(categoryName(current.category_id).toUpperCase())}</p>
-    ${kind ? `<p class="label orange">${kind}</p>` : ""}
+  <section class="paper">
+    <p><span class="tag">${esc(categoryName(current.category_id))}</span></p>
+    ${kind ? `<p class="label note">${kind}</p>` : ""}
     <p class="question">${esc(q.text)}</p>
   </section>
   <div class="options">${options}</div>
@@ -802,12 +808,12 @@ function revealHtml(view) {
     .join("");
   const winner = tiebreak ? playerById(view, result.tiebreak_winner)?.name : null;
   return `${tiebreak ? `<h1 class="neon magenta">Desempate</h1>` : roundHeader(view)}
-  <section class="card accent-violet">
-    <p class="label violet">${esc(categoryName(current.category_id).toUpperCase())}</p>
+  <section class="paper">
+    <p><span class="tag">${esc(categoryName(current.category_id))}</span></p>
     <p class="question small-q">${esc(q.text)}</p>
   </section>
   <div class="options">${options}</div>
-  ${q.is_vote && !result.scored ? `<p class="orange">Menos de 2 votos válidos: esta pregunta no da puntos.</p>` : ""}
+  ${q.is_vote && !result.scored ? `<p class="cyan">Menos de 2 votos válidos: esta pregunta no da puntos.</p>` : ""}
   <section class="card">
     <h2 class="cyan">${q.is_vote ? "Resultado de la votación" : "Respuesta"}</h2>
     ${result.game_rule ? `<p class="orange">Regla del juego: ${esc(result.game_rule)}</p>` : ""}

@@ -5,13 +5,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import com.elderdavid.quientienelarazon.ads.AdsController
 import com.elderdavid.quientienelarazon.ads.SmallAdBanner
-import com.elderdavid.quientienelarazon.ui.components.ArcadeButton
-import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
+import com.elderdavid.quientienelarazon.ui.components.MenuList
+import com.elderdavid.quientienelarazon.ui.components.MenuTile
+import com.elderdavid.quientienelarazon.ui.theme.Mango
+import com.elderdavid.quientienelarazon.ui.theme.Menta
+import com.elderdavid.quientienelarazon.ui.theme.PapelSoft
 
 @Composable
 fun MainMenuScreen(
@@ -24,19 +23,23 @@ fun MainMenuScreen(
     onRules: () -> Unit,
     onSettings: () -> Unit,
 ) {
-    ArcadeScreen(title = "Menú principal") {
+    ArcadeScreen(title = "¿A qué jugamos?") {
         Text(
             "Elige cómo quieres jugar.",
             style = MaterialTheme.typography.bodyLarge,
-            color = ArcadeTextMuted,
+            color = PapelSoft,
         )
-        ArcadeButton(text = "Jugar en este teléfono", onClick = onLocalGame, color = ArcadeMagenta)
-        ArcadeButton(text = "Jugar online", onClick = onOnline, color = ArcadeCyan)
-        ArcadeOutlinedButton(text = "Perfil y cuenta", onClick = onProfile, color = ArcadeCyan)
-        ArcadeOutlinedButton(text = "Tienda y premios", onClick = onShop, color = ArcadeMagenta)
-        ArcadeOutlinedButton(text = "Estadísticas", onClick = onStats, color = ArcadeOrange)
-        ArcadeButton(text = "Reglas del juego", onClick = onRules, color = ArcadeOrange)
-        ArcadeOutlinedButton(text = "Ajustes", onClick = onSettings)
+        MenuTile(title = "En este teléfono", hint = "De 1 a 4 jugadores, pasándose el celular", color = Mango, onClick = onLocalGame)
+        MenuTile(title = "Online", hint = "Crea una sala o únete con un código", color = Menta, onClick = onOnline)
+        MenuList(
+            listOf(
+                "Perfil y cuenta" to onProfile,
+                "Tienda y premios" to onShop,
+                "Estadísticas" to onStats,
+                "Reglas del juego" to onRules,
+                "Ajustes" to onSettings,
+            ),
+        )
         // Banner pequeño al final del menú, nunca entre los botones.
         SmallAdBanner(ads)
     }
