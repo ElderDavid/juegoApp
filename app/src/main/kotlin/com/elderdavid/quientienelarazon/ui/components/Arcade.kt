@@ -104,7 +104,7 @@ fun ArcadeBackground(modifier: Modifier = Modifier, content: @Composable () -> U
         modifier = modifier
             .fillMaxSize()
             .background(Brush.verticalGradient(listOf(style.backgroundTop, style.backgroundBottom))),
-    ) { content() }
+    ) { CompositionLocalProvider(LocalContentColor provides Papel) { content() } }
 }
 
 /**
@@ -280,7 +280,9 @@ fun ArcadeCard(
 ) {
     Column(modifier.fillMaxWidth().sticker(Panel, MaterialTheme.shapes.large, depth = 5.dp)) {
         if (accent != Linea) Box(Modifier.fillMaxWidth().height(8.dp).background(accent))
-        Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp), content = content)
+        CompositionLocalProvider(LocalContentColor provides Papel) {
+            Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp), content = content)
+        }
     }
 }
 
