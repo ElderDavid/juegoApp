@@ -754,7 +754,7 @@ def main():
     cur.execute("select count(*) from public.questions where audience = 'KIDS'")
     kids = cur.fetchone()[0]
     print(f"Banco en la base de datos: {total} preguntas ({general} generales, {kids} de niños)")
-    check(total - kids == 380 and general - kids == 140 and kids == 111, "banco completo cargado")
+    check(total - kids == 560 and general - kids == 320 and kids == 111, "banco completo cargado")
     test_planner_all_modes(admin)
     test_private_room_and_security(admin)
     test_full_game_three_players(admin)

@@ -52,11 +52,21 @@ object GamePlanner {
         avoidQuestionIds: Set<String> = emptySet(),
         length: GameLength = GameLength.DEFAULT,
     ): GamePlan {
-        val random = Random(seed)
-        val fullPool = soloPool(bank.pool(mode), mode, playerCount, length)
-        // Revancha: se evitan las preguntas recientes si quedan suficientes; si no, se permiten.
+        val fullPool = candidatePool(bank, mode, playerCount, length)
+        // Se evitan las preguntas de partidas recientes si quedan suficientes; si no, se permiten.
         val preferred = fullPool.filterNot { it.id in avoidQuestionIds }
-        val pool = if (preferred.size >= length.questions + GameRules.TIEBREAK_RESERVE) preferred else fullPool
+        if (preferred.size < fullPool.size && preferred.size >= questionsNeeded(length)) {
+            try {
+                return planFrom(preferred, playerCount, seed, length)
+            } catch (e: PlanningError.NotEnoughQuestions) {
+                // Las que quedan no alcanzan para alguna ronda: se planifica con todas.
+            }
+        }
+        return planFrom(fullPool, playerCount, seed, length)
+    }
+
+    private fun planFrom(pool: List<Question>, playerCount: Int, seed: Long, length: GameLength): GamePlan {
+        val random = Random(seed)
         val votesAllowed = if (playerCount >= GameRules.MIN_PLAYERS_FOR_VOTES) GameRules.MAX_VOTE_QUESTIONS else 0
 
         val used = mutableSetOf<String>()
@@ -96,6 +106,13 @@ object GamePlanner {
 
         return GamePlan(planned, tiebreak)
     }
+
+    /** Preguntas entre las que puede elegir una partida de este modo, número de jugadores y duración. */
+    fun candidatePool(bank: QuestionBank, mode: ContentMode, playerCount: Int, length: GameLength): List<Question> =
+        soloPool(bank.pool(mode), mode, playerCount, length)
+
+    /** Preguntas que usa una partida de esta duración: las de juego más las reservadas para desempate. */
+    fun questionsNeeded(length: GameLength): Int = length.questions + GameRules.TIEBREAK_RESERVE
 
     /**
      * Modo solitario: solo preguntas de dificultad media y difícil, si alcanzan para la partida y el

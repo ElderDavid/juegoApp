@@ -88,6 +88,14 @@ class GamePlannerTest {
         assertTrue(second.questions.none { it.questionId in used })
     }
 
+    @Test
+    fun avoidedQuestionsThatLeaveARoundEmptyAreAllowedAgain() {
+        // Sin preguntas de opción múltiple no hay ronda de conocimiento: se planifica con todo el banco.
+        val avoid = bank.pool(ContentMode.General).filter { it.format == AnswerFormat.MULTIPLE_CHOICE }.map { it.id }.toSet()
+        val plan = GamePlanner.plan(bank, ContentMode.General, 2, seed = 3, avoidQuestionIds = avoid)
+        assertEquals(GamePlanner.plan(bank, ContentMode.General, 2, seed = 3), plan)
+    }
+
     @Test(expected = PlanningError.NotEnoughQuestions::class)
     fun exhaustedBankFailsBeforeTheGameStarts() {
         val tiny = QuestionBank(bank.questions.take(5), bank.categories, bank.regions)

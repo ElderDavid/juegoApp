@@ -239,4 +239,32 @@ class LocalGameViewModelTest {
         assertNull(vm.state.value.match)
         assertEquals(listOf("Ana", "Luis"), vm.state.value.names)
     }
+
+    @Test
+    fun newGamesAndRematchesDoNotRepeatEarlierQuestions() = runTest(dispatcher) {
+        // Misma semilla en todas: sin el recuerdo de las anteriores saldrían las mismas preguntas.
+        val store = InMemoryRecentQuestionsRepository()
+        val vm = LocalGameViewModel(loadBank = { bank }, clock = { testScheduler.currentTime }, newSeed = { 42L }, recentQuestions = store)
+        runCurrent()
+        vm.setName(0, "Ana")
+        vm.setName(1, "Luis")
+        val seen = mutableListOf<String>()
+        fun record() = vm.state.value.match!!.state.plan.let { plan -> seen += plan.questions.map { it.questionId } + plan.tiebreakQueue }
+        vm.start(); record()
+        vm.quit()
+        vm.start(); record()
+        vm.rematch(); record()
+        assertEquals(seen.size, seen.toSet().size)
+        runCurrent()
+        assertEquals(seen.toSet(), store.load().ids.toSet())
+
+        // Otra pantalla de juego con el mismo almacén sigue evitándolas.
+        val again = LocalGameViewModel(loadBank = { bank }, clock = { testScheduler.currentTime }, newSeed = { 42L }, recentQuestions = store)
+        runCurrent()
+        again.setName(0, "Ana")
+        again.setName(1, "Luis")
+        again.start()
+        val plan = again.state.value.match!!.state.plan
+        assertTrue((plan.questions.map { it.questionId } + plan.tiebreakQueue).none { it in seen })
+    }
 }

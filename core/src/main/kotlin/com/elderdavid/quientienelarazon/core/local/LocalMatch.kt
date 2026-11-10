@@ -211,8 +211,9 @@ data class LocalMatch(
     }
 
     /** Nueva partida con los mismos jugadores y modo, evitando en lo posible las preguntas ya vistas. */
-    fun rematch(seed: Long): LocalMatch {
-        val seen = state.plan.questions.map { it.questionId }.toSet() + state.plan.tiebreakQueue
+    /** [avoid]: otras preguntas que ya salieron antes en el teléfono, además de las de esta partida. */
+    fun rematch(seed: Long, avoid: Set<String> = emptySet()): LocalMatch {
+        val seen = state.plan.questions.map { it.questionId }.toSet() + state.plan.tiebreakQueue + avoid
         return start(engine, state.players, state.config.mode, seed, seen, state.config.length, state.config.fast)
     }
 

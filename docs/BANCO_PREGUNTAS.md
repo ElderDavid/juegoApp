@@ -2,11 +2,11 @@
 
 Ubicación: `core/src/main/resources/questions/`. Lo carga `QuestionBankLoader.fromResources()` y lo valida `QuestionValidator.validateBank()`. `QuestionBankContentTest` comprueba el banco real en cada `./gradlew :core:test`.
 
-## Distribución (380)
+## Distribución (560)
 
 | Archivo | Preguntas | Notas |
 |---|---|---|
-| `general.json` | 140 | ciencia 16, historia 14, geografía 15, deportes 14, tecnología 13, cine 13, música 13, cultura 15, curiosidades 13, debate 14 (5 debates con regla de juego, 2 debates por votación, 7 opiniones por votación) |
+| `general.json` | 320 | Modo normal. ciencia 34, geografía 33, cultura 33, historia 32, deportes 32, debate 32, tecnología 31, cine 31, música 31, curiosidades 31. Debate: 13 con regla de juego, 4 debates por votación y 15 opiniones por votación. Dificultad: 116 fáciles, 107 medias y 97 difíciles |
 | `la-guajira.json` | 40 | Modo «De aquí somos» |
 | `magdalena.json` | 40 | Modo «De aquí somos» |
 | `cesar.json` | 40 | Modo «De aquí somos» |
@@ -15,7 +15,7 @@ Ubicación: `core/src/main/resources/questions/`. Lo carga `QuestionBankLoader.f
 | `bogota.json` | 40 | Modo «De aquí somos». Bogotá es Distrito Capital, no departamento |
 
 Además, `ninos.json` tiene 111 preguntas con `"audience": "KIDS"` que solo salen en el modo niños
-(ver `MODO_NINOS.md`). No cuentan en las 380 ni se mezclan con el banco general.
+(ver `MODO_NINOS.md`). No cuentan en las 560 ni se mezclan con el banco general.
 
 ### Modo países (180)
 
@@ -33,7 +33,17 @@ si hay suficientes para la partida y el desempate.
 
 Cada pregunta tiene `id`, `text`, `options`, `evaluation` (`correct` con índice, `rule` con índice y regla explícita, o `vote`), `category`, `kind` (OBJECTIVE, DEBATE, OPINION), `format` (MULTIPLE_CHOICE, TRUE_FALSE), `difficulty`, `region` (solo regionales), `explanation` y `source` (obligatoria en regionales).
 
-La especificación pedía 300 preguntas. Antioquia y Bogotá se añadieron después a petición del usuario.
+La especificación pedía 300 preguntas. Antioquia y Bogotá se añadieron después a petición del usuario, y el 10/11/2026 el modo normal pasó de 140 a 320 preguntas (`gen-*` nuevas a partir del número siguiente de cada categoría).
+
+## Sin repeticiones
+
+- **Dentro de una partida** el planificador nunca repite una pregunta (ni entre las de juego ni en las de desempate).
+- **Entre partidas** el teléfono recuerda las preguntas que ya salieron (`RecentQuestions`, guardado con DataStore en
+  `recent_questions`, solo en el teléfono). Cada partida nueva o revancha evita las más recientes y deja siempre libres
+  al menos el doble de las que necesita, para que la ruleta tenga de dónde elegir. Con las 320 del modo normal salen
+  unas 15 partidas seguidas sin repetir ninguna pregunta; luego vuelven primero las vistas hace más tiempo. Si las que
+  quedan no alcanzan para alguna ronda, el planificador usa todo el banco del modo.
+- Las salas online eligen sus preguntas en el servidor y tampoco repiten dentro de una partida.
 
 ## Fuentes
 
