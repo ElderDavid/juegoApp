@@ -1,19 +1,30 @@
-/* Estética arcade de la app (ui/theme/Color.kt): fondo nocturno con acentos eléctricos. */
+/* Identidad «letrero de chiva» de la app (ui/theme/Color.kt y docs/FUENTES.md): colores planos,
+   contorno de tinta y sombras duras. Los nombres de las variables se mantienen para no tocar app.js:
+   --cyan es el acento principal (mango), --magenta chicle, --orange naranja y --violet cielo. */
+@font-face { font-family: "Letrero"; src: url("fonts/bungee_regular.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Lectura"; src: url("fonts/atkinson_next_400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Lectura"; src: url("fonts/atkinson_next_600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Lectura"; src: url("fonts/atkinson_next_800.woff2") format("woff2"); font-weight: 800; font-display: swap; }
+
 :root {
-  --night: #0b0820;
-  --deep: #140e33;
-  --panel: #1c1545;
-  --panel-high: #261d5a;
-  --outline: #3b3175;
-  --cyan: #00e5ff;
-  --magenta: #ff2e97;
-  --violet: #aa72ff;
-  --orange: #ff9f1c;
-  --text: #f4f1ff;
-  --muted: #b9b2de;
-  --success: #3df58c;
+  --night: #2231a3;   /* añil profundo */
+  --deep: #2231a3;
+  --bg: #2a39b8;      /* añil */
+  --ink: #150f3d;     /* tinta */
+  --panel: #1b1550;
+  --panel-high: #282070;
+  --outline: #4a4e9e;
+  --paper: #fff4d6;
+  --cyan: #ffc21a;    /* mango */
+  --magenta: #ff7dc0; /* chicle */
+  --violet: #63c7ff;  /* cielo */
+  --orange: #ff7a2f;  /* naranja */
+  --text: #fff4d6;
+  --muted: #cdd2f7;
+  --success: #29d391; /* menta */
   --error: #ff4d5e;
-  --on-accent: #0b0820;
+  --on-accent: #150f3d;
+  --stroke: 3px;
   color-scheme: dark;
 }
 
@@ -24,9 +35,9 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   min-height: 100dvh;
-  background: radial-gradient(120% 60% at 50% 0%, var(--deep) 0%, var(--night) 70%) fixed, var(--night);
+  background: linear-gradient(var(--bg), var(--night)) fixed, var(--bg);
   color: var(--text);
-  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 17px/1.45 "Lectura", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -37,9 +48,9 @@ body {
 }
 
 h1, h2, p { margin: 0; }
-h2 { font-size: 1.1rem; font-weight: 700; }
+h2 { font-size: 1.1rem; font-weight: 800; }
 
-.stack { display: flex; flex-direction: column; gap: 12px; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
 .row { display: flex; align-items: center; gap: 12px; }
 .row.between { justify-content: space-between; }
 .row.center, .center { display: flex; justify-content: center; align-items: center; gap: 12px; }
@@ -56,29 +67,56 @@ h2 { font-size: 1.1rem; font-weight: 700; }
 .error { color: var(--error); }
 .muted { color: var(--muted); }
 .small { font-size: 0.875rem; }
-.strong { font-weight: 700; }
-.big { font-size: 1.35rem; font-weight: 700; }
-.label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; }
+.strong { font-weight: 800; }
+.big { font-size: 1.35rem; font-weight: 800; }
+.label { font-size: 0.85rem; font-weight: 600; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------------------------------------------------------------- Cabecera */
 
-.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 4px 0 16px; }
-.logo { font-size: 1.6rem; font-weight: 900; line-height: 1.05; color: var(--cyan); text-shadow: 0 0 12px rgba(0, 229, 255, 0.45); }
-.logo span { color: var(--magenta); text-shadow: 0 0 12px rgba(255, 46, 151, 0.45); }
-.title { font-size: 1.5rem; font-weight: 900; }
-.neon { font-size: 1.75rem; font-weight: 900; text-align: center; color: var(--cyan); text-shadow: 0 0 14px currentColor; }
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 4px 0 18px; }
+.logo {
+  font-family: "Letrero", sans-serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 1.05;
+  color: var(--paper);
+  text-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+.logo span {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px 0;
+  color: var(--ink);
+  text-shadow: none;
+  background: var(--cyan);
+  border: var(--stroke) solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.title, .neon {
+  font-family: "Letrero", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  color: var(--paper);
+  text-shadow: 3px 3px 0 var(--ink);
+}
+.neon { text-align: center; color: var(--cyan); }
 .neon.magenta { color: var(--magenta); }
-.neon.orange { color: var(--orange); }
+.neon.orange { color: var(--cyan); }
 
 .profile-chip {
-  border: 1px solid var(--outline);
+  border: var(--stroke) solid var(--ink);
   background: var(--panel);
   color: var(--text);
-  border-radius: 999px;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--ink);
   padding: 8px 14px;
   font: inherit;
-  font-weight: 600;
+  font-weight: 800;
   max-width: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -88,56 +126,62 @@ h2 { font-size: 1.1rem; font-weight: 700; }
 
 /* ---------------------------------------------------------------- Tarjetas */
 
+/* Panel de tinta con sombra dura; el acento es una franja arriba. */
 .card {
   background: var(--panel);
-  border: 1px solid var(--outline);
-  border-left: 4px solid var(--outline);
-  border-radius: 16px;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 5px 5px 0 var(--ink);
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
 }
-.accent-cyan { border-left-color: var(--cyan); }
-.accent-magenta { border-left-color: var(--magenta); }
-.accent-violet { border-left-color: var(--violet); }
-.accent-orange { border-left-color: var(--orange); }
-.accent-error { border-left-color: var(--error); }
+.card[class*="accent-"] { padding-top: 24px; }
+.card[class*="accent-"]::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 8px; background: var(--accent); }
+.accent-cyan { --accent: var(--cyan); }
+.accent-magenta { --accent: var(--magenta); }
+.accent-violet { --accent: var(--violet); }
+.accent-orange { --accent: var(--orange); }
+.accent-error { --accent: var(--error); }
 
 /* ---------------------------------------------------------------- Botones */
 
+/* Calcomanía: se hunde sobre su sombra al pulsar. */
 .button {
   appearance: none;
-  border: 0;
+  border: var(--stroke) solid var(--ink);
   border-radius: 14px;
-  min-height: 52px;
+  box-shadow: 4px 4px 0 var(--ink);
+  min-height: 56px;
   padding: 12px 16px;
   font: inherit;
   font-size: 1.05rem;
   font-weight: 800;
-  letter-spacing: 0.02em;
   color: var(--on-accent);
   background: var(--cyan);
   cursor: pointer;
-  width: 100%;
+  width: calc(100% - 4px);
   touch-action: manipulation;
-  transition: transform 0.08s ease, filter 0.15s ease;
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
 }
-.button.magenta { background: var(--magenta); color: #fff; }
+.button.magenta { background: var(--magenta); color: var(--ink); }
 .button.cyan { background: var(--cyan); }
 .button.orange { background: var(--orange); }
-.button:active:not(:disabled) { transform: scale(0.98); }
-.button.outline { background: transparent; color: var(--text); border: 2px solid var(--outline); }
-.button.outline.magenta { color: var(--magenta); border-color: var(--magenta); }
-.button.outline.orange { color: var(--orange); border-color: var(--orange); }
-.button:disabled { filter: grayscale(0.8) brightness(0.6); cursor: default; }
+.button:active:not(:disabled) { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+.button.outline { background: var(--panel); color: var(--text); box-shadow: 3px 3px 0 var(--ink); }
+.button.outline.magenta { color: var(--magenta); }
+.button.outline.orange { color: var(--orange); }
+.button:disabled { background: var(--panel); color: var(--muted); border-color: var(--outline); box-shadow: none; cursor: default; }
 
 .text-button {
   background: none;
   border: 0;
   color: var(--cyan);
   font: inherit;
-  font-weight: 600;
+  font-weight: 800;
   padding: 10px;
   align-self: flex-start;
   cursor: pointer;
@@ -146,17 +190,18 @@ h2 { font-size: 1.1rem; font-weight: 700; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
 .chip {
-  border: 1px solid var(--outline);
-  background: var(--panel-high);
+  border: 2px solid var(--outline);
+  background: var(--panel);
   color: var(--text);
   border-radius: 10px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   font: inherit;
-  font-size: 0.9rem;
-  min-height: 40px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  min-height: 44px;
   cursor: pointer;
 }
-.chip.selected { background: var(--violet); border-color: var(--violet); color: var(--on-accent); font-weight: 700; }
+.chip.selected { background: var(--cyan); border: var(--stroke) solid var(--ink); box-shadow: 3px 3px 0 var(--ink); color: var(--on-accent); }
 
 /* ---------------------------------------------------------------- Formularios */
 
@@ -165,12 +210,12 @@ h2 { font-size: 1.1rem; font-weight: 700; }
   font: inherit;
   font-size: 1.15rem; /* 16 px o más: Safari no hace zoom al escribir */
   color: var(--text);
-  background: var(--deep);
-  border: 2px solid var(--outline);
+  background: var(--panel);
+  border: var(--stroke) solid var(--ink);
   border-radius: 12px;
   padding: 12px 14px;
 }
-.field input:focus { outline: none; border-color: var(--magenta); }
+.field input:focus { outline: none; border-color: var(--cyan); }
 #code-input { text-transform: uppercase; letter-spacing: 0.25em; font-weight: 800; }
 
 .avatars { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
@@ -180,24 +225,27 @@ h2 { font-size: 1.1rem; font-weight: 700; }
   font-size: 1.6rem;
   border-radius: 12px;
   border: 2px solid var(--outline);
-  background: var(--deep);
+  background: var(--panel);
   cursor: pointer;
   padding: 0;
 }
-.avatar-pick.selected { border-color: var(--magenta); background: var(--panel-high); box-shadow: 0 0 10px rgba(255, 46, 151, 0.5); }
+.avatar-pick.selected { border: var(--stroke) solid var(--ink); background: var(--magenta); box-shadow: 3px 3px 0 var(--ink); }
 
-:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
 
 /* ---------------------------------------------------------------- Sala */
 
 .code {
+  font-family: "Letrero", sans-serif;
   font-size: 2.6rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
   text-align: center;
-  color: var(--orange);
-  text-shadow: 0 0 14px rgba(255, 159, 28, 0.5);
-  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background: var(--cyan);
+  border: var(--stroke) solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 14px 8px 8px;
 }
 
 .player { display: flex; align-items: center; gap: 12px; }
@@ -210,43 +258,47 @@ h2 { font-size: 1.1rem; font-weight: 700; }
   display: grid;
   place-items: center;
   font-size: 1.35rem;
-  border: 3px solid var(--cyan);
-  background: var(--deep);
+  border: var(--stroke) solid var(--ink);
+  background: var(--cyan);
 }
 .avatar.small { width: 36px; height: 36px; font-size: 1.1rem; }
-.seat-0 { border-color: var(--cyan); }
-.seat-1 { border-color: var(--magenta); }
-.seat-2 { border-color: var(--orange); }
-.seat-3 { border-color: var(--violet); }
+/* Colores de jugador iguales a la app: mango, chicle, menta y cielo. */
+.seat-0 { background: var(--cyan); }
+.seat-1 { background: var(--magenta); }
+.seat-2 { background: var(--success); }
+.seat-3 { background: var(--violet); }
 .seat-text-0 { color: var(--cyan); }
 .seat-text-1 { color: var(--magenta); }
-.seat-text-2 { color: var(--orange); }
+.seat-text-2 { color: var(--success); }
 .seat-text-3 { color: var(--violet); }
-.score { font-size: 1.6rem; font-weight: 900; font-variant-numeric: tabular-nums; }
-.position { font-size: 1.2rem; font-weight: 800; width: 1.6em; }
-.points { font-size: 1.25rem; font-weight: 900; }
+.score, .position, .points, .seconds { font-family: "Letrero", sans-serif; font-weight: 400; font-variant-numeric: tabular-nums; }
+.score { font-size: 1.6rem; }
+.position { font-size: 1.3rem; width: 1.6em; }
+.points { font-size: 1.3rem; }
 
 /* ---------------------------------------------------------------- Partida */
 
 .timer { display: flex; flex-direction: column; gap: 6px; }
-.seconds { font-size: 1.6rem; font-weight: 900; font-variant-numeric: tabular-nums; }
-.bar { height: 10px; border-radius: 999px; background: var(--outline); overflow: hidden; }
+.seconds { font-size: 1.8rem; color: var(--cyan); text-shadow: 2px 2px 0 var(--ink); }
+.bar { height: 16px; border-radius: 8px; background: var(--night); border: var(--stroke) solid var(--ink); overflow: hidden; }
 .fill { height: 100%; background: var(--cyan); transform-origin: left; transform: scaleX(1); }
-.timer.urgent .seconds { color: var(--error); }
-.timer.urgent .fill { background: var(--error); }
+.timer.urgent .seconds { color: var(--magenta); }
+.timer.urgent .fill { background: var(--magenta); }
 
+.card.roulette { background: var(--cyan); color: var(--ink); padding-top: 16px; }
+.card.roulette::before { display: none; }
+.card.roulette .muted { color: #4b4473; }
 .roulette .category {
+  font-family: "Letrero", sans-serif;
   font-size: 2rem;
-  font-weight: 900;
   text-align: center;
-  color: var(--orange);
+  color: var(--ink);
   padding: 20px 0;
-  text-shadow: 0 0 16px rgba(255, 159, 28, 0.55);
   animation: pop 0.5s ease-out;
 }
 @keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-.question { font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+.question { font-size: 1.35rem; font-weight: 800; line-height: 1.3; }
 .question.small-q { font-size: 1.1rem; }
 
 .options { display: flex; flex-direction: column; gap: 10px; }
@@ -262,13 +314,16 @@ h2 { font-size: 1.1rem; font-weight: 700; }
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--text);
-  background: var(--panel-high);
-  border: 2px solid var(--outline);
+  background: var(--panel);
+  border: var(--stroke) solid var(--ink);
   border-radius: 14px;
+  box-shadow: 4px 4px 0 var(--ink);
   cursor: pointer;
   touch-action: manipulation;
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
 }
-button.option:disabled { cursor: default; opacity: 0.7; }
+button.option:active:not(:disabled) { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+button.option:disabled { cursor: default; color: var(--muted); border-color: var(--outline); box-shadow: none; }
 .option .letter {
   flex: none;
   width: 32px;
@@ -276,15 +331,17 @@ button.option:disabled { cursor: default; opacity: 0.7; }
   border-radius: 8px;
   display: grid;
   place-items: center;
-  font-weight: 900;
-  background: var(--deep);
-  color: var(--cyan);
+  font-family: "Letrero", sans-serif;
+  background: var(--cyan);
+  color: var(--ink);
+  border: 2px solid var(--ink);
 }
-.option.chosen { border-color: var(--magenta); opacity: 1; box-shadow: 0 0 12px rgba(255, 46, 151, 0.45); }
-.option.chosen .letter { background: var(--magenta); color: #fff; }
-.option.correct { border-color: var(--success); box-shadow: 0 0 12px rgba(61, 245, 140, 0.35); }
-.option.correct .letter { background: var(--success); color: var(--on-accent); }
-.option.dim { opacity: 0.6; }
+button.option:disabled .letter { background: var(--night); color: var(--muted); border-color: var(--ink); }
+.option.chosen, button.option.chosen:disabled { background: var(--magenta); color: var(--ink); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.option.chosen .letter, button.option.chosen:disabled .letter { background: var(--ink); color: var(--magenta); }
+.option.correct, button.option.correct:disabled { background: var(--success); color: var(--ink); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.option.correct .letter, button.option.correct:disabled .letter { background: var(--ink); color: var(--success); }
+.option.dim { color: var(--muted); border-color: var(--outline); box-shadow: none; }
 
 .source { color: var(--cyan); font-size: 0.85rem; font-weight: 600; }
 
@@ -294,7 +351,7 @@ button.option:disabled { cursor: default; opacity: 0.7; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 4px solid var(--outline);
+  border: 4px solid var(--ink);
   border-top-color: var(--cyan);
   animation: spin 0.9s linear infinite;
 }
@@ -306,8 +363,9 @@ button.option:disabled { cursor: default; opacity: 0.7; }
   left: 50%;
   bottom: max(24px, env(safe-area-inset-bottom));
   transform: translateX(-50%);
-  background: var(--panel-high);
-  border: 1px solid var(--outline);
+  background: var(--panel);
+  border: var(--stroke) solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
   padding: 10px 16px;
   border-radius: 12px;
 }
@@ -322,3 +380,37 @@ button.option:disabled { cursor: default; opacity: 0.7; }
 .legal a { color: var(--cyan); overflow-wrap: anywhere; }
 .legal ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 8px; }
 .legal h2 { font-size: 1.15rem; }
+
+/* ---------------------------------------------------------------- Piezas de la identidad */
+
+/* La pregunta, impresa en papel. */
+.paper {
+  background: var(--paper);
+  color: var(--ink);
+  border: var(--stroke) solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.paper .note { color: #4b4473; }
+.tag {
+  display: inline-block;
+  background: var(--violet);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.tag.orange-bg { background: var(--orange); }
+
+.round-head { display: flex; flex-direction: column; gap: 8px; }
+.count { font-family: "Letrero", sans-serif; font-size: 1.3rem; }
+.pips { display: flex; gap: 4px; }
+.pip { flex: 1; height: 10px; border-radius: 3px; background: var(--night); border: 2px solid var(--ink); }
+.pip.done { background: var(--cyan); }
+.pip.now { background: var(--paper); }

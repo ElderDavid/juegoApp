@@ -477,7 +477,6 @@ internal fun QuestionSign(category: String, note: String?, text: String, compact
 @Composable
 internal fun TimerBar(fraction: Float, urgent: Boolean) = MeterBar(fraction, if (urgent) Chicle else Mango)
 
-@Composable
 /**
  * Opción de respuesta. Con [highlight] de color (respuesta correcta, opción elegida) la pieza se
  * rellena de ese color; con [Linea] queda apagada (opción descartada o incorrecta).
