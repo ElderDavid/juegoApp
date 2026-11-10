@@ -1,5 +1,6 @@
 package com.elderdavid.quientienelarazon.ui.screens
 
+import androidx.compose.runtime.getValue
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,7 +12,6 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
@@ -22,11 +22,11 @@ import com.elderdavid.quientienelarazon.settings.SettingsViewModel
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
 import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeNight
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
+import com.elderdavid.quientienelarazon.ui.theme.Mango
+import com.elderdavid.quientienelarazon.ui.theme.Chicle
+import com.elderdavid.quientienelarazon.ui.theme.Tinta
+import com.elderdavid.quientienelarazon.ui.theme.Naranja
+import com.elderdavid.quientienelarazon.ui.theme.PapelSoft
 
 @Composable
 fun SettingsScreen(
@@ -65,26 +65,26 @@ fun SettingsScreen(
         if (shop.billingAvailable) {
             ArcadeCard {
                 Text("Anuncios y compras", style = MaterialTheme.typography.titleMedium)
-                shop.message?.let { Text(it, color = ArcadeOrange, style = MaterialTheme.typography.bodyMedium) }
+                shop.message?.let { Text(it, color = Naranja, style = MaterialTheme.typography.bodyMedium) }
                 if (shop.removeAds) {
-                    Text("Compraste «Quitar anuncios». ¡Gracias!", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+                    Text("Compraste «Quitar anuncios». ¡Gracias!", style = MaterialTheme.typography.bodyMedium, color = PapelSoft)
                 } else {
-                    Text("Un solo pago y no vuelves a ver anuncios.", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
-                    ArcadeOutlinedButton(text = "Quitar anuncios", onClick = onShop, color = ArcadeMagenta)
+                    Text("Un solo pago y no vuelves a ver anuncios.", style = MaterialTheme.typography.bodyMedium, color = PapelSoft)
+                    ArcadeOutlinedButton(text = "Quitar anuncios", onClick = onShop, color = Chicle)
                 }
                 ArcadeOutlinedButton(
                     text = if (shop.busy) "Restaurando…" else "Restaurar compras",
                     onClick = economy::restorePurchases,
                     enabled = !shop.busy,
-                    color = ArcadeCyan,
+                    color = Mango,
                 )
             }
         }
         if (privacyRequired && activity != null) {
             ArcadeCard {
                 Text("Privacidad de anuncios", style = MaterialTheme.typography.titleMedium)
-                Text("Revisa o cambia tu consentimiento para los anuncios.", style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
-                ArcadeOutlinedButton(text = "Opciones de privacidad", onClick = { adsConsent.showPrivacyOptions(activity) }, color = ArcadeCyan)
+                Text("Revisa o cambia tu consentimiento para los anuncios.", style = MaterialTheme.typography.bodyMedium, color = PapelSoft)
+                ArcadeOutlinedButton(text = "Opciones de privacidad", onClick = { adsConsent.showPrivacyOptions(activity) }, color = Mango)
             }
         }
     }
@@ -107,12 +107,12 @@ private fun SettingRow(
     ) {
         Column(Modifier.weight(1f)) {
             Text(title, style = MaterialTheme.typography.titleMedium)
-            Text(description, style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+            Text(description, style = MaterialTheme.typography.bodyMedium, color = PapelSoft)
         }
         Switch(
             checked = checked,
             onCheckedChange = null,
-            colors = SwitchDefaults.colors(checkedThumbColor = ArcadeNight, checkedTrackColor = ArcadeCyan),
+            colors = SwitchDefaults.colors(checkedThumbColor = Tinta, checkedTrackColor = Mango),
         )
     }
 }

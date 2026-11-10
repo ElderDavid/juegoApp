@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -33,14 +31,14 @@ import com.elderdavid.quientienelarazon.ui.components.ArcadeButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
 import com.elderdavid.quientienelarazon.ui.components.ArcadeOutlinedButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
+import com.elderdavid.quientienelarazon.ui.components.ChoiceChip
 import com.elderdavid.quientienelarazon.ui.components.PlayerAvatar
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeError
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeMagenta
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeNight
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOrange
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeOutline
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
+import com.elderdavid.quientienelarazon.ui.theme.Mango
+import com.elderdavid.quientienelarazon.ui.theme.Rojo
+import com.elderdavid.quientienelarazon.ui.theme.Chicle
+import com.elderdavid.quientienelarazon.ui.theme.Naranja
+import com.elderdavid.quientienelarazon.ui.theme.Linea
+import com.elderdavid.quientienelarazon.ui.theme.PapelSoft
 import com.elderdavid.quientienelarazon.ui.theme.PlayerColors
 
 @Composable
@@ -59,13 +57,13 @@ fun LocalSetupScreen(
     ArcadeScreen(title = "Partida local", onBack = onBack) {
         when {
             state.loading -> Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-                CircularProgressIndicator(color = ArcadeCyan)
+                CircularProgressIndicator(color = Mango)
             }
-            state.loadError -> ArcadeCard(accent = ArcadeError) {
+            state.loadError -> ArcadeCard(accent = Rojo) {
                 Text("No se pudieron cargar las preguntas.", style = MaterialTheme.typography.titleMedium)
                 Text(
                     "Es un problema de la instalación de la app, no de tu conexión. Reinstalarla debería solucionarlo.",
-                    color = ArcadeTextMuted,
+                    color = PapelSoft,
                 )
             }
             else -> SetupContent(
@@ -90,20 +88,20 @@ private fun SetupContent(
     Text(
         "Juega solo o con hasta 4 personas en este teléfono. En grupo se lo van pasando en cada turno.",
         style = MaterialTheme.typography.bodyLarge,
-        color = ArcadeTextMuted,
+        color = PapelSoft,
     )
     val issues = state.nameIssues
-    ArcadeCard(accent = ArcadeCyan) {
+    ArcadeCard(accent = Mango) {
         Text("Jugadores", style = MaterialTheme.typography.titleLarge)
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            ModeChip("Solo", state.solo, ArcadeCyan) { onSoloChange(true) }
-            ModeChip("En grupo", !state.solo, ArcadeCyan) { onSoloChange(false) }
+            ModeChip("Solo", state.solo, Mango) { onSoloChange(true) }
+            ModeChip("En grupo", !state.solo, Mango) { onSoloChange(false) }
         }
         if (state.solo) {
             Text(
                 "Modo solitario: preguntas de dificultad media y difícil. ¡Intenta superar tu récord!",
                 style = MaterialTheme.typography.bodyMedium,
-                color = ArcadeTextMuted,
+                color = PapelSoft,
             )
         }
         state.names.forEachIndexed { index, name ->
@@ -125,20 +123,20 @@ private fun SetupContent(
                     ),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = PlayerColors[index % PlayerColors.size],
-                        unfocusedBorderColor = ArcadeOutline,
-                        cursorColor = ArcadeCyan,
+                        unfocusedBorderColor = Linea,
+                        cursorColor = Mango,
                     ),
                 )
                 if (state.canRemovePlayer) {
                     TextButton(
                         onClick = { onRemovePlayer(index) },
                         modifier = Modifier.semantics { contentDescription = "Quitar jugador ${index + 1}" },
-                    ) { Text("✕", color = ArcadeTextMuted) }
+                    ) { Text("✕", color = PapelSoft) }
                 }
             }
         }
         if (state.canAddPlayer && !state.solo) {
-            ArcadeOutlinedButton(text = "Añadir jugador", onClick = onAddPlayer, color = ArcadeCyan)
+            ArcadeOutlinedButton(text = "Añadir jugador", onClick = onAddPlayer, color = Mango)
         }
     }
 
@@ -146,14 +144,14 @@ private fun SetupContent(
     SpeedCard(state, onFastChange)
     GameLengthCard(state.length, onLengthChange)
 
-    ArcadeButton(text = "¡A jugar!", onClick = onStart, enabled = state.canStart, color = ArcadeMagenta)
+    ArcadeButton(text = "¡A jugar!", onClick = onStart, enabled = state.canStart)
     if (!state.canStart) {
         Text(
             if (!state.modeUnlocked(state.mode)) "Ese país se desbloquea con monedas en Tienda y premios."
             else if (state.solo) "Escribe tu nombre."
             else "Escribe un nombre distinto para cada jugador.",
             style = MaterialTheme.typography.bodyMedium,
-            color = ArcadeTextMuted,
+            color = PapelSoft,
         )
     }
 }
@@ -161,17 +159,17 @@ private fun SetupContent(
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ModeCard(state: LocalUiState, onModeChange: (ContentMode) -> Unit) {
-    ArcadeCard(accent = ArcadeOrange) {
+    ArcadeCard(accent = Naranja) {
         Text("Preguntas", style = MaterialTheme.typography.titleLarge)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             ModeChip("General", state.mode == ContentMode.General) { onModeChange(ContentMode.General) }
             ModeChip("Niños", state.mode == ContentMode.Kids) { onModeChange(ContentMode.Kids) }
         }
         if (state.mode == ContentMode.Kids) {
-            Text(kidsModeHint(), style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+            Text(kidsModeHint(), style = MaterialTheme.typography.bodyMedium, color = PapelSoft)
         }
         Text("De aquí somos: preguntas de un departamento", style = MaterialTheme.typography.titleMedium)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             state.regions.forEach { region ->
                 val mode = ContentMode.Regional(region.id)
                 ModeChip(region.name, state.mode == mode) { onModeChange(mode) }
@@ -179,7 +177,7 @@ private fun ModeCard(state: LocalUiState, onModeChange: (ContentMode) -> Unit) {
         }
         if (state.countries.isNotEmpty()) {
             Text("Países: preguntas de un país", style = MaterialTheme.typography.titleMedium)
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 state.countries.forEach { country ->
                     val mode = ContentMode.Country(country.id)
                     val unlocked = state.modeUnlocked(mode)
@@ -192,7 +190,7 @@ private fun ModeCard(state: LocalUiState, onModeChange: (ContentMode) -> Unit) {
                 Text(
                     "Los países con candado se desbloquean con monedas en Tienda y premios.",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = ArcadeTextMuted,
+                    color = PapelSoft,
                 )
             }
         }
@@ -203,15 +201,15 @@ private fun ModeCard(state: LocalUiState, onModeChange: (ContentMode) -> Unit) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun SpeedCard(state: LocalUiState, onFastChange: (Boolean) -> Unit) {
-    ArcadeCard(accent = ArcadeMagenta) {
+    ArcadeCard(accent = Chicle) {
         Text("Velocidad", style = MaterialTheme.typography.titleLarge)
         val kids = state.mode == ContentMode.Kids
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            ModeChip("Normal · ${GameRules.QUESTION_TIME_MILLIS / 1000} s", !state.fastActive, ArcadeMagenta) { onFastChange(false) }
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            ModeChip("Normal · ${GameRules.QUESTION_TIME_MILLIS / 1000} s", !state.fastActive, Chicle) { onFastChange(false) }
             ModeChip(
                 (if (state.ownsFast) "" else "🔒 ") + "Muy rápido · ${GameRules.FAST_QUESTION_TIME_MILLIS / 1000} s",
                 state.fastActive,
-                ArcadeMagenta,
+                Chicle,
                 enabled = state.ownsFast && !kids,
             ) { onFastChange(true) }
         }
@@ -222,7 +220,7 @@ private fun SpeedCard(state: LocalUiState, onFastChange: (Boolean) -> Unit) {
                 else -> "Segundos para responder cada pregunta."
             },
             style = MaterialTheme.typography.bodyMedium,
-            color = ArcadeTextMuted,
+            color = PapelSoft,
         )
     }
 }
@@ -231,42 +229,25 @@ private fun SpeedCard(state: LocalUiState, onFastChange: (Boolean) -> Unit) {
 private fun ModeChip(
     label: String,
     selected: Boolean,
-    color: Color = ArcadeOrange,
+    color: Color = Naranja,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
-    FilterChip(
-        selected = selected,
-        onClick = onClick,
-        enabled = enabled,
-        label = { Text(label) },
-        colors = FilterChipDefaults.filterChipColors(
-            selectedContainerColor = color,
-            selectedLabelColor = ArcadeNight,
-        ),
-    )
+    ChoiceChip(label = label, selected = selected, onClick = onClick, color = color, enabled = enabled)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun GameLengthCard(selected: GameLength, onChange: (GameLength) -> Unit) {
-    ArcadeCard(accent = ArcadeCyan) {
+    ArcadeCard(accent = Mango) {
         Text("Duración", style = MaterialTheme.typography.titleLarge)
         // FlowRow: en pantallas estrechas el tercer chip baja de línea en vez de aplastarse.
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             GameLength.entries.forEach { length ->
-                FilterChip(
-                    selected = length == selected,
-                    onClick = { onChange(length) },
-                    label = { Text("${length.questions} preguntas", maxLines = 1, softWrap = false) },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = ArcadeCyan,
-                        selectedLabelColor = ArcadeNight,
-                    ),
-                )
+                ChoiceChip(label = "${length.questions} preguntas", selected = length == selected, onClick = { onChange(length) })
             }
         }
-        Text(lengthHint(selected), style = MaterialTheme.typography.bodyMedium, color = ArcadeTextMuted)
+        Text(lengthHint(selected), style = MaterialTheme.typography.bodyMedium, color = PapelSoft)
     }
 }
 

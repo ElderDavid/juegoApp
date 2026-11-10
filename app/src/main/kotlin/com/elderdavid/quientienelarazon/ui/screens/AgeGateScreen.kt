@@ -1,14 +1,14 @@
 package com.elderdavid.quientienelarazon.ui.screens
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.text.input.ImeAction
@@ -18,8 +18,8 @@ import com.elderdavid.quientienelarazon.core.ads.AgeGroup
 import com.elderdavid.quientienelarazon.ui.components.ArcadeButton
 import com.elderdavid.quientienelarazon.ui.components.ArcadeCard
 import com.elderdavid.quientienelarazon.ui.components.ArcadeScreen
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeCyan
-import com.elderdavid.quientienelarazon.ui.theme.ArcadeTextMuted
+import com.elderdavid.quientienelarazon.ui.theme.Mango
+import com.elderdavid.quientienelarazon.ui.theme.PapelSoft
 import java.util.Calendar
 
 /**
@@ -32,7 +32,7 @@ fun AgeGateScreen(onAnswered: (AgeGroup) -> Unit) {
     var text by rememberSaveable { mutableStateOf("") }
     val group = AgeGate.parse(text, currentYear)
     ArcadeScreen(title = "¡Bienvenido!") {
-        ArcadeCard(accent = ArcadeCyan) {
+        ArcadeCard(accent = Mango) {
             Text("¿En qué año naciste?", style = MaterialTheme.typography.titleLarge)
             OutlinedTextField(
                 value = text,
@@ -44,7 +44,7 @@ fun AgeGateScreen(onAnswered: (AgeGroup) -> Unit) {
                 supportingText = if (text.length == 4 && group == null) { { Text("Escribe un año válido") } } else null,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
             )
-            Text("Solo se pregunta una vez en este teléfono.", color = ArcadeTextMuted)
+            Text("Solo se pregunta una vez en este teléfono.", color = PapelSoft)
         }
         ArcadeButton(text = "Continuar", onClick = { group?.let(onAnswered) }, enabled = group != null)
     }
