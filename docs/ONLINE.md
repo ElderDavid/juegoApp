@@ -109,6 +109,11 @@ servidor coincide con el archivo: 380 preguntas (140 generales), 380 soluciones 
 MD5 de todas las filas que en una base local cargada con el archivo original. Al cambiar el banco,
 vuelve a generar el archivo y aplícalo entero (por ejemplo con `supabase db push`).
 
+El 10/11/2026 el modo normal pasó a 320 preguntas generales. Como la migración original ya estaba
+aplicada, el banco regenerado va en una migración nueva, `20261110000000_preguntas_generales_320.sql`
+(560 preguntas para todos: 320 generales y 240 regionales; inserta o actualiza, no borra nada que siga
+en el banco).
+
 El modo niños online (13/10/2026) también se cargó en partes: `modo_ninos_online_1_utilidades` y
 `modo_ninos_online_2_columnas` figuran en el historial de migraciones, y el resto (cambio de claves
 primarias, funciones con borrados y las 111 preguntas para niños) se ejecutó desde el SQL Editor de

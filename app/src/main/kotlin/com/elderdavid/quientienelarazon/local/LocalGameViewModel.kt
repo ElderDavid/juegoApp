@@ -10,12 +10,14 @@ import com.elderdavid.quientienelarazon.core.economy.LocalGameReport
 import com.elderdavid.quientienelarazon.core.economy.PaidModes
 import com.elderdavid.quientienelarazon.core.game.GameEngine
 import com.elderdavid.quientienelarazon.core.game.GameLength
+import com.elderdavid.quientienelarazon.core.game.GamePlanner
 import com.elderdavid.quientienelarazon.core.game.GameRules
 import com.elderdavid.quientienelarazon.core.game.GameState
 import com.elderdavid.quientienelarazon.core.local.LocalMatch
 import com.elderdavid.quientienelarazon.core.local.LocalSetup
 import com.elderdavid.quientienelarazon.core.local.LocalStage
 import com.elderdavid.quientienelarazon.core.local.NameIssue
+import com.elderdavid.quientienelarazon.core.local.RecentQuestions
 import com.elderdavid.quientienelarazon.core.local.Wildcard
 import com.elderdavid.quientienelarazon.core.questions.Category
 import com.elderdavid.quientienelarazon.core.questions.ContentMode
@@ -100,6 +102,8 @@ class LocalGameViewModel(
     private val newGameKey: () -> String = { UUID.randomUUID().toString() },
     /** Modos comprados guardados en el teléfono, para jugarlos sin conexión. */
     private val cachedOwnedModes: Flow<Set<String>> = emptyFlow(),
+    /** Preguntas de partidas anteriores, para no repetirlas en las siguientes. */
+    private val recentQuestions: RecentQuestionsRepository = InMemoryRecentQuestionsRepository(),
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(LocalUiState())
@@ -108,6 +112,7 @@ class LocalGameViewModel(
     private var bank: QuestionBank? = null
     private var engine: GameEngine? = null
     private var timerJob: Job? = null
+    private var recent = RecentQuestions()
 
     init {
         if (economy != null) {
@@ -123,6 +128,7 @@ class LocalGameViewModel(
         viewModelScope.launch {
             try {
                 val loaded = loadBank()
+                recent = loadRecent()
                 bank = loaded
                 engine = GameEngine(loaded)
                 _state.update { it.copy(loading = false, regions = loaded.regions, countries = loaded.countries) }
@@ -175,8 +181,13 @@ class LocalGameViewModel(
         val s = _state.value
         val e = engine ?: return
         if (!s.canStart) return
+        val players = LocalSetup.players(s.names)
         _state.update { it.copy(gameKey = newGameKey(), reward = null, notice = null) }
-        setMatch(LocalMatch.start(e, LocalSetup.players(s.names), s.mode, newSeed(), length = s.length, fast = s.fastActive))
+        val match = LocalMatch.start(
+            e, players, s.mode, newSeed(), avoidQuestionIds = avoidFor(s.mode, players.size, s.length), length = s.length, fast = s.fastActive,
+        )
+        setMatch(match)
+        remember(match)
     }
 
     // --- Partida ---
@@ -187,8 +198,12 @@ class LocalGameViewModel(
     fun answer(choice: Int) = act { it.answer(choice, clock()) }
     fun next() = act { it.next() }
     fun rematch() {
+        val current = _state.value.match ?: return
+        val config = current.state.config
         _state.update { it.copy(gameKey = newGameKey(), reward = null, notice = null) }
-        act { it.rematch(newSeed()) }
+        val match = current.rematch(newSeed(), avoidFor(config.mode, current.state.players.size, config.length))
+        setMatch(match)
+        remember(match)
     }
 
     fun useWildcard(wildcard: Wildcard) = act { it.useWildcard(wildcard, clock()) }
@@ -218,6 +233,35 @@ class LocalGameViewModel(
     }
 
     fun consumeNotice() = _state.update { it.copy(notice = null) }
+
+    /** Preguntas que conviene no repetir en una partida nueva de este modo. */
+    private fun avoidFor(mode: ContentMode, playerCount: Int, length: GameLength): Set<String> {
+        val b = bank ?: return emptySet()
+        return recent.avoidFor(GamePlanner.candidatePool(b, mode, playerCount, length), GamePlanner.questionsNeeded(length))
+    }
+
+    /** Guarda las preguntas de la partida en cuanto empieza: abandonarla no hace que vuelvan a salir. */
+    private fun remember(match: LocalMatch) {
+        recent = recent.plus(match.state)
+        val snapshot = recent
+        viewModelScope.launch {
+            try {
+                recentQuestions.save(snapshot)
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                // Si no se puede guardar, solo se pierde el recuerdo al cerrar la app.
+            }
+        }
+    }
+
+    private suspend fun loadRecent(): RecentQuestions = try {
+        recentQuestions.load()
+    } catch (e: CancellationException) {
+        throw e
+    } catch (e: Exception) {
+        RecentQuestions()
+    }
 
     /** Abandona la partida y vuelve a la configuración con los mismos nombres. */
     fun quit() = setMatch(null)
@@ -281,9 +325,13 @@ class LocalGameViewModel(
             recordFinished: suspend (GameState) -> Unit,
             economy: EconomyRepository?,
             cachedOwnedModes: Flow<Set<String>>,
+            recentQuestions: RecentQuestionsRepository,
         ): ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                LocalGameViewModel(loadBank, clock, newSeed, recordFinished, economy, cachedOwnedModes = cachedOwnedModes)
+                LocalGameViewModel(
+                    loadBank, clock, newSeed, recordFinished, economy,
+                    cachedOwnedModes = cachedOwnedModes, recentQuestions = recentQuestions,
+                )
             }
         }
     }

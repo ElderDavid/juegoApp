@@ -17,8 +17,8 @@ class QuestionBankContentTest {
     private val adultQuestions = bank.questions.filter { it.audience == Audience.ALL && it.regionId !in countryIds }
     private val kidsQuestions = bank.questions.filter { it.audience == Audience.KIDS }
 
-    @Test fun hasExactly380QuestionsPlus111ForKidsAnd180OfCountries() {
-        assertEquals(380, adultQuestions.size)
+    @Test fun hasExactly560QuestionsPlus111ForKidsAnd180OfCountries() {
+        assertEquals(560, adultQuestions.size)
         assertEquals(111, kidsQuestions.size)
         assertEquals(180, countryQuestions.size)
     }
@@ -27,11 +27,31 @@ class QuestionBankContentTest {
     fun distributionIsExact() {
         val byRegion = adultQuestions.groupingBy { it.regionId }.eachCount()
         assertEquals(
-            mapOf(null to 140, "la-guajira" to 40, "magdalena" to 40, "cesar" to 40, "atlantico" to 40,
+            mapOf(null to 320, "la-guajira" to 40, "magdalena" to 40, "cesar" to 40, "atlantico" to 40,
                 "antioquia" to 40, "bogota" to 40),
             byRegion,
         )
         assertEquals(bank.countries.associate { it.id to 30 }, countryQuestions.groupingBy { it.regionId }.eachCount())
+    }
+
+    @Test
+    fun normalModeHasMoreThan300BalancedQuestions() {
+        val general = bank.pool(ContentMode.General)
+        assertTrue(general.size > 300)
+        val byCategory = general.groupingBy { it.categoryId }.eachCount()
+        assertEquals(10, byCategory.size)
+        byCategory.forEach { (category, n) -> assertTrue("$category: $n", n >= 30) }
+        Difficulty.entries.forEach { d -> assertTrue("$d", general.count { it.difficulty == d } >= 90) }
+    }
+
+    @Test
+    fun noRepeatedQuestionTextsWithinAMode() {
+        val modes = listOf(ContentMode.General, ContentMode.Kids) + bank.regions.map { ContentMode.Regional(it.id) } +
+            bank.countries.map { ContentMode.Country(it.id) }
+        for (mode in modes) {
+            val texts = bank.pool(mode).map { it.text.trim().lowercase() }
+            assertEquals("$mode", texts.size, texts.toSet().size)
+        }
     }
 
     @Test fun idsAreUnique() = assertEquals(bank.questions.size, bank.questions.map { it.id }.toSet().size)

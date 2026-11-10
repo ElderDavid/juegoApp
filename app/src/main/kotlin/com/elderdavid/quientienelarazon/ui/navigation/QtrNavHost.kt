@@ -90,6 +90,7 @@ private fun AppNavHost(container: AppContainer) {
                     recordFinished = container.localHistoryRepository::record,
                     economy = container.economyRepository,
                     cachedOwnedModes = container.economyCache.ownedModes,
+                    recentQuestions = container.recentQuestionsRepository,
                 ),
             )
             LocalGameRoute(

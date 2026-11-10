@@ -22,6 +22,9 @@ import com.elderdavid.quientienelarazon.core.economy.CosmeticKind
 import com.elderdavid.quientienelarazon.core.economy.Cosmetics
 import com.elderdavid.quientienelarazon.core.questions.QuestionBank
 import com.elderdavid.quientienelarazon.core.questions.QuestionBankLoader
+import com.elderdavid.quientienelarazon.local.DataStoreRecentQuestionsRepository
+import com.elderdavid.quientienelarazon.local.RecentQuestionsRepository
+import com.elderdavid.quientienelarazon.local.recentQuestionsDataStore
 import com.elderdavid.quientienelarazon.online.OnlineRepository
 import com.elderdavid.quientienelarazon.online.SupabaseOnlineRepository
 import com.elderdavid.quientienelarazon.settings.DataStoreSettingsRepository
@@ -78,6 +81,10 @@ class AppContainer(application: Application) {
     /** Partidas locales de este teléfono. Fuente de verdad separada de las estadísticas de la cuenta. */
     val localHistoryRepository: LocalHistoryRepository =
         DataStoreLocalHistoryRepository(application.localHistoryDataStore)
+
+    /** Preguntas ya jugadas en partidas locales, para no repetirlas en las siguientes. */
+    val recentQuestionsRepository: RecentQuestionsRepository =
+        DataStoreRecentQuestionsRepository(application.recentQuestionsDataStore)
 
     /** Monedas, premios y cosméticos. null sin configuración de Supabase. */
     val economyRepository: EconomyRepository? by lazy {
